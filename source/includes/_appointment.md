@@ -1,12 +1,13 @@
 # Appointment API
 
 ## Appointment
-Get a bundle of appointments   
+### Search
+Searches for all appointments matching the given search criteria.
 
-RESTful searching for appointments by appointment start date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge.
+_RESTful searching for appointments by appointment start date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge._
 
 ### HTTP Request 
-`GET /Appointment` 
+`GET /Appointment?{parameters}`
 
 ### Parameters
 | Name | Located in | Description | Required | Type |
@@ -14,10 +15,12 @@ RESTful searching for appointments by appointment start date is supported. See h
 | identifier | query | The unique identifier acquired from the appointment search | No | array |
 | patient | query | The unique identifier acquired from the patient search | No | array |
 | date | query | The collection of appointment date filters | No | array |
-| nx-practice-id | header | The unique identifier for a practice | Yes | string |   
 
 
-Update an existing appointment's status
+### Update Appointment Status
+Update an existing appointment's status.  
+
+_Currently only supports marking appointments as booked._
 
 ### HTTP Request 
 `PUT /Appointment/{identifier}` 
@@ -27,4 +30,6 @@ Update an existing appointment's status
 | ---- | ---------- | ----------- | -------- | ---- |
 | identifier | path | The unique identifier of the appointment to be updated | Yes | string |
 | commit | body | The object representing the changes to be made | Yes |  |
-| nx-practice-id | header | The unique identifier for a practice | Yes | string |
+
+### Example
+`{ "status": "booked" }`

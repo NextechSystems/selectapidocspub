@@ -1,7 +1,7 @@
 # Authentication
 Nextech's implementation of the FHIR® standard is protected by the [OAuth 2.0 standard](https://oauth.net/2/) for authenticating requests.  Every API request requires a Bearer token to be passed in the Authorization Header.
 
-```Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng...```
+```Authorization: Bearer {access_tokent}```
 
 ### Request Authorization
 To obtain a Bearer token, the user must first request authorization using a registered app's client identifier.
@@ -13,7 +13,7 @@ The user will be asked to log in using their credentials.  Upon first login, the
 Upon successful authentication, an authorization code will be included as the value of the `code` parameter in the redirect URL.  This code, along with the client secret will be included in the request to get an access token.
 
 ### Request Access Token
-```POST https://login.microsoftonline.com/mdintellesys.com/oauth2/token ```
+`POST https://login.microsoftonline.com/mdintellesys.com/oauth2/token`
 
 Add the following parameters as a `x-www-form-urlencoded` query string to the request body:
 ```
