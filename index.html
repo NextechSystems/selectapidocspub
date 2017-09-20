@@ -1,0 +1,1195 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Nextech Select API Reference</title>
+    <link href="images/nextech-favicon.png" rel="icon" type="image/png" />
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#search" class="toc-h2 toc-link" data-title="Introduction">Search</a>
+                  </li>
+                  <li>
+                    <a href="#writing" class="toc-h2 toc-link" data-title="Introduction">Writing</a>
+                  </li>
+                  <li>
+                    <a href="#pagination" class="toc-h2 toc-link" data-title="Introduction">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#request-format" class="toc-h2 toc-link" data-title="Introduction">Request Format</a>
+                  </li>
+                  <li>
+                    <a href="#errors" class="toc-h2 toc-link" data-title="Introduction">Errors</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request-access-token" class="toc-h2 toc-link" data-title="Authentication">Request Access Token</a>
+                  </li>
+                  <li>
+                    <a href="#refresh-access-token" class="toc-h2 toc-link" data-title="Authentication">Refresh Access Token</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#patient-api" class="toc-h1 toc-link" data-title="Patient API">Patient API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#patient" class="toc-h2 toc-link" data-title="Patient API">Patient</a>
+                  </li>
+                  <li>
+                    <a href="#allergy-intolerance" class="toc-h2 toc-link" data-title="Patient API">Allergy Intolerance</a>
+                  </li>
+                  <li>
+                    <a href="#ccda-summary" class="toc-h2 toc-link" data-title="Patient API">CCDA Summary</a>
+                  </li>
+                  <li>
+                    <a href="#care-plan" class="toc-h2 toc-link" data-title="Patient API">Care Plan</a>
+                  </li>
+                  <li>
+                    <a href="#clinical-impression" class="toc-h2 toc-link" data-title="Patient API">Clinical Impression</a>
+                  </li>
+                  <li>
+                    <a href="#condition" class="toc-h2 toc-link" data-title="Patient API">Condition</a>
+                  </li>
+                  <li>
+                    <a href="#device" class="toc-h2 toc-link" data-title="Patient API">Device</a>
+                  </li>
+                  <li>
+                    <a href="#encounter" class="toc-h2 toc-link" data-title="Patient API">Encounter</a>
+                  </li>
+                  <li>
+                    <a href="#goal" class="toc-h2 toc-link" data-title="Patient API">Goal</a>
+                  </li>
+                  <li>
+                    <a href="#immunization" class="toc-h2 toc-link" data-title="Patient API">Immunization</a>
+                  </li>
+                  <li>
+                    <a href="#medication-dispensement" class="toc-h2 toc-link" data-title="Patient API">Medication Dispensement</a>
+                  </li>
+                  <li>
+                    <a href="#medication-statements" class="toc-h2 toc-link" data-title="Patient API">Medication Statements</a>
+                  </li>
+                  <li>
+                    <a href="#observation" class="toc-h2 toc-link" data-title="Patient API">Observation</a>
+                  </li>
+                  <li>
+                    <a href="#procedure" class="toc-h2 toc-link" data-title="Patient API">Procedure</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#appointment-api" class="toc-h1 toc-link" data-title="Appointment API">Appointment API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#appointment" class="toc-h2 toc-link" data-title="Appointment API">Appointment</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='http://hl7.org/fhir/'>FHIR Documentation</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>The Nextech Select Open API is a RESTful implementation based on the STU 3 (3.0.1) version of the <a href="https://www.hl7.org/fhir/index.html">FHIR® standard</a>.</p>
+
+<p>All communication is performed over HTTPS. Although the FHIR® standard supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request&#39;s <code>Accept</code> header will be ignored.</p>
+<h2 id='search'>Search</h2>
+<p>Searches may be performed via HTTPS calls to the API where supported. </p>
+
+<p>A search is executed by performing a GET operation in the RESTful framework<br>
+<code>GET https://link-to-the-api/PartnerAPI/[type]?[field1]=[value1]&amp;[field2]=[value2]...</code><br>
+where [type] refers to a resource such as Patient or Appointment followed by one or more query filters.</p>
+<h3 id='example'>Example</h3>
+<p><code>GET https://link-to-the-api/PartnerAPI/Patient?identifier=3442</code><br>
+<code>GET https://link-to-the-api/PartnerAPI/Patient?family=Smith</code><br>
+<code>GET https://link-to-the-api/PartnerAPI/Patient?address-city=Tampa&amp;address-state=FL</code>   </p>
+<h2 id='writing'>Writing</h2>
+<p>Data writes may be performed via HTTPS calls to the API where supported. </p>
+
+<p>A write is executed by performing a PUT operation in the RESTful framework
+<code>PUT https://link-to-the-api/PartnerAPI/{resource}/{identifier}</code>
+where <code>{resource}</code> refers to a resource such as Patient or Appointment, <code>{identifier}</code> is the unique identifier of the resource and the body of the request describes a resource and which fields to add or change. This example request path and body would confirm an appointment with the ID 3384:   </p>
+<h3 id='example-2'>Example</h3>
+<p><code>PUT https://link-to-the-api/PartnerAPI/Appointment/3384</code><br>
+<code>Body: { &quot;status&quot;: &quot;fulfilled&quot; }</code></p>
+<h2 id='pagination'>Pagination</h2>
+<p>When a search results in multiple matches, the first ten matches ordered by entered date are returned by default. Included in the result are links to the first set of matches, the following set of matches, the previous set of matches and the last set of matches.</p>
+
+<p>You may overide the number of matches returned, up to fifty, by including <code>_count={number}</code> in your search. </p>
+
+<p><code>GET http://link-to-the-api/PartnerAPI/Appointment?_count=25</code></p>
+
+<aside class="notice">
+Search results are limited to fifty matches per page.
+</aside>
+<h2 id='request-format'>Request Format</h2>
+<p>All communication is performed over HTTPS. Although the FHIR® standard supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request&#39;s <code>Accept</code> header will be ignored.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>Every request requires a Bearer token <code>Bearer {access_token}</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>nx-practice-id</td>
+<td>The unique identifier for a practice</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h2 id='errors'>Errors</h2>
+<p>Nextech uses the standard HTTP response codes to indicate a API request&#39;s success or failure.</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK - Successful request</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request - The request is missing information or is malformed</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden - The request is valid, but the server is refusing action</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found - The requested resource cannot be found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error - We had a problem with our server</td>
+</tr>
+</tbody></table>
+<h1 id='authentication'>Authentication</h1><h2 id='request-access-token'>Request Access Token</h2>
+<p>Nextech&#39;s implementation of the FHIR® standard is protected by the <a href="https://oauth.net/2/">OAuth 2.0 standard</a> for authenticating requests.  Every API request requires a Bearer token to be passed in the Authorization Header.</p>
+
+<p><code>Authorization: Bearer {access_token}</code></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://login.microsoftonline.com/{tenant}/oauth2/token</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>grant_type</td>
+<td>Use <code>password</code> (Resource owner credentials grant)</td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>Application ID</td>
+</tr>
+<tr>
+<td>client_secret</td>
+<td>Application secret</td>
+</tr>
+<tr>
+<td>username</td>
+<td>Resource owner username</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Resource owner password</td>
+</tr>
+<tr>
+<td>resource</td>
+<td>The app to consume the token</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token_type</td>
+<td>Always <code>Bearer</code></td>
+</tr>
+<tr>
+<td>scope</td>
+<td>Always <code>user_impersonation</code></td>
+</tr>
+<tr>
+<td>expires_in</td>
+<td>The lifetime of the access token, in seconds. Default 3600</td>
+</tr>
+<tr>
+<td>access_token</td>
+<td>The bearer token used in the <code>Authorization</code> header for subsquent requests</td>
+</tr>
+<tr>
+<td>refresh_token</td>
+<td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
+</tr>
+</tbody></table>
+<h2 id='refresh-access-token'>Refresh Access Token</h2>
+<p>Refresh tokens are used to renew an expired access token without providing user credentials. A <code>access_token</code> and <code>refresh_token</code> pair is issued when requesting an access token using the resource owner credentials grant. A new pair is also generated when using the <code>refresh_token</code> grant type. </p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://login.microsoftonline.com/{tenant}/oauth2/token</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>grant_type</td>
+<td>Always <code>refresh_token</code></td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>Application ID</td>
+</tr>
+<tr>
+<td>client_secret</td>
+<td>Application secret</td>
+</tr>
+<tr>
+<td>refresh_token</td>
+<td>A valid refresh token</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-2'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token_type</td>
+<td>Always <code>Bearer</code></td>
+</tr>
+<tr>
+<td>scope</td>
+<td>Always <code>user_impersonation</code></td>
+</tr>
+<tr>
+<td>expires_in</td>
+<td>The lifetime of the access token, in seconds. Default 3600</td>
+</tr>
+<tr>
+<td>access_token</td>
+<td>The bearer token used in the <code>Authorization</code> header for subsquent requests</td>
+</tr>
+<tr>
+<td>refresh_token</td>
+<td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
+</tr>
+</tbody></table>
+<h1 id='patient-api'>Patient API</h1><h2 id='patient'>Patient</h2><h3 id='retrieve-by-id'>Retrieve by ID</h3>
+<p>Get the demographic information for a patient.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}</code> </p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h3 id='search'>Search</h3>
+<p>Searches for all patients matching the given search criteria.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /Patient?{parameters}</code></p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>family</td>
+<td>query</td>
+<td>The family (last) name of the patient</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>given</td>
+<td>query</td>
+<td>The given (first) name of the patient</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>birthdate</td>
+<td>query</td>
+<td>The patient&#39;s date of birth formatted as YYYY-MM-DD</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>query</td>
+<td>The patient&#39;s phone number which will be matched against any phone number (home, cell, etc.)</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>email</td>
+<td>query</td>
+<td>The patient&#39;s email address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>address-city</td>
+<td>query</td>
+<td>The city of the patient&#39;s address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>address-state</td>
+<td>query</td>
+<td>The state of the patient&#39;s address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>address-postalcode</td>
+<td>query</td>
+<td>The postal (zip) code of the patient&#39;s address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>identifier</td>
+<td>query</td>
+<td>The patient&#39;s Nextech chart number</td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h3 id='patient-id-search'>Patient ID Search</h3>
+<p>Attempts to find a single patient that matches the given search criteria and if
+successful returns only that patient&#39;s unique identifier.   </p>
+
+<p><em>At least one of query parameters is required to perform a search.</em></p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /Patient/ID</code> </p>
+<h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>family</td>
+<td>query</td>
+<td>The family (last) name of the patient</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>given</td>
+<td>query</td>
+<td>The given (first) name of the patient</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>birthdate</td>
+<td>query</td>
+<td>The patient&#39;s date of birth formatted as YYYY-MM-DD</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>query</td>
+<td>The patient&#39;s phone number which will be matched against any phone number (home, cell, etc.)</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>email</td>
+<td>query</td>
+<td>The patient&#39;s email address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>address-city</td>
+<td>query</td>
+<td>The city of the patient&#39;s address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>address-state</td>
+<td>query</td>
+<td>The state of the patient&#39;s address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>address-postalcode</td>
+<td>query</td>
+<td>The postal (zip) code of the patient&#39;s address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>identifier</td>
+<td>query</td>
+<td>The patient&#39;s Nextech chart number</td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h2 id='allergy-intolerance'>Allergy Intolerance</h2>
+<p>Get a bundle of allergies for a single patient   </p>
+
+<p><em>RESTful searching for allergies by last update date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/AllergyIntolerance</code></p>
+<h3 id='parameters-4'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of allergy last update date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='ccda-summary'>CCDA Summary</h2>
+<p>Get a CCDA summary document for the specified patient.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUid}/Binary/$autogen-ccd-if</code> </p>
+<h3 id='parameters-5'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The patient&#39;s unique identifier (can be found by patient ID search method)</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td>The start date for which the CCD should be generated (if not specified then all records              starting with the patient&#39;s first visit are included)</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td>The end date for which the CCD should be generated (if not specified then all records              through the patient&#39;s latest visit are included)</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+<h2 id='care-plan'>Care Plan</h2>
+<p>Get a bundle of care plans for a single patient.   </p>
+
+<p><em>RESTful searching for care plans by visit date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/CarePlan</code> </p>
+<h3 id='parameters-6'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of visit date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='clinical-impression'>Clinical Impression</h2>
+<p>Get a bundle of clinical impressions for a patient.   </p>
+
+<p><em>RESTful searching for clinical impressions by visit date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/ClinicalImpression</code> </p>
+<h3 id='parameters-7'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of visit date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='condition'>Condition</h2>
+<p>Get a bundle of conditions for a single patient.   </p>
+
+<p><em>RESTful searching for conditions by onset date and abatement date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/Condition</code> </p>
+<h3 id='parameters-8'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>onset-date</td>
+<td>query</td>
+<td>The collection of condition onset date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+<tr>
+<td>abatement-date</td>
+<td>query</td>
+<td>The collection of condition abatement date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='device'>Device</h2>
+<p>Get a bundle of devices for a patient.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/Device</code> </p>
+<h3 id='parameters-9'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of device effective date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='encounter'>Encounter</h2>
+<p>Get a bundle of encounters for a single patient.   </p>
+
+<p><em>RESTful searching for conditions by encounter date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/Encounter</code> </p>
+<h3 id='parameters-10'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of encounter date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='goal'>Goal</h2>
+<p>Get a bundle of goals for a single patient.   </p>
+
+<p><em>RESTful searching for goals by visit date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/Goal</code> </p>
+<h3 id='parameters-11'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of visit date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='immunization'>Immunization</h2>
+<p>Get a bundle of immunizations for a single patient.   </p>
+
+<p><em>RESTful searching for current immunizations by administration date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/Immunization</code> </p>
+<h3 id='parameters-12'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of current immunization administration date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='medication-dispensement'>Medication Dispensement</h2>
+<p>Get a bundle of medication dispensements for a single patient.   </p>
+
+<p><em>RESTful searching for medication dispensements by preparation date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/MedicationDispense</code> </p>
+<h3 id='parameters-13'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>whenprepared</td>
+<td>query</td>
+<td>The collection of preparation date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='medication-statements'>Medication Statements</h2>
+<p>Get a bundle of medication statements for a single patient.   </p>
+
+<p><em>RESTful searching for medication statements by effective date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/MedicationStatement</code> </p>
+<h3 id='parameters-14'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>effective</td>
+<td>query</td>
+<td>The collection of effective date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='observation'>Observation</h2>
+<p>Get a bundle of diagnostic observations for a single patient.   </p>
+
+<p>This request requires a category code to search on. The following category codes are supported:
+- laboratory
+- social-history
+- vital-signs</p>
+
+<p><em>RESTful searching for observations by date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUid}/Observation</code> </p>
+<h3 id='parameters-15'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>category</td>
+<td>query</td>
+<td>The category of observation to load</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of observation obtained date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h2 id='procedure'>Procedure</h2>
+<p>Get a bundle of procedures for a single patient.   </p>
+
+<p><em>RESTful searching for procedures by performed date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>GET /Patient/{patientUID}/Procedure</code> </p>
+<h3 id='parameters-16'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUID</td>
+<td>path</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of procedure performed date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h1 id='appointment-api'>Appointment API</h1><h2 id='appointment'>Appointment</h2><h3 id='search'>Search</h3>
+<p>Searches for all appointments matching the given search criteria.</p>
+
+<p><em>RESTful searching for appointments by appointment start date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge.</em></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /Appointment?{parameters}</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query</td>
+<td>The unique identifier acquired from the appointment search</td>
+<td>No</td>
+<td>array</td>
+</tr>
+<tr>
+<td>patient</td>
+<td>query</td>
+<td>The unique identifier acquired from the patient search</td>
+<td>No</td>
+<td>array</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of appointment date filters</td>
+<td>No</td>
+<td>array</td>
+</tr>
+</tbody></table>
+<h3 id='confirm-appointment'>Confirm Appointment</h3>
+<p>Confirm a scheduled appointment.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>PUT /Appointment/{identifier}</code> </p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>path</td>
+<td>The unique identifier of the appointment to be updated</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>commit</td>
+<td>body</td>
+<td>The object representing the changes to be made</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='example'>Example</h3>
+<p><code>{ &quot;status&quot;: &quot;booked&quot; }</code></p>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
