@@ -17,10 +17,8 @@ _RESTful searching for appointments by appointment start date is supported. See 
 | date | query | The collection of appointment date filters | No | array |
 
 
-### Update Appointment Status
-Update an existing appointment's status.  
-
-_Currently only supports marking appointments as booked._
+### Confirm Appointment
+Confirm a scheduled appointment.
 
 ### HTTP Request 
 `PUT /Appointment/{identifier}` 

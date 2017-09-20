@@ -1,40 +1,50 @@
 # Authentication
+## Request Access Token
 Nextech's implementation of the FHIR® standard is protected by the [OAuth 2.0 standard](https://oauth.net/2/) for authenticating requests.  Every API request requires a Bearer token to be passed in the Authorization Header.
 
-```Authorization: Bearer {access_tokent}```
+```Authorization: Bearer {access_token}```
 
-### Request Authorization
-To obtain a Bearer token, the user must first request authorization using a registered app's client identifier.
+### HTTP Request
+`POST https://login.microsoftonline.com/{tenant}/oauth2/token`
 
-```https://login.microsoftonline.com/mdintellesys.com/oauth2/authorize?response_type=code&resource=https%3A%2F%2Fmdintellesys.com%2FPartnerAPI&client_id=[client_id] ```
+| Parameter | Description |
+| --------- | ----------- |
+| grant_type | Use `password` (Resource owner credentials grant) |
+| client_id | Application ID |
+| client_secret | Application secret |
+| username | Resource owner username |
+| password | Resource owner password |
+| resource | The app to consume the token |
 
-The user will be asked to log in using their credentials.  Upon first login, they will be asked to authorize the use of the application.  If they don't have credentials, they will need to create an account which will verify their identity. 
+### Response Parameters
 
-Upon successful authentication, an authorization code will be included as the value of the `code` parameter in the redirect URL.  This code, along with the client secret will be included in the request to get an access token.
+| Parameter | Description |
+| --------- | ----------- |
+| token_type | Always `Bearer` |
+| scope | Always `user_impersonation` |
+| expires_in | The lifetime of the access token, in seconds. Default 3600 |
+| access_token | The bearer token used in the `Authorization` header for subsquent requests |
+| refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
 
-### Request Access Token
-`POST https://login.microsoftonline.com/mdintellesys.com/oauth2/token`
+## Refresh Access Token
+Refresh tokens are used to renew an expired access token without providing user credentials. A `access_token` and `refresh_token` pair is issued when requesting an access token using the resource owner credentials grant. A new pair is also generated when using the `refresh_token` grant type. 
 
-Add the following parameters as a `x-www-form-urlencoded` query string to the request body:
-```
-grant_type: authorization_code
-client_id: [client_id]
-code: [authorization_code]
-client_secret: [client_secret]
-```
+### HTTP Request
+`POST https://login.microsoftonline.com/{tenant}/oauth2/token`
 
-The response includes the `access_token` which should be included in the Authorization header when making an API request.
-```
-{
-  "token_type": "Bearer",
-  "scope": "user_impersonation",
-  "expires_in": "3599",
-  "ext_expires_in": "0",
-  "expires_on": "1495481979",
-  "not_before": "1495478079",
-  "resource": "https://mdintellesys.com/PartnerAPI",
-  "access_token": "eyJ0eXAiOiJKV1QiLC..."
-  "refresh_token": "AQABAAAAAABnfiG-m..."
-  "id_token": "eyJ0eXAiOiJKV1QiLCJh..."
-}
-  ``` 
+| Parameter | Description |
+| --------- | ----------- |
+| grant_type | Always `refresh_token` |
+| client_id | Application ID |
+| client_secret | Application secret |
+| refresh_token | A valid refresh token |
+
+### Response Parameters
+
+| Parameter | Description |
+| --------- | ----------- |
+| token_type | Always `Bearer` |
+| scope | Always `user_impersonation` |
+| expires_in | The lifetime of the access token, in seconds. Default 3600 |
+| access_token | The bearer token used in the `Authorization` header for subsquent requests |
+| refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |

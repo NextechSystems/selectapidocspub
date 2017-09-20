@@ -1,7 +1,6 @@
 # Patient API
 
 ## Patient
-
 ### Retrieve by ID
 Get the demographic information for a patient.
 
