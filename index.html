@@ -1117,56 +1117,185 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>array</td>
 </tr>
 </tbody></table>
-<h1 id='appointment-api'>Appointment API</h1><h2 id='appointment'>Appointment</h2><h3 id='search'>Search</h3>
-<p>Searches for all appointments matching the given search criteria.</p>
-
-<p><em>RESTful searching for appointments by appointment start date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge.</em></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /Appointment?{parameters}</code></p>
-<h3 id='parameters'>Parameters</h3>
+<h1 id='appointment-api'>Appointment API</h1><h2 id='appointment'>Appointment</h2><h3 id='overview'>Overview</h3>
+<p>The appointment resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
+<h3 id='fields'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
-<th>Located in</th>
 <th>Description</th>
-<th>Required</th>
 <th>Type</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
-<td>query</td>
-<td>The unique identifier acquired from the appointment search</td>
-<td>No</td>
-<td>array</td>
+<td>The unique value assigned to each appointment which discerns it from all others</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
-<td>patient</td>
-<td>query</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>No</td>
-<td>array</td>
+<td>status</td>
+<td>Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show</td>
+<td><a href="https://www.hl7.org/fhir/valueset-appointmentstatus.html">AppointmentStatus</a></td>
 </tr>
 <tr>
-<td>date</td>
-<td>query</td>
-<td>The collection of appointment date filters</td>
-<td>No</td>
-<td>array</td>
+<td>description</td>
+<td>The appointment summary that includes the type and a list of purposes and resources</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+<tr>
+<td>start</td>
+<td>The date and time the appointment begins</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+</tr>
+<tr>
+<td>end</td>
+<td>The date and time the appointment ends</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+</tr>
+<tr>
+<td>comment</td>
+<td>The appointment notes</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+<tr>
+<td>participant</td>
+<td>The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
 </tr>
 </tbody></table>
-<h3 id='confirm-appointment'>Confirm Appointment</h3>
-<p>Confirm a scheduled appointment.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>PUT /Appointment/{identifier}</code> </p>
-<h3 id='parameters-2'>Parameters</h3>
+<h3 id='example'>Example</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Appointment",
+        "id": "12312",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "5",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "5"
+              }
+            ],
+            "name": "South Dermatology"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "2",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "2"
+              }
+            ],
+            "name": [
+              {
+                "text": "Davison, Darren",
+                "family": "Davison",
+                "given": [
+                  "Darren",
+                  ""
+                ]
+              }
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "use": "official",
+            "value": "12312"
+          }
+        ],
+        "status": "booked",
+        "description": "Consult - Insurance Est. - Skin Lesion/Tumor for Darren Davis, MD",
+        "start": "2017-03-12T09:10:00-04:00",
+        "end": "2017-03-12T09:40:00-04:00",
+        "comment": "This is a sample comment",
+        "participant": [
+          {
+            "actor": {
+              "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
+              "display": "Brimley, Henry"
+            }
+          },
+          {
+            "actor": {
+              "reference": "#5",
+              "display": "South Dermatology"
+            }
+          },
+          {
+            "actor": {
+              "reference": "#2",
+              "display": "Davison, Darren"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all appointments matching the given search criteria. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /Appointment?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
-<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query</td>
+<td>The unique identifier for a single appointment</td>
+<td>No</td>
+</tr>
+<tr>
+<td>patient</td>
+<td>query</td>
+<td>The unique identifier acquired from the patient search or a patient chart number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The appointment start date. When searching for appointments within a date range, the following prefixes may be used: lt, gt, eq, le, ge</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get all appointments for a patient by chart number</h4>
+<pre class="center-column">
+GET https://api.nextech.com/Appointment?patient=12345
+</pre>
+<h4 id='example-get-all-appointments-between-and-including-1-1-2017-through-5-31-2017'>Example: Get all appointments between and including 1/1/2017 through 5/31/2017</h4>
+<pre class="center-column">
+GET https://api.nextech.com/Appointment?date=ge2017-01-01&date=lt2017-06-01
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-confirm-appointment-em'><em>Confirm Appointment</em></h3>
+<p>Confirm a scheduled appointment.</p>
+<h4 id='http-request-2'>HTTP Request</h4>
+<p><code>PUT /Appointment/{identifier}</code> </p>
+<h4 id='parameters-2'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1174,18 +1303,24 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>path</td>
 <td>The unique identifier of the appointment to be updated</td>
 <td>Yes</td>
-<td>string</td>
 </tr>
 <tr>
 <td>commit</td>
 <td>body</td>
 <td>The object representing the changes to be made</td>
 <td>Yes</td>
-<td></td>
 </tr>
 </tbody></table>
-<h3 id='example'>Example</h3>
-<p><code>{ &quot;status&quot;: &quot;booked&quot; }</code></p>
+
+<p>The commit parameter should be in the form of an Appointment status field. See https://www.hl7.org/fhir/http.html#update for details on formatting PUT requests in RESTful API’s.</p>
+<h4 id='example-mark-appointment-5453-as-booked'>Example: Mark appointment 5453 as booked</h4>
+<pre class="center-column">
+PUT https://api.nextech.com/Appointment/5453
+</pre>
+
+<pre class="center-column">
+{ "status": "booked" }
+</pre>
 
       </div>
       <div class="dark-box">
