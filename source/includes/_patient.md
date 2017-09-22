@@ -1,19 +1,116 @@
 # Patient API
 
 ## Patient
-### Retrieve by ID
-Get the demographic information for a patient.
 
-### HTTP Request 
-`GET /Patient/{patientUID}` 
+### Overview
+The patient resource contains information about the demographics of a patient.
 
-### Parameters
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| patientUID | path | The unique identifier acquired from the patient search | Yes | string |
+### Fields
+| Name | Description | Type |
+| ---- | ---------- | ----------- |
+| identifier | The unique value assigned to each patient which discerns them from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
+| race | The race of the patient | [Race](https://www.hl7.org/fhir/v3/Race/cs.html) |
+| ethnicity | The ethnicity of the patient | [Ethnicity](https://www.hl7.org/fhir/v3/Ethnicity/cs.html) |
+| name | Names of the patient | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) |
+| telecom | Contact details for the patient | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) |
+| gender | The gender of the patient | [AdministrativeGender](https://www.hl7.org/fhir/valueset-administrative-gender.html) |
+| birthDate | The date of birth of the patient | [date](https://www.hl7.org/fhir/datatypes.html#date) |
+| address | Addresses associated with the patient | [Address](https://www.hl7.org/fhir/datatypes.html#Address) |
+| communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
 
-  
-### Search
+### Example
+<pre class="center-column">{
+  "resourceType": "Patient",
+  "id": "ad2085b5-b974-401d-bfcb-3b865109fd35",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/v3/Race",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/v3/Race",
+            "code": "2106-3"
+          }
+        ],
+        "text": "Caucasian"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/v3/Ethnicity",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/v3/Ethnicity",
+            "code": "2186-5"
+          }
+        ],
+        "text": "Not Hispanic or Latino"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "use": "official",
+      "value": "ad2085b5-b974-401d-bfcb-3b865109fd35"
+    },
+    {
+      "use": "usual",
+      "value": "4471"
+    }
+  ],
+  "name": [
+    {
+      "text": "Jane L Smith",
+      "family": "Smith",
+      "given": [
+        "Jane",
+        "L"
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "email",
+      "value": "jsmith@email.com"
+    },
+    {
+      "system": "phone",
+      "value": "346-555-3682"
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1968-02-04",
+  "address": [
+    {
+      "use": "home",
+      "type": "both",
+      "line": [
+        "3485 Forest Lane",
+        "Apt 324"
+      ],
+      "city": "Houston",
+      "state": "TX",
+      "postalCode": "77014"
+    }
+  ],
+  "communication": [
+    {
+      "language": {
+        "coding": [
+          {
+            "system": "BCP-47",
+            "code": "en"
+          }
+        ],
+        "text": "English"
+      },
+      "preferred": true
+    }
+  ]
+}
+</pre>
+&nbsp;
+### *Search*
 Searches for all patients matching the given search criteria.
 
 ### HTTP Request 
