@@ -8,7 +8,7 @@ The patient resource contains information about the demographics of a patient.
 ### Fields
 | Name | Description | Type |
 | ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each patient which discerns them from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
+| identifier | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient’s Nextech chart number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
 | race | The race of the patient | [Race](https://www.hl7.org/fhir/v3/Race/cs.html) |
 | ethnicity | The ethnicity of the patient | [Ethnicity](https://www.hl7.org/fhir/v3/Ethnicity/cs.html) |
 | name | Names of the patient | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) |
@@ -111,7 +111,7 @@ The patient resource contains information about the demographics of a patient.
 </pre>
 &nbsp;
 ### *Search*
-Searches for all patients matching the given search criteria.
+Searches for all patients matching the given search criteria. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria.
 
 ### HTTP Request 
 `GET /Patient?{parameters}`
@@ -127,8 +127,26 @@ Searches for all patients matching the given search criteria.
 | address-city | query | The city of the patient's address | No | string |
 | address-state | query | The state of the patient's address | No | string |
 | address-postalcode | query | The postal (zip) code of the patient's address | No | string |
-| identifier | query | The patient's Nextech chart number | No | string |
+| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient’s Nextech chart number | No | string |
 
+#### Example: Get the patient of a specific chart number
+
+<pre class="center-column">
+GET https://api.nextech.com/Patient/12345
+</pre>
+
+#### Example: Get all patients who live within a specific zip code
+
+<pre class="center-column">
+GET https://api.nextech.com/Patient?address-postalcode=12345
+</pre>
+
+#### Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981
+
+<pre class="center-column">
+GET https://api.nextech.com/Patient?birthDate=ge1981-01-01&birthDate=lt1981-06-01
+</pre>
+&nbsp;
 
 ### Patient ID Search
 Attempts to find a single patient that matches the given search criteria and if
@@ -137,7 +155,7 @@ successful returns only that patient's unique identifier.
 _At least one of query parameters is required to perform a search._
 
 ### HTTP Request 
-`GET /Patient/ID` 
+`GET /Patient/ID?{parameters}` 
 
 ### Parameters
 | Name | Located in | Description | Required | Type |
@@ -150,7 +168,14 @@ _At least one of query parameters is required to perform a search._
 | address-city | query | The city of the patient's address | No | string |
 | address-state | query | The state of the patient's address | No | string |
 | address-postalcode | query | The postal (zip) code of the patient's address | No | string |
-| identifier | query | The patient's Nextech chart number | No | string |
+| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient’s Nextech chart number | No | string |
+
+#### Example: Get the unique identifier of a patient given first name, last name, and birthdate
+
+<pre class="center-column">
+GET https://api.nextech.com/Patient/ID?family=Smith&given=John&birthDate=eq1972-04-21
+</pre>
+&nbsp;
 
 ## Allergy Intolerance
 Get a bundle of allergies for a single patient   
