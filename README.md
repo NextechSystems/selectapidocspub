@@ -31,3 +31,14 @@ For assistance or additional instructions please visit the official Slate readme
 3. Type in `bundle exec middleman server`
 4. The URL to the localhost site will appearin your window. Open it from a browser
 5. If necessary, make changes to your markdown or style sheet, and refresh the page upon saving your changes
+
+### Publishing
+
+You can publish the contents of this repository to https://nextechsystems.github.io/selectapidocspub by doing the following:
+
+1. Cloning https://github.com/NextechSystems/selectapidocspub to a Mac OS machine
+2. Open a new Terminal or Command Shell window 
+3. Browse into the path of your cloned repository on your local machine
+4. Type in `./deploy.sh`
+
+It takes a few minutes for the changes to go live.
