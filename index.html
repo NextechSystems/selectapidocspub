@@ -511,10 +511,160 @@ Search results are limited to fifty matches per page.
 <td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
 </tr>
 </tbody></table>
-<h1 id='patient-api'>Patient API</h1><h2 id='patient'>Patient</h2><h3 id='retrieve-by-id'>Retrieve by ID</h3>
-<p>Get the demographic information for a patient.</p>
+<h1 id='patient-api'>Patient API</h1><h2 id='patient'>Patient</h2><h3 id='overview'>Overview</h3>
+<p>The patient resource contains information about the demographics of a patient.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient’s Nextech chart number</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>race</td>
+<td>The race of the patient</td>
+<td><a href="https://www.hl7.org/fhir/v3/Race/cs.html">Race</a></td>
+</tr>
+<tr>
+<td>ethnicity</td>
+<td>The ethnicity of the patient</td>
+<td><a href="https://www.hl7.org/fhir/v3/Ethnicity/cs.html">Ethnicity</a></td>
+</tr>
+<tr>
+<td>name</td>
+<td>Names of the patient</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
+</tr>
+<tr>
+<td>telecom</td>
+<td>Contact details for the patient</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#ContactPoint">ContactPoint</a></td>
+</tr>
+<tr>
+<td>gender</td>
+<td>The gender of the patient</td>
+<td><a href="https://www.hl7.org/fhir/valueset-administrative-gender.html">AdministrativeGender</a></td>
+</tr>
+<tr>
+<td>birthDate</td>
+<td>The date of birth of the patient</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+</tr>
+<tr>
+<td>address</td>
+<td>Addresses associated with the patient</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Address">Address</a></td>
+</tr>
+<tr>
+<td>communication</td>
+<td>A list of Languages which may be used to communicate with the patient about his or her health</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+</tr>
+</tbody></table>
+<h3 id='example'>Example</h3>
+<pre class="center-column">
+{
+  "resourceType": "Patient",
+  "id": "ad2085b5-b974-401d-bfcb-3b865109fd35",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/v3/Race",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/v3/Race",
+            "code": "2106-3"
+          }
+        ],
+        "text": "Caucasian"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/v3/Ethnicity",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/v3/Ethnicity",
+            "code": "2186-5"
+          }
+        ],
+        "text": "Not Hispanic or Latino"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "use": "official",
+      "value": "ad2085b5-b974-401d-bfcb-3b865109fd35"
+    },
+    {
+      "use": "usual",
+      "value": "4471"
+    }
+  ],
+  "name": [
+    {
+      "text": "Jane L Smith",
+      "family": "Smith",
+      "given": [
+        "Jane",
+        "L"
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "email",
+      "value": "jsmith@email.com"
+    },
+    {
+      "system": "phone",
+      "value": "346-555-3682"
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1968-02-04",
+  "address": [
+    {
+      "use": "home",
+      "type": "both",
+      "line": [
+        "3485 Forest Lane",
+        "Apt 324"
+      ],
+      "city": "Houston",
+      "state": "TX",
+      "postalCode": "77014"
+    }
+  ],
+  "communication": [
+    {
+      "language": {
+        "coding": [
+          {
+            "system": "BCP-47",
+            "code": "en"
+          }
+        ],
+        "text": "English"
+      },
+      "preferred": true
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all patients matching the given search criteria. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}</code> </p>
+<p><code>GET /Patient?{parameters}</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
@@ -526,17 +676,90 @@ Search results are limited to fifty matches per page.
 </tr>
 </thead><tbody>
 <tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
+<td>family</td>
+<td>query</td>
+<td>The family (last) name of the patient</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>given</td>
+<td>query</td>
+<td>The given (first) name of the patient</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>birthdate</td>
+<td>query</td>
+<td>The patient&#39;s date of birth formatted as YYYY-MM-DD</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>query</td>
+<td>The patient&#39;s phone number which will be matched against any phone number (home, cell, etc.)</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>email</td>
+<td>query</td>
+<td>The patient&#39;s email address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>address-city</td>
+<td>query</td>
+<td>The city of the patient&#39;s address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>address-state</td>
+<td>query</td>
+<td>The state of the patient&#39;s address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>address-postalcode</td>
+<td>query</td>
+<td>The postal (zip) code of the patient&#39;s address</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>identifier</td>
+<td>query</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient’s Nextech chart number</td>
+<td>No</td>
 <td>string</td>
 </tr>
 </tbody></table>
-<h3 id='search'>Search</h3>
-<p>Searches for all patients matching the given search criteria.</p>
+<h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get the patient of a specific chart number</h4>
+<pre class="center-column">
+GET https://api.nextech.com/Patient/12345
+</pre>
+<h4 id='example-get-all-patients-who-live-within-a-specific-zip-code'>Example: Get all patients who live within a specific zip code</h4>
+<pre class="center-column">
+GET https://api.nextech.com/Patient?address-postalcode=12345
+</pre>
+<h4 id='example-get-all-patients-with-birth-dates-between-and-including-1-1-1981-through-5-31-1981'>Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981</h4>
+<pre class="center-column">
+GET https://api.nextech.com/Patient?birthDate=ge1981-01-01&birthDate=lt1981-06-01
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='patient-id-search'>Patient ID Search</h3>
+<p>Attempts to find a single patient that matches the given search criteria and if
+successful returns only that patient&#39;s unique identifier.   </p>
+
+<p><em>At least one of query parameters is required to perform a search.</em></p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /Patient?{parameters}</code></p>
+<p><code>GET /Patient/ID?{parameters}</code> </p>
 <h3 id='parameters-2'>Parameters</h3>
 <table><thead>
 <tr>
@@ -606,99 +829,24 @@ Search results are limited to fifty matches per page.
 <tr>
 <td>identifier</td>
 <td>query</td>
-<td>The patient&#39;s Nextech chart number</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient’s Nextech chart number</td>
 <td>No</td>
 <td>string</td>
 </tr>
 </tbody></table>
-<h3 id='patient-id-search'>Patient ID Search</h3>
-<p>Attempts to find a single patient that matches the given search criteria and if
-successful returns only that patient&#39;s unique identifier.   </p>
+<h4 id='example-get-the-unique-identifier-of-a-patient-given-first-name-last-name-and-birthdate'>Example: Get the unique identifier of a patient given first name, last name, and birthdate</h4>
+<pre class="center-column">
+GET https://api.nextech.com/Patient/ID?family=Smith&given=John&birthDate=eq1972-04-21
+</pre>
 
-<p><em>At least one of query parameters is required to perform a search.</em></p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET /Patient/ID</code> </p>
-<h3 id='parameters-3'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>family</td>
-<td>query</td>
-<td>The family (last) name of the patient</td>
-<td>No</td>
-<td>string</td>
-</tr>
-<tr>
-<td>given</td>
-<td>query</td>
-<td>The given (first) name of the patient</td>
-<td>No</td>
-<td>string</td>
-</tr>
-<tr>
-<td>birthdate</td>
-<td>query</td>
-<td>The patient&#39;s date of birth formatted as YYYY-MM-DD</td>
-<td>No</td>
-<td>dateTime</td>
-</tr>
-<tr>
-<td>phone</td>
-<td>query</td>
-<td>The patient&#39;s phone number which will be matched against any phone number (home, cell, etc.)</td>
-<td>No</td>
-<td>string</td>
-</tr>
-<tr>
-<td>email</td>
-<td>query</td>
-<td>The patient&#39;s email address</td>
-<td>No</td>
-<td>string</td>
-</tr>
-<tr>
-<td>address-city</td>
-<td>query</td>
-<td>The city of the patient&#39;s address</td>
-<td>No</td>
-<td>string</td>
-</tr>
-<tr>
-<td>address-state</td>
-<td>query</td>
-<td>The state of the patient&#39;s address</td>
-<td>No</td>
-<td>string</td>
-</tr>
-<tr>
-<td>address-postalcode</td>
-<td>query</td>
-<td>The postal (zip) code of the patient&#39;s address</td>
-<td>No</td>
-<td>string</td>
-</tr>
-<tr>
-<td>identifier</td>
-<td>query</td>
-<td>The patient&#39;s Nextech chart number</td>
-<td>No</td>
-<td>string</td>
-</tr>
-</tbody></table>
+<p>&nbsp;</p>
 <h2 id='allergy-intolerance'>Allergy Intolerance</h2>
 <p>Get a bundle of allergies for a single patient   </p>
 
 <p><em>RESTful searching for allergies by last update date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/AllergyIntolerance</code></p>
-<h3 id='parameters-4'>Parameters</h3>
+<h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -725,9 +873,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 </tbody></table>
 <h2 id='ccda-summary'>CCDA Summary</h2>
 <p>Get a CCDA summary document for the specified patient.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUid}/Binary/$autogen-ccd-if</code> </p>
-<h3 id='parameters-5'>Parameters</h3>
+<h3 id='parameters-4'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -763,9 +911,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <p>Get a bundle of care plans for a single patient.   </p>
 
 <p><em>RESTful searching for care plans by visit date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/CarePlan</code> </p>
-<h3 id='parameters-6'>Parameters</h3>
+<h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -794,9 +942,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <p>Get a bundle of clinical impressions for a patient.   </p>
 
 <p><em>RESTful searching for clinical impressions by visit date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/ClinicalImpression</code> </p>
-<h3 id='parameters-7'>Parameters</h3>
+<h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -825,9 +973,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <p>Get a bundle of conditions for a single patient.   </p>
 
 <p><em>RESTful searching for conditions by onset date and abatement date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/Condition</code> </p>
-<h3 id='parameters-8'>Parameters</h3>
+<h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -861,9 +1009,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 </tbody></table>
 <h2 id='device'>Device</h2>
 <p>Get a bundle of devices for a patient.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/Device</code> </p>
-<h3 id='parameters-9'>Parameters</h3>
+<h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -892,9 +1040,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <p>Get a bundle of encounters for a single patient.   </p>
 
 <p><em>RESTful searching for conditions by encounter date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/Encounter</code> </p>
-<h3 id='parameters-10'>Parameters</h3>
+<h3 id='parameters-9'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -923,9 +1071,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <p>Get a bundle of goals for a single patient.   </p>
 
 <p><em>RESTful searching for goals by visit date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/Goal</code> </p>
-<h3 id='parameters-11'>Parameters</h3>
+<h3 id='parameters-10'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -954,9 +1102,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <p>Get a bundle of immunizations for a single patient.   </p>
 
 <p><em>RESTful searching for current immunizations by administration date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/Immunization</code> </p>
-<h3 id='parameters-12'>Parameters</h3>
+<h3 id='parameters-11'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -985,9 +1133,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <p>Get a bundle of medication dispensements for a single patient.   </p>
 
 <p><em>RESTful searching for medication dispensements by preparation date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/MedicationDispense</code> </p>
-<h3 id='parameters-13'>Parameters</h3>
+<h3 id='parameters-12'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1016,9 +1164,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <p>Get a bundle of medication statements for a single patient.   </p>
 
 <p><em>RESTful searching for medication statements by effective date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/MedicationStatement</code> </p>
-<h3 id='parameters-14'>Parameters</h3>
+<h3 id='parameters-13'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1052,9 +1200,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 - vital-signs</p>
 
 <p><em>RESTful searching for observations by date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUid}/Observation</code> </p>
-<h3 id='parameters-15'>Parameters</h3>
+<h3 id='parameters-14'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1090,9 +1238,9 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <p>Get a bundle of procedures for a single patient.   </p>
 
 <p><em>RESTful searching for procedures by performed date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET /Patient/{patientUID}/Procedure</code> </p>
-<h3 id='parameters-16'>Parameters</h3>
+<h3 id='parameters-15'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
