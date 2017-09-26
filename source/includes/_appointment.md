@@ -114,13 +114,13 @@ Searches for all appointments matching the given search criteria. See https://ww
 #### Example: Get all appointments for a patient by chart number
 
 <pre class="center-column">
-GET https://api.nextech.com/Appointment?patient=12345
+GET https://select.nextech-api.com/api/Appointment?patient=12345
 </pre>
 
 #### Example: Get all appointments between and including 1/1/2017 through 5/31/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Appointment?date=ge2017-01-01&date=lt2017-06-01
+GET https://select.nextech-api.com/api/Appointment?date=ge2017-01-01&date=lt2017-06-01
 </pre>
 &nbsp;
 ### *Confirm Appointment*
@@ -141,7 +141,7 @@ The commit parameter should be in the form of an Appointment status field. See h
 #### Example: Mark appointment 5453 as booked
 
 <pre class="center-column">
-PUT https://api.nextech.com/Appointment/5453
+PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 <pre class="center-column">
 { "status": "booked" }
