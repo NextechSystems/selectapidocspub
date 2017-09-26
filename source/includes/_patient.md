@@ -342,7 +342,7 @@ Searches for care plans for a single patient
 #### Example: Get all care plans for a single patient charted on a visit on 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/CarePlan?date=ge2017-05-01
+GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/CarePlan?date=eq2017-05-01
 </pre>
 
 
@@ -401,7 +401,7 @@ Searches for clinical impressions for a patient
 #### Example: Get all clinical impressions for a single patient charted on a visit on 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/ClinicalImpression?date=ge2017-05-01
+GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/ClinicalImpression?date=eq2017-05-01
 </pre>
 
 
@@ -733,7 +733,7 @@ Searches for goals for a single patient
 #### Example: Get all goals for a single patient charted on a visit on 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Goal?date=ge2017-05-01
+GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Goal?date=eq2017-05-01
 </pre>
 
 
@@ -1107,7 +1107,7 @@ A procedure resource describes an activity performed with or on a patient as par
 Searches for procedures for a single patient
 
 #### HTTP Request 
-`GET /Patient/{patientUid}/Procedure` 
+`GET /Patient/{patientUid}/Procedure?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required |
