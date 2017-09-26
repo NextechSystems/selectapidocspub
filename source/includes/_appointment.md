@@ -18,8 +18,84 @@ The appointment resource contains information about a planned meeting between a 
 | comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) |
 | participant | The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
 
-### Example
-<pre class="center-column">{  "resourceType": "Bundle",  "entry": [    {      "resource": {        "resourceType": "Appointment",        "id": "12312",        "contained": [          {            "resourceType": "Location",            "id": "5",            "identifier": [              {                "use": "official",                "value": "5"              }            ],            "name": "South Dermatology"          },          {            "resourceType": "Practitioner",            "id": "2",            "identifier": [              {                "use": "official",                "value": "2"              }            ],            "name": [              {                "text": "Davison, Darren",                "family": "Davison",                "given": [                  "Darren",                  ""                ]              }            ]          }        ],        "identifier": [          {            "use": "official",            "value": "12312"          }        ],        "status": "booked",        "description": "Consult - Insurance Est. - Skin Lesion/Tumor for Darren Davis, MD",        "start": "2017-03-12T09:10:00-04:00",        "end": "2017-03-12T09:40:00-04:00",        "comment": "This is a sample comment",        "participant": [          {            "actor": {              "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",              "display": "Brimley, Henry"            }          },          {            "actor": {              "reference": "#5",              "display": "South Dermatology"            }          },          {            "actor": {              "reference": "#2",              "display": "Davison, Darren"            }          }        ]      }    }  ]}</pre>
+### Sample
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Appointment",
+        "id": "12312",
+        "contained": [
+          {
+            "resourceType": "Location",
+            "id": "5",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "5"
+              }
+            ],
+            "name": "South Dermatology"
+          },
+          {
+            "resourceType": "Practitioner",
+            "id": "2",
+            "identifier": [
+              {
+                "use": "official",
+                "value": "2"
+              }
+            ],
+            "name": [
+              {
+                "text": "Davison, Darren",
+                "family": "Davison",
+                "given": [
+                  "Darren",
+                  ""
+                ]
+              }
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "use": "official",
+            "value": "12312"
+          }
+        ],
+        "status": "booked",
+        "description": "Consult - Insurance Est. - Skin Lesion/Tumor for Darren Davis, MD",
+        "start": "2017-03-12T09:10:00-04:00",
+        "end": "2017-03-12T09:40:00-04:00",
+        "comment": "This is a sample comment",
+        "participant": [
+          {
+            "actor": {
+              "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
+              "display": "Brimley, Henry"
+            }
+          },
+          {
+            "actor": {
+              "reference": "#5",
+              "display": "South Dermatology"
+            }
+          },
+          {
+            "actor": {
+              "reference": "#2",
+              "display": "Davison, Darren"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+</pre>
 &nbsp;
 ### *Search*
 Searches for all appointments matching the given search criteria. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria.
