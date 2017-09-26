@@ -9,24 +9,24 @@ All communication is performed over HTTPS. Although the FHIR® standard supports
 Searches may be performed via HTTPS calls to the API where supported. 
 
 A search is executed by performing a GET operation in the RESTful framework   
-`GET https://link-to-the-api/PartnerAPI/[type]?[field1]=[value1]&[field2]=[value2]...`   
+`GET https://select.nextech-api.com/api/[type]?[field1]=[value1]&[field2]=[value2]...`   
 where \[type\] refers to a resource such as Patient or Appointment followed by one or more query filters.
 
 ### Example   
-`GET https://link-to-the-api/PartnerAPI/Patient?identifier=3442`   
-`GET https://link-to-the-api/PartnerAPI/Patient?family=Smith`   
-`GET https://link-to-the-api/PartnerAPI/Patient?address-city=Tampa&address-state=FL`   
+`GET https://select.nextech-api.com/api/Patient?identifier=3442`   
+`GET https://select.nextech-api.com/api/Patient?family=Smith`   
+`GET https://select.nextech-api.com/api/Patient?address-city=Tampa&address-state=FL`   
 
 ## Writing
 
 Data writes may be performed via HTTPS calls to the API where supported. 
 
 A write is executed by performing a PUT operation in the RESTful framework
-`PUT https://link-to-the-api/PartnerAPI/{resource}/{identifier}`
+`PUT https://select.nextech-api.com/api/{resource}/{identifier}`
 where `{resource}` refers to a resource such as Patient or Appointment, `{identifier}` is the unique identifier of the resource and the body of the request describes a resource and which fields to add or change. This example request path and body would confirm an appointment with the ID 3384:   
 
 ### Example   
-`PUT https://link-to-the-api/PartnerAPI/Appointment/3384`   
+`PUT https://select.nextech-api.com/api/Appointment/3384`   
 `Body: { "status": "fulfilled" }`
 
 ## Pagination
@@ -35,7 +35,7 @@ When a search results in multiple matches, the first ten matches ordered by ente
 
 You may overide the number of matches returned, up to fifty, by including `_count={number}` in your search. 
 
-`GET http://link-to-the-api/PartnerAPI/Appointment?_count=25`
+`GET http://select.nextech-api.com/api/Appointment?_count=25`
 
 <aside class="notice">
 Search results are limited to fifty matches per page.

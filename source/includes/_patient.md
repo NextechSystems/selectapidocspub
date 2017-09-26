@@ -133,19 +133,19 @@ Searches for all patients matching the given search criteria. See https://www.hl
 #### Example: Get the patient of a specific chart number
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/12345
+GET https://select.nextech-api.com/api/Patient/12345
 </pre>
 
 #### Example: Get all patients who live within a specific zip code
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient?address-postalcode=12345
+GET https://select.nextech-api.com/api/Patient?address-postalcode=12345
 </pre>
 
 #### Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient?birthDate=ge1981-01-01&birthDate=lt1981-06-01
+GET https://select.nextech-api.com/api/Patient?birthDate=ge1981-01-01&birthDate=lt1981-06-01
 </pre>
 &nbsp;
 
@@ -174,7 +174,7 @@ _At least one of query parameters is required to perform a search._
 #### Example: Get the unique identifier of a patient given first name, last name, and birthdate
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ID?family=Smith&given=John&birthDate=eq1972-04-21
+GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthDate=eq1972-04-21
 </pre>
 &nbsp;
 
@@ -239,7 +239,7 @@ Searches for allergy intolerances for a single patient
 #### Example: Get all allergies for a single patient that were believed to be accurate as of 1/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/AllergyIntolerance?date=ge2017-01-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/AllergyIntolerance?date=ge2017-01-01
 </pre>
 
 
@@ -270,7 +270,7 @@ Generates a CCDA for a single patient
 #### Example: Get all CCDA's for a single patient corresponding to visits in 2007
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Binary?start=2017-01-01&end=2018-01-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Binary?start=2017-01-01&end=2018-01-01
 </pre>
 
 
@@ -342,7 +342,7 @@ Searches for care plans for a single patient
 #### Example: Get all care plans for a single patient charted on a visit on 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/CarePlan?date=eq2017-05-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/CarePlan?date=eq2017-05-01
 </pre>
 
 
@@ -401,7 +401,7 @@ Searches for clinical impressions for a patient
 #### Example: Get all clinical impressions for a single patient charted on a visit on 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/ClinicalImpression?date=eq2017-05-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/ClinicalImpression?date=eq2017-05-01
 </pre>
 
 
@@ -473,7 +473,7 @@ Searches for conditions for a single patient
 #### Example: Get all conditions for a single patient with an onset date as of 1/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Condition?onset-date=ge2017-01-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Condition?onset-date=ge2017-01-01
 </pre>
 
 
@@ -559,7 +559,7 @@ Searches for devices for a single patient
 #### Example: Get all devices for a single patient that were recorded as of 1/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Device?date=ge2017-01-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Device?date=ge2017-01-01
 </pre>
 
 
@@ -660,7 +660,7 @@ Searches for encounters for a single patient
 #### Example: Get all encounters for a single patient as of 1/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Encounter?date=ge2017-01-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Encounter?date=ge2017-01-01
 </pre>
 
 
@@ -733,7 +733,7 @@ Searches for goals for a single patient
 #### Example: Get all goals for a single patient charted on a visit on 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Goal?date=eq2017-05-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Goal?date=eq2017-05-01
 </pre>
 
 
@@ -803,7 +803,7 @@ Searches for immunizations for a single patient
 #### Example: Get all immunizations for a single patient as of 1/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Immunization?date=ge2017-01-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Immunization?date=ge2017-01-01
 </pre>
 
 
@@ -871,7 +871,7 @@ Searches for medication dispensements for a single patient
 #### Example: Get all prescriptions for a single patient prepared as of 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationDispense?whenPrepared=ge2017-05-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationDispense?whenPrepared=ge2017-05-01
 </pre>
 
 
@@ -941,7 +941,7 @@ Searches for current medications for a single patient
 #### Example: Get all current medications for a single patient effective 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationStatement?date=ge2017-05-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationStatement?date=ge2017-05-01
 </pre>
 
 
@@ -1040,19 +1040,19 @@ Searches for observations for a single patient
 #### Example: Get all laboratory requisitions and results for a single patient as of 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=laboratory&date=ge2017-05-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=laboratory&date=ge2017-05-01
 </pre>
 
 #### Example: Get the social history of a single patient charted in encounters as of 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=social-history&date=ge2017-05-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=social-history&date=ge2017-05-01
 </pre>
 
 #### Example: Get the vital signs of a single patient charted in encounters as of 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=vital-signs&date=ge2017-05-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=vital-signs&date=ge2017-05-01
 </pre>
 
 
@@ -1118,5 +1118,5 @@ Searches for procedures for a single patient
 #### Example: Get all procedures for a single patient performed as of 5/1/2017
 
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Procedure?date=ge2017-05-01
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Procedure?date=ge2017-05-01
 </pre>
