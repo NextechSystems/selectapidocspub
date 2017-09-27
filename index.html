@@ -249,10 +249,10 @@
                     <a href="#patient" class="toc-h2 toc-link" data-title="Patient API">Patient</a>
                   </li>
                   <li>
-                    <a href="#allergy-intolerance" class="toc-h2 toc-link" data-title="Patient API">Allergy Intolerance</a>
+                    <a href="#allergyintolerance" class="toc-h2 toc-link" data-title="Patient API">AllergyIntolerance</a>
                   </li>
                   <li>
-                    <a href="#ccda-summary" class="toc-h2 toc-link" data-title="Patient API">CCDA Summary</a>
+                    <a href="#binary" class="toc-h2 toc-link" data-title="Patient API">Binary</a>
                   </li>
                   <li>
                     <a href="#care-plan" class="toc-h2 toc-link" data-title="Patient API">Care Plan</a>
@@ -313,27 +313,27 @@
 <p>Searches may be performed via HTTPS calls to the API where supported. </p>
 
 <p>A search is executed by performing a GET operation in the RESTful framework<br>
-<code>GET https://link-to-the-api/PartnerAPI/[type]?[field1]=[value1]&amp;[field2]=[value2]...</code><br>
+<code>GET https://select.nextech-api.com/api/[type]?[field1]=[value1]&amp;[field2]=[value2]...</code><br>
 where [type] refers to a resource such as Patient or Appointment followed by one or more query filters.</p>
 <h3 id='example'>Example</h3>
-<p><code>GET https://link-to-the-api/PartnerAPI/Patient?identifier=3442</code><br>
-<code>GET https://link-to-the-api/PartnerAPI/Patient?family=Smith</code><br>
-<code>GET https://link-to-the-api/PartnerAPI/Patient?address-city=Tampa&amp;address-state=FL</code>   </p>
+<p><code>GET https://select.nextech-api.com/api/Patient?identifier=3442</code><br>
+<code>GET https://select.nextech-api.com/api/Patient?family=Smith</code><br>
+<code>GET https://select.nextech-api.com/api/Patient?address-city=Tampa&amp;address-state=FL</code>   </p>
 <h2 id='writing'>Writing</h2>
 <p>Data writes may be performed via HTTPS calls to the API where supported. </p>
 
 <p>A write is executed by performing a PUT operation in the RESTful framework
-<code>PUT https://link-to-the-api/PartnerAPI/{resource}/{identifier}</code>
+<code>PUT https://select.nextech-api.com/api/{resource}/{identifier}</code>
 where <code>{resource}</code> refers to a resource such as Patient or Appointment, <code>{identifier}</code> is the unique identifier of the resource and the body of the request describes a resource and which fields to add or change. This example request path and body would confirm an appointment with the ID 3384:   </p>
 <h3 id='example-2'>Example</h3>
-<p><code>PUT https://link-to-the-api/PartnerAPI/Appointment/3384</code><br>
+<p><code>PUT https://select.nextech-api.com/api/Appointment/3384</code><br>
 <code>Body: { &quot;status&quot;: &quot;fulfilled&quot; }</code></p>
 <h2 id='pagination'>Pagination</h2>
 <p>When a search results in multiple matches, the first ten matches ordered by entered date are returned by default. Included in the result are links to the first set of matches, the following set of matches, the previous set of matches and the last set of matches.</p>
 
 <p>You may overide the number of matches returned, up to fifty, by including <code>_count={number}</code> in your search. </p>
 
-<p><code>GET http://link-to-the-api/PartnerAPI/Appointment?_count=25</code></p>
+<p><code>GET http://select.nextech-api.com/api/Appointment?_count=25</code></p>
 
 <aside class="notice">
 Search results are limited to fifty matches per page.
@@ -394,7 +394,7 @@ Search results are limited to fifty matches per page.
 
 <p><code>Authorization: Bearer {access_token}</code></p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://login.microsoftonline.com/{tenant}/oauth2/token</code></p>
+<p><code>POST https://login.microsoftonline.com/a5f8392a-a68f-4d74-a353-aefc87f29848/oauth2/token</code></p>
 
 <table><thead>
 <tr>
@@ -458,7 +458,7 @@ Search results are limited to fifty matches per page.
 <h2 id='refresh-access-token'>Refresh Access Token</h2>
 <p>Refresh tokens are used to renew an expired access token without providing user credentials. A <code>access_token</code> and <code>refresh_token</code> pair is issued when requesting an access token using the resource owner credentials grant. A new pair is also generated when using the <code>refresh_token</code> grant type. </p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://login.microsoftonline.com/{tenant}/oauth2/token</code></p>
+<p><code>POST https://login.microsoftonline.com/a5f8392a-a68f-4d74-a353-aefc87f29848/oauth2/token</code></p>
 
 <table><thead>
 <tr>
@@ -523,7 +523,7 @@ Search results are limited to fifty matches per page.
 </thead><tbody>
 <tr>
 <td>identifier</td>
-<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient’s Nextech chart number</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
@@ -567,7 +567,7 @@ Search results are limited to fifty matches per page.
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
 </tr>
 </tbody></table>
-<h3 id='example'>Example</h3>
+<h3 id='sample'>Sample</h3>
 <pre class="center-column">
 {
   "resourceType": "Patient",
@@ -663,9 +663,9 @@ Search results are limited to fifty matches per page.
 <p>&nbsp;</p>
 <h3 id='em-search-em'><em>Search</em></h3>
 <p>Searches for all patients matching the given search criteria. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Patient?{parameters}</code></p>
-<h3 id='parameters'>Parameters</h3>
+<h4 id='parameters'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -734,22 +734,22 @@ Search results are limited to fifty matches per page.
 <tr>
 <td>identifier</td>
 <td>query</td>
-<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient’s Nextech chart number</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
 <td>No</td>
 <td>string</td>
 </tr>
 </tbody></table>
 <h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get the patient of a specific chart number</h4>
 <pre class="center-column">
-GET https://api.nextech.com/Patient/12345
+GET https://select.nextech-api.com/api/Patient/12345
 </pre>
 <h4 id='example-get-all-patients-who-live-within-a-specific-zip-code'>Example: Get all patients who live within a specific zip code</h4>
 <pre class="center-column">
-GET https://api.nextech.com/Patient?address-postalcode=12345
+GET https://select.nextech-api.com/api/Patient?address-postalcode=12345
 </pre>
 <h4 id='example-get-all-patients-with-birth-dates-between-and-including-1-1-1981-through-5-31-1981'>Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981</h4>
 <pre class="center-column">
-GET https://api.nextech.com/Patient?birthDate=ge1981-01-01&birthDate=lt1981-06-01
+GET https://select.nextech-api.com/api/Patient?birthDate=ge1981-01-01&birthDate=lt1981-06-01
 </pre>
 
 <p>&nbsp;</p>
@@ -829,121 +829,333 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <tr>
 <td>identifier</td>
 <td>query</td>
-<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient’s Nextech chart number</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
 <td>No</td>
 <td>string</td>
 </tr>
 </tbody></table>
 <h4 id='example-get-the-unique-identifier-of-a-patient-given-first-name-last-name-and-birthdate'>Example: Get the unique identifier of a patient given first name, last name, and birthdate</h4>
 <pre class="center-column">
-GET https://api.nextech.com/Patient/ID?family=Smith&given=John&birthDate=eq1972-04-21
+GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthDate=eq1972-04-21
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='allergy-intolerance'>Allergy Intolerance</h2>
-<p>Get a bundle of allergies for a single patient   </p>
-
-<p><em>RESTful searching for allergies by last update date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/AllergyIntolerance</code></p>
-<h3 id='parameters-3'>Parameters</h3>
+<h2 id='allergyintolerance'>AllergyIntolerance</h2><h3 id='overview-2'>Overview</h3>
+<p>The allergy intolerance resource describes the risk of undesirable responses of exposure to a substance.</p>
+<h3 id='fields-2'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
-<th>Located in</th>
 <th>Description</th>
-<th>Required</th>
 <th>Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
-<td>string</td>
+<td>identifier</td>
+<td>The unique value assigned to each allergy intolerance record which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
 </tr>
 <tr>
-<td>date</td>
-<td>query</td>
-<td>The collection of allergy last update date filters</td>
-<td>No</td>
-<td>array</td>
+<td>clinicalStatus</td>
+<td>Describes whether the allergy or intolerance is active, inactive or resolved</td>
+<td><a href="https://www.hl7.org/fhir/valueset-allergy-clinical-status.html">AllergyIntoleranceStatus</a></td>
+</tr>
+<tr>
+<td>code</td>
+<td>The clinical code that identifies the allergy or intolerance</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+</tr>
+<tr>
+<td>patient</td>
+<td>The patient who the allergy or intolerance is for</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>assertedDate</td>
+<td>The date the record was believed to be accurate</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h2 id='ccda-summary'>CCDA Summary</h2>
-<p>Get a CCDA summary document for the specified patient.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUid}/Binary/$autogen-ccd-if</code> </p>
-<h3 id='parameters-4'>Parameters</h3>
+<h3 id='sample-2'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "438",
+        "identifier": [
+        {
+          "use": "official",
+          "value": "438"
+        }
+      ],
+        "clinicalStatus": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "1191",
+              "display": "Aspirin"
+            }
+          ],
+          "text": "Aspirin"
+        }
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-2'><em>Search</em></h3>
+<p>Searches for allergy intolerances for a single patient</p>
+<h4 id='http-request-3'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/AllergyIntolerance?{parameters}</code></p>
+<h4 id='parameters-3'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
-<th>Type</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>patientUid</td>
 <td>path</td>
-<td>The patient&#39;s unique identifier (can be found by patient ID search method)</td>
+<td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
-<td>string</td>
 </tr>
 <tr>
-<td>start</td>
+<td>date</td>
 <td>query</td>
-<td>The start date for which the CCD should be generated (if not specified then all records              starting with the patient&#39;s first visit are included)</td>
+<td>The date the record was believed accurate in the form YYYY-MM-DD</td>
 <td>No</td>
-<td>dateTime</td>
-</tr>
-<tr>
-<td>end</td>
-<td>query</td>
-<td>The end date for which the CCD should be generated (if not specified then all records              through the patient&#39;s latest visit are included)</td>
-<td>No</td>
-<td>dateTime</td>
 </tr>
 </tbody></table>
-<h2 id='care-plan'>Care Plan</h2>
-<p>Get a bundle of care plans for a single patient.   </p>
-
-<p><em>RESTful searching for care plans by visit date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/CarePlan</code> </p>
-<h3 id='parameters-5'>Parameters</h3>
+<h4 id='example-get-all-allergies-for-a-single-patient-that-were-believed-to-be-accurate-as-of-1-1-2017'>Example: Get all allergies for a single patient that were believed to be accurate as of 1/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/AllergyIntolerance?date=ge2017-01-01
+</pre>
+<h2 id='binary'>Binary</h2><h3 id='overview-3'>Overview</h3>
+<p>Binary resources contain patient health information in a structured document or media form.</p>
+<h3 id='fields-3'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contentType</td>
+<td>MimeType of the binary content</td>
+<td><a href="http://www.rfc-editor.org/bcp/bcp13.txt">MimeType</a></td>
+</tr>
+<tr>
+<td>content</td>
+<td>The document content</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#base64Binary">base64Binary</a></td>
+</tr>
+</tbody></table>
+<h3 id='em-generate-ccda-em'><em>Generate CCDA</em></h3>
+<p>Generates a CCDA for a single patient</p>
+<h4 id='http-request-4'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/Binary/$autogen-ccd-if?{parameters}</code> </p>
+<h4 id='parameters-4'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td>The start date in the form YYYY-MM-DD for which the CCD should be generated (if not specified then all records starting with the patient&#39;s first visit are included)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td>The end date in the form YYYY-MM-DD for which the CCD should be generated (if not specified then all records through the patient&#39;s latest visit are included)</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-ccda-39-s-for-a-single-patient-corresponding-to-visits-in-2007'>Example: Get all CCDA&#39;s for a single patient corresponding to visits in 2007</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Binary?start=2017-01-01&end=2018-01-01
+</pre>
+<h2 id='care-plan'>Care Plan</h2><h3 id='overview-4'>Overview</h3>
+<p>A Care Plan contains patient diet, procedure, lab work and counseling and other care information for a single patient.   </p>
+<h3 id='fields-4'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
 <th>Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>patientUID</td>
+<td>identifier</td>
+<td>The unique value assigned to each care plan which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the care plan</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>activity</td>
+<td>The collection of coded care plan actions</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-3'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "CarePlan",
+        "id": "3099",
+        "identifier": [
+          {
+            "use": "official",
+            "value": "3099"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/ad2085b5-b974-401d-bfcb-3b865109fd35"
+        },
+        "activity": [
+          {
+            "id": "pocinsemn-3099code-745799",
+            "detail": {
+              "code": {
+                "coding": [
+                  {
+                    "system": "2.16.840.1.113883.10.20.22.4.20",
+                    "code": "225323000"
+                  }
+                ],
+                "text": "Smoking cessation education"
+              },
+              "description": "Patient to read literature on lung tissue damage"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-3'><em>Search</em></h3>
+<p>Searches for care plans for a single patient</p>
+<h4 id='http-request-5'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/CarePlan?{parameters}</code></p>
+<h4 id='parameters-5'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
 <td>path</td>
-<td>The unique identifier acquired from the patient search</td>
+<td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
-<td>string</td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
-<td>The collection of visit date filters</td>
+<td>The encounter visit date filter in the form YYYY-MM-DD</td>
 <td>No</td>
-<td>array</td>
 </tr>
 </tbody></table>
-<h2 id='clinical-impression'>Clinical Impression</h2>
-<p>Get a bundle of clinical impressions for a patient.   </p>
+<h4 id='example-get-all-care-plans-for-a-single-patient-charted-on-a-visit-on-5-1-2017'>Example: Get all care plans for a single patient charted on a visit on 5/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/CarePlan?date=eq2017-05-01
+</pre>
+<h2 id='clinical-impression'>Clinical Impression</h2><h3 id='overview-5'>Overview</h3>
+<p>The clinical impression resource contains information regarding what problem(s) may affect the patient by treatment.</p>
+<h3 id='fields-5'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each clinical impression record which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the clinical impression</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>date</td>
+<td>When the assessment was documented</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+<tr>
+<td>summary</td>
+<td>Summary of the assessment</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-4'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "ClinicalImpression",
+        "id": "4567",
+        "identifier": [
+          {
+            "use": "official",
+            "value": "4567"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/ad2085b5-b974-401d-bfcb-3b865109fd35"
+        },
+        "summary": "provisional diagnoses of laceration of head",
+        "date": "2017-06-05"
+      }
+    }
+  ]
+}
+</pre>
 
-<p><em>RESTful searching for clinical impressions by visit date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/ClinicalImpression</code> </p>
+<p>&nbsp;</p>
+<h3 id='em-search-em-4'><em>Search</em></h3>
+<p>Searches for clinical impressions for a patient</p>
+<h4 id='http-request-6'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/ClinicalImpression?{parameters}</code> </p>
 <h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
@@ -951,320 +1163,1071 @@ GET https://api.nextech.com/Patient/ID?family=Smith&given=John&birthDate=eq1972-
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>date</td>
-<td>query</td>
-<td>The collection of visit date filters</td>
-<td>No</td>
-<td>array</td>
-</tr>
-</tbody></table>
-<h2 id='condition'>Condition</h2>
-<p>Get a bundle of conditions for a single patient.   </p>
-
-<p><em>RESTful searching for conditions by onset date and abatement date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/Condition</code> </p>
-<h3 id='parameters-7'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>onset-date</td>
-<td>query</td>
-<td>The collection of condition onset date filters</td>
-<td>No</td>
-<td>array</td>
-</tr>
-<tr>
-<td>abatement-date</td>
-<td>query</td>
-<td>The collection of condition abatement date filters</td>
-<td>No</td>
-<td>array</td>
-</tr>
-</tbody></table>
-<h2 id='device'>Device</h2>
-<p>Get a bundle of devices for a patient.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/Device</code> </p>
-<h3 id='parameters-8'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>date</td>
-<td>query</td>
-<td>The collection of device effective date filters</td>
-<td>No</td>
-<td>array</td>
-</tr>
-</tbody></table>
-<h2 id='encounter'>Encounter</h2>
-<p>Get a bundle of encounters for a single patient.   </p>
-
-<p><em>RESTful searching for conditions by encounter date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/Encounter</code> </p>
-<h3 id='parameters-9'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>date</td>
-<td>query</td>
-<td>The collection of encounter date filters</td>
-<td>No</td>
-<td>array</td>
-</tr>
-</tbody></table>
-<h2 id='goal'>Goal</h2>
-<p>Get a bundle of goals for a single patient.   </p>
-
-<p><em>RESTful searching for goals by visit date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-10'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/Goal</code> </p>
-<h3 id='parameters-10'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>date</td>
-<td>query</td>
-<td>The collection of visit date filters</td>
-<td>No</td>
-<td>array</td>
-</tr>
-</tbody></table>
-<h2 id='immunization'>Immunization</h2>
-<p>Get a bundle of immunizations for a single patient.   </p>
-
-<p><em>RESTful searching for current immunizations by administration date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-11'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/Immunization</code> </p>
-<h3 id='parameters-11'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>date</td>
-<td>query</td>
-<td>The collection of current immunization administration date filters</td>
-<td>No</td>
-<td>array</td>
-</tr>
-</tbody></table>
-<h2 id='medication-dispensement'>Medication Dispensement</h2>
-<p>Get a bundle of medication dispensements for a single patient.   </p>
-
-<p><em>RESTful searching for medication dispensements by preparation date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-12'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/MedicationDispense</code> </p>
-<h3 id='parameters-12'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>whenprepared</td>
-<td>query</td>
-<td>The collection of preparation date filters</td>
-<td>No</td>
-<td>array</td>
-</tr>
-</tbody></table>
-<h2 id='medication-statements'>Medication Statements</h2>
-<p>Get a bundle of medication statements for a single patient.   </p>
-
-<p><em>RESTful searching for medication statements by effective date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-13'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/MedicationStatement</code> </p>
-<h3 id='parameters-13'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>patientUID</td>
-<td>path</td>
-<td>The unique identifier acquired from the patient search</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>effective</td>
-<td>query</td>
-<td>The collection of effective date filters</td>
-<td>No</td>
-<td>array</td>
-</tr>
-</tbody></table>
-<h2 id='observation'>Observation</h2>
-<p>Get a bundle of diagnostic observations for a single patient.   </p>
-
-<p>This request requires a category code to search on. The following category codes are supported:
-- laboratory
-- social-history
-- vital-signs</p>
-
-<p><em>RESTful searching for observations by date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-14'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUid}/Observation</code> </p>
-<h3 id='parameters-14'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>patientUid</td>
 <td>path</td>
-<td>The unique identifier acquired from the patient search</td>
+<td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
-<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The collection of visit date filters</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-clinical-impressions-for-a-single-patient-charted-on-a-visit-on-5-1-2017'>Example: Get all clinical impressions for a single patient charted on a visit on 5/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/ClinicalImpression?date=eq2017-05-01
+</pre>
+<h2 id='condition'>Condition</h2><h3 id='overview-6'>Overview</h3>
+<p>The condition resource describes a certain state of health of a patient.</p>
+<h3 id='fields-6'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each allergy intolerance record which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>clinicalStatus</td>
+<td>The condition status</td>
+<td><a href="https://www.hl7.org/fhir/valueset-condition-clinical.html">Condition Clinical Status Code</a></td>
+</tr>
+<tr>
+<td>verificationStatus</td>
+<td>The condition verification status</td>
+<td><a href="https://www.hl7.org/fhir/valueset-condition-ver-status.html">ConditionVerificationstatus</a></td>
+</tr>
+<tr>
+<td>code</td>
+<td>Identification of the condition, problem or diagnosis</td>
+<td><a href="https://www.hl7.org/fhir/valueset-condition-code.html">Condition/Problem/Diagnosis Code</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the condition</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>onsetDate</td>
+<td>Estimated or actual date</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+<tr>
+<td>abatementDate</td>
+<td>Resolution or remission date</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-5'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "id": "54",
+        "identifier": [
+          {
+            "use": "official",
+            "value": "54"
+          }
+        ],
+        "clinicalStatus": "active",
+        "verificationStatus": "confirmed",
+        "code": {
+          "coding": [
+            {
+              "system": "SNOMED",
+              "code": "11381005"
+            }
+          ],
+          "text": "Acne"
+        },
+        "subject": {
+          "reference": "Patient/ad2085b5-b974-401d-bfcb-3b865109fd35"
+        },
+        "onsetDate": "2015-06-05"
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-5'><em>Search</em></h3>
+<p>Searches for conditions for a single patient</p>
+<h4 id='http-request-7'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/Condition?{parameters}</code> </p>
+<h4 id='parameters-7'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>onset-date</td>
+<td>query</td>
+<td>The onset date in the form YYYY-MM-DD</td>
+<td>No</td>
+</tr>
+<tr>
+<td>abatement-date</td>
+<td>query</td>
+<td>The abatement date in the form YYYY-MM-DD</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-conditions-for-a-single-patient-with-an-onset-date-as-of-1-1-2017'>Example: Get all conditions for a single patient with an onset date as of 1/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Condition?onset-date=ge2017-01-01
+</pre>
+<h2 id='device'>Device</h2><h3 id='overview-7'>Overview</h3>
+<p>The device resource identifies an instance or type of manufactured item used in the provision of healthcare.</p>
+<h3 id='fields-7'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>Unique device serial number</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>meta</td>
+<td>Contains the last updated date of the record</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+<tr>
+<td>udi</td>
+<td>Unique device barcode string</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+</tr>
+<tr>
+<td>lotNumber</td>
+<td>Lot number of manufacturer</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td>Manufacturer name</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+<tr>
+<td>manufactureDate</td>
+<td>Device manufacture date</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+<tr>
+<td>expirationDate</td>
+<td>Device expiration date</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+<tr>
+<td>version</td>
+<td>Version number</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+<tr>
+<td>patient</td>
+<td>The patient pertaining to the device</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-6'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Device",
+        "id": "2",
+        "meta": {
+          "lastUpdated": "2017-05-15T10:28:00+00:00"
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/identifier-type",
+                  "code": "SNO",
+                  "display": "Serial Number"
+                }
+              ],
+              "text": "Serial Number"
+            },
+            "value": "000025"
+          }
+        ],
+        "udi": {
+          "deviceIdentifier": "W4146EB0010T0475",
+          "name": "Trabexus® EB"
+        },
+        "type": {
+          "text": "Cadaveric-donor/synthetic mineral bone graft"
+        },
+        "lotNumber": "000000000000XYZ123",
+        "manufacturer": "Vivorte, Inc",
+        "manufactureDate": "2013-02-01T00:00:00Z",
+        "expirationDate": "2014-02-01T00:00:00Z",
+        "version": "10 cc",
+        "patient": {
+          "reference": "Patient/ad2085b5-b974-401d-bfcb-3b865109fd35",
+          "display": "Smith, John"
+        }
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-6'><em>Search</em></h3>
+<p>Searches for devices for a single patient</p>
+<h4 id='http-request-8'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/Device?{parameters}</code> </p>
+<h4 id='parameters-8'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The device last update date in the form YYYY-MM-DD</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-devices-for-a-single-patient-that-were-recorded-as-of-1-1-2017'>Example: Get all devices for a single patient that were recorded as of 1/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Device?date=ge2017-01-01
+</pre>
+<h2 id='encounter'>Encounter</h2><h3 id='overview-8'>Overview</h3>
+<p>The encounter resource describes an interaction between a patient and healthcare provider.</p>
+<h3 id='fields-8'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each encounter which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the encounter</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>participant</td>
+<td>The medical professionals involved in the encounter</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+</tr>
+<tr>
+<td>period</td>
+<td>The start and end date of the encounter in the form YYYY-MM-DD</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Period">period</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-7'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "1294",
+        "contained": [
+          {
+            "resourceType": "Practitioner",
+            "id": "9938",
+            "identifier": [
+              {
+                "use": "usual",
+                "system": "http://hl7.org/fhir/sid/us-npi",
+                "value": "11192383741"
+              }
+            ],
+            "name": [
+              {
+                "text": "Davison, Darren",
+                "family": "Davison",
+                "given": [
+                  "Darren",
+                  "L"
+                ]
+              }
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "use": "official",
+            "value": "1294"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/45822",
+          "display": "Smith, John"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/ParticipationType",
+                    "code": "PRF"
+                  }
+                ]
+              }
+            ],
+            "individual": {
+              "reference": "Practitioner/9938"
+            }
+          }
+        ],
+        "period": {
+          "start": "2015-05-03",
+          "end": "2015-05-03"
+        }
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-7'><em>Search</em></h3>
+<p>Searches for encounters for a single patient</p>
+<h4 id='http-request-9'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/Encounter?{parameters}</code></p>
+<h4 id='parameters-9'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The date of the encounter in the form YYYY-MM-DD</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-encounters-for-a-single-patient-as-of-1-1-2017'>Example: Get all encounters for a single patient as of 1/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Encounter?date=ge2017-01-01
+</pre>
+<h2 id='goal'>Goal</h2><h3 id='overview-9'>Overview</h3>
+<p>The goal resource describes a desired state of health for a patient.</p>
+<h3 id='fields-9'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each goal which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the goal</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>target</td>
+<td>The target outcome of the goal</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">CodeableConcept</a></td>
+</tr>
+<tr>
+<td>note</td>
+<td>Comments about the goal</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Annotation">Annotation</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-8'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Goal",
+        "id": "goalemn-2284code-559215",
+        "identifier": [
+          {
+            "use": "official",
+            "value": "goalemn-2284code-559215"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/F15FB185-5E63-485E-B025-D113103DCEC3",
+          "display": "Smith, Jane"
+        },
+        "target": {
+          "measure": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "LA7435-6"
+              }
+            ],
+            "text": "Fever"
+          }
+        },
+        "note": [
+          {
+            "text": "Goal (Free Text): Take time off work, get bed rest"
+          }
+        ]
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-8'><em>Search</em></h3>
+<p>Searches for goals for a single patient</p>
+<h4 id='http-request-10'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/Goal?{parameters}</code> </p>
+<h4 id='parameters-10'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The date of the encounter containing the goal in the form YYYY-MM-DD</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-goals-for-a-single-patient-charted-on-a-visit-on-5-1-2017'>Example: Get all goals for a single patient charted on a visit on 5/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Goal?date=eq2017-05-01
+</pre>
+<h2 id='immunization'>Immunization</h2><h3 id='overview-10'>Overview</h3>
+<p>The immunization resource describes an administered vaccine.</p>
+<h3 id='fields-10'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each immunization which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>status</td>
+<td>Either completed or entered in error</td>
+<td><a href="https://www.hl7.org/fhir/valueset-immunization-status.html">Immunization status Code</a></td>
+</tr>
+<tr>
+<td>vaccineCode</td>
+<td>Vaccine product adminstered</td>
+<td><a href="https://www.hl7.org/fhir/valueset-vaccine-code.html">Vaccine administered value set</a></td>
+</tr>
+<tr>
+<td>patient</td>
+<td>The immunized patient</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>date</td>
+<td>The vaccination administration date in the form YYYY-MM-DD</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-9'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Immunization",
+        "id": "immunization-1",
+        "identifier": [
+          {
+            "use": "official",
+            "value": "immunization-1"
+          }
+        ],
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/cvx",
+              "code": "05",
+              "display": "measles virus vaccine"
+            }
+          ],
+          "text": "measles virus vaccine"
+        },
+        "patient": {
+          "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
+          "display": "Tinsley, Carol F"
+        },
+        "date": "2013-08-17"
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-9'><em>Search</em></h3>
+<p>Searches for immunizations for a single patient</p>
+<h4 id='http-request-11'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/Immunization?{parameters}</code> </p>
+<h4 id='parameters-11'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>date</td>
+<td>query</td>
+<td>The immunization administration date in the form YYYY-MM-DD</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-immunizations-for-a-single-patient-as-of-1-1-2017'>Example: Get all immunizations for a single patient as of 1/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Immunization?date=ge2017-01-01
+</pre>
+<h2 id='medication-dispensement'>Medication Dispensement</h2><h3 id='overview-11'>Overview</h3>
+<p>The medication dispersement resource describes the supply of medications by a health care provider to a patient.</p>
+<h3 id='fields-11'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each dispensement which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>medicationCodeableConcept</td>
+<td>The supplied medication</td>
+<td><a href="https://www.hl7.org/fhir/valueset-medication-codes.html">SNOMED CT Medication Code</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the dispensement</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>whenPrepared</td>
+<td>When product was packaged and reviewed</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-10'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "5172",
+        "identifier": [
+          {
+            "use": "official",
+            "value": "5172"
+          }
+        ],
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "977434",
+              "display": "Zortress 0.5 mg tablet"
+            }
+          ],
+          "text": "Zortress 0.5 mg tablet"
+        },
+        "subject": {
+          "reference": "Patient/Patient/56a784fa-4334-469d-dd12-a93248c74be3",
+          "display": "Horus, Lana"
+        },
+        "whenPrepared": "2015-08-14"
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-10'><em>Search</em></h3>
+<p>Searches for medication dispensements for a single patient</p>
+<h4 id='http-request-12'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/MedicationDispense?{parameters}</code> </p>
+<h4 id='parameters-12'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>whenPrepared</td>
+<td>query</td>
+<td>The preparation date in the form YYYY-MM-DD</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-prescriptions-for-a-single-patient-prepared-as-of-5-1-2017'>Example: Get all prescriptions for a single patient prepared as of 5/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationDispense?whenPrepared=ge2017-05-01
+</pre>
+<h2 id='medication-statements'>Medication Statements</h2><h3 id='overview-12'>Overview</h3>
+<p>A medication statement resource describes a medication being consumed by a patient. This includes medications not prescribed by the health care provider. </p>
+<h3 id='fields-12'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each medication statement which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>status</td>
+<td>The statement status</td>
+<td><a href="https://www.hl7.org/fhir/valueset-medication-statement-status.html">MedicationStatementStatus</a></td>
+</tr>
+<tr>
+<td>medication</td>
+<td>The supplied medication</td>
+<td><a href="https://www.hl7.org/fhir/valueset-medication-codes.html">SNOMED CT Medication Code</a></td>
+</tr>
+<tr>
+<td>effective</td>
+<td>The date/time when the medication was taken</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the medication statement</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-11'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "344",
+        "identifier": [
+          {
+            "use": "official",
+            "value": "344"
+          }
+        ],
+        "status": "active",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "310964",
+              "display": "Advil Liqui-Gel 200 mg capsule"
+            }
+          ],
+          "text": "Advil Liqui-Gel 200 mg capsule"
+        },
+        "effectiveDateTime": "2014-03-04",
+        "subject": {
+          "reference": "Patient/Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+          "display": "Clay, William"
+        }
+      }
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-11'><em>Search</em></h3>
+<p>Searches for current medications for a single patient</p>
+<h4 id='http-request-13'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/MedicationStatement?{parameters}</code></p>
+<h4 id='parameters-13'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>effective</td>
+<td>query</td>
+<td>Date when patient was taking the medication in the form YYYY-MM-DD</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-current-medications-for-a-single-patient-effective-5-1-2017'>Example: Get all current medications for a single patient effective 5/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationStatement?date=ge2017-05-01
+</pre>
+<h2 id='observation'>Observation</h2><h3 id='overview-13'>Overview</h3>
+<p>An observation resource describes a measurement or an assertion made about a patient. This request requires a category code to search on. The following category codes are supported:</p>
+
+<ul>
+<li>laboratory</li>
+<li>social-history</li>
+<li>vital-signs</li>
+</ul>
+<h3 id='fields-13'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each observation which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the observation</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>status</td>
+<td>The observation status</td>
+<td><a href="https://www.hl7.org/fhir/valueset-observation-status.html">ObservationStatus</a></td>
+</tr>
+<tr>
+<td>category</td>
+<td>Classification of type of observation</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">Category</a></td>
+</tr>
+<tr>
+<td>code</td>
+<td>Type of observation</td>
+<td><a href="https://www.hl7.org/fhir/valueset-observation-codes.html">LOINC Code</a></td>
+</tr>
+<tr>
+<td>effective</td>
+<td>Clinically relevant time/time-period for observation</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+<tr>
+<td>value</td>
+<td>Observation result</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-12'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "smokestatemn-3093code-745770",
+        "identifier": [
+          {
+            "use": "official",
+            "value": "smokestatemn-3093code-745770"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "observation-category",
+                "code": "social-history"
+              }
+            ],
+            "text": "Social History"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "72166-2"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/F15FB185-5E63-485E-B025-D113103DCEC3",
+          "display": "Morgan, Stanley"
+        },
+        "effectivePeriod": {
+          "start": "2009-03-02",
+          "end": "2013-08-17"
+        },
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "2.16.840.1.113883.6.96",
+              "code": "8517006"
+            }
+          ],
+          "text": "Ex-smoker"
+        }
+      }
+    }
+  ]
+}
+</pre> 
+
+<p>&nbsp;</p>
+<h3 id='em-search-em-12'><em>Search</em></h3>
+<p>Searches for observations for a single patient</p>
+<h4 id='http-request-14'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/Observation?{parameters}</code> </p>
+<h4 id='parameters-14'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>category</td>
 <td>query</td>
 <td>The category of observation to load</td>
 <td>Yes</td>
-<td>string</td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
-<td>The collection of observation obtained date filters</td>
+<td>The observation date in the form YYYY-MM-DD</td>
 <td>No</td>
-<td>array</td>
 </tr>
 </tbody></table>
-<h2 id='procedure'>Procedure</h2>
-<p>Get a bundle of procedures for a single patient.   </p>
+<h4 id='example-get-all-laboratory-requisitions-and-results-for-a-single-patient-as-of-5-1-2017'>Example: Get all laboratory requisitions and results for a single patient as of 5/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=laboratory&date=ge2017-05-01
+</pre>
+<h4 id='example-get-the-social-history-of-a-single-patient-charted-in-encounters-as-of-5-1-2017'>Example: Get the social history of a single patient charted in encounters as of 5/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=social-history&date=ge2017-05-01
+</pre>
+<h4 id='example-get-the-vital-signs-of-a-single-patient-charted-in-encounters-as-of-5-1-2017'>Example: Get the vital signs of a single patient charted in encounters as of 5/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=vital-signs&date=ge2017-05-01
+</pre>
+<h2 id='procedure'>Procedure</h2><h3 id='overview-14'>Overview</h3>
+<p>A procedure resource describes an activity performed with or on a patient as part of the provision of care.</p>
+<h3 id='fields-14'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each goal which discerns them from all others.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>code</td>
+<td>Identification of the procedure</td>
+<td><a href="https://www.hl7.org/fhir/valueset-procedure-code.html">Procedure Codes (SNOMED CT)</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>Who the procedure was performed on</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>performed</td>
+<td>Date/Period the procedure was performed</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+</tbody></table>
+<h3 id='sample-13'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "2053",
+        "identifier": [
+          {
+            "use": "official",
+            "value": "2053"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "CPT4",
+              "code": "54601"
+            }
+          ],
+          "text": "Microdermabrasion"
+        },
+        "subject": {
+          "reference": "Patient/5F37E582-FD96-48C5-9EE3-02E26D96CB72",
+          "display": "Smith, John"
+        }
+      }
+    }
+  ]
+}
+</pre>
 
-<p><em>RESTful searching for procedures by performed date is supported. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria. The following search prefixes are supported: lt, gt, eq, le, ge, ne.</em></p>
-<h3 id='http-request-15'>HTTP Request</h3>
-<p><code>GET /Patient/{patientUID}/Procedure</code> </p>
-<h3 id='parameters-15'>Parameters</h3>
+<p>&nbsp;</p>
+<h3 id='em-search-em-13'><em>Search</em></h3>
+<p>Searches for procedures for a single patient</p>
+<h4 id='http-request-15'>HTTP Request</h4>
+<p><code>GET /Patient/{patientUid}/Procedure?{parameters}</code> </p>
+<h4 id='parameters-15'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
-<th>Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>patientUID</td>
+<td>patientUid</td>
 <td>path</td>
-<td>The unique identifier acquired from the patient search</td>
+<td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
-<td>string</td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
-<td>The collection of procedure performed date filters</td>
+<td>The date the procedure was performed in the form YYYY-MM-DD</td>
 <td>No</td>
-<td>array</td>
 </tr>
 </tbody></table>
+<h4 id='example-get-all-procedures-for-a-single-patient-performed-as-of-5-1-2017'>Example: Get all procedures for a single patient performed as of 5/1/2017</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Procedure?date=ge2017-05-01
+</pre>
 <h1 id='appointment-api'>Appointment API</h1><h2 id='appointment'>Appointment</h2><h3 id='overview'>Overview</h3>
 <p>The appointment resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
 <h3 id='fields'>Fields</h3>
@@ -1311,7 +2274,7 @@ GET https://api.nextech.com/Patient/ID?family=Smith&given=John&birthDate=eq1972-
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
 </tr>
 </tbody></table>
-<h3 id='example'>Example</h3>
+<h3 id='sample'>Sample</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1425,11 +2388,11 @@ GET https://api.nextech.com/Patient/ID?family=Smith&given=John&birthDate=eq1972-
 </tbody></table>
 <h4 id='example-get-all-appointments-for-a-patient-by-chart-number'>Example: Get all appointments for a patient by chart number</h4>
 <pre class="center-column">
-GET https://api.nextech.com/Appointment?patient=12345
+GET https://select.nextech-api.com/api/Appointment?patient=12345
 </pre>
 <h4 id='example-get-all-appointments-between-and-including-1-1-2017-through-5-31-2017'>Example: Get all appointments between and including 1/1/2017 through 5/31/2017</h4>
 <pre class="center-column">
-GET https://api.nextech.com/Appointment?date=ge2017-01-01&date=lt2017-06-01
+GET https://select.nextech-api.com/api/Appointment?date=ge2017-01-01&date=lt2017-06-01
 </pre>
 
 <p>&nbsp;</p>
@@ -1463,7 +2426,7 @@ GET https://api.nextech.com/Appointment?date=ge2017-01-01&date=lt2017-06-01
 <p>The commit parameter should be in the form of an Appointment status field. See https://www.hl7.org/fhir/http.html#update for details on formatting PUT requests in RESTful API’s.</p>
 <h4 id='example-mark-appointment-5453-as-booked'>Example: Mark appointment 5453 as booked</h4>
 <pre class="center-column">
-PUT https://api.nextech.com/Appointment/5453
+PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 
 <pre class="center-column">
