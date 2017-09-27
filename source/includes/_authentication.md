@@ -1,6 +1,6 @@
 # Authentication
 ## Request Access Token
-Nextech's implementation of the FHIR® standard is protected by the [OAuth 2.0 standard](https://oauth.net/2/) for authenticating requests.  Every API request requires a Bearer token to be passed in the Authorization Header.
+Nextech's implementation of the FHIR® standard is protected by the [OAuth 2.0 standard](https://oauth.net/2/) for authenticating requests.  All API requests are authenticated by passing a Bearer token in the Authorization Header.
 
 ```Authorization: Bearer {access_token}```
 
