@@ -18,7 +18,7 @@ The patient resource contains information about the demographics of a patient.
 | address | Addresses associated with the patient | [Address](https://www.hl7.org/fhir/datatypes.html#Address) |
 | communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Patient",
@@ -111,8 +111,9 @@ The patient resource contains information about the demographics of a patient.
 }
 </pre>
 &nbsp;
+
 ### *Search*
-Searches for all patients matching the given search criteria. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria.
+Searches for all patients matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
 
 #### HTTP Request 
 `GET /Patient?{parameters}`
@@ -135,12 +136,14 @@ Searches for all patients matching the given search criteria. See https://www.hl
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/12345
 </pre>
+&nbsp;
 
 #### Example: Get all patients who live within a specific zip code
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient?address-postalcode=12345
 </pre>
+&nbsp;
 
 #### Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981
 
@@ -192,7 +195,7 @@ The allergy intolerance resource describes the risk of undesirable responses of 
 | patient | The patient who the allergy or intolerance is for | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
 | assertedDate | The date the record was believed to be accurate | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -241,6 +244,7 @@ Searches for allergy intolerances for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/AllergyIntolerance?date=ge2017-01-01
 </pre>
+&nbsp;
 
 
 ## Binary
@@ -272,6 +276,7 @@ Generates a CCDA for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Binary?start=2017-01-01&end=2018-01-01
 </pre>
+&nbsp;
 
 
 ## Care Plan
@@ -286,7 +291,7 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
 | subject | The patient pertaining to the care plan | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
 | activity | The collection of coded care plan actions | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -327,6 +332,7 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
 }
 </pre>
 &nbsp;
+
 ### *Search*
 Searches for care plans for a single patient
 
@@ -344,6 +350,7 @@ Searches for care plans for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/CarePlan?date=eq2017-05-01
 </pre>
+&nbsp;
 
 
 ## Clinical Impression
@@ -359,7 +366,7 @@ The clinical impression resource contains information regarding what problem(s) 
 | date | When the assessment was documented | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
 | summary | Summary of the assessment | [string](https://www.hl7.org/fhir/datatypes.html#string) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -403,6 +410,7 @@ Searches for clinical impressions for a patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/ClinicalImpression?date=eq2017-05-01
 </pre>
+&nbsp;
 
 
 ## Condition
@@ -421,7 +429,7 @@ The condition resource describes a certain state of health of a patient.
 | onsetDate | Estimated or actual date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
 | abatementDate | Resolution or remission date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -457,6 +465,7 @@ The condition resource describes a certain state of health of a patient.
 }
 </pre>
 &nbsp;
+
 ### *Search*
 Searches for conditions for a single patient
 
@@ -475,6 +484,7 @@ Searches for conditions for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Condition?onset-date=ge2017-01-01
 </pre>
+&nbsp;
 
 
 ## Device
@@ -495,7 +505,7 @@ The device resource identifies an instance or type of manufactured item used in 
 | version | Version number | [string](https://www.hl7.org/fhir/datatypes.html#string) |
 | patient | The patient pertaining to the device | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -544,6 +554,7 @@ The device resource identifies an instance or type of manufactured item used in 
 }
 </pre>
 &nbsp;
+
 ### *Search*
 Searches for devices for a single patient
 
@@ -561,6 +572,7 @@ Searches for devices for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Device?date=ge2017-01-01
 </pre>
+&nbsp;
 
 
 ## Encounter
@@ -576,7 +588,7 @@ The encounter resource describes an interaction between a patient and healthcare
 | participant | The medical professionals involved in the encounter | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
 | period | The start and end date of the encounter in the form YYYY-MM-DD | [period](https://www.hl7.org/fhir/datatypes.html#Period) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -645,6 +657,7 @@ The encounter resource describes an interaction between a patient and healthcare
 }
 </pre>
 &nbsp;
+
 ### *Search*
 Searches for encounters for a single patient
 
@@ -662,6 +675,7 @@ Searches for encounters for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Encounter?date=ge2017-01-01
 </pre>
+&nbsp;
 
 
 ## Goal
@@ -677,7 +691,7 @@ The goal resource describes a desired state of health for a patient.
 | target | The target outcome of the goal | [CodeableConcept](https://www.hl7.org/fhir/backboneelement.html) |
 | note | Comments about the goal | [Annotation](https://www.hl7.org/fhir/datatypes.html#Annotation) | 
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -718,6 +732,7 @@ The goal resource describes a desired state of health for a patient.
 }
 </pre>
 &nbsp;
+
 ### *Search*
 Searches for goals for a single patient
 
@@ -735,6 +750,7 @@ Searches for goals for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Goal?date=eq2017-05-01
 </pre>
+&nbsp;
 
 
 ## Immunization
@@ -751,7 +767,7 @@ The immunization resource describes an administered vaccine.
 | patient | The immunized patient | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
 | date | The vaccination administration date in the form YYYY-MM-DD | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -788,6 +804,7 @@ The immunization resource describes an administered vaccine.
 }
 </pre>
 &nbsp;
+
 ### *Search*
 Searches for immunizations for a single patient
 
@@ -805,6 +822,7 @@ Searches for immunizations for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Immunization?date=ge2017-01-01
 </pre>
+&nbsp;
 
 
 ## Medication Dispensement
@@ -820,7 +838,7 @@ The medication dispersement resource describes the supply of medications by a he
 | subject | The patient pertaining to the dispensement | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
 | whenPrepared | When product was packaged and reviewed | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -856,6 +874,7 @@ The medication dispersement resource describes the supply of medications by a he
 }
 </pre>
 &nbsp;
+
 ### *Search*
 Searches for medication dispensements for a single patient
 
@@ -873,6 +892,7 @@ Searches for medication dispensements for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationDispense?whenPrepared=ge2017-05-01
 </pre>
+&nbsp;
 
 
 ## Medication Statements
@@ -889,7 +909,7 @@ A medication statement resource describes a medication being consumed by a patie
 | effective | The date/time when the medication was taken | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
 | subject | The patient pertaining to the medication statement | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -926,6 +946,7 @@ A medication statement resource describes a medication being consumed by a patie
 }
 </pre>
 &nbsp;
+
 ### *Search*
 Searches for current medications for a single patient
 
@@ -943,6 +964,7 @@ Searches for current medications for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationStatement?date=ge2017-05-01
 </pre>
+&nbsp;
 
 
 ## Observation
@@ -965,7 +987,7 @@ An observation resource describes a measurement or an assertion made about a pat
 | effective | Clinically relevant time/time-period for observation | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
 | value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1022,8 +1044,8 @@ An observation resource describes a measurement or an assertion made about a pat
   ]
 }
 </pre> 
-
 &nbsp;
+
 ### *Search*
 Searches for observations for a single patient
 
@@ -1042,19 +1064,21 @@ Searches for observations for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=laboratory&date=ge2017-05-01
 </pre>
+&nbsp;
 
 #### Example: Get the social history of a single patient charted in encounters as of 5/1/2017
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=social-history&date=ge2017-05-01
 </pre>
+&nbsp;
 
 #### Example: Get the vital signs of a single patient charted in encounters as of 5/1/2017
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=vital-signs&date=ge2017-05-01
 </pre>
-
+&nbsp;
 
 ## Procedure
 
@@ -1069,7 +1093,7 @@ A procedure resource describes an activity performed with or on a patient as par
 | subject | Who the procedure was performed on | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
 | performed | Date/Period the procedure was performed | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
 
-### Sample
+### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1103,6 +1127,7 @@ A procedure resource describes an activity performed with or on a patient as par
 }
 </pre>
 &nbsp;
+
 ### *Search*
 Searches for procedures for a single patient
 
@@ -1120,3 +1145,4 @@ Searches for procedures for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Procedure?date=ge2017-05-01
 </pre>
+&nbsp;

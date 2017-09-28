@@ -97,8 +97,9 @@ The appointment resource contains information about a planned meeting between a 
 }
 </pre>
 &nbsp;
+
 ### *Search*
-Searches for all appointments matching the given search criteria. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria.
+Searches for all appointments matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
 
 #### HTTP Request 
 `GET /Appointment?{parameters}`
@@ -116,6 +117,7 @@ Searches for all appointments matching the given search criteria. See https://ww
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Appointment?patient=12345
 </pre>
+&nbsp;
 
 #### Example: Get all appointments between and including 1/1/2017 through 5/31/2017
 
@@ -123,6 +125,7 @@ GET https://select.nextech-api.com/api/Appointment?patient=12345
 GET https://select.nextech-api.com/api/Appointment?date=ge2017-01-01&date=lt2017-06-01
 </pre>
 &nbsp;
+
 ### *Confirm Appointment*
 Confirm a scheduled appointment.
 
@@ -136,7 +139,7 @@ Confirm a scheduled appointment.
 | identifier | path | The unique identifier of the appointment to be updated | Yes |
 | commit | body | The object representing the changes to be made | Yes |
 
-The commit parameter should be in the form of an Appointment status field. See https://www.hl7.org/fhir/http.html#update for details on formatting PUT requests in RESTful API’s.
+The commit parameter should be in the form of an Appointment status field. See [https://www.hl7.org/fhir/http.html#update](https://www.hl7.org/fhir/http.html#update) for details on formatting PUT requests in RESTful API’s.
 
 #### Example: Mark appointment 5453 as booked
 
@@ -146,3 +149,4 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 <pre class="center-column">
 { "status": "booked" }
 </pre>
+&nbsp;
