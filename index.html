@@ -213,32 +213,27 @@
       <div id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#search" class="toc-h2 toc-link" data-title="Introduction">Search</a>
-                  </li>
-                  <li>
-                    <a href="#writing" class="toc-h2 toc-link" data-title="Introduction">Writing</a>
-                  </li>
-                  <li>
-                    <a href="#pagination" class="toc-h2 toc-link" data-title="Introduction">Pagination</a>
-                  </li>
-                  <li>
-                    <a href="#request-format" class="toc-h2 toc-link" data-title="Introduction">Request Format</a>
-                  </li>
-                  <li>
-                    <a href="#errors" class="toc-h2 toc-link" data-title="Introduction">Errors</a>
-                  </li>
-              </ul>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#request-access-token" class="toc-h2 toc-link" data-title="Authentication">Request Access Token</a>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Getting Started">Authentication</a>
                   </li>
                   <li>
-                    <a href="#refresh-access-token" class="toc-h2 toc-link" data-title="Authentication">Refresh Access Token</a>
+                    <a href="#search-parameters" class="toc-h2 toc-link" data-title="Getting Started">Search Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#writing" class="toc-h2 toc-link" data-title="Getting Started">Writing</a>
+                  </li>
+                  <li>
+                    <a href="#pagination" class="toc-h2 toc-link" data-title="Getting Started">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#response-codes" class="toc-h2 toc-link" data-title="Getting Started">Response Codes</a>
+                  </li>
+                  <li>
+                    <a href="#using-postman" class="toc-h2 toc-link" data-title="Getting Started">Using Postman</a>
                   </li>
               </ul>
           </li>
@@ -300,46 +295,34 @@
       </div>
         <ul class="toc-footer">
             <li><a href='http://hl7.org/fhir/'>FHIR Documentation</a></li>
+            <li><a href='https://app.getpostman.com/run-collection/899edff2cda90cba5159'>Run in Postman</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>The Nextech Select Open API is a RESTful implementation based on the STU 3 (3.0.1) version of the <a href="https://www.hl7.org/fhir/index.html">FHIR® standard</a>.</p>
+<p>The Nextech Select APIs provide secure access to patient data through a RESTful implementation based on the STU 3 (3.0.1) version of the <a href="https://www.hl7.org/fhir/index.html">FHIR® standard</a>. All API requests are performed over HTTPS and are protected by the <a href="https://oauth.net/2/">OAuth 2.0 standard</a>.</p>
 
-<p>All communication is performed over HTTPS. Although the FHIR® standard supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request&#39;s <code>Accept</code> header will be ignored.</p>
-<h2 id='search'>Search</h2>
-<p>Searches may be performed via HTTPS calls to the API where supported. </p>
+<p>Available API functionality:  </p>
 
-<p>A search is executed by performing a GET operation in the RESTful framework<br>
-<code>GET https://select.nextech-api.com/api/[type]?[field1]=[value1]&amp;[field2]=[value2]...</code><br>
-where [type] refers to a resource such as Patient or Appointment followed by one or more query filters.</p>
-<h3 id='example'>Example</h3>
-<p><code>GET https://select.nextech-api.com/api/Patient?identifier=3442</code><br>
-<code>GET https://select.nextech-api.com/api/Patient?family=Smith</code><br>
-<code>GET https://select.nextech-api.com/api/Patient?address-city=Tampa&amp;address-state=FL</code>   </p>
-<h2 id='writing'>Writing</h2>
-<p>Data writes may be performed via HTTPS calls to the API where supported. </p>
+<ul>
+<li>Patient demographics<br></li>
+<li>Patient clinical information<br></li>
+<li>Appointment information<br></li>
+<li>Ability to confirm appointments<br></li>
+</ul>
 
-<p>A write is executed by performing a PUT operation in the RESTful framework
-<code>PUT https://select.nextech-api.com/api/{resource}/{identifier}</code>
-where <code>{resource}</code> refers to a resource such as Patient or Appointment, <code>{identifier}</code> is the unique identifier of the resource and the body of the request describes a resource and which fields to add or change. This example request path and body would confirm an appointment with the ID 3384:   </p>
-<h3 id='example-2'>Example</h3>
-<p><code>PUT https://select.nextech-api.com/api/Appointment/3384</code><br>
-<code>Body: { &quot;status&quot;: &quot;fulfilled&quot; }</code></p>
-<h2 id='pagination'>Pagination</h2>
-<p>When a search results in multiple matches, the first ten matches ordered by entered date are returned by default. Included in the result are links to the first set of matches, the following set of matches, the previous set of matches and the last set of matches.</p>
+<p>Before you can start using our APIs, you must go through our registration process.  If you&#39;re interested in API access for your practice, please contact us <a href="http://landing.nextech.com/developers-portal-registration-form">here</a>.  Otherwise, if you&#39;ve been provided with credentials to authenticate, then continue to the <a href="/#getting-started">Getting Started</a> section for more information.</p>
+<h1 id='getting-started'>Getting Started</h1>
+<p>All API requests are performed over HTTPS. Although the <a href="https://www.hl7.org/fhir/index.html">FHIR® standard</a> supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request&#39;s <code>Accept</code> header will be ignored.</p>
 
-<p>You may overide the number of matches returned, up to fifty, by including <code>_count={number}</code> in your search. </p>
+<p>Before you can access the Nextech API you must have the proper credentials to authenticate. These credentials will be provided to you by your Nextech representative.  </p>
 
-<p><code>GET http://select.nextech-api.com/api/Appointment?_count=25</code></p>
+<p><strong>API Endpoint</strong><br>
+<code>https://select.nextech-api.com/api</code></p>
 
-<aside class="notice">
-Search results are limited to fifty matches per page.
-</aside>
-<h2 id='request-format'>Request Format</h2>
-<p>All communication is performed over HTTPS. Although the FHIR® standard supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request&#39;s <code>Accept</code> header will be ignored.</p>
+<p>The following values are required in the Header for every request...</p>
 
 <table><thead>
 <tr>
@@ -359,42 +342,15 @@ Search results are limited to fifty matches per page.
 <td>Yes</td>
 </tr>
 </tbody></table>
-<h2 id='errors'>Errors</h2>
-<p>Nextech uses the standard HTTP response codes to indicate a API request&#39;s success or failure.</p>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>OK - Successful request</td>
-</tr>
-<tr>
-<td>400</td>
-<td>Bad Request - The request is missing information or is malformed</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden - The request is valid, but the server is refusing action</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found - The requested resource cannot be found</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error - We had a problem with our server</td>
-</tr>
-</tbody></table>
-<h1 id='authentication'>Authentication</h1><h2 id='request-access-token'>Request Access Token</h2>
-<p>Nextech&#39;s implementation of the FHIR® standard is protected by the <a href="https://oauth.net/2/">OAuth 2.0 standard</a> for authenticating requests.  Every API request requires a Bearer token to be passed in the Authorization Header.</p>
+<h2 id='authentication'>Authentication</h2>
+<p>Nextech&#39;s implementation of the FHIR® standard is protected by the <a href="https://oauth.net/2/">OAuth 2.0 standard</a> for authenticating requests.  All API requests are authenticated by passing a Bearer token in the Authorization Header.</p>
 
 <p><code>Authorization: Bearer {access_token}</code></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://login.microsoftonline.com/a5f8392a-a68f-4d74-a353-aefc87f29848/oauth2/token</code></p>
+<h3 id='request-access-token'>Request Access Token</h3>
+<p>Access tokens are used to make API requests on behalf of a user. These tokens are short-lived (1 hour by default) but should be kept confidential in transit and in storage. A <code>access_token</code> and <code>refresh_token</code> pair is issued when requesting an access token.</p>
+
+<p><strong>HTTP Request</strong><br>
+<code>POST https://login.microsoftonline.com/a5f8392a-a68f-4d74-a353-aefc87f29848/oauth2/token</code></p>
 
 <table><thead>
 <tr>
@@ -427,7 +383,9 @@ Search results are limited to fifty matches per page.
 <td>The app to consume the token</td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters'>Response Parameters</h3>
+
+<p><strong>Response Parameters</strong></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -455,10 +413,11 @@ Search results are limited to fifty matches per page.
 <td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
 </tr>
 </tbody></table>
-<h2 id='refresh-access-token'>Refresh Access Token</h2>
+<h3 id='refresh-access-token'>Refresh Access Token</h3>
 <p>Refresh tokens are used to renew an expired access token without providing user credentials. A <code>access_token</code> and <code>refresh_token</code> pair is issued when requesting an access token using the resource owner credentials grant. A new pair is also generated when using the <code>refresh_token</code> grant type. </p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://login.microsoftonline.com/a5f8392a-a68f-4d74-a353-aefc87f29848/oauth2/token</code></p>
+
+<p><strong>HTTP Request</strong><br>
+<code>POST https://login.microsoftonline.com/a5f8392a-a68f-4d74-a353-aefc87f29848/oauth2/token</code></p>
 
 <table><thead>
 <tr>
@@ -483,7 +442,9 @@ Search results are limited to fifty matches per page.
 <td>A valid refresh token</td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters-2'>Response Parameters</h3>
+
+<p><strong>Response Parameters</strong></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -511,6 +472,92 @@ Search results are limited to fifty matches per page.
 <td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
 </tr>
 </tbody></table>
+<h2 id='search-parameters'>Search Parameters</h2>
+<p>Searches may be performed via HTTPS calls to the API where supported. </p>
+
+<p>A search is executed by performing a <code>GET</code> operation in the RESTful framework<br>
+<code>GET https://select.nextech-api.com/api/[type]?[field1]=[value1]&amp;[field2]=[value2]...</code><br>
+where [type] refers to a resource such as Patient or Appointment followed by one or more query filters.  </p>
+
+<p><strong>Example</strong>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient?identifier=3442
+</pre></p>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient?family=Smith
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient?address-city=Tampa&address-state=FL
+</pre>
+
+<p>&nbsp;</p>
+<h2 id='writing'>Writing</h2>
+<p>Data writes may be performed via HTTPS calls to the API where supported. </p>
+
+<p>A write is executed by performing a <code>PUT</code> operation in the RESTful framework
+<code>PUT https://select.nextech-api.com/api/{resource}/{identifier}</code>
+where <code>{resource}</code> refers to a resource such as Patient or Appointment, <code>{identifier}</code> is the unique identifier of the resource and the body of the request describes a resource and which fields to add or change. This example request path and body would confirm an appointment with the ID 3384:</p>
+
+<p><strong>Example</strong>
+<pre class="center-column">
+<code>PUT https://select.nextech-api.com/api/Appointment/3384</code>
+</pre>
+<pre class="center-column">
+<code>{ 
+    &quot;status&quot;: &quot;booked&quot; 
+}</code>
+</pre>
+&nbsp;</p>
+<h2 id='pagination'>Pagination</h2>
+<p>When a search results in multiple matches, the first ten matches ordered by entered date are returned by default. Included in the result are links to the first set of matches, the following set of matches, the previous set of matches and the last set of matches.</p>
+
+<p>You may overide the number of matches returned, up to fifty, by including <code>_count={number}</code> in your search. </p>
+
+<p><code>GET http://select.nextech-api.com/api/Appointment?_count=25</code></p>
+
+<aside class="notice">
+Search results are limited to 50 matches per page.
+</aside>
+<h2 id='response-codes'>Response Codes</h2>
+<p>The Nextech Select APIs use the standard HTTP response codes to indicate success or failure of an API request.</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK - Successful request</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request - The request is missing information or is malformed</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden - The request is valid, but the server is refusing action</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found - The requested resource cannot be found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error - We had a problem with our server</td>
+</tr>
+</tbody></table>
+<h2 id='using-postman'>Using Postman</h2>
+<p>To help you get started, here&#39;s a collection of sample API requests in Postman.</p>
+
+<p><a href="https://app.getpostman.com/run-collection/899edff2cda90cba5159"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></p>
+
+<aside class="notice">
+You must have been provided API credentials and Practice ID(s) to use these examples.
+</aside>
 <h1 id='patient-api'>Patient API</h1><h2 id='patient'>Patient</h2><h3 id='overview'>Overview</h3>
 <p>The patient resource contains information about the demographics of a patient.</p>
 <h3 id='fields'>Fields</h3>
@@ -567,7 +614,7 @@ Search results are limited to fifty matches per page.
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample'>Sample</h3>
+<h3 id='example'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Patient",
@@ -662,7 +709,7 @@ Search results are limited to fifty matches per page.
 
 <p>&nbsp;</p>
 <h3 id='em-search-em'><em>Search</em></h3>
-<p>Searches for all patients matching the given search criteria. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria.</p>
+<p>Searches for all patients matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Patient?{parameters}</code></p>
 <h4 id='parameters'>Parameters</h4>
@@ -743,10 +790,14 @@ Search results are limited to fifty matches per page.
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/12345
 </pre>
+
+<p>&nbsp;</p>
 <h4 id='example-get-all-patients-who-live-within-a-specific-zip-code'>Example: Get all patients who live within a specific zip code</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient?address-postalcode=12345
 </pre>
+
+<p>&nbsp;</p>
 <h4 id='example-get-all-patients-with-birth-dates-between-and-including-1-1-1981-through-5-31-1981'>Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient?birthDate=ge1981-01-01&birthDate=lt1981-06-01
@@ -876,7 +927,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthD
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-2'>Sample</h3>
+<h3 id='example-2'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -939,6 +990,8 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthD
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/AllergyIntolerance?date=ge2017-01-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='binary'>Binary</h2><h3 id='overview-3'>Overview</h3>
 <p>Binary resources contain patient health information in a structured document or media form.</p>
 <h3 id='fields-3'>Fields</h3>
@@ -996,6 +1049,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Binary?start=2017-01-01&end=2018-01-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='care-plan'>Care Plan</h2><h3 id='overview-4'>Overview</h3>
 <p>A Care Plan contains patient diet, procedure, lab work and counseling and other care information for a single patient.   </p>
 <h3 id='fields-4'>Fields</h3>
@@ -1022,7 +1077,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-3'>Sample</h3>
+<h3 id='example-3'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1094,6 +1149,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/CarePlan?date=eq2017-05-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='clinical-impression'>Clinical Impression</h2><h3 id='overview-5'>Overview</h3>
 <p>The clinical impression resource contains information regarding what problem(s) may affect the patient by treatment.</p>
 <h3 id='fields-5'>Fields</h3>
@@ -1125,7 +1182,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-4'>Sample</h3>
+<h3 id='example-4'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1182,6 +1239,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/ClinicalImpression?date=eq2017-05-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='condition'>Condition</h2><h3 id='overview-6'>Overview</h3>
 <p>The condition resource describes a certain state of health of a patient.</p>
 <h3 id='fields-6'>Fields</h3>
@@ -1228,7 +1287,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-5'>Sample</h3>
+<h3 id='example-5'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1301,6 +1360,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Condition?onset-date=ge2017-01-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='device'>Device</h2><h3 id='overview-7'>Overview</h3>
 <p>The device resource identifies an instance or type of manufactured item used in the provision of healthcare.</p>
 <h3 id='fields-7'>Fields</h3>
@@ -1357,7 +1418,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-6'>Sample</h3>
+<h3 id='example-6'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1437,6 +1498,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Device?date=ge2017-01-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='encounter'>Encounter</h2><h3 id='overview-8'>Overview</h3>
 <p>The encounter resource describes an interaction between a patient and healthcare provider.</p>
 <h3 id='fields-8'>Fields</h3>
@@ -1468,7 +1531,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Period">period</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-7'>Sample</h3>
+<h3 id='example-7'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1568,6 +1631,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Encounter?date=ge2017-01-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='goal'>Goal</h2><h3 id='overview-9'>Overview</h3>
 <p>The goal resource describes a desired state of health for a patient.</p>
 <h3 id='fields-9'>Fields</h3>
@@ -1599,7 +1664,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Annotation">Annotation</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-8'>Sample</h3>
+<h3 id='example-8'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1671,6 +1736,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Goal?date=eq2017-05-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='immunization'>Immunization</h2><h3 id='overview-10'>Overview</h3>
 <p>The immunization resource describes an administered vaccine.</p>
 <h3 id='fields-10'>Fields</h3>
@@ -1707,7 +1774,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-9'>Sample</h3>
+<h3 id='example-9'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1775,6 +1842,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Immunization?date=ge2017-01-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='medication-dispensement'>Medication Dispensement</h2><h3 id='overview-11'>Overview</h3>
 <p>The medication dispersement resource describes the supply of medications by a health care provider to a patient.</p>
 <h3 id='fields-11'>Fields</h3>
@@ -1806,7 +1875,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-10'>Sample</h3>
+<h3 id='example-10'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1873,6 +1942,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationDispense?whenPrepared=ge2017-05-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='medication-statements'>Medication Statements</h2><h3 id='overview-12'>Overview</h3>
 <p>A medication statement resource describes a medication being consumed by a patient. This includes medications not prescribed by the health care provider. </p>
 <h3 id='fields-12'>Fields</h3>
@@ -1909,7 +1980,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-11'>Sample</h3>
+<h3 id='example-11'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1977,6 +2048,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/MedicationStatement?date=ge2017-05-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='observation'>Observation</h2><h3 id='overview-13'>Overview</h3>
 <p>An observation resource describes a measurement or an assertion made about a patient. This request requires a category code to search on. The following category codes are supported:</p>
 
@@ -2029,7 +2102,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-12'>Sample</h3>
+<h3 id='example-12'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -2124,14 +2197,20 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=laboratory&date=ge2017-05-01
 </pre>
+
+<p>&nbsp;</p>
 <h4 id='example-get-the-social-history-of-a-single-patient-charted-in-encounters-as-of-5-1-2017'>Example: Get the social history of a single patient charted in encounters as of 5/1/2017</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=social-history&date=ge2017-05-01
 </pre>
+
+<p>&nbsp;</p>
 <h4 id='example-get-the-vital-signs-of-a-single-patient-charted-in-encounters-as-of-5-1-2017'>Example: Get the vital signs of a single patient charted in encounters as of 5/1/2017</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=vital-signs&date=ge2017-05-01
 </pre>
+
+<p>&nbsp;</p>
 <h2 id='procedure'>Procedure</h2><h3 id='overview-14'>Overview</h3>
 <p>A procedure resource describes an activity performed with or on a patient as part of the provision of care.</p>
 <h3 id='fields-14'>Fields</h3>
@@ -2163,7 +2242,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h3 id='sample-13'>Sample</h3>
+<h3 id='example-13'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -2228,6 +2307,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Procedure?date=ge2017-05-01
 </pre>
+
+<p>&nbsp;</p>
 <h1 id='appointment-api'>Appointment API</h1><h2 id='appointment'>Appointment</h2><h3 id='overview'>Overview</h3>
 <p>The appointment resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
 <h3 id='fields'>Fields</h3>
@@ -2355,7 +2436,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 
 <p>&nbsp;</p>
 <h3 id='em-search-em'><em>Search</em></h3>
-<p>Searches for all appointments matching the given search criteria. See https://www.hl7.org/fhir/search.html for instructions on formatting search criteria.</p>
+<p>Searches for all appointments matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Appointment?{parameters}</code></p>
 <h4 id='parameters'>Parameters</h4>
@@ -2390,6 +2471,8 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Appointment?patient=12345
 </pre>
+
+<p>&nbsp;</p>
 <h4 id='example-get-all-appointments-between-and-including-1-1-2017-through-5-31-2017'>Example: Get all appointments between and including 1/1/2017 through 5/31/2017</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Appointment?date=ge2017-01-01&date=lt2017-06-01
@@ -2423,7 +2506,7 @@ GET https://select.nextech-api.com/api/Appointment?date=ge2017-01-01&date=lt2017
 </tr>
 </tbody></table>
 
-<p>The commit parameter should be in the form of an Appointment status field. See https://www.hl7.org/fhir/http.html#update for details on formatting PUT requests in RESTful API’s.</p>
+<p>The commit parameter should be in the form of an Appointment status field. See <a href="https://www.hl7.org/fhir/http.html#update">https://www.hl7.org/fhir/http.html#update</a> for details on formatting PUT requests in RESTful API’s.</p>
 <h4 id='example-mark-appointment-5453-as-booked'>Example: Mark appointment 5453 as booked</h4>
 <pre class="center-column">
 PUT https://select.nextech-api.com/api/Appointment/5453
@@ -2432,6 +2515,8 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 <pre class="center-column">
 { "status": "booked" }
 </pre>
+
+<p>&nbsp;</p>
 
       </div>
       <div class="dark-box">
