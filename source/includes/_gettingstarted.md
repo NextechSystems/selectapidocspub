@@ -25,7 +25,7 @@ Nextech's implementation of the FHIR® standard is protected by the [OAuth 2.0 s
 Access tokens are used to make API requests on behalf of a user. These tokens are short-lived (1 hour by default) but should be kept confidential in transit and in storage. A `access_token` and `refresh_token` pair is issued when requesting an access token.
 
 **HTTP Request**  
-`POST https://login.microsoftonline.com/a5f8392a-a68f-4d74-a353-aefc87f29848/oauth2/token`
+`POST https://login.microsoftonline.com/nextech-api.com/oauth2/token`
 
 | Parameter | Description |
 | --------- | ----------- |
@@ -50,7 +50,7 @@ Access tokens are used to make API requests on behalf of a user. These tokens ar
 Refresh tokens are used to renew an expired access token without providing user credentials. A `access_token` and `refresh_token` pair is issued when requesting an access token using the resource owner credentials grant. A new pair is also generated when using the `refresh_token` grant type. 
 
 **HTTP Request**  
-`POST https://login.microsoftonline.com/a5f8392a-a68f-4d74-a353-aefc87f29848/oauth2/token`
+`POST https://login.microsoftonline.com/nextech-api.com/oauth2/token`
 
 | Parameter | Description |
 | --------- | ----------- |
