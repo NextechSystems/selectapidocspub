@@ -148,7 +148,7 @@ GET https://select.nextech-api.com/api/Patient?address-postalcode=12345
 #### Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?birthDate=ge1981-01-01&birthDate=lt1981-06-01
+GET https://select.nextech-api.com/api/Patient?birthdate=ge1981-01-01&birthdate=lt1981-06-01
 </pre>
 &nbsp;
 
@@ -177,7 +177,7 @@ _At least one of query parameters is required to perform a search._
 #### Example: Get the unique identifier of a patient given first name, last name, and birthdate
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthDate=eq1972-04-21
+GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthdate=eq1972-04-21
 </pre>
 &nbsp;
 
