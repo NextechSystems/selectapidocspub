@@ -135,10 +135,23 @@ The Nextech Select APIs use the standard HTTP response codes to indicate success
 | 500 | Internal Server Error - We had a problem with our server |
 
 ## Using Postman ##
-To help you get started, here's a collection of sample API requests in Postman.
+To help you get started, here's a collection of sample API requests in Postman. You can find more information on making API requests using Postman [here](https://www.getpostman.com/docs/postman/sending_api_requests/requests).
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/899edff2cda90cba5159)
 
 <aside class="notice">
 You must have been provided API credentials and Practice ID(s) to use these examples.
 </aside>
+
+### Authorization ###
+
+Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the `authorization_code` grant type. When requesting a new token, you will be redirected to the _Auth URL_ listed below where you can enter your user credentials to authenticate. 
+
+| Field | Value |
+| ----- | ----- |
+| Auth URL | `https://login.microsoftonline.com/nextech-api.com/oauth2/authorize?resource=https%3A%2F%2Fselect.nextech-api.com%2Fapi` |
+| Access Token URL | `https://login.microsoftonline.com/nextech-api.com/oauth2/token` |
+| Callback URL | `https://www.getpostman.com/oauth2/callback` |
+| Client ID | Your application ID |
+| Client Secret | Your application secret |
+| Grant Type | `Authorization Code` |
