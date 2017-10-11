@@ -551,13 +551,47 @@ Search results are limited to 50 matches per page.
 </tr>
 </tbody></table>
 <h2 id='using-postman'>Using Postman</h2>
-<p>To help you get started, here&#39;s a collection of sample API requests in Postman.</p>
+<p>To help you get started, here&#39;s a collection of sample API requests in Postman. You can find more information on making API requests using Postman <a href="https://www.getpostman.com/docs/postman/sending_api_requests/requests">here</a>.</p>
 
 <p><a href="https://app.getpostman.com/run-collection/899edff2cda90cba5159"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></p>
 
 <aside class="notice">
 You must have been provided API credentials and Practice ID(s) to use these examples.
 </aside>
+<h3 id='authorization'>Authorization</h3>
+<p>Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the <code>authorization_code</code> grant type. When requesting a new token, you will be redirected to the <em>Auth URL</em> listed below where you can enter your user credentials to authenticate. </p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Auth URL</td>
+<td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/authorize?resource=https%3A%2F%2Fselect.nextech-api.com%2Fapi</code></td>
+</tr>
+<tr>
+<td>Access Token URL</td>
+<td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/token</code></td>
+</tr>
+<tr>
+<td>Callback URL</td>
+<td><code>https://www.getpostman.com/oauth2/callback</code></td>
+</tr>
+<tr>
+<td>Client ID</td>
+<td>Your application ID</td>
+</tr>
+<tr>
+<td>Client Secret</td>
+<td>Your application secret</td>
+</tr>
+<tr>
+<td>Grant Type</td>
+<td><code>Authorization Code</code></td>
+</tr>
+</tbody></table>
 <h1 id='patient-api'>Patient API</h1><h2 id='patient'>Patient</h2><h3 id='overview'>Overview</h3>
 <p>The patient resource contains information about the demographics of a patient.</p>
 <h3 id='fields'>Fields</h3>
