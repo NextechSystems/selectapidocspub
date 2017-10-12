@@ -110,7 +110,11 @@ Searches for all appointments matching the given search criteria. See [https://w
 | identifier | query | The unique identifier for a single appointment | No |
 | patient | query | The unique identifier acquired from the patient search or a patient chart number | No |
 | date | query | The appointment start date. When searching for appointments within a date range, the following prefixes may be used: lt, gt, eq, le, ge | No |
-
+| location.id | query | The id of the appointment's location | No |
+| location.name | query | The name of the appointment's location. | No |
+| practitioner.id | query | The id of the appointment's practitioner | No | 
+| practitioner.name | query | The first or last name of the appointment's practitioner | No |
+| status | query | The status of the appointment.  Currently supported values are: cancelled, booked, noshow, arrived, fulfilled, and pending | No |
 
 #### Example: Get all appointments for a patient by chart number
 
@@ -123,6 +127,27 @@ GET https://select.nextech-api.com/api/Appointment?patient=12345
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Appointment?date=ge2017-01-01&date=lt2017-06-01
+</pre>
+&nbsp;
+
+#### Example: Get all appointments for Dr. Smith or Dr. Jones
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Appointment?practitioner.name=smith,jones
+</pre>
+&nbsp;
+
+#### Example: Get all appointments for a location by id
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Appointment?location=1
+</pre>
+&nbsp;
+
+#### Example: Get all cancelled appointments
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Appointment?status=cancelled
 </pre>
 &nbsp;
 
