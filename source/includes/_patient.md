@@ -507,7 +507,9 @@ The Composition resource defines a collection of healthcare-related information 
 &nbsp;
 
 ### *Create*
-Creates a non-clincial note for a patient that is visible in the patient's Notes tab in the Nextech software.
+Creates a non-clinical note for a patient that is visible in the patient's Notes tab in the Nextech software.  
+
+_Requires version 12.7_
 
 #### HTTP Request 
 `POST /Patient/{patientUid}/Composition` 
