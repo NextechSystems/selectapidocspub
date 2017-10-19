@@ -116,6 +116,9 @@ Searches for all appointments matching the given search criteria. See [https://w
 | practitioner.name | query | The first or last name of the appointment's practitioner | No |
 | status | query | The status of the appointment.  Currently supported values are: cancelled, booked, noshow, arrived, fulfilled, and pending | No |
 
+#### Multiple Search Values
+Multiple search values are supported for all fields except date.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   
+
 #### Example: Get all appointments for a patient by chart number
 
 <pre class="center-column">
@@ -140,7 +143,14 @@ GET https://select.nextech-api.com/api/Appointment?practitioner.name=smith,jones
 #### Example: Get all appointments for a location by id
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Appointment?location=1
+GET https://select.nextech-api.com/api/Appointment?location.id=1
+</pre>
+&nbsp;
+
+#### Example: Get all appointments for either of 2 locations
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Appointment?location.id=1,2
 </pre>
 &nbsp;
 
