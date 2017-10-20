@@ -256,6 +256,9 @@
                     <a href="#clinical-impression" class="toc-h2 toc-link" data-title="Patient API">Clinical Impression</a>
                   </li>
                   <li>
+                    <a href="#composition" class="toc-h2 toc-link" data-title="Patient API">Composition</a>
+                  </li>
+                  <li>
                     <a href="#condition" class="toc-h2 toc-link" data-title="Patient API">Condition</a>
                   </li>
                   <li>
@@ -590,6 +593,10 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <tr>
 <td>Grant Type</td>
 <td><code>Authorization Code</code></td>
+</tr>
+<tr>
+<td>Client Authentication</td>
+<td><code>Send client credentials in body</code></td>
 </tr>
 </tbody></table>
 <h1 id='patient-api'>Patient API</h1><h2 id='patient'>Patient</h2><h3 id='overview'>Overview</h3>
@@ -1275,9 +1282,240 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='condition'>Condition</h2><h3 id='overview-6'>Overview</h3>
-<p>The condition resource describes a certain state of health of a patient.</p>
+<h2 id='composition'>Composition</h2><h3 id='overview-6'>Overview</h3>
+<p>The Composition resource defines a collection of healthcare-related information bundled together as a single document that provides meaning for a given patient. </p>
 <h3 id='fields-6'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique identifier assigned to each composition</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+</tr>
+<tr>
+<td>extension</td>
+<td>See <a href="http://hl7.org/fhir/StructureDefinition/flag-priority">flag-priority</a> extension</td>
+<td><a href="http://hl7.org/fhir/datatypes.html#CodeableConcept">CodableConcept</a></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>The patient pertaining to the composition</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+</tr>
+<tr>
+<td>date</td>
+<td>The date of the composition (in UTC)</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+</tr>
+<tr>
+<td>author</td>
+<td>Identifies who is responsible for the information in the composition</td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Practitioner)</a></td>
+</tr>
+<tr>
+<td>section.title</td>
+<td>The name of the Nextech note category</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+</tr>
+<tr>
+<td>section.text</td>
+<td>The contents of the composition</td>
+<td><a href="https://www.hl7.org/fhir/narrative.html">Narrative</a></td>
+</tr>
+</tbody></table>
+<h3 id='example-5'>Example</h3>
+<pre class="center-column">
+{
+    "resourceType": "Bundle",
+    "type": "document",
+    "total": 1,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "Composition",
+                "id": "218",
+                "contained": [
+                    {
+                        "resourceType": "Practitioner",
+                        "id": "6763",
+                        "identifier": [
+                            {
+                                "use": "official",
+                                "value": "6763"
+                            }
+                        ],
+                        "name": [
+                            {
+                                "text": "API User",
+                                "family": "API User",
+                                "given": [
+                                    "",
+                                    ""
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/flag-priority",
+                        "valueCodeableConcept": {
+                            "coding": [
+                                {
+                                    "system": "http://hl7.org/fhir/flag-priority-code",
+                                    "code": "PM",
+                                    "display": "Medium priority"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "identifier": {
+                    "use": "official",
+                    "value": "218"
+                },
+                "subject": {
+                    "reference": "Patient/05df1439-c610-4840-a569-8afbca008705",
+                    "display": "Smith, John"
+                },
+                "date": "2017-10-16T20:32:28.97Z",
+                "author": [
+                    {
+                        "reference": "#6763",
+                        "display": "API User"
+                    }
+                ],
+                "section": [
+                    {
+                        "title": "",
+                        "text": {
+                            "div": "API user - This is an example non-clinical patient note."
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-create-em'><em>Create</em></h3>
+<p>Creates a non-clinical note for a patient that is visible in the patient&#39;s Notes tab in the Nextech software.  </p>
+
+<p><em>Requires version 12.7</em></p>
+<h4 id='http-request-7'>HTTP Request</h4>
+<p><code>POST /Patient/{patientUid}/Composition</code> </p>
+<h4 id='parameters-7'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>composition</td>
+<td>body</td>
+<td>Represents the <code>Composition</code> resource to create for the given patient</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h4 id='body-fields'>Body Fields</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>resourceType</td>
+<td>Must be <code>Composition</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>extension</td>
+<td>Must use <code>http://hl7.org/fhir/StructureDefinition/flag-priority</code> extension to specify the priority of the composition. See example below for specific format. Default priority code is <code>PL</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>date</td>
+<td>The date (in UTC) of the composition. ie. <code>2017-10-16T20:32:28.9692476Z</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>author.display</td>
+<td>The name of the author. This will be appended to the beginning of the <code>section.text.div</code> value.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>section.title</td>
+<td>The name of the Nextech note category. This must match with an existing note category or is left blank.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>section.text.div</td>
+<td>The non-clinical note associated with the subject.</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h4 id='example-create-a-new-non-clinical-note-for-a-patient'>Example: Create a new non-clinical note for a patient</h4>
+<pre class="center-column">
+POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Composition
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='body'>Body</h4>
+<pre class="center-column">
+{
+    "resourceType": "Composition",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/flag-priority",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/flag-priority-code",
+                        "code": "PM"
+                    }   
+                ]
+            }
+        }
+    ],
+    "date": "2017-10-16T20:32:28.9692476Z",
+    "author": [
+        {
+            "display": "API user"
+        }
+    ],
+    "section": [
+        {
+            "title": "Follow Up",
+            "text": {
+                "div": "This is an example of a non-clinical patient note."
+            }
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h2 id='condition'>Condition</h2><h3 id='overview-7'>Overview</h3>
+<p>The condition resource describes a certain state of health of a patient.</p>
+<h3 id='fields-7'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1321,7 +1559,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h3 id='example-5'>Example</h3>
+<h3 id='example-6'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1360,9 +1598,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-5'><em>Search</em></h3>
 <p>Searches for conditions for a single patient</p>
-<h4 id='http-request-7'>HTTP Request</h4>
+<h4 id='http-request-8'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Condition?{parameters}</code> </p>
-<h4 id='parameters-7'>Parameters</h4>
+<h4 id='parameters-8'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1396,9 +1634,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='device'>Device</h2><h3 id='overview-7'>Overview</h3>
+<h2 id='device'>Device</h2><h3 id='overview-8'>Overview</h3>
 <p>The device resource identifies an instance or type of manufactured item used in the provision of healthcare.</p>
-<h3 id='fields-7'>Fields</h3>
+<h3 id='fields-8'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1452,7 +1690,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
 </tr>
 </tbody></table>
-<h3 id='example-6'>Example</h3>
+<h3 id='example-7'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1504,9 +1742,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-6'><em>Search</em></h3>
 <p>Searches for devices for a single patient</p>
-<h4 id='http-request-8'>HTTP Request</h4>
+<h4 id='http-request-9'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Device?{parameters}</code> </p>
-<h4 id='parameters-8'>Parameters</h4>
+<h4 id='parameters-9'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1534,9 +1772,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='encounter'>Encounter</h2><h3 id='overview-8'>Overview</h3>
+<h2 id='encounter'>Encounter</h2><h3 id='overview-9'>Overview</h3>
 <p>The encounter resource describes an interaction between a patient and healthcare provider.</p>
-<h3 id='fields-8'>Fields</h3>
+<h3 id='fields-9'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1565,7 +1803,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Period">period</a></td>
 </tr>
 </tbody></table>
-<h3 id='example-7'>Example</h3>
+<h3 id='example-8'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1637,9 +1875,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-7'><em>Search</em></h3>
 <p>Searches for encounters for a single patient</p>
-<h4 id='http-request-9'>HTTP Request</h4>
+<h4 id='http-request-10'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Encounter?{parameters}</code></p>
-<h4 id='parameters-9'>Parameters</h4>
+<h4 id='parameters-10'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1667,9 +1905,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='goal'>Goal</h2><h3 id='overview-9'>Overview</h3>
+<h2 id='goal'>Goal</h2><h3 id='overview-10'>Overview</h3>
 <p>The goal resource describes a desired state of health for a patient.</p>
-<h3 id='fields-9'>Fields</h3>
+<h3 id='fields-10'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1698,7 +1936,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Annotation">Annotation</a></td>
 </tr>
 </tbody></table>
-<h3 id='example-8'>Example</h3>
+<h3 id='example-9'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1742,9 +1980,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-8'><em>Search</em></h3>
 <p>Searches for goals for a single patient</p>
-<h4 id='http-request-10'>HTTP Request</h4>
+<h4 id='http-request-11'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Goal?{parameters}</code> </p>
-<h4 id='parameters-10'>Parameters</h4>
+<h4 id='parameters-11'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1772,9 +2010,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='immunization'>Immunization</h2><h3 id='overview-10'>Overview</h3>
+<h2 id='immunization'>Immunization</h2><h3 id='overview-11'>Overview</h3>
 <p>The immunization resource describes an administered vaccine.</p>
-<h3 id='fields-10'>Fields</h3>
+<h3 id='fields-11'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1808,7 +2046,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h3 id='example-9'>Example</h3>
+<h3 id='example-10'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1848,9 +2086,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-9'><em>Search</em></h3>
 <p>Searches for immunizations for a single patient</p>
-<h4 id='http-request-11'>HTTP Request</h4>
+<h4 id='http-request-12'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Immunization?{parameters}</code> </p>
-<h4 id='parameters-11'>Parameters</h4>
+<h4 id='parameters-12'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1878,9 +2116,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='medication-dispensement'>Medication Dispensement</h2><h3 id='overview-11'>Overview</h3>
+<h2 id='medication-dispensement'>Medication Dispensement</h2><h3 id='overview-12'>Overview</h3>
 <p>The medication dispersement resource describes the supply of medications by a health care provider to a patient.</p>
-<h3 id='fields-11'>Fields</h3>
+<h3 id='fields-12'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1909,7 +2147,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h3 id='example-10'>Example</h3>
+<h3 id='example-11'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -1948,9 +2186,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-10'><em>Search</em></h3>
 <p>Searches for medication dispensements for a single patient</p>
-<h4 id='http-request-12'>HTTP Request</h4>
+<h4 id='http-request-13'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/MedicationDispense?{parameters}</code> </p>
-<h4 id='parameters-12'>Parameters</h4>
+<h4 id='parameters-13'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1978,9 +2216,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='medication-statements'>Medication Statements</h2><h3 id='overview-12'>Overview</h3>
+<h2 id='medication-statements'>Medication Statements</h2><h3 id='overview-13'>Overview</h3>
 <p>A medication statement resource describes a medication being consumed by a patient. This includes medications not prescribed by the health care provider. </p>
-<h3 id='fields-12'>Fields</h3>
+<h3 id='fields-13'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2014,7 +2252,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
 </tr>
 </tbody></table>
-<h3 id='example-11'>Example</h3>
+<h3 id='example-12'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -2054,9 +2292,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-11'><em>Search</em></h3>
 <p>Searches for current medications for a single patient</p>
-<h4 id='http-request-13'>HTTP Request</h4>
+<h4 id='http-request-14'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/MedicationStatement?{parameters}</code></p>
-<h4 id='parameters-13'>Parameters</h4>
+<h4 id='parameters-14'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2084,7 +2322,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='observation'>Observation</h2><h3 id='overview-13'>Overview</h3>
+<h2 id='observation'>Observation</h2><h3 id='overview-14'>Overview</h3>
 <p>An observation resource describes a measurement or an assertion made about a patient. This request requires a category code to search on. The following category codes are supported:</p>
 
 <ul>
@@ -2092,7 +2330,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <li>social-history</li>
 <li>vital-signs</li>
 </ul>
-<h3 id='fields-13'>Fields</h3>
+<h3 id='fields-14'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2136,7 +2374,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 </tr>
 </tbody></table>
-<h3 id='example-12'>Example</h3>
+<h3 id='example-13'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -2197,9 +2435,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-12'><em>Search</em></h3>
 <p>Searches for observations for a single patient</p>
-<h4 id='http-request-14'>HTTP Request</h4>
+<h4 id='http-request-15'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Observation?{parameters}</code> </p>
-<h4 id='parameters-14'>Parameters</h4>
+<h4 id='parameters-15'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2245,9 +2483,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='procedure'>Procedure</h2><h3 id='overview-14'>Overview</h3>
+<h2 id='procedure'>Procedure</h2><h3 id='overview-15'>Overview</h3>
 <p>A procedure resource describes an activity performed with or on a patient as part of the provision of care.</p>
-<h3 id='fields-14'>Fields</h3>
+<h3 id='fields-15'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2276,7 +2514,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
 </tr>
 </tbody></table>
-<h3 id='example-13'>Example</h3>
+<h3 id='example-14'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -2313,9 +2551,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-13'><em>Search</em></h3>
 <p>Searches for procedures for a single patient</p>
-<h4 id='http-request-15'>HTTP Request</h4>
+<h4 id='http-request-16'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Procedure?{parameters}</code> </p>
-<h4 id='parameters-15'>Parameters</h4>
+<h4 id='parameters-16'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
