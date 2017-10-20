@@ -155,3 +155,4 @@ Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information li
 | Client ID | Your application ID |
 | Client Secret | Your application secret |
 | Grant Type | `Authorization Code` |
+| Client Authentication | `Send client credentials in body` |

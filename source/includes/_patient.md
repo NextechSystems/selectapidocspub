@@ -413,6 +413,165 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 &nbsp;
 
 
+## Composition
+
+### Overview
+The Composition resource defines a collection of healthcare-related information bundled together as a single document that provides meaning for a given patient. 
+
+### Fields
+| Name | Description | Type |
+| ---- | ---------- | ----------- |
+| identifier | The unique identifier assigned to each composition | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
+| extension | See [flag-priority](http://hl7.org/fhir/StructureDefinition/flag-priority) extension | [CodableConcept](http://hl7.org/fhir/datatypes.html#CodeableConcept) |
+| subject | The patient pertaining to the composition | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
+| date | The date of the composition (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
+| author | Identifies who is responsible for the information in the composition | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) |
+| section.title | The name of the Nextech note category | [string](https://www.hl7.org/fhir/datatypes.html#string) |
+| section.text | The contents of the composition | [Narrative](https://www.hl7.org/fhir/narrative.html) |
+
+### Example
+<pre class="center-column">
+{
+    "resourceType": "Bundle",
+    "type": "document",
+    "total": 1,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "Composition",
+                "id": "218",
+                "contained": [
+                    {
+                        "resourceType": "Practitioner",
+                        "id": "6763",
+                        "identifier": [
+                            {
+                                "use": "official",
+                                "value": "6763"
+                            }
+                        ],
+                        "name": [
+                            {
+                                "text": "API User",
+                                "family": "API User",
+                                "given": [
+                                    "",
+                                    ""
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/flag-priority",
+                        "valueCodeableConcept": {
+                            "coding": [
+                                {
+                                    "system": "http://hl7.org/fhir/flag-priority-code",
+                                    "code": "PM",
+                                    "display": "Medium priority"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "identifier": {
+                    "use": "official",
+                    "value": "218"
+                },
+                "subject": {
+                    "reference": "Patient/05df1439-c610-4840-a569-8afbca008705",
+                    "display": "Smith, John"
+                },
+                "date": "2017-10-16T20:32:28.97Z",
+                "author": [
+                    {
+                        "reference": "#6763",
+                        "display": "API User"
+                    }
+                ],
+                "section": [
+                    {
+                        "title": "",
+                        "text": {
+                            "div": "API user - This is an example non-clinical patient note."
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+</pre>
+&nbsp;
+
+### *Create*
+Creates a non-clinical note for a patient that is visible in the patient's Notes tab in the Nextech software.  
+
+_Requires version 12.7_
+
+#### HTTP Request 
+`POST /Patient/{patientUid}/Composition` 
+
+#### Parameters
+| Name | Located in | Description | Required |
+| ---- | ---------- | ----------- | -------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes |
+| composition | body | Represents the `Composition` resource to create for the given patient | Yes |
+
+#### Body Fields
+| Name | Description | Required |
+| ---- | ----------- | -------- |
+| resourceType | Must be `Composition` | Yes |
+| extension | Must use `http://hl7.org/fhir/StructureDefinition/flag-priority` extension to specify the priority of the composition. See example below for specific format. Default priority code is `PL` | No |
+| date | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No |
+| author.display | The name of the author. This will be appended to the beginning of the `section.text.div` value. | No |
+| section.title | The name of the Nextech note category. This must match with an existing note category or is left blank. | No |
+| section.text.div | The non-clinical note associated with the subject. | No |
+
+#### Example: Create a new non-clinical note for a patient
+<pre class="center-column">
+POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Composition
+</pre>
+&nbsp;
+
+#### Body
+<pre class="center-column">
+{
+	"resourceType": "Composition",
+	"extension": [
+		{
+			"url": "http://hl7.org/fhir/StructureDefinition/flag-priority",
+			"valueCodeableConcept": {
+				"coding": [
+					{
+						"system": "http://hl7.org/fhir/flag-priority-code",
+						"code": "PM"
+					}	
+				]
+			}
+		}
+	],
+    "date": "2017-10-16T20:32:28.9692476Z",
+    "author": [
+        {
+            "display": "API user"
+        }
+    ],
+    "section": [
+    	{
+    		"title": "Follow Up",
+	        "text": {
+	        	"div": "This is an example of a non-clinical patient note."
+	        }
+    	}
+    ]
+}
+</pre>
+&nbsp;
+
+
 ## Condition
 
 ### Overview
