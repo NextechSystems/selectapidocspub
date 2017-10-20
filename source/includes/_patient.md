@@ -528,7 +528,7 @@ _Requires version 12.7_
 | date | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No |
 | author.display | The name of the author. This will be appended to the beginning of the `section.text.div` value. | No |
 | section.title | The name of the Nextech note category. This must match with an existing note category or is left blank. | No |
-| section.text.div | The non-clinical note associated with the subject. | Yes |
+| section.text.div | The non-clinical note associated with the subject. | No |
 
 #### Example: Create a new non-clinical note for a patient
 <pre class="center-column">
