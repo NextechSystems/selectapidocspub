@@ -837,8 +837,9 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 </pre>
 &nbsp;
 
-###Allowed Mimetypes
+### Allowed Mimetypes
 The following mimetypes are currently supported:
+
 | Document Type   | MimeType                                                |
 |-----------------|---------------------------------------------------------|
 | pdf             | application/pdf                                         |
