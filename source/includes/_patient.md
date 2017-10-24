@@ -762,10 +762,11 @@ The DocumentReference resource is used to describe a document that is made avail
         "reference": "Patient/22b51855-0fe2-47a3-8000-4344b4e8e69d",
         "display": "Dateline, Martha R"
     },
-    "created": "2017-10-16T16:32:28.97-04:00",
-    "author": [
+    "created": "2017-10-24T20:10:36Z",
+     "author": [
         {
-            "reference": "nexweb"
+            "reference": "",
+            "display": "nexweb"
         }
     ],
     "description": "Author: API user \r\n Note: A description of the document",
@@ -838,19 +839,19 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 
 ###Allowed Mimetypes
 The following mimetypes are currently supported:
-|Document Type | MimeType |
-|--------------|----------|
-|PDF|application/pdf|
-|Microsoft Word|application/msword|
-|Microsoft Excel|application/vnd.ms-excel or application/vnd.ms-excel.12|
-|Tif Image files| application/tif, application/tiff, or image/tiff|
-|HTML| text/html|
-|Text| text/plain|
-|XML|text/xml|
-|BMP Image|image/bmp|
-|GIF Image|image/gif|
-|JPG Image|image/jpeg|
-|PNG Image|image/png or image/x-png|
+| Document Type   | MimeType                                                |
+|-----------------|---------------------------------------------------------|
+| pdf             | application/pdf                                         |
+| Microsoft Word  | application/msword                                      |
+| Microsoft Excel | application/vnd.ms-excel or application/vnd.ms-excel.12 |
+| Tif Image files | application/tif, application/tiff, or image/tiff        |
+| HTML            | text/html                                               |
+| Text            | text/plain                                              |
+| XML             | text/xml                                                |
+| BMP Image       | image/bmp                                               |
+| GIF Image       | image/gif                                               |
+| JPG Image       | image/jpeg                                              |
+| PNG Image       | image/png or image/x-png                                |
 
 
 ## Encounter
