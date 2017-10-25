@@ -733,6 +733,127 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 &nbsp;
 
+## DocumentReference
+
+### Overview
+The DocumentReference resource is used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition.
+
+### Fields
+| Name | Description | Type |
+| ---- | ---------- | ----------- |
+| masteridentifier | The unique identifier assigned to each documentreference | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
+| subject | The patient pertaining to the documentreference | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
+| created | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
+| author | Identifies who is responsible for the information in the document reference | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) |
+| description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) |
+| content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) |
+| content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) |
+
+### Example
+<pre class="center-column">
+{
+    "resourceType": "DocumentReference",
+    "id": "8529",
+    "masterIdentifier": {
+        "use": "official",
+        "value": "8529"
+    },
+    "subject": {
+        "reference": "Patient/22b51855-0fe2-47a3-8000-4344b4e8e69d",
+        "display": "Dateline, Martha R"
+    },
+    "created": "2017-10-24T20:10:36Z",
+     "author": [
+        {
+            "reference": "",
+            "display": "nexweb"
+        }
+    ],
+    "description": "Author: API user \r\n Note: A description of the document",
+    "content": [
+        {
+            "attachment": {				
+                "contentType": "application/pdf",
+                "title": "Document Title (6).pdf"
+            }
+        }
+    ]
+}
+</pre>
+&nbsp;
+
+### *Create*
+Creates the document in the content.attachment for a patient and attaches it to the patient's history tab in the Nextech software.  
+
+_Requires version 12.7_
+
+#### HTTP Request 
+`POST /Patient/{patientUid}/DocumentReference` 
+
+#### Parameters
+| Name | Located in | Description | Required |
+| ---- | ---------- | ----------- | -------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes |
+| documentreference | body | Represents the `DocumentReference` resource to create for the given patient | Yes |
+
+#### Body Fields
+| Name | Description | Required |
+| ---- | ----------- | -------- |
+| resourceType | Must be `DocumentReference` | Yes |
+| created | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No |
+| author.display | The name of the author. This will be appended to the beginning of the description value. | No |
+| description | A description of the document | No |
+| content.attachment.contentType | The mimetype of the document. See Allowed Mimetypes below | Yes |
+| content.attachment.data | The base64 data of the document | Yes |
+| content.attachment.title | The title of the document, will be used as the filename| Yes |
+
+#### Example: Attach a new document for a patient
+<pre class="center-column">
+POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/DocumentReference
+</pre>
+&nbsp;
+
+#### Body
+<pre class="center-column">
+{
+  "resourceType": "DocumentReference",  
+   "author": [
+        {
+            "display": "API user"
+        }
+    ],  
+  "created": "2017-10-16T20:32:28.9692476Z",
+  "description": "A description of the document",
+  "content": [
+    {
+      "attachment": {
+        "contentType": "application/pdf",
+		"title": "Document Title",
+        "data": "<Snipped for Brevity>"
+      }
+    }
+  ]
+}
+</pre>
+&nbsp;
+
+### Allowed Mimetypes
+The following mimetypes are currently supported:
+
+| Document Type   | MimeType                                                |
+|-----------------|---------------------------------------------------------|
+| pdf             | application/pdf                                         |
+| Microsoft Word  | application/msword                                      |
+| Microsoft Excel | application/vnd.ms-excel or application/vnd.ms-excel.12 |
+| Tif Image files | application/tif, application/tiff, or image/tiff        |
+| HTML            | text/html                                               |
+| Text            | text/plain                                              |
+| XML             | text/xml                                                |
+| BMP Image       | image/bmp                                               |
+| GIF Image       | image/gif                                               |
+| JPG Image       | image/jpeg                                              |
+| PNG Image       | image/png or image/x-png                                |
+
 
 ## Encounter
 
