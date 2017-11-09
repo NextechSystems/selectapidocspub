@@ -94,7 +94,7 @@ GET https://select.nextech-api.com/api/Patient?address-postalcode=33609,33625,33
 
 To search for multiple fields that all must meet certain criteria, each field should be specified and separated by an ampersand.
 
-**Example: Get booked appontments for one day**
+**Example: Get booked appointments for one day**
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Appointment?date=2015-03-04&status=booked
 </pre>
