@@ -8,16 +8,16 @@ The appointment resource contains information about a planned meeting between a 
 
 ### Fields
 
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each appointment which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| status | Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) |
-| description | The appointment summary that includes the type and a list of purposes and resources | [string](https://www.hl7.org/fhir/datatypes.html#string) |
-| start | The date and time the appointment begins | [instant](https://www.hl7.org/fhir/datatypes.html#instant) |
-| end | The date and time the appointment ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) |
-| created | The date that this appointment was initially created | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) |
-| comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) |
-| participant | The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
+| Name | Description | Type | Practice Version |
+| ---- | ----------- | ---- | ---------------- |
+| identifier | The unique value assigned to each appointment which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6 or later_ |
+| status | Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | _12.6 or later_ |
+| description | The appointment summary that includes the type and a list of purposes and resources | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6 or later_ |
+| start | The date and time the appointment begins | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6 or later_ |
+| end | The date and time the appointment ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6 or later_ |
+| comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6 or later_ |
+| participant | The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6 or later_ |
+| created | The date that this appointment was initially created | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _12.8 or later_ |
 
 ### Sample
 <pre class="center-column">
