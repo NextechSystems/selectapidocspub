@@ -69,25 +69,133 @@ Refresh tokens are used to renew an expired access token without providing user 
 | access_token | The bearer token used in the `Authorization` header for subsquent requests |
 | refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
 
-## Search Parameters ##
+## Searching ##
 
 Searches may be performed via HTTPS calls to the API where supported. 
 
 A search is executed by performing a `GET` operation in the RESTful framework   
-`GET https://select.nextech-api.com/api/[type]?[field1]=[value1]&[field2]=[value2]...`   
-where \[type\] refers to a resource such as Patient or Appointment followed by one or more query filters.  
+`GET https://select.nextech-api.com/api/[type]?[field1][:modifier1]=[value1]&[field2][:modifier2]=[value2]...`   
+where \[type\] refers to a resource such as Patient or Appointment followed by one or more query filters and optional modifiers.
 
-**Example**
+* Matching is always case-insensitive and always ignores whitespace before and after the data.
+* The default search attempts to match with just the start of the data.
+
+### Multiple Values on One Field ###
+
+To search for a field that meets at least one of several values, each value should be specified and separated by a comma.
+
+**Example: Get patients who live in several nearby cities**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?identifier=3442
+GET https://select.nextech-api.com/api/Patient?address-postalcode=33609,33625,33647
 </pre>
+&nbsp;
 
+### Multiple Fields ###
+
+To search for multiple fields that all must meet certain criteria, each field should be specified and separated by an ampersand.
+
+**Example: Get booked appointments for one day**
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Appointment?date=2015-03-04&status=booked
+</pre>
+&nbsp;
+
+
+### Modifiers ###
+
+A modifier defines how a search match should be performed for a field. A modifier must appear after the field name with a preceeding colon followed by the modifier name.
+
+| Modifier | Description |
+| --------- | ----------- |
+| exact | The value must match the data exactly |
+| contains | The data must contain the value |
+
+**Example: Get all patients whose last name is Smith**
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient?family:exact=Smith
+</pre>
+&nbsp;
+
+**Example: Get all patients whose last name contains the text "mit"**
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient?family:contains=mit
+</pre>
+&nbsp;
+
+### Operators ###
+
+Numeric and date values can be combined with operators to search on ranges of values. The following operators are supported:
+
+| Operator | Description |
+| --------- | ----------- |
+| gt | Greater Than |
+| ge | Greater Than or Equal to |
+| lt | Less Than |
+| le | Less Than or Equal to |
+| eq | Equals |
+| ne | Not Equal to |
+
+**Example: Get the patients with chart numbers between and including 100 and 200**
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient?identifier=ge100&identifier=le200
+</pre>
+&nbsp;
+
+**Example: Get appointments for the month of March 2017**
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Appointment?date=ge2017-03-01&date=lt2017-04-01
+</pre>
+&nbsp;
+
+### Search Parameter Types ###
+
+#### String ####
+
+When matching a simple text string with data, the match is always case-insensitive and always ignores whitespace before and after the data. The default search attempts to match just the start of the data, and you may use a modifier to force an exact match or a match where the data contains the string.
+
+**Example: Get all patients whose last name begins with Smith**
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient?family=Smith
 </pre>
+&nbsp;
 
+#### Number ####
+
+By default, exact matches are performed in numeric searches. You may use operators to specify a numeric range.
+
+**Example: Get the patient with chart number 3442**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?address-city=Tampa&address-state=FL
+GET https://select.nextech-api.com/api/Patient?identifier=3442
+</pre>
+&nbsp;
+
+#### Date ####
+
+By default, exact matches are performed in date searches. You may use operators to specify a date range.
+
+**Example: Get appointments for the month of October 2016**
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Appointment?date=ge2016-10-01&date=lt2017-11-01
+</pre>
+&nbsp;
+
+#### Human Name ####
+
+Some resources have abstract fields which contain a first name, last name, prefix and suffix. When searching on names, each of those fields are searched individually. The way those fields are matched are consistent with how String searches work, and modifiers may be used to change how the matching works.
+
+**Example: Get the patients whose first name, last name, prefix or suffix begins with Doe**
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient?name=doe
+</pre>
+&nbsp;
+
+#### Address ####
+
+Some resources have abstract fields which contain an Address 1, Address 2, City, State and Postal Code field. When searching on address, each of these fields are searched individually. The way those fields are matched are consistent with how String searches work, and modifiers may be used to change how the matching works.
+
+**Example: Get the patients whose Address 1, Address 2, City, State or Zip code begins with 1500**
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Patient?address=1500
 </pre>
 &nbsp;
 
