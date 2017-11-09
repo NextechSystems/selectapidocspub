@@ -8,15 +8,16 @@ The appointment resource contains information about a planned meeting between a 
 
 ### Fields
 
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each appointment which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| status | Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) |
-| description | The appointment summary that includes the type and a list of purposes and resources | [string](https://www.hl7.org/fhir/datatypes.html#string) |
-| start | The date and time the appointment begins | [instant](https://www.hl7.org/fhir/datatypes.html#instant) |
-| end | The date and time the appointment ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) |
-| comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) |
-| participant | The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
+| Name | Description | Type | Practice Version |
+| ---- | ----------- | ---- | ---------------- |
+| identifier | The unique value assigned to each appointment which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6 or later_ |
+| status | Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | _12.6 or later_ |
+| description | The appointment summary that includes the type and a list of purposes and resources | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6 or later_ |
+| start | The date and time the appointment begins | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6 or later_ |
+| end | The date and time the appointment ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6 or later_ |
+| comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6 or later_ |
+| participant | The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6 or later_ |
+| created | The date that this appointment was initially created | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _12.8 or later_ |
 
 ### Sample
 <pre class="center-column">
@@ -70,6 +71,7 @@ The appointment resource contains information about a planned meeting between a 
         "description": "Consult - Insurance Est. - Skin Lesion/Tumor for Darren Davis, MD",
         "start": "2017-03-12T09:10:00-04:00",
         "end": "2017-03-12T09:40:00-04:00",
+        "created": "2017-07-27T21:09:19.913Z",
         "comment": "This is a sample comment",
         "participant": [
           {
@@ -105,16 +107,17 @@ Searches for all appointments matching the given search criteria. See [https://w
 `GET /Appointment?{parameters}`
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| identifier | query | The unique identifier for a single appointment | No |
-| patient | query | The unique identifier acquired from the patient search or a patient chart number | No |
-| date | query | The appointment start date. When searching for appointments within a date range, the following prefixes may be used: lt, gt, eq, le, ge | No |
-| location.id | query | The id of the appointment's location | No |
-| location.name | query | The name of the appointment's location. | No |
-| practitioner.id | query | The id of the appointment's practitioner | No | 
-| practitioner.name | query | The first or last name of the appointment's practitioner | No |
-| status | query | The status of the appointment.  Currently supported values are: cancelled, booked, noshow, arrived, fulfilled, and pending | No |
+| Name | Located in | Description | Required | Practice Version |
+| ---- | ---------- | ----------- | -------- | ---------------- |
+| identifier | query | The unique identifier for a single appointment | No | _12.6 or later_ |
+| patient | query | The unique identifier acquired from the patient search or a patient chart number | No | _12.6 or later_ |
+| date | query | The appointment start date. When searching for appointments within a date range, the following prefixes may be used: lt, gt, eq, le, ge | No | _12.6 or later_ |
+| location.id | query | The id of the appointment's location | No | _12.7 or later_ |
+| location.name | query | The name of the appointment's location. | No | _12.7 or later_ |
+| practitioner.id | query | The id of the appointment's practitioner | No | _12.7 or later_ |
+| practitioner.name | query | The first or last name of the appointment's practitioner | No | _12.7 or later_ |
+| status | query | The status of the appointment.  Currently supported values are: cancelled, booked, noshow, arrived, fulfilled, and pending | No | _12.7 or later_ |
+| created | query | The date that this appointment was initially created | No | _12.8 or later_ |
 
 #### Multiple Search Values
 Multiple search values are supported for all fields except date.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   
@@ -158,6 +161,13 @@ GET https://select.nextech-api.com/api/Appointment?location.id=1,2
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Appointment?status=cancelled
+</pre>
+&nbsp;
+
+#### Example: Get all appointments created on 7/27/2017
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Appointment?created=2017-07-27
 </pre>
 &nbsp;
 
