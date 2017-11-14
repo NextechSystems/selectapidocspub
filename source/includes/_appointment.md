@@ -1,4 +1,4 @@
-# Appointment API
+# Appointment
 
 ## Appointment
 
@@ -8,16 +8,16 @@ The appointment resource contains information about a planned meeting between a 
 
 ### Fields
 
-| Name | Description | Type | Practice Version |
+| Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | ---------------- |
-| identifier | The unique value assigned to each appointment which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6 or later_ |
-| status | Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | _12.6 or later_ |
-| description | The appointment summary that includes the type and a list of purposes and resources | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6 or later_ |
-| start | The date and time the appointment begins | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6 or later_ |
-| end | The date and time the appointment ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6 or later_ |
-| comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6 or later_ |
-| participant | The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6 or later_ |
-| created | The date that this appointment was initially created | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _12.8 or later_ |
+| identifier | The unique value assigned to each appointment which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| status | Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | _12.6_ |
+| description | The appointment summary that includes the type and a list of purposes and resources | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
+| start | The date and time the appointment begins | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6_ |
+| end | The date and time the appointment ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6_ |
+| comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
+| participant | The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| created | The date that this appointment was initially created | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _12.8_ |
 
 ### Sample
 <pre class="center-column">
@@ -107,17 +107,17 @@ Searches for all appointments matching the given search criteria. See [https://w
 `GET /Appointment?{parameters}`
 
 #### Parameters
-| Name | Located in | Description | Required | Practice Version |
-| ---- | ---------- | ----------- | -------- | ---------------- |
-| identifier | query | The unique identifier for a single appointment | No | _12.6 or later_ |
-| patient | query | The unique identifier acquired from the patient search or a patient chart number | No | _12.6 or later_ |
-| date | query | The appointment start date. When searching for appointments within a date range, the following prefixes may be used: lt, gt, eq, le, ge | No | _12.6 or later_ |
-| location.id | query | The id of the appointment's location | No | _12.7 or later_ |
-| location.name | query | The name of the appointment's location. | No | _12.7 or later_ |
-| practitioner.id | query | The id of the appointment's practitioner | No | _12.7 or later_ |
-| practitioner.name | query | The first or last name of the appointment's practitioner | No | _12.7 or later_ |
-| status | query | The status of the appointment.  Currently supported values are: cancelled, booked, noshow, arrived, fulfilled, and pending | No | _12.7 or later_ |
-| created | query | The date that this appointment was initially created | No | _12.8 or later_ |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| identifier | query | The unique identifier for a single appointment | No | _12.6_ |
+| patient | query | The unique identifier acquired from the patient search or a patient chart number | No | _12.6_ |
+| date | query | The appointment start date. When searching for appointments within a date range, the following prefixes may be used: lt, gt, eq, le, ge | No | _12.6_ |
+| location.id | query | The id of the appointment's location | No | _12.7_ |
+| location.name | query | The name of the appointment's location. | No | _12.7_ |
+| practitioner.id | query | The id of the appointment's practitioner | No | _12.7_ |
+| practitioner.name | query | The first or last name of the appointment's practitioner | No | _12.7_ |
+| status | query | The status of the appointment.  Currently supported values are: cancelled, booked, noshow, arrived, fulfilled, and pending | No | _12.7_ |
+| created | query | The date that this appointment was initially created | No | _12.8_ |
 
 #### Multiple Search Values
 Multiple search values are supported for all fields except date.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   
