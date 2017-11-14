@@ -109,6 +109,7 @@ Searches for all appointments matching the given search criteria. See [https://w
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
+| _lastUpdated | query | The date the appointment was last modified formatted as YYYY-MM-DD | No | _12.8_ |
 | identifier | query | The unique identifier for a single appointment | No | _12.6_ |
 | patient | query | The unique identifier acquired from the patient search or a patient chart number | No | _12.6_ |
 | date | query | The appointment start date. When searching for appointments within a date range, the following prefixes may be used: lt, gt, eq, le, ge | No | _12.6_ |

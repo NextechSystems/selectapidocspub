@@ -121,6 +121,7 @@ Searches for all patients matching the given search criteria. See [https://www.h
 #### Parameters
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
+| _lastUpdated | query | The date the patient was last modified formatted as YYYY-MM-DD | No | dateTime |
 | family | query | The family (last) name of the patient | No | string |
 | given | query | The given (first) name of the patient | No | string |
 | birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime |
@@ -164,6 +165,7 @@ _At least one of query parameters is required to perform a search._
 ### Parameters
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
+| _lastUpdated | query | The date the patient was last modified formatted as YYYY-MM-DD | No | dateTime |
 | family | query | The family (last) name of the patient | No | string |
 | given | query | The given (first) name of the patient | No | string |
 | birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime |
