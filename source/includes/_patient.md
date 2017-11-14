@@ -1,4 +1,4 @@
-# Patient API
+# Patient
 
 ## Patient
 
