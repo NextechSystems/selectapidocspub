@@ -742,52 +742,62 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>race</td>
 <td>The race of the patient</td>
 <td><a href="https://www.hl7.org/fhir/v3/Race/cs.html">Race</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>ethnicity</td>
 <td>The ethnicity of the patient</td>
 <td><a href="https://www.hl7.org/fhir/v3/Ethnicity/cs.html">Ethnicity</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>name</td>
 <td>Names of the patient</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>telecom</td>
 <td>Contact details for the patient</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#ContactPoint">ContactPoint</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>gender</td>
 <td>The gender of the patient</td>
 <td><a href="https://www.hl7.org/fhir/valueset-administrative-gender.html">AdministrativeGender</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>birthDate</td>
 <td>The date of birth of the patient</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>address</td>
 <td>Addresses associated with the patient</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Address">Address</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>communication</td>
 <td>A list of Languages which may be used to communicate with the patient about his or her health</td>
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example'>Example</h3>
@@ -896,6 +906,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <th>Description</th>
 <th>Required</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -904,6 +915,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The date the patient was last modified formatted as YYYY-MM-DD</td>
 <td>No</td>
 <td>dateTime</td>
+<td><em>12.8</em></td>
 </tr>
 <tr>
 <td>family</td>
@@ -911,6 +923,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The family (last) name of the patient</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>given</td>
@@ -918,6 +931,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The given (first) name of the patient</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>birthdate</td>
@@ -925,6 +939,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The patient&#39;s date of birth formatted as YYYY-MM-DD</td>
 <td>No</td>
 <td>dateTime</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>phone</td>
@@ -932,6 +947,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The patient&#39;s phone number which will be matched against any phone number (home, cell, etc.)</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>email</td>
@@ -939,6 +955,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The patient&#39;s email address</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>address-city</td>
@@ -946,6 +963,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The city of the patient&#39;s address</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>address-state</td>
@@ -953,6 +971,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The state of the patient&#39;s address</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>address-postalcode</td>
@@ -960,6 +979,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The postal (zip) code of the patient&#39;s address</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>identifier</td>
@@ -967,6 +987,7 @@ You must have been provided API credentials and Practice ID(s) to use these exam
 <td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get the patient of a specific chart number</h4>
@@ -1002,6 +1023,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <th>Description</th>
 <th>Required</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1010,6 +1032,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The date the patient was last modified formatted as YYYY-MM-DD</td>
 <td>No</td>
 <td>dateTime</td>
+<td><em>12.8</em></td>
 </tr>
 <tr>
 <td>family</td>
@@ -1017,6 +1040,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The family (last) name of the patient</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>given</td>
@@ -1024,6 +1048,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The given (first) name of the patient</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>birthdate</td>
@@ -1031,6 +1056,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The patient&#39;s date of birth formatted as YYYY-MM-DD</td>
 <td>No</td>
 <td>dateTime</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>phone</td>
@@ -1038,6 +1064,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The patient&#39;s phone number which will be matched against any phone number (home, cell, etc.)</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>email</td>
@@ -1045,6 +1072,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The patient&#39;s email address</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>address-city</td>
@@ -1052,6 +1080,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The city of the patient&#39;s address</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>address-state</td>
@@ -1059,6 +1088,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The state of the patient&#39;s address</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>address-postalcode</td>
@@ -1066,6 +1096,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The postal (zip) code of the patient&#39;s address</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>identifier</td>
@@ -1073,6 +1104,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
 <td>No</td>
 <td>string</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-the-unique-identifier-of-a-patient-given-first-name-last-name-and-birthdate'>Example: Get the unique identifier of a patient given first name, last name, and birthdate</h4>
@@ -1089,32 +1121,38 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each allergy intolerance record which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>clinicalStatus</td>
 <td>Describes whether the allergy or intolerance is active, inactive or resolved</td>
 <td><a href="https://www.hl7.org/fhir/valueset-allergy-clinical-status.html">AllergyIntoleranceStatus</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>code</td>
 <td>The clinical code that identifies the allergy or intolerance</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>patient</td>
 <td>The patient who the allergy or intolerance is for</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>assertedDate</td>
 <td>The date the record was believed to be accurate</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-2'>Example</h3>
@@ -1161,6 +1199,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1168,12 +1207,14 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
 <td>The date the record was believed accurate in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-allergies-for-a-single-patient-that-were-believed-to-be-accurate-as-of-1-1-2017'>Example: Get all allergies for a single patient that were believed to be accurate as of 1/1/2017</h4>
@@ -1190,17 +1231,20 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contentType</td>
 <td>MimeType of the binary content</td>
 <td><a href="http://www.rfc-editor.org/bcp/bcp13.txt">MimeType</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>content</td>
 <td>The document content</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#base64Binary">base64Binary</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='em-generate-ccda-em'><em>Generate CCDA</em></h3>
@@ -1214,6 +1258,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1221,18 +1266,21 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>start</td>
 <td>query</td>
 <td>The start date in the form YYYY-MM-DD for which the CCD should be generated (if not specified then all records starting with the patient&#39;s first visit are included)</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>end</td>
 <td>query</td>
 <td>The end date in the form YYYY-MM-DD for which the CCD should be generated (if not specified then all records through the patient&#39;s latest visit are included)</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-ccda-39-s-for-a-single-patient-corresponding-to-visits-in-2007'>Example: Get all CCDA&#39;s for a single patient corresponding to visits in 2007</h4>
@@ -1249,22 +1297,26 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each care plan which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the care plan</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>activity</td>
 <td>The collection of coded care plan actions</td>
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-3'>Example</h3>
@@ -1320,6 +1372,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1327,12 +1380,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
 <td>The encounter visit date filter in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-care-plans-for-a-single-patient-charted-on-a-visit-on-5-1-2017'>Example: Get all care plans for a single patient charted on a visit on 5/1/2017</h4>
@@ -1349,27 +1404,32 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each clinical impression record which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the clinical impression</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>When the assessment was documented</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>summary</td>
 <td>Summary of the assessment</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-4'>Example</h3>
@@ -1410,6 +1470,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1417,12 +1478,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
 <td>The collection of visit date filters</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-clinical-impressions-for-a-single-patient-charted-on-a-visit-on-5-1-2017'>Example: Get all clinical impressions for a single patient charted on a visit on 5/1/2017</h4>
@@ -1439,42 +1502,50 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique identifier assigned to each composition</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>extension</td>
 <td>See <a href="http://hl7.org/fhir/StructureDefinition/flag-priority">flag-priority</a> extension</td>
 <td><a href="http://hl7.org/fhir/datatypes.html#CodeableConcept">CodableConcept</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the composition</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>The date of the composition (in UTC)</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>author</td>
 <td>Identifies who is responsible for the information in the composition</td>
 <td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Practitioner)</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>section.title</td>
 <td>The name of the Nextech note category</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>section.text</td>
 <td>The contents of the composition</td>
 <td><a href="https://www.hl7.org/fhir/narrative.html">Narrative</a></td>
+<td><em>12.7</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-5'>Example</h3>
@@ -1556,8 +1627,6 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-create-em'><em>Create</em></h3>
 <p>Creates a non-clinical note for a patient that is visible in the patient&#39;s Notes tab in the Nextech software.  </p>
-
-<p><em>Requires version 12.7</em></p>
 <h4 id='http-request-7'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/Composition</code> </p>
 <h4 id='parameters-7'>Parameters</h4>
@@ -1567,6 +1636,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1574,12 +1644,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>composition</td>
 <td>body</td>
 <td>Represents the <code>Composition</code> resource to create for the given patient</td>
 <td>Yes</td>
+<td><em>12.7</em></td>
 </tr>
 </tbody></table>
 <h4 id='body-fields'>Body Fields</h4>
@@ -1588,37 +1660,44 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>resourceType</td>
 <td>Must be <code>Composition</code></td>
 <td>Yes</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>extension</td>
 <td>Must use <code>http://hl7.org/fhir/StructureDefinition/flag-priority</code> extension to specify the priority of the composition. See example below for specific format. Default priority code is <code>PL</code></td>
 <td>No</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>The date (in UTC) of the composition. ie. <code>2017-10-16T20:32:28.9692476Z</code></td>
 <td>No</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>author.display</td>
 <td>The name of the author. This will be appended to the beginning of the <code>section.text.div</code> value.</td>
 <td>No</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>section.title</td>
 <td>The name of the Nextech note category. This must match with an existing note category or is left blank.</td>
 <td>No</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>section.text.div</td>
 <td>The non-clinical note associated with the subject.</td>
 <td>No</td>
+<td><em>12.7</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-create-a-new-non-clinical-note-for-a-patient'>Example: Create a new non-clinical note for a patient</h4>
@@ -1670,42 +1749,50 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each allergy intolerance record which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>clinicalStatus</td>
 <td>The condition status</td>
 <td><a href="https://www.hl7.org/fhir/valueset-condition-clinical.html">Condition Clinical Status Code</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>verificationStatus</td>
 <td>The condition verification status</td>
 <td><a href="https://www.hl7.org/fhir/valueset-condition-ver-status.html">ConditionVerificationstatus</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>code</td>
 <td>Identification of the condition, problem or diagnosis</td>
 <td><a href="https://www.hl7.org/fhir/valueset-condition-code.html">Condition/Problem/Diagnosis Code</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the condition</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>onsetDate</td>
 <td>Estimated or actual date</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>abatementDate</td>
 <td>Resolution or remission date</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-6'>Example</h3>
@@ -1756,6 +1843,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1763,18 +1851,21 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>onset-date</td>
 <td>query</td>
 <td>The onset date in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>abatement-date</td>
 <td>query</td>
 <td>The abatement date in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-conditions-for-a-single-patient-with-an-onset-date-as-of-1-1-2017'>Example: Get all conditions for a single patient with an onset date as of 1/1/2017</h4>
@@ -1791,52 +1882,62 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>Unique device serial number</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>meta</td>
 <td>Contains the last updated date of the record</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>udi</td>
 <td>Unique device barcode string</td>
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>lotNumber</td>
 <td>Lot number of manufacturer</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>manufacturer</td>
 <td>Manufacturer name</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>manufactureDate</td>
 <td>Device manufacture date</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>expirationDate</td>
 <td>Device expiration date</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>version</td>
 <td>Version number</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>patient</td>
 <td>The patient pertaining to the device</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-7'>Example</h3>
@@ -1900,6 +2001,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1907,12 +2009,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
 <td>The device last update date in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-devices-for-a-single-patient-that-were-recorded-as-of-1-1-2017'>Example: Get all devices for a single patient that were recorded as of 1/1/2017</h4>
@@ -1929,42 +2033,50 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>masteridentifier</td>
 <td>The unique identifier assigned to each documentreference</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the documentreference</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>created</td>
 <td>document creation time (in UTC)</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>author</td>
 <td>Identifies who is responsible for the information in the document reference</td>
 <td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Practitioner)</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>description</td>
 <td>The description of the documentreference</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>content.attachment.contentType</td>
 <td>The mimetype of the content.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#code">Code</a></td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>content.attachment.title</td>
 <td>The title of the document</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.7</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-8'>Example</h3>
@@ -2001,9 +2113,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 
 <p>&nbsp;</p>
 <h3 id='em-create-em-2'><em>Create</em></h3>
-<p>Creates the document in the content.attachment for a patient and attaches it to the patient&#39;s history tab in the Nextech software.  </p>
-
-<p><em>Requires version 12.7</em></p>
+<p>Creates the document in the content.attachment for a patient and attaches it to the patient&#39;s history tab in the Nextech software.</p>
 <h4 id='http-request-10'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/DocumentReference</code> </p>
 <h4 id='parameters-10'>Parameters</h4>
@@ -2013,6 +2123,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2020,12 +2131,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>documentreference</td>
 <td>body</td>
 <td>Represents the <code>DocumentReference</code> resource to create for the given patient</td>
 <td>Yes</td>
+<td><em>12.7</em></td>
 </tr>
 </tbody></table>
 <h4 id='body-fields-2'>Body Fields</h4>
@@ -2034,42 +2147,50 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>resourceType</td>
 <td>Must be <code>DocumentReference</code></td>
 <td>Yes</td>
+<td></td>
 </tr>
 <tr>
 <td>created</td>
 <td>The date (in UTC) of the composition. ie. <code>2017-10-16T20:32:28.9692476Z</code></td>
 <td>No</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>author.display</td>
 <td>The name of the author. This will be appended to the beginning of the description value.</td>
 <td>No</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>description</td>
 <td>A description of the document</td>
 <td>No</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>content.attachment.contentType</td>
 <td>The mimetype of the document. See Allowed Mimetypes below</td>
 <td>Yes</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>content.attachment.data</td>
 <td>The base64 data of the document</td>
 <td>Yes</td>
+<td><em>12.7</em></td>
 </tr>
 <tr>
 <td>content.attachment.title</td>
 <td>The title of the document, will be used as the filename</td>
 <td>Yes</td>
+<td><em>12.7</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a new document for a patient</h4>
@@ -2164,27 +2285,32 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each encounter which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the encounter</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>participant</td>
 <td>The medical professionals involved in the encounter</td>
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>period</td>
 <td>The start and end date of the encounter in the form YYYY-MM-DD</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Period">period</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-9'>Example</h3>
@@ -2268,6 +2394,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2275,12 +2402,14 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
 <td>The date of the encounter in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-encounters-for-a-single-patient-as-of-1-1-2017'>Example: Get all encounters for a single patient as of 1/1/2017</h4>
@@ -2297,27 +2426,32 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each goal which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the goal</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>target</td>
 <td>The target outcome of the goal</td>
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">CodeableConcept</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>note</td>
 <td>Comments about the goal</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Annotation">Annotation</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-10'>Example</h3>
@@ -2373,6 +2507,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2380,12 +2515,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
 <td>The date of the encounter containing the goal in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-goals-for-a-single-patient-charted-on-a-visit-on-5-1-2017'>Example: Get all goals for a single patient charted on a visit on 5/1/2017</h4>
@@ -2402,32 +2539,38 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each immunization which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>status</td>
 <td>Either completed or entered in error</td>
 <td><a href="https://www.hl7.org/fhir/valueset-immunization-status.html">Immunization status Code</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>vaccineCode</td>
 <td>Vaccine product adminstered</td>
 <td><a href="https://www.hl7.org/fhir/valueset-vaccine-code.html">Vaccine administered value set</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>patient</td>
 <td>The immunized patient</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>The vaccination administration date in the form YYYY-MM-DD</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-11'>Example</h3>
@@ -2479,6 +2622,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2486,12 +2630,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
 <td>The immunization administration date in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-immunizations-for-a-single-patient-as-of-1-1-2017'>Example: Get all immunizations for a single patient as of 1/1/2017</h4>
@@ -2508,27 +2654,32 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each dispensement which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>medicationCodeableConcept</td>
 <td>The supplied medication</td>
 <td><a href="https://www.hl7.org/fhir/valueset-medication-codes.html">SNOMED CT Medication Code</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the dispensement</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>whenPrepared</td>
 <td>When product was packaged and reviewed</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-12'>Example</h3>
@@ -2579,6 +2730,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2586,12 +2738,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>whenPrepared</td>
 <td>query</td>
 <td>The preparation date in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-prescriptions-for-a-single-patient-prepared-as-of-5-1-2017'>Example: Get all prescriptions for a single patient prepared as of 5/1/2017</h4>
@@ -2608,32 +2762,38 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each medication statement which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>status</td>
 <td>The statement status</td>
 <td><a href="https://www.hl7.org/fhir/valueset-medication-statement-status.html">MedicationStatementStatus</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>medication</td>
 <td>The supplied medication</td>
 <td><a href="https://www.hl7.org/fhir/valueset-medication-codes.html">SNOMED CT Medication Code</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>effective</td>
 <td>The date/time when the medication was taken</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the medication statement</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-13'>Example</h3>
@@ -2685,6 +2845,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2692,12 +2853,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>effective</td>
 <td>query</td>
 <td>Date when patient was taking the medication in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-current-medications-for-a-single-patient-effective-5-1-2017'>Example: Get all current medications for a single patient effective 5/1/2017</h4>
@@ -2720,42 +2883,50 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each observation which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the observation</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>status</td>
 <td>The observation status</td>
 <td><a href="https://www.hl7.org/fhir/valueset-observation-status.html">ObservationStatus</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>category</td>
 <td>Classification of type of observation</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">Category</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>code</td>
 <td>Type of observation</td>
 <td><a href="https://www.hl7.org/fhir/valueset-observation-codes.html">LOINC Code</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>effective</td>
 <td>Clinically relevant time/time-period for observation</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>value</td>
 <td>Observation result</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-14'>Example</h3>
@@ -2828,6 +2999,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2835,18 +3007,21 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>category</td>
 <td>query</td>
 <td>The category of observation to load</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
 <td>The observation date in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-laboratory-requisitions-and-results-for-a-single-patient-as-of-5-1-2017'>Example: Get all laboratory requisitions and results for a single patient as of 5/1/2017</h4>
@@ -2875,27 +3050,32 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Name</th>
 <th>Description</th>
 <th>Type</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
 <td>The unique value assigned to each goal which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>code</td>
 <td>Identification of the procedure</td>
 <td><a href="https://www.hl7.org/fhir/valueset-procedure-code.html">Procedure Codes (SNOMED CT)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>Who the procedure was performed on</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>performed</td>
 <td>Date/Period the procedure was performed</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-15'>Example</h3>
@@ -2944,6 +3124,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -2951,12 +3132,14 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>date</td>
 <td>query</td>
 <td>The date the procedure was performed in the form YYYY-MM-DD</td>
 <td>No</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 <h4 id='example-get-all-procedures-for-a-single-patient-performed-as-of-5-1-2017'>Example: Get all procedures for a single patient performed as of 5/1/2017</h4>
@@ -3246,6 +3429,7 @@ GET https://select.nextech-api.com/api/Appointment?created=2017-07-27
 <th>Located in</th>
 <th>Description</th>
 <th>Required</th>
+<th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -3253,12 +3437,14 @@ GET https://select.nextech-api.com/api/Appointment?created=2017-07-27
 <td>path</td>
 <td>The unique identifier of the appointment to be updated</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>commit</td>
 <td>body</td>
 <td>The object representing the changes to be made</td>
 <td>Yes</td>
+<td><em>12.6</em></td>
 </tr>
 </tbody></table>
 
