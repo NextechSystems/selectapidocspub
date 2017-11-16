@@ -9,7 +9,7 @@ The appointment resource contains information about a planned meeting between a 
 ### Fields
 
 | Name | Description | Type | Initial Version |
-| ---- | ----------- | ---- | ---------------- |
+| ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each appointment which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
 | status | Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | _12.6_ |
 | description | The appointment summary that includes the type and a list of purposes and resources | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
@@ -180,10 +180,10 @@ Confirm a scheduled appointment.
 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| identifier | path | The unique identifier of the appointment to be updated | Yes |
-| commit | body | The object representing the changes to be made | Yes |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| identifier | path | The unique identifier of the appointment to be updated | Yes | _12.6_ |
+| commit | body | The object representing the changes to be made | Yes | _12.6_ |
 
 The commit parameter should be in the form of an Appointment status field. See [https://www.hl7.org/fhir/http.html#update](https://www.hl7.org/fhir/http.html#update) for details on formatting PUT requests in RESTful API’s.
 

@@ -6,17 +6,17 @@
 The patient resource contains information about the demographics of a patient.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| race | The race of the patient | [Race](https://www.hl7.org/fhir/v3/Race/cs.html) |
-| ethnicity | The ethnicity of the patient | [Ethnicity](https://www.hl7.org/fhir/v3/Ethnicity/cs.html) |
-| name | Names of the patient | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) |
-| telecom | Contact details for the patient | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) |
-| gender | The gender of the patient | [AdministrativeGender](https://www.hl7.org/fhir/valueset-administrative-gender.html) |
-| birthDate | The date of birth of the patient | [date](https://www.hl7.org/fhir/datatypes.html#date) |
-| address | Addresses associated with the patient | [Address](https://www.hl7.org/fhir/datatypes.html#Address) |
-| communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| race | The race of the patient | [Race](https://www.hl7.org/fhir/v3/Race/cs.html) | _12.6_ |
+| ethnicity | The ethnicity of the patient | [Ethnicity](https://www.hl7.org/fhir/v3/Ethnicity/cs.html) | _12.6_ |
+| name | Names of the patient | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) | _12.6_ |
+| telecom | Contact details for the patient | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.6_ |
+| gender | The gender of the patient | [AdministrativeGender](https://www.hl7.org/fhir/valueset-administrative-gender.html) | _12.6_ |
+| birthDate | The date of birth of the patient | [date](https://www.hl7.org/fhir/datatypes.html#date) | _12.6_ |
+| address | Addresses associated with the patient | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.6_ |
+| communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -119,18 +119,18 @@ Searches for all patients matching the given search criteria. See [https://www.h
 `GET /Patient?{parameters}`
 
 #### Parameters
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| _lastUpdated | query | The date the patient was last modified formatted as YYYY-MM-DD | No | dateTime |
-| family | query | The family (last) name of the patient | No | string |
-| given | query | The given (first) name of the patient | No | string |
-| birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime |
-| phone | query | The patient's phone number which will be matched against any phone number (home, cell, etc.) | No | string |
-| email | query | The patient's email address | No | string |
-| address-city | query | The city of the patient's address | No | string |
-| address-state | query | The state of the patient's address | No | string |
-| address-postalcode | query | The postal (zip) code of the patient's address | No | string |
-| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string |
+| Name | Located in | Description | Required | Type | Initial Version |
+| ---- | ---------- | ----------- | -------- | ---- | --------------- |
+| _lastUpdated | query | The date the patient was last modified formatted as YYYY-MM-DD | No | dateTime | _12.8_ |
+| family | query | The family (last) name of the patient | No | string | _12.6_ |
+| given | query | The given (first) name of the patient | No | string | _12.6_ |
+| birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime | _12.6_ |
+| phone | query | The patient's phone number which will be matched against any phone number (home, cell, etc.) | No | string | _12.6_ |
+| email | query | The patient's email address | No | string | _12.6_ |
+| address-city | query | The city of the patient's address | No | string | _12.6_ |
+| address-state | query | The state of the patient's address | No | string | _12.6_ |
+| address-postalcode | query | The postal (zip) code of the patient's address | No | string | _12.6_ |
+| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
 
 #### Example: Get the patient of a specific chart number
 
@@ -163,18 +163,18 @@ _At least one of query parameters is required to perform a search._
 `GET /Patient/ID?{parameters}` 
 
 ### Parameters
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| _lastUpdated | query | The date the patient was last modified formatted as YYYY-MM-DD | No | dateTime |
-| family | query | The family (last) name of the patient | No | string |
-| given | query | The given (first) name of the patient | No | string |
-| birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime |
-| phone | query | The patient's phone number which will be matched against any phone number (home, cell, etc.) | No | string |
-| email | query | The patient's email address | No | string |
-| address-city | query | The city of the patient's address | No | string |
-| address-state | query | The state of the patient's address | No | string |
-| address-postalcode | query | The postal (zip) code of the patient's address | No | string |
-| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string |
+| Name | Located in | Description | Required | Type | Initial Version |
+| ---- | ---------- | ----------- | -------- | ---- | --------------- |
+| _lastUpdated | query | The date the patient was last modified formatted as YYYY-MM-DD | No | dateTime | _12.8_ |
+| family | query | The family (last) name of the patient | No | string | _12.6_ |
+| given | query | The given (first) name of the patient | No | string | _12.6_ |
+| birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime | _12.6_ |
+| phone | query | The patient's phone number which will be matched against any phone number (home, cell, etc.) | No | string | _12.6_ |
+| email | query | The patient's email address | No | string | _12.6_ |
+| address-city | query | The city of the patient's address | No | string | _12.6_ |
+| address-state | query | The state of the patient's address | No | string | _12.6_ |
+| address-postalcode | query | The postal (zip) code of the patient's address | No | string | _12.6_ |
+| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
 
 #### Example: Get the unique identifier of a patient given first name, last name, and birthdate
 
@@ -189,13 +189,13 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 The allergy intolerance resource describes the risk of undesirable responses of exposure to a substance.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each allergy intolerance record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| clinicalStatus | Describes whether the allergy or intolerance is active, inactive or resolved | [AllergyIntoleranceStatus](https://www.hl7.org/fhir/valueset-allergy-clinical-status.html) |
-| code | The clinical code that identifies the allergy or intolerance | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |
-| patient | The patient who the allergy or intolerance is for | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| assertedDate | The date the record was believed to be accurate | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each allergy intolerance record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| clinicalStatus | Describes whether the allergy or intolerance is active, inactive or resolved | [AllergyIntoleranceStatus](https://www.hl7.org/fhir/valueset-allergy-clinical-status.html) | _12.6_ |
+| code | The clinical code that identifies the allergy or intolerance | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.6_ |
+| patient | The patient who the allergy or intolerance is for | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| assertedDate | The date the record was believed to be accurate | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -236,10 +236,10 @@ Searches for allergy intolerances for a single patient
 `GET /Patient/{patientUid}/AllergyIntolerance?{parameters}`
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| date | query | The date the record was believed accurate in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| date | query | The date the record was believed accurate in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all allergies for a single patient that were believed to be accurate as of 1/1/2017
 
@@ -255,10 +255,10 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 Binary resources contain patient health information in a structured document or media form.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| contentType | MimeType of the binary content | [MimeType](http://www.rfc-editor.org/bcp/bcp13.txt) |
-| content | The document content | [base64Binary](https://www.hl7.org/fhir/datatypes.html#base64Binary) |
+| Name | Description | Type | Initial Version |
+| ---- | ---------- | ----- | --------------- |
+| contentType | MimeType of the binary content | [MimeType](http://www.rfc-editor.org/bcp/bcp13.txt) | _12.6_ |
+| content | The document content | [base64Binary](https://www.hl7.org/fhir/datatypes.html#base64Binary) | _12.6_ |
 
 ### *Generate CCDA*
 Generates a CCDA for a single patient
@@ -267,11 +267,11 @@ Generates a CCDA for a single patient
 `GET /Patient/{patientUid}/Binary/$autogen-ccd-if?{parameters}` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | 
-| start | query | The start date in the form YYYY-MM-DD for which the CCD should be generated (if not specified then all records starting with the patient's first visit are included) | No |
-| end | query | The end date in the form YYYY-MM-DD for which the CCD should be generated (if not specified then all records through the patient's latest visit are included) | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| start | query | The start date in the form YYYY-MM-DD for which the CCD should be generated (if not specified then all records starting with the patient's first visit are included) | No | _12.6_ |
+| end | query | The end date in the form YYYY-MM-DD for which the CCD should be generated (if not specified then all records through the patient's latest visit are included) | No | _12.6_ |
 
 #### Example: Get all CCDA's for a single patient corresponding to visits in 2007
 
@@ -287,11 +287,11 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 A Care Plan contains patient diet, procedure, lab work and counseling and other care information for a single patient.   
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each care plan which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| subject | The patient pertaining to the care plan | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| activity | The collection of coded care plan actions | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each care plan which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| subject | The patient pertaining to the care plan | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| activity | The collection of coded care plan actions | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -342,10 +342,10 @@ Searches for care plans for a single patient
 `GET /Patient/{patientUid}/CarePlan?{parameters}`
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- | 
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| date | query | The encounter visit date filter in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| date | query | The encounter visit date filter in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all care plans for a single patient charted on a visit on 5/1/2017
 
@@ -361,12 +361,12 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 The clinical impression resource contains information regarding what problem(s) may affect the patient by treatment.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each clinical impression record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| subject | The patient pertaining to the clinical impression | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| date | When the assessment was documented | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
-| summary | Summary of the assessment | [string](https://www.hl7.org/fhir/datatypes.html#string) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each clinical impression record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| subject | The patient pertaining to the clinical impression | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| date | When the assessment was documented | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| summary | Summary of the assessment | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -402,10 +402,10 @@ Searches for clinical impressions for a patient
 `GET /Patient/{patientUid}/ClinicalImpression?{parameters}` 
 
 ### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| date | query | The collection of visit date filters | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| date | query | The collection of visit date filters | No | _12.6_ |
 
 #### Example: Get all clinical impressions for a single patient charted on a visit on 5/1/2017
 
@@ -421,15 +421,15 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 The Composition resource defines a collection of healthcare-related information bundled together as a single document that provides meaning for a given patient. 
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique identifier assigned to each composition | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| extension | See [flag-priority](http://hl7.org/fhir/StructureDefinition/flag-priority) extension | [CodableConcept](http://hl7.org/fhir/datatypes.html#CodeableConcept) |
-| subject | The patient pertaining to the composition | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| date | The date of the composition (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
-| author | Identifies who is responsible for the information in the composition | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) |
-| section.title | The name of the Nextech note category | [string](https://www.hl7.org/fhir/datatypes.html#string) |
-| section.text | The contents of the composition | [Narrative](https://www.hl7.org/fhir/narrative.html) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique identifier assigned to each composition | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.7_ |
+| extension | See [flag-priority](http://hl7.org/fhir/StructureDefinition/flag-priority) extension | [CodableConcept](http://hl7.org/fhir/datatypes.html#CodeableConcept) | _12.7_ |
+| subject | The patient pertaining to the composition | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.7_ |
+| date | The date of the composition (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.7_ |
+| author | Identifies who is responsible for the information in the composition | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) | _12.7_ |
+| section.title | The name of the Nextech note category | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
+| section.text | The contents of the composition | [Narrative](https://www.hl7.org/fhir/narrative.html) | _12.7_ |
 
 ### Example
 <pre class="center-column">
@@ -511,26 +511,24 @@ The Composition resource defines a collection of healthcare-related information 
 ### *Create*
 Creates a non-clinical note for a patient that is visible in the patient's Notes tab in the Nextech software.  
 
-_Requires version 12.7_
-
 #### HTTP Request 
 `POST /Patient/{patientUid}/Composition` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| composition | body | Represents the `Composition` resource to create for the given patient | Yes |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.7_ |
+| composition | body | Represents the `Composition` resource to create for the given patient | Yes | _12.7_ |
 
 #### Body Fields
-| Name | Description | Required |
-| ---- | ----------- | -------- |
-| resourceType | Must be `Composition` | Yes |
-| extension | Must use `http://hl7.org/fhir/StructureDefinition/flag-priority` extension to specify the priority of the composition. See example below for specific format. Default priority code is `PL` | No |
-| date | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No |
-| author.display | The name of the author. This will be appended to the beginning of the `section.text.div` value. | No |
-| section.title | The name of the Nextech note category. This must match with an existing note category or is left blank. | No |
-| section.text.div | The non-clinical note associated with the subject. | No |
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| resourceType | Must be `Composition` | Yes | _12.7_ |
+| extension | Must use `http://hl7.org/fhir/StructureDefinition/flag-priority` extension to specify the priority of the composition. See example below for specific format. Default priority code is `PL` | No | _12.7_ |
+| date | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No | _12.7_ |
+| author.display | The name of the author. This will be appended to the beginning of the `section.text.div` value. | No | _12.7_ |
+| section.title | The name of the Nextech note category. This must match with an existing note category or is left blank. | No | _12.7_ |
+| section.text.div | The non-clinical note associated with the subject. | No | _12.7_ |
 
 #### Example: Create a new non-clinical note for a patient
 <pre class="center-column">
@@ -580,15 +578,15 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 The condition resource describes a certain state of health of a patient.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each allergy intolerance record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| clinicalStatus | The condition status | [Condition Clinical Status Code](https://www.hl7.org/fhir/valueset-condition-clinical.html) |
-| verificationStatus | The condition verification status | [ConditionVerificationstatus](https://www.hl7.org/fhir/valueset-condition-ver-status.html) |
-| code | Identification of the condition, problem or diagnosis | [Condition/Problem/Diagnosis Code](https://www.hl7.org/fhir/valueset-condition-code.html) |
-| subject | The patient pertaining to the condition | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| onsetDate | Estimated or actual date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
-| abatementDate | Resolution or remission date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each allergy intolerance record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| clinicalStatus | The condition status | [Condition Clinical Status Code](https://www.hl7.org/fhir/valueset-condition-clinical.html) | _12.6_ |
+| verificationStatus | The condition verification status | [ConditionVerificationstatus](https://www.hl7.org/fhir/valueset-condition-ver-status.html) | _12.6_ |
+| code | Identification of the condition, problem or diagnosis | [Condition/Problem/Diagnosis Code](https://www.hl7.org/fhir/valueset-condition-code.html) | _12.6_ |
+| subject | The patient pertaining to the condition | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| onsetDate | Estimated or actual date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| abatementDate | Resolution or remission date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -634,11 +632,11 @@ Searches for conditions for a single patient
 `GET /Patient/{patientUid}/Condition?{parameters}` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| onset-date | query | The onset date in the form YYYY-MM-DD | No |
-| abatement-date | query | The abatement date in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| onset-date | query | The onset date in the form YYYY-MM-DD | No | _12.6_ |
+| abatement-date | query | The abatement date in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all conditions for a single patient with an onset date as of 1/1/2017
 
@@ -654,17 +652,17 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 The device resource identifies an instance or type of manufactured item used in the provision of healthcare.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | Unique device serial number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| meta | Contains the last updated date of the record | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
-| udi | Unique device barcode string | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
-| lotNumber | Lot number of manufacturer | [string](https://www.hl7.org/fhir/datatypes.html#string) |
-| manufacturer | Manufacturer name | [string](https://www.hl7.org/fhir/datatypes.html#string) |
-| manufactureDate | Device manufacture date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
-| expirationDate | Device expiration date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
-| version | Version number | [string](https://www.hl7.org/fhir/datatypes.html#string) |
-| patient | The patient pertaining to the device | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | Unique device serial number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| meta | Contains the last updated date of the record | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| udi | Unique device barcode string | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| lotNumber | Lot number of manufacturer | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
+| manufacturer | Manufacturer name | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
+| manufactureDate | Device manufacture date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| expirationDate | Device expiration date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| version | Version number | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
+| patient | The patient pertaining to the device | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -723,10 +721,10 @@ Searches for devices for a single patient
 `GET /Patient/{patientUid}/Device?{parameters}` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- | 
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| date | query | The device last update date in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| date | query | The device last update date in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all devices for a single patient that were recorded as of 1/1/2017
 
@@ -741,15 +739,15 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 The DocumentReference resource is used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| masteridentifier | The unique identifier assigned to each documentreference | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| subject | The patient pertaining to the documentreference | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| created | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
-| author | Identifies who is responsible for the information in the document reference | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) |
-| description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) |
-| content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) |
-| content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| masteridentifier | The unique identifier assigned to each documentreference | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.7_ |
+| subject | The patient pertaining to the documentreference | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.7_ |
+| created | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.7_ |
+| author | Identifies who is responsible for the information in the document reference | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) | _12.7_ |
+| description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
+| content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _12.7_ |
+| content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
 
 ### Example
 <pre class="center-column">
@@ -785,29 +783,27 @@ The DocumentReference resource is used to describe a document that is made avail
 &nbsp;
 
 ### *Create*
-Creates the document in the content.attachment for a patient and attaches it to the patient's history tab in the Nextech software.  
-
-_Requires version 12.7_
+Creates the document in the content.attachment for a patient and attaches it to the patient's history tab in the Nextech software.
 
 #### HTTP Request 
 `POST /Patient/{patientUid}/DocumentReference` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| documentreference | body | Represents the `DocumentReference` resource to create for the given patient | Yes |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.7_ |
+| documentreference | body | Represents the `DocumentReference` resource to create for the given patient | Yes | _12.7_ |
 
 #### Body Fields
-| Name | Description | Required |
-| ---- | ----------- | -------- |
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
 | resourceType | Must be `DocumentReference` | Yes |
-| created | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No |
-| author.display | The name of the author. This will be appended to the beginning of the description value. | No |
-| description | A description of the document | No |
-| content.attachment.contentType | The mimetype of the document. See Allowed Mimetypes below | Yes |
-| content.attachment.data | The base64 data of the document | Yes |
-| content.attachment.title | The title of the document, will be used as the filename| Yes |
+| created | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No | _12.7_ |
+| author.display | The name of the author. This will be appended to the beginning of the description value. | No | _12.7_ |
+| description | A description of the document | No | _12.7_ |
+| content.attachment.contentType | The mimetype of the document. See Allowed Mimetypes below | Yes | _12.7_ |
+| content.attachment.data | The base64 data of the document | Yes | _12.7_ |
+| content.attachment.title | The title of the document, will be used as the filename| Yes | _12.7_ |
 
 #### Example: Attach a new document for a patient
 <pre class="center-column">
@@ -863,12 +859,12 @@ The following mimetypes are currently supported:
 The encounter resource describes an interaction between a patient and healthcare provider.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each encounter which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| subject | The patient pertaining to the encounter | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| participant | The medical professionals involved in the encounter | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) |
-| period | The start and end date of the encounter in the form YYYY-MM-DD | [period](https://www.hl7.org/fhir/datatypes.html#Period) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each encounter which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| subject | The patient pertaining to the encounter | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| participant | The medical professionals involved in the encounter | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| period | The start and end date of the encounter in the form YYYY-MM-DD | [period](https://www.hl7.org/fhir/datatypes.html#Period) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -947,10 +943,10 @@ Searches for encounters for a single patient
 `GET /Patient/{patientUid}/Encounter?{parameters}`
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| date | query | The date of the encounter in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| date | query | The date of the encounter in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all encounters for a single patient as of 1/1/2017
 
@@ -966,12 +962,12 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 The goal resource describes a desired state of health for a patient.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| subject | The patient pertaining to the goal | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| target | The target outcome of the goal | [CodeableConcept](https://www.hl7.org/fhir/backboneelement.html) |
-| note | Comments about the goal | [Annotation](https://www.hl7.org/fhir/datatypes.html#Annotation) | 
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| subject | The patient pertaining to the goal | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| target | The target outcome of the goal | [CodeableConcept](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| note | Comments about the goal | [Annotation](https://www.hl7.org/fhir/datatypes.html#Annotation) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -1022,10 +1018,10 @@ Searches for goals for a single patient
 `GET /Patient/{patientUid}/Goal?{parameters}` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| date | query | The date of the encounter containing the goal in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| date | query | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all goals for a single patient charted on a visit on 5/1/2017
 
@@ -1041,13 +1037,13 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 The immunization resource describes an administered vaccine.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each immunization which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| status | Either completed or entered in error | [Immunization status Code](https://www.hl7.org/fhir/valueset-immunization-status.html) |
-| vaccineCode | Vaccine product adminstered | [Vaccine administered value set](https://www.hl7.org/fhir/valueset-vaccine-code.html) |
-| patient | The immunized patient | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| date | The vaccination administration date in the form YYYY-MM-DD | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each immunization which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| status | Either completed or entered in error | [Immunization status Code](https://www.hl7.org/fhir/valueset-immunization-status.html) | _12.6_ |
+| vaccineCode | Vaccine product adminstered | [Vaccine administered value set](https://www.hl7.org/fhir/valueset-vaccine-code.html) | _12.6_ |
+| patient | The immunized patient | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| date | The vaccination administration date in the form YYYY-MM-DD | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -1094,10 +1090,10 @@ Searches for immunizations for a single patient
 `GET /Patient/{patientUid}/Immunization?{parameters}` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- | 
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| date | query | The immunization administration date in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| date | query | The immunization administration date in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all immunizations for a single patient as of 1/1/2017
 
@@ -1113,12 +1109,12 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 The medication dispersement resource describes the supply of medications by a health care provider to a patient.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each dispensement which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| medicationCodeableConcept | The supplied medication | [SNOMED CT Medication Code](https://www.hl7.org/fhir/valueset-medication-codes.html) |
-| subject | The patient pertaining to the dispensement | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| whenPrepared | When product was packaged and reviewed | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each dispensement which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| medicationCodeableConcept | The supplied medication | [SNOMED CT Medication Code](https://www.hl7.org/fhir/valueset-medication-codes.html) | _12.6_ |
+| subject | The patient pertaining to the dispensement | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| whenPrepared | When product was packaged and reviewed | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -1164,10 +1160,10 @@ Searches for medication dispensements for a single patient
 `GET /Patient/{patientUid}/MedicationDispense?{parameters}` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| whenPrepared | query | The preparation date in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| whenPrepared | query | The preparation date in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all prescriptions for a single patient prepared as of 5/1/2017
 
@@ -1183,13 +1179,13 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 A medication statement resource describes a medication being consumed by a patient. This includes medications not prescribed by the health care provider. 
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each medication statement which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| status | The statement status | [MedicationStatementStatus](https://www.hl7.org/fhir/valueset-medication-statement-status.html) |
-| medication | The supplied medication | [SNOMED CT Medication Code](https://www.hl7.org/fhir/valueset-medication-codes.html) |
-| effective | The date/time when the medication was taken | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
-| subject | The patient pertaining to the medication statement | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each medication statement which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| status | The statement status | [MedicationStatementStatus](https://www.hl7.org/fhir/valueset-medication-statement-status.html) | _12.6_ |
+| medication | The supplied medication | [SNOMED CT Medication Code](https://www.hl7.org/fhir/valueset-medication-codes.html) | _12.6_ |
+| effective | The date/time when the medication was taken | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| subject | The patient pertaining to the medication statement | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -1236,10 +1232,10 @@ Searches for current medications for a single patient
 `GET /Patient/{patientUid}/MedicationStatement?{parameters}`
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| effective | query | Date when patient was taking the medication in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| effective | query | Date when patient was taking the medication in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all current medications for a single patient effective 5/1/2017
 
@@ -1259,15 +1255,15 @@ An observation resource describes a measurement or an assertion made about a pat
 * vital-signs
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each observation which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| subject | The patient pertaining to the observation | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| status | The observation status | [ObservationStatus](https://www.hl7.org/fhir/valueset-observation-status.html) |
-| category | Classification of type of observation | [Category](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |
-| code | Type of observation | [LOINC Code](https://www.hl7.org/fhir/valueset-observation-codes.html) |
-| effective | Clinically relevant time/time-period for observation | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
-| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each observation which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| subject | The patient pertaining to the observation | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| status | The observation status | [ObservationStatus](https://www.hl7.org/fhir/valueset-observation-status.html) | _12.6_ |
+| category | Classification of type of observation | [Category](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.6_ |
+| code | Type of observation | [LOINC Code](https://www.hl7.org/fhir/valueset-observation-codes.html) | _12.6_ |
+| effective | Clinically relevant time/time-period for observation | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -1335,11 +1331,11 @@ Searches for observations for a single patient
 `GET /Patient/{patientUid}/Observation?{parameters}` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| category | query | The category of observation to load | Yes | 
-| date | query | The observation date in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| category | query | The category of observation to load | Yes | _12.6_ |
+| date | query | The observation date in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all laboratory requisitions and results for a single patient as of 5/1/2017
 
@@ -1368,12 +1364,12 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 A procedure resource describes an activity performed with or on a patient as part of the provision of care.
 
 ### Fields
-| Name | Description | Type |
-| ---- | ---------- | ----------- |
-| identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) |
-| code | Identification of the procedure | [Procedure Codes (SNOMED CT)](https://www.hl7.org/fhir/valueset-procedure-code.html) |
-| subject | Who the procedure was performed on | [Reference(Patient)](https://www.hl7.org/fhir/references.html) |
-| performed | Date/Period the procedure was performed | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| code | Identification of the procedure | [Procedure Codes (SNOMED CT)](https://www.hl7.org/fhir/valueset-procedure-code.html) | _12.6_ |
+| subject | Who the procedure was performed on | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| performed | Date/Period the procedure was performed | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -1417,10 +1413,10 @@ Searches for procedures for a single patient
 `GET /Patient/{patientUid}/Procedure?{parameters}` 
 
 #### Parameters
-| Name | Located in | Description | Required |
-| ---- | ---------- | ----------- | -------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes |
-| date | query | The date the procedure was performed in the form YYYY-MM-DD | No |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| date | query | The date the procedure was performed in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all procedures for a single patient performed as of 5/1/2017
 
