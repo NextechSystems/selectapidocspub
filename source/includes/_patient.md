@@ -772,11 +772,11 @@ The DocumentReference resource is used to describe a document that is made avail
     ],
     "description": "Author: API user \r\n Note: A description of the document",
 	"extension": [
-        	{
-        		"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
-        		"valueString": "Past Medical History"
-        	}
-        ],
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
+			"valueString": "Past Medical History"
+		}
+    ],
     "content": [
         {
             "attachment": {				
@@ -828,19 +828,19 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <pre class="center-column">
 {
   "resourceType": "DocumentReference",  
-   "author": [
+  "author": [
         {
             "display": "API user"
         }
-    ],  
+  ],  
   "created": "2017-10-16T20:32:28.9692476Z",
   "description": "A description of the document",
   "extension": [
-        	{
-        		"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
-        		"valueString": "Past Medical History"
-        	}
-        ],
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
+			"valueString": "Past Medical History"
+		}
+  ],
   "content": [
     {
       "attachment": {
