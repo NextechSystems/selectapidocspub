@@ -748,6 +748,7 @@ The DocumentReference resource is used to describe a document that is made avail
 | description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
 | content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _12.7_ |
 | content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
+| extension | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
 
 ### Example
 <pre class="center-column">
@@ -770,6 +771,12 @@ The DocumentReference resource is used to describe a document that is made avail
         }
     ],
     "description": "Author: API user \r\n Note: A description of the document",
+	"extension": [
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
+			"valueString": "Past Medical History"
+		}
+    ],
     "content": [
         {
             "attachment": {				
@@ -804,6 +811,12 @@ Creates the document in the content.attachment for a patient and attaches it to 
 | content.attachment.contentType | The mimetype of the document. See Allowed Mimetypes below | Yes | _12.7_ |
 | content.attachment.data | The base64 data of the document | Yes | _12.7_ |
 | content.attachment.title | The title of the document, will be used as the filename| Yes | _12.7_ |
+| extension | Allows setting category of the document | No | _12.8_ |
+
+###Extension
+This is a custom extension to allow the setting of the category on the document.  This must match with an existing note category or is left blank.  There can only be one extension. 
+Url: https://select.nextech-api.com/api/structuredefinition/note-category
+valueString: Name of Nextech note category
 
 #### Example: Attach a new document for a patient
 <pre class="center-column">
@@ -815,13 +828,19 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <pre class="center-column">
 {
   "resourceType": "DocumentReference",  
-   "author": [
+  "author": [
         {
             "display": "API user"
         }
-    ],  
+  ],  
   "created": "2017-10-16T20:32:28.9692476Z",
   "description": "A description of the document",
+  "extension": [
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
+			"valueString": "Past Medical History"
+		}
+  ],
   "content": [
     {
       "attachment": {
