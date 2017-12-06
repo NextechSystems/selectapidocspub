@@ -2078,6 +2078,12 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.7</em></td>
 </tr>
+<tr>
+<td>extension</td>
+<td>Contains the category of the document</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
 </tbody></table>
 <h3 id='example-8'>Example</h3>
 <pre class="center-column">
@@ -2100,6 +2106,12 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
         }
     ],
     "description": "Author: API user \r\n Note: A description of the document",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/note-category",
+            "valueString": "Past Medical History"
+        }
+    ],
     "content": [
         {
             "attachment": {             
@@ -2192,7 +2204,17 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td>Yes</td>
 <td><em>12.7</em></td>
 </tr>
+<tr>
+<td>extension</td>
+<td>Allows setting category of the document</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
 </tbody></table>
+<h3 id='extension'>Extension</h3>
+<p>This is a custom extension to allow the setting of the category on the document.  This must match with an existing note category or is left blank.  There can only be one extension. 
+Url: https://select.nextech-api.com/api/structuredefinition/note-category
+valueString: Name of Nextech note category</p>
 <h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a new document for a patient</h4>
 <pre class="center-column">
 POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/DocumentReference
@@ -2203,13 +2225,19 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <pre class="center-column">
 {
   "resourceType": "DocumentReference",  
-   "author": [
+  "author": [
         {
             "display": "API user"
         }
-    ],  
+  ],  
   "created": "2017-10-16T20:32:28.9692476Z",
   "description": "A description of the document",
+  "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/note-category",
+            "valueString": "Past Medical History"
+        }
+  ],
   "content": [
     {
       "attachment": {
