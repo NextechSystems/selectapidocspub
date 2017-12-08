@@ -11,6 +11,7 @@ includes:
   - patient
   - appointment
   - location
+  - practitioner
 
 search: false
 ---
