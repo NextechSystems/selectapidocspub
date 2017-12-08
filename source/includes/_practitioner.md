@@ -14,6 +14,7 @@ A individual who is engaged in the healthcare process and healthcare-services. I
 | telecom | Contact detail(s) for the practitioner (that apply to all roles) | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | Address(es) of the practitioner that are not role specific | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
 | gender | Gender of the practitioner that are not role specific | [Code](https://www.hl7.org/fhir/valueset-administrative-gender.html) | _12.8_ |
+| birthDate | The date of birth of the practitioner | [date](https://www.hl7.org/fhir/datatypes.html#date) | _12.8_ |
 
 
 ### Example
@@ -65,8 +66,10 @@ A individual who is engaged in the healthcare process and healthcare-services. I
             "city": "Tampa",
             "state": "FL",
             "postalCode": "33609"
-        }
+        }   
     ],
+    "gender": "female",
+    "birthDate": "1970-09-27"
 </pre>
 &nbsp;
 
