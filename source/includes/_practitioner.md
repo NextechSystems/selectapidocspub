@@ -82,8 +82,8 @@ Searches for all  based on the given search criteria.
 | identifier | query or uri | The unique value assigned to each Practitioner which discerns it from all others |  No | _12.8_ |
 | active | query | Searches for Practitioners whose record is in active use.| No | _12.8_ |
 | name | query | The name of the Practitioner | No | _12.8_ |
-| family | query | The family (last) name of the practitioner | No | _12.6_ |
-| given | query | The given (first) name of the practitioner | No | _12.6_ |
+| family | query | The family (last) name of the practitioner | No | _12.8_ |
+| given | query | The given (first) name of the practitioner | No | _12.8_ |
 | address | query | A (part of the) address of the Practitioner | No | _12.8_ |
 | address-city | query | A city specified in an address | No | _12.8_ |
 | address-state | query | A state specified in an address | No | _12.8_ |
