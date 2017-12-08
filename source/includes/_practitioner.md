@@ -119,6 +119,7 @@ GET https://select.nextech-api.com/api/Practitioner?gender=male
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Practitioner?name:contains=smith
+</pre>
 &nbsp;
 
 #### Example: Get a specific Practitioner based on identifier
