@@ -306,6 +306,14 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#practitioner" class="toc-h1 toc-link" data-title="Practitioner">Practitioner</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#practitioner-2" class="toc-h2 toc-link" data-title="Practitioner">Practitioner</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='http://hl7.org/fhir/'>FHIR Documentation</a></li>
@@ -3666,6 +3674,238 @@ GET https://select.nextech-api.com/api/Location?name:contains=dermatology
 <h4 id='example-get-a-specific-location-based-on-identifier'>Example: Get a specific location based on identifier</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Location/12
+</pre>
+
+<p>&nbsp;</p>
+<h1 id='practitioner'>Practitioner</h1><h2 id='practitioner-2'>Practitioner</h2><h3 id='overview'>Overview</h3>
+<p>A individual who is engaged in the healthcare process and healthcare-services. In the Nextech Software, these are providers who are linked to users.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each Practitioner which discerns it from all others</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>active</td>
+<td>Whether this practitioner&#39;s record is in active use.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name(s) associated with the practitioner</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>telecom</td>
+<td>Contact detail(s) for the practitioner (that apply to all roles)</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#ContactPoint">ContactPoint</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address(es) of the practitioner that are not role specific</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Address">Address</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>gender</td>
+<td>Gender of the practitioner that are not role specific</td>
+<td><a href="https://www.hl7.org/fhir/valueset-administrative-gender.html">Code</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>birthDate</td>
+<td>The date of birth of the practitioner</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h3 id='example'>Example</h3>
+<pre class="center-column">
+{
+    "resourceType": "Practitioner",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "9219"
+        }
+    ],
+     "identifier": [
+        {
+            "use": "http://hl7.org/fhir/sid/us-npi",
+            "value": "1245319599"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "text": "Provider, Test",
+            "family": "Provider",
+            "given": [
+                "Test",
+                ""
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(813) 324-2391",
+            "use": "work"
+        },
+        {
+            "system": "email",
+            "value": "provider@nextech.com",
+            "use": "work"
+        }
+    ],
+    "address": [
+        {
+            "use": "work",
+            "type": "both",
+            "line": [
+                "550 W N ST"
+            ],
+            "city": "Tampa",
+            "state": "FL",
+            "postalCode": "33609"
+        }   
+    ],
+    "gender": "female",
+    "birthDate": "1970-09-27"
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all  based on the given search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /Practitioner?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query or uri</td>
+<td>The unique value assigned to each Practitioner which discerns it from all others</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>active</td>
+<td>query</td>
+<td>Searches for Practitioners whose record is in active use.</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td>The name of the Practitioner</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>family</td>
+<td>query</td>
+<td>The family (last) name of the practitioner</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>given</td>
+<td>query</td>
+<td>The given (first) name of the practitioner</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>address</td>
+<td>query</td>
+<td>A (part of the) address of the Practitioner</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>address-city</td>
+<td>query</td>
+<td>A city specified in an address</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>address-state</td>
+<td>query</td>
+<td>A state specified in an address</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>address-postalcode</td>
+<td>query</td>
+<td>A postal code specified in an address</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>query</td>
+<td>Searches for Practitioners based on phone numbers</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>email</td>
+<td>query</td>
+<td>Searches for Practitioner based on email address</td>
+<td>No</td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-active-practitioners'>Example: Get all active Practitioners</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Practitioner?active=true
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-active-practitioners-whose-city-starts-with-39-tampa-39'>Example: Get all active Practitioners whose city starts with &#39;Tampa&#39;</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Practitioner?address-city=Tampa
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-practitioner-s-based-on-gender'>Example: Get a specific Practitioner(s) based on gender</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Practitioner?gender=male
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-practitioners-whose-name-contains-39-smith-39'>Example: Get all Practitioners whose name contains &#39;smith&#39;</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Practitioner?name:contains=smith
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-practitioner-based-on-identifier'>Example: Get a specific Practitioner based on identifier</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Practitioner/12
 </pre>
 
 <p>&nbsp;</p>
