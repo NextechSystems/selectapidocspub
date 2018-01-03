@@ -31,7 +31,6 @@ Access tokens are used to make API requests on behalf of a user. These tokens ar
 | --------- | ----------- |
 | grant_type | Use `password` (Resource owner credentials grant) |
 | client_id | Application ID |
-| client_secret | Application secret |
 | username | Resource owner username |
 | password | Resource owner password |
 | resource | The app to consume the token |
@@ -56,7 +55,6 @@ Refresh tokens are used to renew an expired access token without providing user 
 | --------- | ----------- |
 | grant_type | Always `refresh_token` |
 | client_id | Application ID |
-| client_secret | Application secret |
 | refresh_token | A valid refresh token |
 
 **Response Parameters**
@@ -68,6 +66,28 @@ Refresh tokens are used to renew an expired access token without providing user 
 | expires_in | The lifetime of the access token, in seconds. Default 3600 |
 | access_token | The bearer token used in the `Authorization` header for subsquent requests |
 | refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
+
+## Using Postman ##
+To help you get started, here's a collection of sample API requests in Postman. You can find more information on making API requests using Postman [here](https://www.getpostman.com/docs/postman/sending_api_requests/requests).
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/899edff2cda90cba5159)
+
+<aside class="notice">
+You must have been provided API credentials and Practice ID(s) to use these examples.
+</aside>
+
+### Authorization ###
+
+Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the `authorization_code` grant type. When requesting a new token, you will be redirected to the _Auth URL_ listed below where you can enter your user credentials to authenticate. 
+
+| Field | Value |
+| ----- | ----- |
+| Auth URL | `https://login.microsoftonline.com/nextech-api.com/oauth2/authorize?resource=https%3A%2F%2Fselect.nextech-api.com%2Fapi` |
+| Access Token URL | `https://login.microsoftonline.com/nextech-api.com/oauth2/token` |
+| Callback URL | `https://www.getpostman.com/oauth2/callback` |
+| Client ID | Your application ID |
+| Grant Type | `Authorization Code` |
+| Client Authentication | `Send client credentials in body` |
 
 ## Searching ##
 
@@ -241,26 +261,3 @@ The Nextech Select APIs use the standard HTTP response codes to indicate success
 | 403 | Forbidden - The request is valid, but the server is refusing action |
 | 404 | Not Found - The requested resource cannot be found |
 | 500 | Internal Server Error - We had a problem with our server |
-
-## Using Postman ##
-To help you get started, here's a collection of sample API requests in Postman. You can find more information on making API requests using Postman [here](https://www.getpostman.com/docs/postman/sending_api_requests/requests).
-
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/899edff2cda90cba5159)
-
-<aside class="notice">
-You must have been provided API credentials and Practice ID(s) to use these examples.
-</aside>
-
-### Authorization ###
-
-Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the `authorization_code` grant type. When requesting a new token, you will be redirected to the _Auth URL_ listed below where you can enter your user credentials to authenticate. 
-
-| Field | Value |
-| ----- | ----- |
-| Auth URL | `https://login.microsoftonline.com/nextech-api.com/oauth2/authorize?resource=https%3A%2F%2Fselect.nextech-api.com%2Fapi` |
-| Access Token URL | `https://login.microsoftonline.com/nextech-api.com/oauth2/token` |
-| Callback URL | `https://www.getpostman.com/oauth2/callback` |
-| Client ID | Your application ID |
-| Client Secret | Your application secret |
-| Grant Type | `Authorization Code` |
-| Client Authentication | `Send client credentials in body` |
