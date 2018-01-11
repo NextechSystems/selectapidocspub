@@ -6,6 +6,7 @@ Available API functionality:
 
 * Patient demographics  
 * Patient clinical information  
+* Patient payment posting
 * Appointment information  
 * Confirm appointments  
 * Create non-clinical patient notes
