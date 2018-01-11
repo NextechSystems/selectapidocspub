@@ -1395,14 +1395,93 @@ The PaymentReconciliation resource is used in a POST command to post a single pa
 | extension: category | The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
 | extension: creditCardType | The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | extension: checkNumber | The payment check number | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| extension: method | The payment method. This may be one of the following values: Cash, Check, Charge | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
 | extension: location | The payment location reference | [Reference(Location)](https://www.hl7.org/fhir/references.html#Reference) | _12.8_ |
 | extension: patient | The payment patient reference | [Reference(Patient)](https://www.hl7.org/fhir/references.html#Reference) | _12.8_ |
 
 
 ### Example
 <pre class="center-column">
-{    "resourceType": "PaymentReconciliation",    "extension": [        {            "url": "http://hl7.org/fhir/StructureDefinition/Patient",            "valueResourceReference": {                "reference": "Patient/22b51855-0fe2-47a3-8000-4344b4e8e69d",                "display": "Dateline, Martha R"            }        },        {            "url": "http://hl7.org/fhir/StructureDefinition/Location",            "valueResourceReference": {                "reference": "Location/1",                "display": "NexTech Dermatology"            }        },        {            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",            "valueIdentifier": {                "system": “effectiveDate”,                "value": "2018-02-02T05:00:00.000Z"            }        },        {            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",            "valueIdentifier": {                "system": “paymentDate”,                "value": "2018-02-01T13:36:25.150Z"            }        },        {            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",            "valueIdentifier": {                "system": "depositedDate",                "value": "2018-02-08T05:00:00.000Z"            }        },        {            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",            "valueIdentifier": {                "system": "method",                "value": "Check"            }        },        {            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",            "valueIdentifier": {                "system": "checkNumber",                "value": "234"            }        },        {            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",            "valueIdentifier": {                "system": "category",                "value": "PP - Patient Payment"            }        }    ],    "requestProvider": {        "reference": "Practitioner/5",        "display": "Davison, Darren"    },    "total": {        "value": 200    },    "processNote": [        {            "type": {                "coding": [                    {                        "system": "NoteType",                        "code": "display"                    }                ]            },            "text": "Patient payment via check - Thank You"        }    ]}
+{
+    "resourceType": "PaymentReconciliation",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "valueResourceReference": {
+                "reference": "Patient/22b51855-0fe2-47a3-8000-4344b4e8e69d",
+                "display": "Dateline, Martha R"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Location",
+            "valueResourceReference": {
+                "reference": "Location/1",
+                "display": "NexTech Dermatology"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": “effectiveDate”,
+                "value": "2018-02-02T05:00:00.000Z"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": “paymentDate”,
+                "value": "2018-02-01T13:36:25.150Z"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": "depositedDate",
+                "value": "2018-02-08T05:00:00.000Z"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": "method",
+                "value": "Check"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": "checkNumber",
+                "value": "234"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": "category",
+                "value": "PP - Patient Payment"
+            }
+        }
+    ],
+    "requestProvider": {
+        "reference": "Practitioner/5",
+        "display": "Davison, Darren"
+    },
+    "total": {
+        "value": 200
+    },
+    "processNote": [
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "NoteType",
+                        "code": "display"
+                    }
+                ]
+            },
+            "text": "Patient payment via check - Thank You"
+        }
+    ]
+}
 </pre>
 &nbsp;
 
@@ -1444,7 +1523,72 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 #### Body
 
 <pre class="center-column">
-{     "resourceType":"PaymentReconciliation",   "extension":[        {           "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",         "valueIdentifier":{              "system":"locationId",            "value":"1"         }      },      {           "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",         "valueIdentifier":{              "system”:”paymentDate”,            "value":"2018-02-02"         }      },      {           "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",         "valueIdentifier":{              "system":"depositedDate",            "value":"2018-02-08"         }      },      {           "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",         "valueIdentifier":{              "system":"method",            "value":"Check"         }      },      {           "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",         "valueIdentifier":{              "system":"checkNumber",            "value":"234"         }      },      {           "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",         "valueIdentifier":{              "system":"category",            "value":"PP - Patient Payment"         }      }   ],   "requestProvider":{        "reference":"Practitioner/5"   },   "total":{        "value":200   },   "processNote":[        {           "type":{              "coding":[                 {                    "system":"NoteType",                  "code":"display"               }            ]         },         "text":"Patient payment via check - Thank You"      }   ]}
+{  
+   "resourceType":"PaymentReconciliation",
+   "extension":[  
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"locationId",
+            "value":"1"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system”:”paymentDate”,
+            "value":"2018-02-02"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"depositedDate",
+            "value":"2018-02-08"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"method",
+            "value":"Check"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"checkNumber",
+            "value":"234"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"category",
+            "value":"PP - Patient Payment"
+         }
+      }
+   ],
+   "requestProvider":{  
+      "reference":"Practitioner/5"
+   },
+   "total":{  
+      "value":200
+   },
+   "processNote":[  
+      {  
+         "type":{  
+            "coding":[  
+               {  
+                  "system":"NoteType",
+                  "code":"display"
+               }
+            ]
+         },
+         "text":"Patient payment via check - Thank You"
+      }
+   ]
+}
 </pre>
 &nbsp;
 
