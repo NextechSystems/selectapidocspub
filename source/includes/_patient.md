@@ -1387,14 +1387,14 @@ The PaymentReconciliation resource is used in a POST command to post a single pa
 | ---- | ----------- | ---- | --------------- |
 | requestProvider | The responsible practitioner | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) | _12.8_ |
 | total | The payment amount | [Money](https://www.hl7.org/fhir/datatypes.html#Money) | _12.8_ |
-| processNote | The payment description | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
+| processNote | The payment description. If multiple processNotes are supplied, they will be joined together and separated by spaces. The description will be truncated to 255 characters. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | extension: method | The payment method. This may be one of the following values: Cash, Check, Charge | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
-| extension: paymentDate | The payment date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
-| extension: effectiveDate | The payment input date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
-| extension: depositedDate | The payment deposit date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: paymentDate | The payment date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: effectiveDate | The payment input date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: depositedDate | The payment deposit date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
 | extension: category | The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
 | extension: creditCardType | The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| extension: checkNumber | The payment check number | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
+| extension: checkNumber | The payment check number. The check number will be truncated to 50 characters. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | extension: location | The payment location reference | [Reference(Location)](https://www.hl7.org/fhir/references.html#Reference) | _12.8_ |
 | extension: patient | The payment patient reference | [Reference(Patient)](https://www.hl7.org/fhir/references.html#Reference) | _12.8_ |
 
