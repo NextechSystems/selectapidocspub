@@ -221,6 +221,9 @@
                     <a href="#authentication" class="toc-h2 toc-link" data-title="Getting Started">Authentication</a>
                   </li>
                   <li>
+                    <a href="#using-postman" class="toc-h2 toc-link" data-title="Getting Started">Using Postman</a>
+                  </li>
+                  <li>
                     <a href="#searching" class="toc-h2 toc-link" data-title="Getting Started">Searching</a>
                   </li>
                   <li>
@@ -231,9 +234,6 @@
                   </li>
                   <li>
                     <a href="#response-codes" class="toc-h2 toc-link" data-title="Getting Started">Response Codes</a>
-                  </li>
-                  <li>
-                    <a href="#using-postman" class="toc-h2 toc-link" data-title="Getting Started">Using Postman</a>
                   </li>
               </ul>
           </li>
@@ -286,6 +286,9 @@
                     <a href="#observation" class="toc-h2 toc-link" data-title="Patient">Observation</a>
                   </li>
                   <li>
+                    <a href="#paymentreconciliation" class="toc-h2 toc-link" data-title="Patient">PaymentReconciliation</a>
+                  </li>
+                  <li>
                     <a href="#procedure" class="toc-h2 toc-link" data-title="Patient">Procedure</a>
                   </li>
               </ul>
@@ -331,6 +334,7 @@
 <ul>
 <li>Patient demographics<br></li>
 <li>Patient clinical information<br></li>
+<li>Patient payment posting</li>
 <li>Appointment information<br></li>
 <li>Confirm appointments<br></li>
 <li>Create non-clinical patient notes</li>
@@ -389,10 +393,6 @@
 <tr>
 <td>client_id</td>
 <td>Application ID</td>
-</tr>
-<tr>
-<td>client_secret</td>
-<td>Application secret</td>
 </tr>
 <tr>
 <td>username</td>
@@ -458,10 +458,6 @@
 <td>Application ID</td>
 </tr>
 <tr>
-<td>client_secret</td>
-<td>Application secret</td>
-</tr>
-<tr>
 <td>refresh_token</td>
 <td>A valid refresh token</td>
 </tr>
@@ -494,6 +490,48 @@
 <tr>
 <td>refresh_token</td>
 <td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
+</tr>
+</tbody></table>
+<h2 id='using-postman'>Using Postman</h2>
+<p>To help you get started, here&#39;s a collection of sample API requests in Postman. You can find more information on making API requests using Postman <a href="https://www.getpostman.com/docs/postman/sending_api_requests/requests">here</a>.</p>
+
+<p><a href="https://app.getpostman.com/run-collection/899edff2cda90cba5159"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></p>
+
+<aside class="notice">
+You must have been provided API credentials and Practice ID(s) to use these examples.
+</aside>
+<h3 id='authorization'>Authorization</h3>
+<p>Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the <code>authorization_code</code> grant type. When requesting a new token, you will be redirected to the <em>Auth URL</em> listed below where you can enter your user credentials to authenticate. </p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Auth URL</td>
+<td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/authorize?resource=https%3A%2F%2Fselect.nextech-api.com%2Fapi</code></td>
+</tr>
+<tr>
+<td>Access Token URL</td>
+<td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/token</code></td>
+</tr>
+<tr>
+<td>Callback URL</td>
+<td><code>https://www.getpostman.com/oauth2/callback</code></td>
+</tr>
+<tr>
+<td>Client ID</td>
+<td>Your application ID</td>
+</tr>
+<tr>
+<td>Grant Type</td>
+<td><code>Authorization Code</code></td>
+</tr>
+<tr>
+<td>Client Authentication</td>
+<td><code>Send client credentials in body</code></td>
 </tr>
 </tbody></table>
 <h2 id='searching'>Searching</h2>
@@ -694,52 +732,6 @@ Search results are limited to 50 matches per page.
 <tr>
 <td>500</td>
 <td>Internal Server Error - We had a problem with our server</td>
-</tr>
-</tbody></table>
-<h2 id='using-postman'>Using Postman</h2>
-<p>To help you get started, here&#39;s a collection of sample API requests in Postman. You can find more information on making API requests using Postman <a href="https://www.getpostman.com/docs/postman/sending_api_requests/requests">here</a>.</p>
-
-<p><a href="https://app.getpostman.com/run-collection/899edff2cda90cba5159"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></p>
-
-<aside class="notice">
-You must have been provided API credentials and Practice ID(s) to use these examples.
-</aside>
-<h3 id='authorization'>Authorization</h3>
-<p>Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the <code>authorization_code</code> grant type. When requesting a new token, you will be redirected to the <em>Auth URL</em> listed below where you can enter your user credentials to authenticate. </p>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Auth URL</td>
-<td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/authorize?resource=https%3A%2F%2Fselect.nextech-api.com%2Fapi</code></td>
-</tr>
-<tr>
-<td>Access Token URL</td>
-<td><code>https://login.microsoftonline.com/nextech-api.com/oauth2/token</code></td>
-</tr>
-<tr>
-<td>Callback URL</td>
-<td><code>https://www.getpostman.com/oauth2/callback</code></td>
-</tr>
-<tr>
-<td>Client ID</td>
-<td>Your application ID</td>
-</tr>
-<tr>
-<td>Client Secret</td>
-<td>Your application secret</td>
-</tr>
-<tr>
-<td>Grant Type</td>
-<td><code>Authorization Code</code></td>
-</tr>
-<tr>
-<td>Client Authentication</td>
-<td><code>Send client credentials in body</code></td>
 </tr>
 </tbody></table>
 <h1 id='patient'>Patient</h1><h2 id='patient-2'>Patient</h2><h3 id='overview'>Overview</h3>
@@ -3078,9 +3070,363 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='procedure'>Procedure</h2><h3 id='overview-16'>Overview</h3>
-<p>A procedure resource describes an activity performed with or on a patient as part of the provision of care.</p>
+<h2 id='paymentreconciliation'>PaymentReconciliation</h2><h3 id='overview-16'>Overview</h3>
+<p>The PaymentReconciliation resource is used in a POST command to post a single payment to an existing patient.</p>
 <h3 id='fields-16'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>requestProvider</td>
+<td>The responsible practitioner</td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Practitioner)</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>total</td>
+<td>The payment amount</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>processNote</td>
+<td>The payment description</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: method</td>
+<td>The payment method. This may be one of the following values: Cash, Check, Charge</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: paymentDate</td>
+<td>The payment date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: effectiveDate</td>
+<td>The payment input date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: depositedDate</td>
+<td>The payment deposit date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: category</td>
+<td>The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: creditCardType</td>
+<td>The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: checkNumber</td>
+<td>The payment check number</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: location</td>
+<td>The payment location reference</td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Location)</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: patient</td>
+<td>The payment patient reference</td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Patient)</a></td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h3 id='example-15'>Example</h3>
+<pre class="center-column">
+{
+    "resourceType": "PaymentReconciliation",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "valueResourceReference": {
+                "reference": "Patient/22b51855-0fe2-47a3-8000-4344b4e8e69d",
+                "display": "Dateline, Martha R"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Location",
+            "valueResourceReference": {
+                "reference": "Location/1",
+                "display": "NexTech Dermatology"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": “effectiveDate”,
+                "value": "2018-02-02T05:00:00.000Z"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": “paymentDate”,
+                "value": "2018-02-01T13:36:25.150Z"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": "depositedDate",
+                "value": "2018-02-08T05:00:00.000Z"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": "method",
+                "value": "Check"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": "checkNumber",
+                "value": "234"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+            "valueIdentifier": {
+                "system": "category",
+                "value": "PP - Patient Payment"
+            }
+        }
+    ],
+    "requestProvider": {
+        "reference": "Practitioner/5",
+        "display": "Davison, Darren"
+    },
+    "total": {
+        "value": 200
+    },
+    "processNote": [
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "NoteType",
+                        "code": "display"
+                    }
+                ]
+            },
+            "text": "Patient payment via check - Thank You"
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-create-em-3'><em>Create</em></h3>
+<p>Creates a payment for an existing patient.</p>
+<h4 id='http-request-17'>HTTP Request</h4>
+<p><code>POST /Patient/{patientUid}/PaymentReconciliation</code> </p>
+<h4 id='parameters-17'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>paymentReconciliation</td>
+<td>body</td>
+<td>Represents the <code>PaymentReconciliation</code> resource to create for the given patient</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h4 id='body-fields-3'>Body Fields</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>requestProvider</td>
+<td>The responsible practitioner</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>total</td>
+<td>The payment amount</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>processNote</td>
+<td>The payment description</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: method</td>
+<td>The payment method. This may be one of the following values: Cash, Check, Charge</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: paymentDate</td>
+<td>The payment date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: effectiveDate</td>
+<td>The payment input date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ. This field defaults to the current date and time.</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: depositedDate</td>
+<td>The payment deposit date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: category</td>
+<td>The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: creditCardType</td>
+<td>The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: checkNumber</td>
+<td>The payment check number</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: locationId</td>
+<td>The payment location identifier. The practice must have at least one Location resource with this identifier.</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h3 id='extensions'>Extensions</h3>
+<p>Extensions are used to support required values not part of the FHIR standard. The name of each extension is stored in the <em>system</em> field of the <em>valueIdentifier</em>, and the value is stored in the <em>value</em> field of the <em>valueIdentifier</em>. The <em>Url</em> of the extension must always be http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier</p>
+<h4 id='example-post-a-200-check-for-a-patient'>Example: Post a $200 check for a patient</h4>
+<pre class="center-column">
+POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/PaymentReconciliation
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='body-3'>Body</h4>
+<pre class="center-column">
+{  
+   "resourceType":"PaymentReconciliation",
+   "extension":[  
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"locationId",
+            "value":"1"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system”:”paymentDate”,
+            "value":"2018-02-02"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"depositedDate",
+            "value":"2018-02-08"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"method",
+            "value":"Check"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"checkNumber",
+            "value":"234"
+         }
+      },
+      {  
+         "url":"http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+         "valueIdentifier":{  
+            "system":"category",
+            "value":"PP - Patient Payment"
+         }
+      }
+   ],
+   "requestProvider":{  
+      "reference":"Practitioner/5"
+   },
+   "total":{  
+      "value":200
+   },
+   "processNote":[  
+      {  
+         "type":{  
+            "coding":[  
+               {  
+                  "system":"NoteType",
+                  "code":"display"
+               }
+            ]
+         },
+         "text":"Patient payment via check - Thank You"
+      }
+   ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h2 id='procedure'>Procedure</h2><h3 id='overview-17'>Overview</h3>
+<p>A procedure resource describes an activity performed with or on a patient as part of the provision of care.</p>
+<h3 id='fields-17'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3114,7 +3460,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><em>12.6</em></td>
 </tr>
 </tbody></table>
-<h3 id='example-15'>Example</h3>
+<h3 id='example-16'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -3151,9 +3497,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-13'><em>Search</em></h3>
 <p>Searches for procedures for a single patient</p>
-<h4 id='http-request-17'>HTTP Request</h4>
+<h4 id='http-request-18'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Procedure?{parameters}</code> </p>
-<h4 id='parameters-17'>Parameters</h4>
+<h4 id='parameters-18'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
