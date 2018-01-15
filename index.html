@@ -3095,7 +3095,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </tr>
 <tr>
 <td>processNote</td>
-<td>The payment description</td>
+<td>The payment description. If multiple processNotes are supplied, they will be joined together and separated by spaces. The description will be truncated to 255 characters.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.8</em></td>
 </tr>
@@ -3107,19 +3107,19 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </tr>
 <tr>
 <td>extension: paymentDate</td>
-<td>The payment date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td>The payment date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.8</em></td>
 </tr>
 <tr>
 <td>extension: effectiveDate</td>
-<td>The payment input date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td>The payment input date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.8</em></td>
 </tr>
 <tr>
 <td>extension: depositedDate</td>
-<td>The payment deposit date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td>The payment deposit date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.8</em></td>
 </tr>
@@ -3137,7 +3137,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </tr>
 <tr>
 <td>extension: checkNumber</td>
-<td>The payment check number</td>
+<td>The payment check number. The check number will be truncated to 50 characters.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.8</em></td>
 </tr>
