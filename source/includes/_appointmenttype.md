@@ -1,6 +1,6 @@
-# Appointment Type
+# Appointment-Type
 
-## Appointment Type
+## Appointment-Type
 
 ### Overview
 
@@ -18,16 +18,14 @@ The Appointment Type resource contains information about a planned meeting betwe
 ### Sample
 <pre class="center-column">
 {
-"resource": {
-                "resourceType": "appointment-type",
-                "id": "9",
-                "extension": [
-                    {
-                        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type#name",
-                        "valueString": "Surgery Cosmetic"
-                    }
-                ]
-            }
+		"resourceType": "appointment-type",
+		"id": "9",
+		"extension": [
+			{
+				"url": "https://select.nextech-api.com/api/structuredefinition/appointment-type#name",
+				"valueString": "Surgery Cosmetic"
+			}
+		]
 }
 </pre>
 &nbsp;
@@ -36,7 +34,7 @@ The Appointment Type resource contains information about a planned meeting betwe
 Searches for all Appointment Types matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
 
 #### HTTP Request 
-`GET /Appointment-Type?{parameters}`
+`GET /appointment-type?{parameters}`
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
