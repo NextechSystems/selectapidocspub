@@ -10,8 +10,10 @@ includes:
   - gettingstarted
   - patient
   - appointment
+  - appointment-type
   - location
   - practitioner
+  
 
 search: false
 ---
