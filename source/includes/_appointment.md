@@ -62,15 +62,16 @@ The appointment resource contains information about a planned meeting between a 
             ]
           }
         ],
-		"extension": [
-			{
-            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
-            "valueReference": {
-                "reference": "appointment-type/9",
-                "display": "Surgery Cosmetic"
-				}
-			}
-		],
+	"extension": [
+		{
+                "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+                "valueReference": 
+		 {
+		   "reference": "appointment-type/9",
+		   "display": "Surgery Cosmetic"
+		 }
+		}
+	],
         "identifier": [
           {
             "use": "official",
