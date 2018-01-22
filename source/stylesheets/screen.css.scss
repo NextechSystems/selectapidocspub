@@ -553,10 +553,20 @@ html, body {
   }
 }
 
-.center-column {    float: left !important;    background-color: #FCF6DB !important;    color: #880071 !important;    clear: none !important;    margin-right: 50% !important;    width: 75% !important;     // May need to adjust this    text-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;    max-height: 500px;
+.center-column {
+    float: left !important;
+    background-color: rgb(232, 235, 237)  !important;
+    color: rgb(70, 70, 70)  !important;
+    clear: none !important;
+    margin-right: 50% !important;
+    width: 85% !important;     // May need to adjust this
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+    max-height: 500px;
     border-style: solid;
     border-left-width: 28px;
-    border-color: #F3F7F9;}
+    border-color: #F3F7F9;
+    -webkit-overflow-scrolling: touch;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN

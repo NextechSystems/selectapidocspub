@@ -17,43 +17,41 @@ A physical location where services are provided. These locations specifically in
 ### Example
 <pre class="center-column">
 {
-    "resource": {
-        "resourceType": "Location",
-        "id": "2",
-        "identifier": [
-            {
-                "use": "official",
-                "value": "2"
-            }
-        ],
-        "name": "South Dermatology",
-        "telecom": [
-            {
-                "system": "phone",
-                "value": "(727) 623-6100",
-                "use": "work"
-            },
-            {
-                "system": "other",
-                "value": "(727) 718-9884",
-                "use": "work"
-            },
-            {
-                "system": "fax",
-                "value": "(727) 623-6187",
-                "use": "work"
-            }
-        ],
-        "address": {
-            "use": "work",
-            "type": "both",
-            "line": [
-                "1234 Central Ave., Suite N"
-            ],
-            "city": "St. Petersburg",
-            "state": "FL",
-            "postalCode": "11598"
+    "resourceType": "Location",
+    "id": "2",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "2"
         }
+    ],
+    "name": "South Dermatology",
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(727) 623-6100",
+            "use": "work"
+        },
+        {
+            "system": "other",
+            "value": "(727) 718-9884",
+            "use": "work"
+        },
+        {
+            "system": "fax",
+            "value": "(727) 623-6187",
+            "use": "work"
+        }
+    ],
+    "address": {
+        "use": "work",
+        "type": "both",
+        "line": [
+            "1234 Central Ave., Suite N"
+        ],
+        "city": "St. Petersburg",
+        "state": "FL",
+        "postalCode": "11598"
     }
 }
 </pre>

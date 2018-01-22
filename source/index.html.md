@@ -10,7 +10,7 @@ includes:
   - gettingstarted
   - patient
   - appointment
-  - appointment-type
+  - appointmenttype
   - location
   - practitioner
   
