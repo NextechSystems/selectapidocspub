@@ -244,7 +244,7 @@
                     <a href="#patient-2" class="toc-h2 toc-link" data-title="Patient">Patient</a>
                   </li>
                   <li>
-                    <a href="#allergyintolerance" class="toc-h2 toc-link" data-title="Patient">AllergyIntolerance</a>
+                    <a href="#allergy-intolerance" class="toc-h2 toc-link" data-title="Patient">Allergy Intolerance</a>
                   </li>
                   <li>
                     <a href="#binary" class="toc-h2 toc-link" data-title="Patient">Binary</a>
@@ -265,7 +265,7 @@
                     <a href="#device" class="toc-h2 toc-link" data-title="Patient">Device</a>
                   </li>
                   <li>
-                    <a href="#documentreference" class="toc-h2 toc-link" data-title="Patient">DocumentReference</a>
+                    <a href="#document-reference" class="toc-h2 toc-link" data-title="Patient">Document Reference</a>
                   </li>
                   <li>
                     <a href="#encounter" class="toc-h2 toc-link" data-title="Patient">Encounter</a>
@@ -286,7 +286,7 @@
                     <a href="#observation" class="toc-h2 toc-link" data-title="Patient">Observation</a>
                   </li>
                   <li>
-                    <a href="#paymentreconciliation" class="toc-h2 toc-link" data-title="Patient">PaymentReconciliation</a>
+                    <a href="#payment-reconciliation" class="toc-h2 toc-link" data-title="Patient">Payment Reconciliation</a>
                   </li>
                   <li>
                     <a href="#procedure" class="toc-h2 toc-link" data-title="Patient">Procedure</a>
@@ -298,6 +298,14 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#appointment-2" class="toc-h2 toc-link" data-title="Appointment">Appointment</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#appointment-type" class="toc-h1 toc-link" data-title="Appointment-Type">Appointment-Type</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#appointment-type-2" class="toc-h2 toc-link" data-title="Appointment-Type">Appointment-Type</a>
                   </li>
               </ul>
           </li>
@@ -332,13 +340,13 @@
 <p>Available API functionality:  </p>
 
 <ul>
-<li>Patient demographics<br></li>
-<li>Patient clinical information<br></li>
-<li>Patient payment posting</li>
-<li>Appointment information<br></li>
-<li>Confirm appointments<br></li>
-<li>Create non-clinical patient notes</li>
-<li>Attach patient documents</li>
+<li><a href="/#patient-2">Patient demographics</a><br></li>
+<li><a href="/#allergy-intolerance">Patient clinical information</a><br></li>
+<li><a href="/#payment-reconciliation">Patient payment posting</a></li>
+<li><a href="/#appointment">Appointment information</a><br></li>
+<li><a href="/#appointment-2">Confirm appointments</a><br></li>
+<li><a href="/#composition">Create non-clinical patient notes</a></li>
+<li><a href="/#document-reference">Attach patient documents</a></li>
 </ul>
 
 <p>Before you can start using our APIs, you must go through our registration process.  If you&#39;re interested in API access for your practice, please contact us <a href="http://landing.nextech.com/developers-portal-registration-form">here</a>.  Otherwise, if you&#39;ve been provided with credentials to authenticate, then continue to the <a href="/#getting-started">Getting Started</a> section for more information.</p>
@@ -1113,7 +1121,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='allergyintolerance'>AllergyIntolerance</h2><h3 id='overview-2'>Overview</h3>
+<h2 id='allergy-intolerance'>Allergy Intolerance</h2><h3 id='overview-2'>Overview</h3>
 <p>The allergy intolerance resource describes the risk of undesirable responses of exposure to a substance.</p>
 <h3 id='fields-2'>Fields</h3>
 <table><thead>
@@ -2025,7 +2033,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='documentreference'>DocumentReference</h2><h3 id='overview-9'>Overview</h3>
+<h2 id='document-reference'>Document Reference</h2><h3 id='overview-9'>Overview</h3>
 <p>The DocumentReference resource is used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition.</p>
 <h3 id='fields-9'>Fields</h3>
 <table><thead>
@@ -3070,7 +3078,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='paymentreconciliation'>PaymentReconciliation</h2><h3 id='overview-16'>Overview</h3>
+<h2 id='payment-reconciliation'>Payment Reconciliation</h2><h3 id='overview-16'>Overview</h3>
 <p>The PaymentReconciliation resource is used in a POST command to post a single payment to an existing patient.</p>
 <h3 id='fields-16'>Fields</h3>
 <table><thead>
@@ -3589,6 +3597,12 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">dateTime</a></td>
 <td><em>12.8</em></td>
 </tr>
+<tr>
+<td>Extension</td>
+<td>This is an extension of the class to provide more indepth objects like for appointment Types</td>
+<td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
+<td><em>12.8</em></td>
+</tr>
 </tbody></table>
 <h3 id='sample'>Sample</h3>
 <pre class="center-column">
@@ -3632,6 +3646,16 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
             ]
           }
         ],
+    "extension": [
+        {
+                "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+                "valueReference": 
+         {
+           "reference": "appointment-type/9",
+           "display": "Surgery Cosmetic"
+         }
+        }
+    ],
         "identifier": [
           {
             "use": "official",
@@ -3841,6 +3865,80 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 
 <p>&nbsp;</p>
+<h1 id='appointment-type'>Appointment-Type</h1><h2 id='appointment-type-2'>Appointment-Type</h2><h3 id='overview'>Overview</h3>
+<p>The Appointment Type resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>resourceType</td>
+<td>The Declaration of the Type of resource this is.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>id</td>
+<td>The unique value assigned to each appointment which discerns it from all others</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension</td>
+<td>The Appointment Type values as a packaged extension. Contains definition url and value</td>
+<td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h3 id='sample'>Sample</h3>
+<pre class="center-column">
+{
+    "resourceType": "appointment-type",
+    "id": "9",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type#name",
+            "valueString": "Surgery Cosmetic"
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all Appointment Types matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /appointment-type?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query</td>
+<td>The unique identifier for a single Appointment Type</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td>The name of the Appointment Type</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
 <h1 id='location'>Location</h1><h2 id='location-2'>Location</h2><h3 id='overview'>Overview</h3>
 <p>A physical location where services are provided. These locations specifically include managed locations configured in the Nextech software.</p>
 <h3 id='fields'>Fields</h3>
@@ -3886,43 +3984,41 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 <h3 id='example'>Example</h3>
 <pre class="center-column">
 {
-    "resource": {
-        "resourceType": "Location",
-        "id": "2",
-        "identifier": [
-            {
-                "use": "official",
-                "value": "2"
-            }
-        ],
-        "name": "South Dermatology",
-        "telecom": [
-            {
-                "system": "phone",
-                "value": "(727) 623-6100",
-                "use": "work"
-            },
-            {
-                "system": "other",
-                "value": "(727) 718-9884",
-                "use": "work"
-            },
-            {
-                "system": "fax",
-                "value": "(727) 623-6187",
-                "use": "work"
-            }
-        ],
-        "address": {
-            "use": "work",
-            "type": "both",
-            "line": [
-                "1234 Central Ave., Suite N"
-            ],
-            "city": "St. Petersburg",
-            "state": "FL",
-            "postalCode": "11598"
+    "resourceType": "Location",
+    "id": "2",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "2"
         }
+    ],
+    "name": "South Dermatology",
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(727) 623-6100",
+            "use": "work"
+        },
+        {
+            "system": "other",
+            "value": "(727) 718-9884",
+            "use": "work"
+        },
+        {
+            "system": "fax",
+            "value": "(727) 623-6187",
+            "use": "work"
+        }
+    ],
+    "address": {
+        "use": "work",
+        "type": "both",
+        "line": [
+            "1234 Central Ave., Suite N"
+        ],
+        "city": "St. Petersburg",
+        "state": "FL",
+        "postalCode": "11598"
     }
 }
 </pre>
