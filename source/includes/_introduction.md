@@ -4,12 +4,12 @@ The Nextech Select APIs provide secure access to patient data through a RESTful 
 
 Available API functionality:  
 
-* Patient demographics  
-* Patient clinical information  
-* Patient payment posting
-* Appointment information  
-* Confirm appointments  
-* Create non-clinical patient notes
-* Attach patient documents
+* [Patient demographics](/#patient-2)  
+* [Patient clinical information](/#allergy-intolerance)  
+* [Patient payment posting](/#payment-reconciliation)
+* [Appointment information](/#appointment)  
+* [Confirm appointments](/#appointment-2)  
+* [Create non-clinical patient notes](/#composition)
+* [Attach patient documents](/#document-reference)
 
 Before you can start using our APIs, you must go through our registration process.  If you're interested in API access for your practice, please contact us [here](http://landing.nextech.com/developers-portal-registration-form).  Otherwise, if you've been provided with credentials to authenticate, then continue to the [Getting Started](/#getting-started) section for more information.

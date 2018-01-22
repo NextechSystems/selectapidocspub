@@ -183,7 +183,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 </pre>
 &nbsp;
 
-## AllergyIntolerance
+## Allergy Intolerance
 
 ### Overview
 The allergy intolerance resource describes the risk of undesirable responses of exposure to a substance.
@@ -733,7 +733,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 &nbsp;
 
-## DocumentReference
+## Document Reference
 
 ### Overview
 The DocumentReference resource is used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition.
@@ -1377,7 +1377,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 &nbsp;
 
-## PaymentReconciliation
+## Payment Reconciliation
 
 ### Overview
 The PaymentReconciliation resource is used in a POST command to post a single payment to an existing patient.
