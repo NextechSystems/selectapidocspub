@@ -14,7 +14,7 @@ Purposes are assigned to meeting types for improved control over appointment ava
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | resourceType | The Declaration of the Type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| id | The unique value assigned to each appointment which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
+| id | The unique value assigned to each appointment Purpose  which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | Extension | The Appointment Type values as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _12.8_ |
 
 
