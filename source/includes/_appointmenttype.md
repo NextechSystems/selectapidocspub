@@ -10,7 +10,7 @@ The Appointment Type resource contains information about a planned meeting betwe
 
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| resourceType | The Declaration of the Type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
+| resourceType | The declaration of the type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | id | The unique value assigned to each appointment type which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | extension | The Appointment Type values as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _12.8_ |
 
@@ -18,14 +18,14 @@ The Appointment Type resource contains information about a planned meeting betwe
 ### Sample
 <pre class="center-column">
 {
-	"resourceType": "appointment-type",
-	"id": "9",
-	"extension": [
-		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/appointment-type#name",
-			"valueString": "Surgery Cosmetic"
-		}
-	]
+    "resourceType": "appointment-type",
+    "id": "9",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type#name",
+            "valueString": "Surgery Cosmetic"
+        }
+    ]
 }
 </pre>
 &nbsp;
