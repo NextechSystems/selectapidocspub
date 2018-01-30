@@ -4,9 +4,9 @@
 
 ### Overview
 
-The appointment purpose resource provides specific reasons for a planned meeting between a patient and medical provider. Examples include Laser skin resurfacing, chemical peel  or Microdermabrasion
+The appointment purpose resource provides specific reasons for a planned meeting between a patient and medical provider. Examples include laser skin resurfacing, chemical peel  or microdermabrasion.
 
-Purposes are assigned to meeting types for improved control over appointment availability and scheduling
+Purposes are assigned to meeting types for improved control over appointment availability and scheduling.
 
 ### Fields
 
