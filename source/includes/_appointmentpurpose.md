@@ -4,8 +4,7 @@
 
 ### Overview
 
-The Appointment Purpose resource provides specific reasons for that a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.
-
+The appointment purpose resource provides specific reasons for a planned meeting between a patient and medical provider. Examples include Laser skin resurfacing, chemical peel  or Microdermabrasion
 
 Purposes are assigned to meeting types for improved control over appointment availability and scheduling
 
@@ -13,26 +12,26 @@ Purposes are assigned to meeting types for improved control over appointment ava
 
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| resourceType | The declaration of the Type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| id | The unique value assigned to each appointment purpose which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| Extension | The Appointment Type values as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _12.8_ |
+| resourcetype | The declaration of the Type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9_ |
+| id | The unique value assigned to each appointment purpose which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9_ |
+| Extension | The Appointment Type values that can have this purpose come as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _12.9_ |
 
 
 ### Sample
 <pre class="center-column">
 {
-"resourceType": "appointment-Purpose",
+"resourceType": "appointment-purpose",
         "id": "53",
         "extension": [
             {
                 "url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
-                "valueString": "Other"
+                "valueString": "Laser Skin Resurfacing"
             },
             {
                 "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
                 "valueReference": {
                     "reference": "appointment-type/13",
-                    "display": "Misc"
+                    "display": "Follow Up"
                 }
             }
         ]
@@ -49,8 +48,8 @@ Searches for all appointment purposes matching the given search criteria. See [h
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| id | query | The unique identifier for a single appointment purpose  | No | _12.8_ |
-| name | query | The name of the appointment purpose | No | _12.8_ |
+| id | query | The unique identifier for a single appointment purpose  | No | _12.9_ |
+| name | query | The name of the appointment purpose | No | _12.9_ |
 
 
 

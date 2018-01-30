@@ -18,7 +18,7 @@ The appointment resource contains information about a planned meeting between a 
 | comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
 | participant | The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
 | created | The date that this appointment was initially created | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _12.8_ |
-| Extension | This is an extension of the class to provide more indepth objects like for appointment Types |  [extension](https://www.hl7.org/fhir/extensibility.html)  | _12.8_ |
+| Extension | This is an extension of the class to provide more indepth objects like for appointment Types(_12.8_) and appointment Purposes (_12.9_)|  [extension](https://www.hl7.org/fhir/extensibility.html)  | _12.9_ |
 
 ### Sample
 <pre class="center-column">
