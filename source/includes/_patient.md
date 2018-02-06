@@ -1379,8 +1379,216 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 
 ## Payment Reconciliation
 
-_Coming soon..._
+### Overview
+The PaymentReconciliation resource is used in a POST command to post a single payment to an existing patient.
 
+### Fields
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| requestProvider | The responsible practitioner | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) | _12.8_ |
+| total | The payment amount | [Money](https://www.hl7.org/fhir/datatypes.html#Money) | _12.8_ |
+| processNote | The payment description. If multiple processNotes are supplied, they will be joined together and separated by spaces. The description will be truncated to 255 characters. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
+| extension: method | The payment method. This may be one of the following values: Cash, Check, Charge | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: payment-date | The payment date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: effective-date | The payment input date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: deposited-date | The payment deposit date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: category | The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: creditcard-type | The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
+| extension: check-number | The payment check number. The check number will be truncated to 50 characters. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
+| extension: location | The payment location reference | [Reference(Location)](https://www.hl7.org/fhir/references.html#Reference) | _12.8_ |
+| extension: apply-payment | Apply the payment to the patient's resposibility charges with a balance from oldest charge date to newest  | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | _12.8_ |
+
+### Example
+<pre class="center-column">
+{
+    "resourceType": "PaymentReconciliation",
+    "extension": [
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/payment-date",
+        "valueDate": {
+          "value": "2018-01-02"
+        }
+      },
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/location",
+        "valueReference": {
+          "reference": "Location/1"
+        }
+      },
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/effective-date",
+        "valueDate": {
+          "value": "2018-02-02"
+        }
+      },
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/deposited-date",
+        "valueDate": {
+          "value": "2018-02-02"
+        }
+      },
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/method",
+        "valueString": {
+          "value": "Check"
+        }
+      },
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/check-number",
+        "valueString": {
+          "value": "6751007623"
+        }
+      },
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/category",
+        "valueString": {
+          "value": "PP - Patient Payment"
+        }
+      },
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/apply-payment",
+        "valueBoolean": {
+          "value": "true"
+        }
+      }
+    ],
+    "requestProvider": {
+        "reference": "Practitioner/5",
+        "display": "Davison, Darren"
+    },
+    "total": {
+        "value": 200
+    },
+    "processNote": [
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "NoteType",
+                        "code": "display"
+                    }
+                ]
+            },
+            "text": "Patient payment via check - Thank You"
+        }
+    ]
+}
+</pre>
+&nbsp;
+
+### *Create*
+Creates a payment for an existing patient.
+
+#### HTTP Request 
+`POST /Patient/{patientUid}/PaymentReconciliation` 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientUid | path | The official patient identifier acquired from a patient search | Y | _12.8_ |
+| paymentReconciliation | body | Represents the `PaymentReconciliation` resource to create for the given patient | Y | _12.8_ |
+
+#### Body Fields
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| requestProvider | The responsible practitioner | Y | _12.8_ |
+| total | The payment amount | Y | _12.8_ |
+| processNote | The payment description | N | _12.8_ |
+| extension: method | The payment method. This may be one of the following values: Cash, Check, Charge | Y | _12.8_ |
+| extension: payment-date | The payment date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | Y |  _12.8_ |
+| extension: effective-date | The payment input date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ. This field defaults to the current date and time. | N | _12.8_ |
+| extension: deposited-date | The payment deposit date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | N | _12.8_ |
+| extension: category | The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice | Y | _12.8_ |
+| extension: credit-cardtype | The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice | N | _12.8_ |
+| extension: check-number | The payment check number | N | _12.8_ |
+| extension: location | The payment location reference. The practice must have at least one Location resource with this identifier. | Y | _12.8_ |
+| extension: apply-payment | Value indicating whether the payment should be applied to patient's responsibility. The payment will be applied to patient responsiblity charges with a balance from oldest to newest. | N | _12.8_ |
+
+### Extensions
+Extensions are used to support required values not part of the FHIR standard. 
+
+#### Example: Post a $200 check for a patient
+<pre class="center-column">
+POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/PaymentReconciliation
+</pre>
+&nbsp;
+#### Body
+
+<pre class="center-column">
+{
+  "resourceType": "PaymentReconciliation",
+  "extension": [
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/payment-date",
+      "valueDate": {
+        "value": "2018-01-02"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/location",
+      "valueReference": {
+        "reference": "Location/1"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/effective-date",
+      "valueDate": {
+        "value": "2018-02-02"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/deposited-date",
+      "valueDate": {
+        "value": "2018-02-02"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/method",
+      "valueString": {
+        "value": "Check"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/check-number",
+      "valueString": {
+        "value": "6751007623"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/category",
+      "valueString": {
+        "value": "PP - Patient Payment"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/apply-payment",
+      "valueBoolean": {
+        "value": "true"
+      }
+    }
+  ],
+  "requestProvider": {
+    "reference": "Practitioner/9219"
+  },
+  "total": {
+    "value": 200
+  },
+  "processNote": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "NoteType",
+            "code": "display"
+          }
+        ]
+      },
+      "text": "Patient payment via check - Thank You"
+    }
+  ]
+}
+</pre>
+&nbsp;
 
 ## Procedure
 
