@@ -1388,11 +1388,11 @@ The PaymentReconciliation resource is used in a POST command to post a single pa
 | requestProvider | The responsible practitioner | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) | _12.8_ |
 | total | The payment amount | [Money](https://www.hl7.org/fhir/datatypes.html#Money) | _12.8_ |
 | processNote | The payment description. If multiple processNotes are supplied, they will be joined together and separated by spaces. The description will be truncated to 255 characters. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| extension: method | The payment method. This may be one of the following values: Cash, Check, Charge | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: payment-method | The payment method. This may be one of the following values: Cash, Check, Charge | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
 | extension: payment-date | The payment date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
 | extension: effective-date | The payment input date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
 | extension: deposited-date | The payment deposit date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
-| extension: category | The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: payment-category | The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
 | extension: creditcard-type | The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | extension: check-number | The payment check number. The check number will be truncated to 50 characters. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | extension: location | The payment location reference | [Reference(Location)](https://www.hl7.org/fhir/references.html#Reference) | _12.8_ |
@@ -1428,7 +1428,7 @@ The PaymentReconciliation resource is used in a POST command to post a single pa
         }
       },
       {
-        "url": "https://select.nextech-api.com/api/structuredefinition/method",
+        "url": "https://select.nextech-api.com/api/structuredefinition/payment-method",
         "valueString": {
           "value": "Check"
         }
@@ -1440,7 +1440,7 @@ The PaymentReconciliation resource is used in a POST command to post a single pa
         }
       },
       {
-        "url": "https://select.nextech-api.com/api/structuredefinition/category",
+        "url": "https://select.nextech-api.com/api/structuredefinition/payment-category",
         "valueString": {
           "value": "PP - Patient Payment"
         }
@@ -1494,11 +1494,11 @@ Creates a payment for an existing patient.
 | requestProvider | The responsible practitioner | Y | _12.8_ |
 | total | The payment amount | Y | _12.8_ |
 | processNote | The payment description | N | _12.8_ |
-| extension: method | The payment method. This may be one of the following values: Cash, Check, Charge | Y | _12.8_ |
+| extension: payment-method | The payment method. This may be one of the following values: Cash, Check, Charge | Y | _12.8_ |
 | extension: payment-date | The payment date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | Y |  _12.8_ |
 | extension: effective-date | The payment input date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ. This field defaults to the current date and time. | N | _12.8_ |
 | extension: deposited-date | The payment deposit date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ  | N | _12.8_ |
-| extension: category | The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice | Y | _12.8_ |
+| extension: payment-category | The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice | Y | _12.8_ |
 | extension: credit-cardtype | The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice | N | _12.8_ |
 | extension: check-number | The payment check number | N | _12.8_ |
 | extension: location | The payment location reference. The practice must have at least one Location resource with this identifier. | Y | _12.8_ |
@@ -1543,7 +1543,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
       }
     },
     {
-      "url": "https://select.nextech-api.com/api/structuredefinition/method",
+      "url": "https://select.nextech-api.com/api/structuredefinition/payment-method",
       "valueString": {
         "value": "Check"
       }
@@ -1555,7 +1555,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
       }
     },
     {
-      "url": "https://select.nextech-api.com/api/structuredefinition/category",
+      "url": "https://select.nextech-api.com/api/structuredefinition/payment-category",
       "valueString": {
         "value": "PP - Patient Payment"
       }
