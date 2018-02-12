@@ -1410,7 +1410,7 @@ The PaymentReconciliation resource is used in a POST command to post a single pa
         }
       },
       {
-        "url": "https://select.nextech-api.com/api/structuredefinition/location",
+        "url": "http://hl7.org/fhir/StructureDefinition/location",
         "valueReference": {
           "reference": "Location/1"
         }
@@ -1525,7 +1525,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
       }
     },
     {
-      "url": "https://select.nextech-api.com/api/structuredefinition/location",
+      "url": "http://hl7.org/fhir/StructureDefinition/location",
       "valueReference": {
         "reference": "Location/1"
       }
