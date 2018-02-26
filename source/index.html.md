@@ -11,6 +11,7 @@ includes:
   - patient
   - appointment
   - appointmenttype
+  - appointmentpurpose
   - location
   - practitioner
   - account
