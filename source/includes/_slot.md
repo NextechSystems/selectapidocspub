@@ -59,7 +59,7 @@ The slot resource contains information about available appointment slots.
 ### *Search*
 Searches for all slots matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.  Only free slots are currently returned from the search.  A slot is returned for each practitioner/location combination.  
 
-The number of days searched is determined by the start data parameters passed it.  If no less than operators are passed in, the search will default to 45 days.  The maximum number of days in the search criteria is limited to 60 days.
+The number of days searched is determined by the start date parameters passed it.  If no less than operators are passed in, the search will default to 45 days.  The maximum number of days in the search criteria cannot exceed 60 days.
 
 #### HTTP Request 
 `GET /Slot?{parameters}`
