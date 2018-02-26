@@ -310,6 +310,14 @@
               </ul>
           </li>
           <li>
+            <a href="#appointment-purpose" class="toc-h1 toc-link" data-title="Appointment-Purpose">Appointment-Purpose</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#appointment-purpose-2" class="toc-h2 toc-link" data-title="Appointment-Purpose">Appointment-Purpose</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#location" class="toc-h1 toc-link" data-title="Location">Location</a>
               <ul class="toc-list-h2">
                   <li>
@@ -322,6 +330,14 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#practitioner-2" class="toc-h2 toc-link" data-title="Practitioner">Practitioner</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#account" class="toc-h1 toc-link" data-title="Account">Account</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#account-2" class="toc-h2 toc-link" data-title="Account">Account</a>
                   </li>
               </ul>
           </li>
@@ -3078,11 +3094,357 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h2 id='payment-reconciliation'>Payment Reconciliation</h2>
-<p><em>Coming soon...</em></p>
-<h2 id='procedure'>Procedure</h2><h3 id='overview-16'>Overview</h3>
-<p>A procedure resource describes an activity performed with or on a patient as part of the provision of care.</p>
+<h2 id='payment-reconciliation'>Payment Reconciliation</h2><h3 id='overview-16'>Overview</h3>
+<p>The PaymentReconciliation resource is used in a POST command to post a single payment to an existing patient.</p>
 <h3 id='fields-16'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>requestProvider</td>
+<td>The responsible practitioner</td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Practitioner)</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>total</td>
+<td>The payment amount</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>processNote</td>
+<td>The payment description. If multiple processNotes are supplied, they will be joined together and separated by spaces. The description will be truncated to 255 characters.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: location</td>
+<td>The payment location reference</td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Location)</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: patient</td>
+<td>The payment patient reference</td>
+<td><a href="https://www.hl7.org/fhir/references.html#Reference">Reference(Patient)</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: payment-method</td>
+<td>The payment method. This may be one of the following values: Cash, Check, Charge</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: payment-date</td>
+<td>The payment date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">datetime</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: effective-date</td>
+<td>The payment input date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">datetime</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: deposited-date</td>
+<td>The payment deposit date (in UTC). This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">datetime</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: payment-category</td>
+<td>The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: creditcard-type</td>
+<td>The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: check-number</td>
+<td>The payment check number. The check number will be truncated to 50 characters.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h3 id='example-15'>Example</h3>
+<pre class="center-column">
+{
+    "resourceType": "PaymentReconciliation",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "valueResourceReference": {
+                "reference": "Patient/02c5a6ed-6c01-40a7-a065-a0be4732d6b9",
+                "display": "Archer, Billy"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Location",
+            "valueResourceReference": {
+                "reference": "Location/1",
+                "display": "NexTech Dermatology"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/payment-date",
+            "valueDateTime": "2018-02-01T13:36:25.150Z"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/effective-date",
+            "valueDateTime": "2018-02-02T05:00:00.000Z"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/deposited-date",
+            "valueDateTime": "2018-02-08T05:00:00.000Z"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/payment-method",
+            "valueString": "Charge"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/payment-category",
+            "valueString": "PP - Patient Payment"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/creditcard-type",
+            "valueString": "Visa"
+        }
+    ],
+    "requestProvider": {
+        "reference": "Practitioner/5",
+        "display": "Davison, Darren"
+    },
+    "total": {
+        "value": 200
+    },
+    "processNote": [
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "NoteType",
+                        "code": "display"
+                    }
+                ]
+            },
+            "text": "Patient payment via check - Thank You"
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-create-em-3'><em>Create</em></h3>
+<p>Creates a payment for an existing patient.</p>
+<h4 id='http-request-17'>HTTP Request</h4>
+<p><code>POST /Patient/{patientUid}/PaymentReconciliation</code> </p>
+<h4 id='parameters-17'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patientUid</td>
+<td>path</td>
+<td>The official patient identifier acquired from a patient search</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>paymentReconciliation</td>
+<td>body</td>
+<td>Represents the <code>PaymentReconciliation</code> resource to create for the given patient</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h4 id='body-fields-3'>Body Fields</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>requestProvider</td>
+<td>The responsible practitioner</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>total</td>
+<td>The payment amount</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>processNote</td>
+<td>The payment description</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: payment-method</td>
+<td>The payment method. This may be one of the following values: Cash, Check, Charge</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: payment-date</td>
+<td>The payment date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: effective-date</td>
+<td>The payment input date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ. This field defaults to the current date and time.</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: deposited-date</td>
+<td>The payment deposit date. This is a formatted date string in the form yyyy-MM-dd or yyyy-MM-ddTHH:mm:ss.fffZ</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: payment-category</td>
+<td>The payment category. This must match an option in the Category dropdown of the Payment window in Nextech Practice</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: credit-cardtype</td>
+<td>The payment credit card type. This must match an option in the Credit Card dropdown of the Payment window in Nextech Practice</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: check-number</td>
+<td>The payment check number</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: location</td>
+<td>The payment location reference. The practice must have at least one Location resource with this identifier.</td>
+<td>Y</td>
+<td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: apply-payment</td>
+<td>Value indicating whether the payment should be applied to patient&#39;s responsibility. The payment will be applied to patient responsiblity charges with a balance from oldest to newest.</td>
+<td>N</td>
+<td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h3 id='extensions'>Extensions</h3>
+<p>Extensions are used to support required values not part of the FHIR standard. </p>
+<h4 id='example-post-a-200-check-for-a-patient'>Example: Post a $200 check for a patient</h4>
+<pre class="center-column">
+POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/PaymentReconciliation
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='body-3'>Body</h4>
+<pre class="center-column">
+{
+  "resourceType": "PaymentReconciliation",
+  "extension": [
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/payment-date",
+      "valueDate": {
+        "value": "2018-01-02"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/location",
+      "valueReference": {
+        "reference": "Location/1"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/effective-date",
+      "valueDate": {
+        "value": "2018-02-02"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/deposited-date",
+      "valueDate": {
+        "value": "2018-02-02"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/payment-method",
+      "valueString": {
+        "value": "Check"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/check-number",
+      "valueString": {
+        "value": "6751007623"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/payment-category",
+      "valueString": {
+        "value": "PP - Patient Payment"
+      }
+    },
+    {
+      "url": "https://select.nextech-api.com/api/structuredefinition/apply-payment",
+      "valueBoolean": {
+        "value": "true"
+      }
+    }
+  ],
+  "requestProvider": {
+    "reference": "Practitioner/9219"
+  },
+  "total": {
+    "value": 200
+  },
+  "processNote": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "NoteType",
+            "code": "display"
+          }
+        ]
+      },
+      "text": "Patient payment via check - Thank You"
+    }
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h2 id='procedure'>Procedure</h2><h3 id='overview-17'>Overview</h3>
+<p>A procedure resource describes an activity performed with or on a patient as part of the provision of care.</p>
+<h3 id='fields-17'>Fields</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3116,7 +3478,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><em>12.6</em></td>
 </tr>
 </tbody></table>
-<h3 id='example-15'>Example</h3>
+<h3 id='example-16'>Example</h3>
 <pre class="center-column">
 {
   "resourceType": "Bundle",
@@ -3153,9 +3515,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-13'><em>Search</em></h3>
 <p>Searches for procedures for a single patient</p>
-<h4 id='http-request-17'>HTTP Request</h4>
+<h4 id='http-request-18'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Procedure?{parameters}</code> </p>
-<h4 id='parameters-17'>Parameters</h4>
+<h4 id='parameters-18'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3247,9 +3609,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </tr>
 <tr>
 <td>Extension</td>
-<td>This is an extension of the class to provide more indepth objects like for appointment Types</td>
+<td>This is an extension of the class to provide more indepth objects like for appointment types(<em>12.8</em>) and appointment purposes (<em>12.9</em>)</td>
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
-<td><em>12.8</em></td>
+<td><em>12.9</em></td>
 </tr>
 </tbody></table>
 <h3 id='sample'>Sample</h3>
@@ -3295,14 +3657,20 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
           }
         ],
     "extension": [
-        {
-                "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
-                "valueReference": 
-         {
-           "reference": "appointment-type/9",
-           "display": "Surgery Cosmetic"
-         }
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+        "valueReference": {
+            "reference": "appointment-type/9",
+            "display": "Surgery Cosmetic"
         }
+      },
+      {
+        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
+        "valueReference": {
+          "reference": "appointment-purpose/161",
+          "display": "Chemical Peel/Skin Treatments"
+        }
+      }
     ],
         "identifier": [
           {
@@ -3514,7 +3882,7 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 
 <p>&nbsp;</p>
 <h1 id='appointment-type'>Appointment-Type</h1><h2 id='appointment-type-2'>Appointment-Type</h2><h3 id='overview'>Overview</h3>
-<p>The Appointment Type resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
+<p>The appointment type resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
 <h3 id='fields'>Fields</h3>
 <table><thead>
 <tr>
@@ -3525,20 +3893,20 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </tr>
 </thead><tbody>
 <tr>
-<td>resourceType</td>
-<td>The Declaration of the Type of resource this is.</td>
+<td>resourcetype</td>
+<td>The declaration of the type of resource this is.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.8</em></td>
 </tr>
 <tr>
 <td>id</td>
-<td>The unique value assigned to each appointment which discerns it from all others</td>
+<td>The unique value assigned to each appointment type which discerns it from all others</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.8</em></td>
 </tr>
 <tr>
 <td>extension</td>
-<td>The Appointment Type values as a packaged extension. Contains definition url and value</td>
+<td>The appointment type values as a packaged extension. Contains definition url and value</td>
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
 <td><em>12.8</em></td>
 </tr>
@@ -3559,7 +3927,7 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 
 <p>&nbsp;</p>
 <h3 id='em-search-em'><em>Search</em></h3>
-<p>Searches for all Appointment Types matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
+<p>Searches for all appointment types matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /appointment-type?{parameters}</code></p>
 <h4 id='parameters'>Parameters</h4>
@@ -3575,16 +3943,99 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 <tr>
 <td>identifier</td>
 <td>query</td>
-<td>The unique identifier for a single Appointment Type</td>
+<td>The unique identifier for a single appointment type</td>
 <td>N</td>
 <td><em>12.8</em></td>
 </tr>
 <tr>
 <td>name</td>
 <td>query</td>
-<td>The name of the Appointment Type</td>
+<td>The name of the appointment type</td>
 <td>N</td>
 <td><em>12.8</em></td>
+</tr>
+</tbody></table>
+<h1 id='appointment-purpose'>Appointment-Purpose</h1><h2 id='appointment-purpose-2'>Appointment-Purpose</h2><h3 id='overview'>Overview</h3>
+<p>The appointment purpose resource provides specific reasons for a planned meeting between a patient and medical provider. Examples include laser skin resurfacing, chemical peel  or microdermabrasion.</p>
+
+<p>Purposes are assigned to meeting types for improved control over appointment availability and scheduling.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>resourcetype</td>
+<td>The declaration of the type of resource this is.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>id</td>
+<td>The unique value assigned to each appointment purpose which discerns it from all others</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>extension</td>
+<td>The appointment type values that can have this purpose come as a packaged extension. Contains definition url and value</td>
+<td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
+<td><em>12.9</em></td>
+</tr>
+</tbody></table>
+<h3 id='sample'>Sample</h3>
+<pre class="center-column">
+{
+"resourceType": "appointment-purpose",
+        "id": "53",
+        "extension": [
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
+                "valueString": "Laser Skin Resurfacing"
+            },
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+                "valueReference": {
+                    "reference": "appointment-type/13",
+                    "display": "Follow Up"
+                }
+            }
+        ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all appointment purposes matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /appointment-purpose?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>query</td>
+<td>The unique identifier for a single appointment purpose</td>
+<td>No</td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td>The name of the appointment purpose</td>
+<td>No</td>
+<td><em>12.9</em></td>
 </tr>
 </tbody></table>
 <h1 id='location'>Location</h1><h2 id='location-2'>Location</h2><h3 id='overview'>Overview</h3>
@@ -3996,6 +4447,194 @@ GET https://select.nextech-api.com/api/Practitioner?name:contains=smith
 <h4 id='example-get-a-specific-practitioner-based-on-identifier'>Example: Get a specific Practitioner based on identifier</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Practitioner/12
+</pre>
+
+<p>&nbsp;</p>
+<h1 id='account'>Account</h1><h2 id='account-2'>Account</h2><h3 id='overview'>Overview</h3>
+<p>A financial tool for tracking value accrued for a particular purpose. In Nextech, it&#39;s used to track the patient&#39;s responsibility.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>Unique identifier used to reference the account.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name associated with the Account.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>status</td>
+<td>Indicates whether the account is presently used/usable or not.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>type</td>
+<td>Categorizes the account for reporting and searching purposes.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>balance</td>
+<td>Represents the sum of all credits less all debits associated with the account. Might be positive, zero or negative.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>description</td>
+<td>Provides additional information about what the account tracks and how it is used.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#String">string</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>Identifies the patient or other object the account is associated with.</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>guarantor</td>
+<td>Party financially responsible for the account.</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>guarantor.party</td>
+<td>The entity who is responsible.</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9</em></td>
+</tr>
+</tbody></table>
+
+<p>}</p>
+<h3 id='example'>Example</h3>
+<pre class="center-column">
+{
+    "resourceType": "Account",
+    "id": "3200",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "3200"
+        }
+    ],
+    "status": "active",
+    "type": {
+        "coding": [
+            {
+                "system": "https://www.hl7.org/fhir/valueset-account-type.html",
+                "code": "PBILLACCT"
+            }
+        ],
+        "text": "Patient"
+    },
+    "name": "Test, John",
+    "subject": {
+        "reference": "Patient/59015300-e15b-474c-8314-7864712f6946"
+    },
+    "balance": {
+        "value": 21
+    },
+    "description": "Patient Responsibility",
+    "guarantor": [
+        {
+            "party": {
+                "reference": "Patient/59015300-e15b-474c-8314-7864712f6946"
+            }
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all  based on the given search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /Account?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query or uri</td>
+<td>The unique value assigned to each Account which discerns it from all others.</td>
+<td>No</td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>status</td>
+<td>query</td>
+<td>Searches for Accounts whose record has the search status.</td>
+<td>No</td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td>The name of the Account.</td>
+<td>No</td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>balance</td>
+<td>query</td>
+<td>The balance of the Account.</td>
+<td>No</td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>patient</td>
+<td>query</td>
+<td>The patient the account is tied to.</td>
+<td>No</td>
+<td><em>12.9</em></td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-active-accounts'>Example: Get all active Accounts</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Account?status=active
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-accounts-with-a-balance-greater-than-zero'>Example: Get accounts with a balance greater than zero</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Account?balance=gt0
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-account-attached-to-a-patient'>Example: Get a specific Account attached to a patient</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Account?patient=59015300-e15b-474c-8314-7864712f6946
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-accounts-whose-name-contains-39-smith-39'>Example: Get all Accounts whose name contains &#39;smith&#39;</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Account?name:contains=smith
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-account-based-on-identifier'>Example: Get a specific Account based on identifier</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Account/12
 </pre>
 
 <p>&nbsp;</p>
