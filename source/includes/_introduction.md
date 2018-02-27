@@ -9,6 +9,7 @@ Available API functionality:
 * [Patient payment posting](#payment-reconciliation)
 * [Appointment information](#appointment)  
 * [Confirm appointments](#appointment-2)  
+* [Slot information](#slot)
 * [Create non-clinical patient notes](#composition)
 * [Attach patient documents](#document-reference)
 
