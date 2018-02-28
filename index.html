@@ -302,6 +302,14 @@
               </ul>
           </li>
           <li>
+            <a href="#slot" class="toc-h1 toc-link" data-title="Slot">Slot</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#slot-2" class="toc-h2 toc-link" data-title="Slot">Slot</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#appointment-type" class="toc-h1 toc-link" data-title="Appointment-Type">Appointment-Type</a>
               <ul class="toc-list-h2">
                   <li>
@@ -361,6 +369,7 @@
 <li><a href="#payment-reconciliation">Patient payment posting</a></li>
 <li><a href="#appointment">Appointment information</a><br></li>
 <li><a href="#appointment-2">Confirm appointments</a><br></li>
+<li><a href="#slot">Slot information</a></li>
 <li><a href="#composition">Create non-clinical patient notes</a></li>
 <li><a href="#document-reference">Attach patient documents</a></li>
 </ul>
@@ -3878,6 +3887,165 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 
 <pre class="center-column">
 { "status": "booked" }
+</pre>
+
+<p>&nbsp;</p>
+<h1 id='slot'>Slot</h1><h2 id='slot-2'>Slot</h2><h3 id='overview'>Overview</h3>
+<p>The slot resource contains information about available appointment slots. </p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>Indicates whether the slot is available.</td>
+<td><a href="https://www.hl7.org/fhir/slot-definitions.html#Slot.status">SlotStatus</a></td>
+<td>12.9</td>
+</tr>
+<tr>
+<td>schedule</td>
+<td>The schedule that this slot belongs to</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td>12.9</td>
+</tr>
+<tr>
+<td>start</td>
+<td>The date and time the slot begins</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+<td>12.9</td>
+</tr>
+<tr>
+<td>end</td>
+<td>The date and time the slot ends</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+<td>12.9</td>
+</tr>
+<tr>
+<td>appointment-type extension</td>
+<td>The Nextech appointment type of the slot</td>
+<td>custom extension</td>
+<td>12.9</td>
+</tr>
+<tr>
+<td>appointment-purpose extension</td>
+<td>The Nextech appointment purpose of the slot</td>
+<td>custom extension</td>
+<td>12.9</td>
+</tr>
+</tbody></table>
+<h3 id='sample'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "resource": {
+           "resourceType": "Slot",
+           "extension": [
+               {
+                   "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+                   "valueReference": {
+                       "reference": "appointment-type/9",
+                       "display": "Surgery Cosmetic"
+                   }
+               },
+               {
+                   "url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
+                   "valueReference": {
+                       "reference": "appointment-purpose/224",
+                       "display": "Skin Check"
+                   }
+               }
+           ],
+           "schedule": {
+              "reference": "schedule/location_1_practitioner_9323"
+           },
+           "status": "free",
+           "start": "2018-02-26T14:00:00-05:00",
+           "end": "2018-02-26T15:00:00-05:00"
+        }
+     }  
+  ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all slots matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.  Only free slots are currently returned from the search.  A slot is returned for each practitioner/location combination.  </p>
+
+<p>The number of days searched is determined by the start date parameters passed it.  If no less than operators are passed in, the search will default to 45 days.  The maximum number of days in the search criteria cannot exceed 60 days.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /Slot?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>start</td>
+<td>query</td>
+<td>The slot start date/time. When searching for slots within a date range, the following prefixes may be used: lt, gt, eq, le, ge.  Note: the ne operator is not supported.</td>
+<td>Yes</td>
+<td><em><fill></em></td>
+</tr>
+<tr>
+<td>schedule.actor</td>
+<td>query</td>
+<td>The practitioners and/or locations of the slot you are searching for. At least one location actor is required.  If no practitioner actor is specified, all practitioners for the location specified will be searched.  A practitioner in practice is a schedule resource that is linked to a provider that is linked to a user in Nextech.</td>
+<td>Yes</td>
+<td><em><fill></em></td>
+</tr>
+<tr>
+<td>appointment-type</td>
+<td>query</td>
+<td>The appointment type the slot will be for.</td>
+<td>No if slot-length is specified</td>
+<td><em><fill></em></td>
+</tr>
+<tr>
+<td>appointment-purpose</td>
+<td>query</td>
+<td>The appointment purpose the slot will be for.</td>
+<td>No</td>
+<td><em><fill></em></td>
+</tr>
+<tr>
+<td>slot-length</td>
+<td>query</td>
+<td>The length of time the slot is needed for.  If not specified, default duration will be used</td>
+<td>No, if appointment-type is specified</td>
+<td><em><fill></em></td>
+</tr>
+</tbody></table>
+<h4 id='multiple-search-values'>Multiple Search Values</h4>
+<p>Multiple search values are supported for all fields except date.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.  </p>
+
+<p>If 2 practitioner schedule.actors are ORed together with a comma, any of those practitioners will be searched.  If they are ANDed together, all of the practitioners will be searched for, with a slot returned for each.   If you have both and AND and OR for practitioner scheduler.actors, they will all be ORed together.</p>
+<h4 id='example-get-all-available-slots-for-consult-type-appointment-in-march-2018-at-pawtucket-plastic-surgery-for-any-practitioner'>Example: Get all available slots for consult type appointment in March 2018 at Pawtucket Plastic Surgery for any practitioner</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/start=ge2018-03-01&start=lt2018-04-01&appointment-type=appointment-type/87&schedule.actor=location/5
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-available-15-minute-slots-for-dr-smith-at-the-west-location-in-2016'>Example: Get all available 15 minute slots for Dr. Smith at the West location in 2016</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15&slot-length=15
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-15-minute-slots-for-dr-smith-or-dr-jones-at-the-west-location'>Example: Get all 15 minute slots for Dr. Smith or Dr. Jones at the West location</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15, practitioner/17&slot-length=15
 </pre>
 
 <p>&nbsp;</p>
