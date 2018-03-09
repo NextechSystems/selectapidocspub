@@ -81,21 +81,21 @@ If 2 practitioner schedule.actors are ORed together with a comma, any of those p
 #### Example: Get all available slots for consult type appointment in March 2018 at Pawtucket Plastic Surgery for any practitioner
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/start=ge2018-03-01&start=lt2018-04-01&appointment-type=appointment-type/87&schedule.actor=location/5
+GET https://select.nextech-api.com/api/slot?start=ge2018-03-01&start=lt2018-04-01&appointment-type=appointment-type/87&schedule.actor=location/5
 </pre>
 &nbsp;
 
 #### Example: Get all available 15 minute slots for Dr. Smith at the West location in 2016
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15&slot-length=15
+GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15&slot-length=15
 </pre>
 &nbsp;
 
 #### Example: Get all 15 minute slots for Dr. Smith or Dr. Jones at the West location
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15, practitioner/17&slot-length=15
+GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15, practitioner/17&slot-length=15
 </pre>
 &nbsp;
 
