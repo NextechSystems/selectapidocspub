@@ -16,6 +16,7 @@ includes:
   - location
   - practitioner
   - account
+  - coverage
 
 search: false
 ---
