@@ -349,6 +349,14 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#coverage" class="toc-h1 toc-link" data-title="Coverage">Coverage</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#coverage-2" class="toc-h2 toc-link" data-title="Coverage">Coverage</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='http://hl7.org/fhir/'>FHIR Documentation</a></li>
@@ -4033,19 +4041,19 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 <p>If 2 practitioner schedule.actors are ORed together with a comma, any of those practitioners will be searched.  If they are ANDed together, all of the practitioners will be searched for, with a slot returned for each.   If you have both and AND and OR for practitioner scheduler.actors, they will all be ORed together.</p>
 <h4 id='example-get-all-available-slots-for-consult-type-appointment-in-march-2018-at-pawtucket-plastic-surgery-for-any-practitioner'>Example: Get all available slots for consult type appointment in March 2018 at Pawtucket Plastic Surgery for any practitioner</h4>
 <pre class="center-column">
-GET https://select.nextech-api.com/api/start=ge2018-03-01&start=lt2018-04-01&appointment-type=appointment-type/87&schedule.actor=location/5
+GET https://select.nextech-api.com/api/slot?start=ge2018-03-01&start=lt2018-04-01&appointment-type=appointment-type/87&schedule.actor=location/5
 </pre>
 
 <p>&nbsp;</p>
 <h4 id='example-get-all-available-15-minute-slots-for-dr-smith-at-the-west-location-in-2016'>Example: Get all available 15 minute slots for Dr. Smith at the West location in 2016</h4>
 <pre class="center-column">
-GET https://select.nextech-api.com/api/start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15&slot-length=15
+GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15&slot-length=15
 </pre>
 
 <p>&nbsp;</p>
 <h4 id='example-get-all-15-minute-slots-for-dr-smith-or-dr-jones-at-the-west-location'>Example: Get all 15 minute slots for Dr. Smith or Dr. Jones at the West location</h4>
 <pre class="center-column">
-GET https://select.nextech-api.com/api/start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15, practitioner/17&slot-length=15
+GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-01&schedule.actor=location/7&schedule.actor=practitioner/15, practitioner/17&slot-length=15
 </pre>
 
 <p>&nbsp;</p>
@@ -4803,6 +4811,276 @@ GET https://select.nextech-api.com/api/Account?name:contains=smith
 <h4 id='example-get-a-specific-account-based-on-identifier'>Example: Get a specific Account based on identifier</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Account/12
+</pre>
+
+<p>&nbsp;</p>
+<h1 id='coverage'>Coverage</h1><h2 id='coverage-2'>Coverage</h2><h3 id='overview'>Overview</h3>
+<p>The Coverage resource provides patient insurance information which may be used to pay for the provision of health care products and services.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique identifer for the coverage</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>status</td>
+<td>The status of the coverage</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#code">code</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>type</td>
+<td>The type of coverage (ie. Medical, Vision, Dental, Auto, Workers&#39; Comp). See <a href="http://hl7.org/fhir/valueset-coverage-type.html">Coverage Type Codes</a></td>
+<td><a href="http://hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>subscriber</td>
+<td>The subscriber to the policy</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient or RelatedPerson)</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>subscriberId</td>
+<td>The identifier assigned to the subscriber</td>
+<td><a href="http://hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>beneficiary</td>
+<td>The patient who benefits from the coverage</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>relationship</td>
+<td>The beneficiary (or patient) relationship to the subscriber. See <a href="http://hl7.org/fhir/valueset-policyholder-relationship.html">Policyholder Relationship Codes</a></td>
+<td><a href="http://hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>period</td>
+<td>The coverage effective and expiry dates (if available)</td>
+<td><a href="http://hl7.org/fhir/datatypes.html#Period">Period</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>payor</td>
+<td>The reference to the insurance company providing the insurance coverage</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Organization)</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>grouping.group</td>
+<td>The policy group number for the coverage</td>
+<td><a href="http://hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>grouping.planDisplay</td>
+<td>The insurance plan name and type</td>
+<td><a href="http://hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>order</td>
+<td>The relative order of the coverage</td>
+<td><a href="http://hl7.org/fhir/datatypes.html#positiveInt">positiveInt</a></td>
+<td><em>12.9</em></td>
+</tr>
+</tbody></table>
+<h3 id='extensions'>Extensions</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Url</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>copay-amount</td>
+<td>The copay amount for the &#39;Copay&#39; pay group</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/copay-amount</code></td>
+<td><a href="http://hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>copay-percentage</td>
+<td>The copay percentage for the &#39;Copay&#39; pay group</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/copay-percentage</code></td>
+<td><a href="http://hl7.org/fhir/datatypes.html#integer">Integer</a></td>
+<td><em>12.9</em></td>
+</tr>
+</tbody></table>
+<h3 id='example'>Example</h3>
+<pre class="center-column">
+{
+    "resource": {
+        "resourceType": "Coverage",
+        "contained": [
+            {
+                "resourceType": "RelatedPerson",
+                "id": "6783",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "6783"
+                    }
+                ],
+                "name": [
+                    {
+                        "text": "David M Aaron",
+                        "family": "Aaron",
+                        "given": [
+                            "David",
+                            "M"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "both",
+                        "line": [
+                            "123 Fake Street"
+                        ],
+                        "city": "Saint Petersburg",
+                        "state": "FL",
+                        "postalCode": "33716"
+                    }
+                ]
+            },
+            {
+                "resourceType": "Organization",
+                "id": "14",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "14"
+                    }
+                ],
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/organization-type",
+                                "code": "ins",
+                                "display": "Insurance Company"
+                            }
+                        ]
+                    }
+                ],
+                "name": "Blue Cross/Blue Shield",
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "both",
+                        "line": [
+                            "123 Great Payment Way"
+                        ],
+                        "city": "Dallas",
+                        "state": "TX",
+                        "postalCode": "75201"
+                    }
+                ]
+            }
+        ],
+        "extension": [
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/copay-amount",
+                "valueMoney": {
+                    "value": 25
+                }
+            }
+        ],
+        "status": "active",
+        "type": {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/v3/ActCode",
+                    "code": "EHCPOL",
+                    "display": "extended healthcare"
+                }
+            ]
+        },
+        "subscriber": {
+            "reference": "#6783",
+            "display": "Aaron, David M"
+        },
+        "subscriberId": "12345678",
+        "beneficiary": {
+            "reference": "Patient/ce2a5ae0-3514-4f63-8609-911da841e72e",
+            "display": "Aaron, Jane M"
+        },
+        "relationship": {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/policyholder-relationship",
+                    "code": "spouse",
+                    "display": "Spouse"
+                }
+            ]
+        },
+        "payor": [
+            {
+                "reference": "#14",
+                "display": "Blue Cross/Blue Shield"
+            }
+        ],
+        "grouping": {
+            "group": "abc123",
+            "planDisplay": "Blue Cross/Blue Shield - Group Health Plan"
+        },
+        "order": 2
+    }
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all <em>active</em> coverages (insured parties) based on the given search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /Coverage?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patient</td>
+<td>query</td>
+<td>Search coverages by patient identifier</td>
+<td>N</td>
+<td><em>12.9</em></td>
+</tr>
+<tr>
+<td>beneficiary</td>
+<td>query</td>
+<td>Search coverages by patient identifier</td>
+<td>N</td>
+<td><em>12.9</em></td>
+</tr>
+</tbody></table>
+<h4 id='example-get-coverages-for-a-single-patient'>Example: Get coverages for a single patient</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-911da841e72e
 </pre>
 
 <p>&nbsp;</p>
