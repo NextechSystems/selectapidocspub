@@ -213,3 +213,169 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 { "status": "booked" }
 </pre>
 &nbsp;
+
+### *Book Appointment*
+Create a scheduled appointment.
+
+#### HTTP Request 
+`POST /Appointment/` 
+
+
+#### Parameters
+| Name | Description | Type | Required | Initial Version |
+| ---- | ----------- | ---- | -------- | --------------- |
+| status | The current status of the appointment - must be proposed | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | Yes | _12.9.10_ |
+| start | The start time of the appointment | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | Yes | _12.9.10_ |
+| end | The end time of the appointment  | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | Yes | _12.9.10_ |
+| Participant | Includes the patient reference (if existing patient), location for the appointment, and practitioner for the appointment  | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html)  | Location and practitioner are required, patient is required unless a contained section is included | _12.9.10_ |
+| Extension | Contains the appointment type and appointment purposes for this appointment |  [extension](https://www.hl7.org/fhir/extensibility.html) | No | _12.9.10_ |
+| Contained | Contains a patient resource if the patient does not already exist in Nextech | [Patient Resource](https://www.hl7.org/fhir/patient.html)   | Yes, unless a patient reference is included in the participant section | _12.9.10_ |
+
+
+There are two options to choose from when booking an appointment.
+1. If you are scheduling an appointment for an existing patient, put the identifier for the patient in the participants section
+2. If you are scheduling an appointment for a person that is not a patient, put the demographic information for the patient in the contained section.  When the appointment is scheduled, the demographic information in the contained section will be used to create a prospect that is then linked to the appointment.  The following information is required for the contained section:
+   1. Name, given and family must be filled in
+   2. At least one phone number, home, work, or cell as specified by the Use field in the telecom section
+   3. An email address specified in the telecom section
+
+Additional fields that can be sent and are recommended, but are not required are:   
+   1. Birth Date
+   2. Zip Code
+
+If the appointment creation succeeds, the appointment resource will be returned with a return status of Created (201).
+
+If the appointment creation fails, an AppointmentResponse (https://www.hl7.org/fhir/appointmentresponse.html) resource will be returned with a status of Conflict (409).  The reason for why the creation failed will be included in the AppointmentResponse Comment field.  
+
+If the appointment creation fails and a prospect was being created, the prospect will also be deleted.
+   
+#### Example: Create an appointment for an existing patient
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/Appointment/
+</pre>
+<pre class="center-column">
+{
+	"resourceType": "Appointment",       
+	"extension": [
+	  {
+		"url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+		"valueReference": {
+			"reference": "appointment-type/25",
+			"display": "Skin Care Established"
+		}
+	  },
+	  {
+		"url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
+		"valueReference": {
+		  "reference": "appointment-purpose/202",
+		  "display": "Glycolic Peel"
+		}
+	  }
+	],		
+	"status": "proposed",
+	"start": "2017-04-13T09:10:00-04:00",
+	"end": "2017-04-13T09:40:00-04:00",		
+	"comment": "test note",
+	"participant": [
+	  {
+		"actor": {
+		  "reference": "patient/EEA9EC85-849E-4B88-9859-9F30CF309446",
+		  "display": "Jane Smith"
+		}
+	  },
+	  {
+		"actor": {
+		  "reference": "location/1",
+		  "display": "Nextech Dermatology"
+		}
+	  },
+	  {
+		"actor": {
+		  "reference": "practitioner/9323",
+		  "display": "Walters, Sherri"
+		}
+	  }
+	]
+}
+</pre>
+
+#### Example: Create an appointment for a new prospect
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/Appointment/
+</pre>
+<pre class="center-column">
+{
+	"resourceType": "Appointment",       
+	"extension": [
+	  {
+		"url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+		"valueReference": {
+			"reference": "appointment-type/25",
+			"display": "Skin Care Established"
+		}
+	  },
+	  {
+		"url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
+		"valueReference": {
+		  "reference": "appointment-purpose/202",
+		  "display": "Glycolic Peel"
+		}
+	  }
+	],		
+	"status": "proposed",		
+	"start": "2017-04-12T08:10:00-04:00",
+	"end": "2017-04-12T08:40:00-04:00",		
+	"comment": "test note",
+	"participant": [
+	  {
+		"actor": {
+		  "reference": "location/1",
+		  "display": "Nextech Dermatology"
+		}
+	  },
+	  {
+		"actor": {
+		  "reference": "practitioner/9323",
+		  "display": "Walters, Sherri"
+		}
+	  }
+	],
+	"contained": [
+		{
+			"resourceType": "Patient",        		
+			 "name": [
+			 {
+			  "text": "Jane L Smith",
+			  "family": "Smith",
+			  "given": [
+				"Jane",
+				"L"
+			   ]
+			 }
+			 ],
+			 "address": [
+			 {
+			   "use": "home",				      
+			   "postalCode": "77014"
+			 }
+			 ],
+			 "telecom": [
+			 {
+			   "system": "email",
+			   "value": "jsmith@email.com"
+			 },
+			 {
+			   "system": "phone",
+			   "use" : "home",
+			   "value": "346-555-3682"
+			 }
+			 ],
+			   "birthDate": "1968-02-04",
+		}
+   ]
+   
+}
+</pre>
+&nbsp;
