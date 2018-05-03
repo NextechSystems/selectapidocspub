@@ -16,6 +16,7 @@ The slot resource contains information about available appointment slots.
 | end | The date and time the slot ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | 12.9|
 | appointment-type extension | The Nextech appointment type of the slot | custom extension | 12.9 |
 | appointment-purpose extension | The Nextech appointment purpose of the slot | custom extension | 12.9 |
+| contained section | Contains the Location and Practitioner resources associated to the slow | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | 12.9.10 |
 
 
 
@@ -27,6 +28,39 @@ The slot resource contains information about available appointment slots.
     {
       "resource": {
            "resourceType": "Slot",
+		    "contained": [
+                    {
+                        "resourceType": "Location",
+                        "id": "1",
+                        "identifier": [
+                            {
+                                "use": "official",
+                                "value": "1"
+                            }
+                        ],
+                        "name": "NexTech Dermatology"
+                    },
+                    {
+                        "resourceType": "Practitioner",
+                        "id": "9323",
+                        "identifier": [
+                            {
+                                "use": "official",
+                                "value": "9323"
+                            }
+                        ],
+                        "name": [
+                            {
+                                "text": "Walters, Sherri",
+                                "family": "Walters",
+                                "given": [
+                                    "Sherri",
+                                    ""
+                                ]
+                            }
+                        ]
+                    }
+                ],
            "extension": [
                {
                    "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
