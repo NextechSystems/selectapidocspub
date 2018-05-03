@@ -232,9 +232,9 @@ Create a scheduled appointment.
 | Contained | Contains a patient resource if the patient does not already exist in Nextech | [Patient Resource](https://www.hl7.org/fhir/patient.html)   | Yes, unless a patient reference is included in the participant section | _12.9.10_ |
 
 When posting an appointment, there are multiple options to be considered:
-The first set of options is whether this appointment should be booked or held.   A booked appointment is one which shows in the offices schedule as if the office created the appointment from inside Nextech.  A held appointment is an appointment which has a different flag in Nextech to indicate that it is held and also appears in a list of appointments for the office to follow up with.  In both situations the appointment shows on the office schedule in Nextech. 
+The first set of options is whether this appointment should be booked or held.  A booked appointment is one which shows in the offices schedule as if the office created the appointment from inside Nextech.  A held appointment is an appointment which has a different flag in Nextech to indicate that it is held and also appears in a list of appointments for the office to follow up with.  In both situations the appointment shows on the office schedule in Nextech. 
 
-Whether to book or hold an appointment is controlled by the appointment-schedule extension.   In order to hold an appointment, the extension would have "hold" as the value string.  To book an appointment, the extension would have "book" as the value string. If no appointment-schedule extension is sent, the office's preference for booking or holding is used.  See examples below.
+Whether to book or hold an appointment is controlled by the appointment-schedule extension.  In order to hold an appointment, the extension would have "hold" as the value string.  To book an appointment, the extension would have "book" as the value string. If no appointment-schedule extension is sent, the office's preference for booking or holding is used.  See examples below.
 
 The second set of options to choose from is whether the patient is existing, or if we are making an appointment for a unknown patient.
 1. If you are scheduling an appointment for an existing patient, put the identifier for the patient in the participants section
