@@ -11,7 +11,7 @@ The appointment resource contains information about a planned meeting between a 
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each appointment which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| status | Indicates whether the appointment is cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | _12.6_ |
+| status | Indicates whether the appointment is proposed (held), cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | _12.6_ |
 | description | The appointment summary that includes the type and a list of purposes and resources | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
 | start | The date and time the appointment begins | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6_ |
 | end | The date and time the appointment ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6_ |
@@ -231,8 +231,12 @@ Create a scheduled appointment.
 | Extension | Contains the appointment type and appointment purposes for this appointment |  [extension](https://www.hl7.org/fhir/extensibility.html) | No | _12.9.10_ |
 | Contained | Contains a patient resource if the patient does not already exist in Nextech | [Patient Resource](https://www.hl7.org/fhir/patient.html)   | Yes, unless a patient reference is included in the participant section | _12.9.10_ |
 
+When posting an appointment, there are multiple options to be considered:
+The first set of options is whether this appointment should be booked or held.   A booked appointment is one which shows in the offices schedule as if the office created the appointment from inside Nextech.  A held appointment is an appointment which has a different flag in Nextech to indicate that it is held and also appears in a list of appointments for the office to follow up with.  In both situations the appointment shows on the office schedule in Nextech. 
 
-There are two options to choose from when booking an appointment.
+Whether to book or hold an appointment is controlled by the appointment-schedule extension.   In order to hold an appointment, the extension would have "hold" as the value string.  To book an appointment, the extension would have "book" as the value string. If no appointment-schedule extension is sent, the office's preference for booking or holding is used.  See examples below.
+
+The second set of options to choose from is whether the patient is existing, or if we are making an appointment for a unknown patient.
 1. If you are scheduling an appointment for an existing patient, put the identifier for the patient in the participants section
 2. If you are scheduling an appointment for a person that is not a patient, put the demographic information for the patient in the contained section.  When the appointment is scheduled, the demographic information in the contained section will be used to create a prospect that is then linked to the appointment.  The following information is required for the contained section:
    1. Name, given and family must be filled in
@@ -249,7 +253,7 @@ If the appointment creation fails, an AppointmentResponse (https://www.hl7.org/f
 
 If the appointment creation fails and a prospect was being created, the prospect will also be deleted.
    
-#### Example: Create an appointment for an existing patient
+#### Example: Create an appointment for an existing patient as a booked appointment
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/Appointment/
@@ -271,6 +275,10 @@ POST https://select.nextech-api.com/api/Appointment/
 		  "reference": "appointment-purpose/202",
 		  "display": "Glycolic Peel"
 		}
+	  },
+	  {
+		"url": "https://select.nextech-api.com/api/structuredefinition/appointment-schedule",
+		"valueString": "book"
 	  }
 	],		
 	"status": "proposed",
@@ -300,7 +308,90 @@ POST https://select.nextech-api.com/api/Appointment/
 }
 </pre>
 
-#### Example: Create an appointment for a new prospect
+#### Example: Create an appointment for a new prospect as a held appointment
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/Appointment/
+</pre>
+<pre class="center-column">
+{
+	"resourceType": "Appointment",       
+	"extension": [
+	  {
+		"url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+		"valueReference": {
+			"reference": "appointment-type/25",
+			"display": "Skin Care Established"
+		}
+	  },
+	  {
+		"url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
+		"valueReference": {
+		  "reference": "appointment-purpose/202",
+		  "display": "Glycolic Peel"
+		}
+	  },
+	  {
+		"url": "https://select.nextech-api.com/api/structuredefinition/appointment-schedule",
+		"valueString": "hold"
+	  }
+	],		
+	"status": "proposed",		
+	"start": "2017-04-12T08:10:00-04:00",
+	"end": "2017-04-12T08:40:00-04:00",		
+	"comment": "test note",
+	"participant": [
+	  {
+		"actor": {
+		  "reference": "location/1",
+		  "display": "Nextech Dermatology"
+		}
+	  },
+	  {
+		"actor": {
+		  "reference": "practitioner/9323",
+		  "display": "Walters, Sherri"
+		}
+	  }
+	],
+	"contained": [
+		{
+			"resourceType": "Patient",        		
+			 "name": [
+			 {
+			  "text": "Jane L Smith",
+			  "family": "Smith",
+			  "given": [
+				"Jane",
+				"L"
+			   ]
+			 }
+			 ],
+			 "address": [
+			 {
+			   "use": "home",				      
+			   "postalCode": "77014"
+			 }
+			 ],
+			 "telecom": [
+			 {
+			   "system": "email",
+			   "value": "jsmith@email.com"
+			 },
+			 {
+			   "system": "phone",
+			   "use" : "home",
+			   "value": "346-555-3682"
+			 }
+			 ],
+			   "birthDate": "1968-02-04",
+		}
+   ]
+   
+}
+</pre>
+
+#### Example: Create an appointment for a new prospect using the office's preference for booking or holding
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/Appointment/
