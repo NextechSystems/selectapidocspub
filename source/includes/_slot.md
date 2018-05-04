@@ -16,7 +16,7 @@ The slot resource contains information about available appointment slots.
 | end | The date and time the slot ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | 12.9|
 | appointment-type extension | The Nextech appointment type of the slot | custom extension | 12.9 |
 | appointment-purpose extension | The Nextech appointment purpose of the slot | custom extension | 12.9 |
-| contained section | Contains the Location and Practitioner resources associated to the slow | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | 12.9.10 |
+| contained section | Contains the Location and Practitioner resources associated to the slot | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | 12.9.10 |
 
 
 
