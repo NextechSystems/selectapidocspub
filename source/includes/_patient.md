@@ -17,6 +17,15 @@ The patient resource contains information about the demographics of a patient.
 | birthDate | The date of birth of the patient | [date](https://www.hl7.org/fhir/datatypes.html#date) | _12.6_ |
 | address | Addresses associated with the patient | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.6_ |
 | communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| maritalStatus | The marital status of the patient | [Codeable Concept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9.20_ | 
+| contact | The emergency contact for the patient | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.9.20_ |
+| generalPractitioner | The practitioner at this office who is responsible for the patient | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
+| patient-note | The text of the General 1 note for the patient, contained in the extension | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9.20_ |
+| referral-source | The primary referral source for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
+| referring-physician | The referring physician for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
+| referring-patient | The unique identifier for the referring patient for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
+| primary-care-physician | The primary care physician for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
+| patient-location | The default location for patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
 
 ### Example
 <pre class="center-column">
@@ -46,8 +55,47 @@ The patient resource contains information about the demographics of a patient.
           }
         ],
         "text": "Not Hispanic or Latino"
-      }
-    }
+      },
+	},
+	{
+	  "url": "https://select.nextech-api.com/api/structuredefinition/patient-note",
+      "valueString": "patient note"
+    },
+	{
+	  "url": "https://select.nextech-api.com/api/structuredefinition/referral-source",
+	  "valueReference": {
+		  "reference": "referral-source/12",
+		  "display": "Yellow Pages"
+	  }
+	},
+	{
+	  "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
+	  "valueReference": {
+		  "reference": "referring-physician/77",
+		  "display": "Dole, Robert"
+	  }
+	},
+	{
+	  "url": "https://select.nextech-api.com/api/structuredefinition/primary-care-physician",
+	  "valueReference": {
+		  "reference": "primary-care-physician/79",
+		  "display": "Trespat, Jean"
+	  }
+	},
+	{
+	  "url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
+	  "valueReference": {
+		  "reference": "patient/14a45b72-a9ee-4b97-8b31-b8e33eb1a9ca",
+		  "display": "Smith, Henry"
+	  }
+	},
+	{
+	  "url": "https://select.nextech-api.com/api/structuredefinition/patient-location",
+	  "valueReference": {
+		  "reference": "location/1",
+		  "display": "NexTech Dermatology"
+	  }
+	}    
   ],
   "identifier": [
     {
@@ -76,7 +124,13 @@ The patient resource contains information about the demographics of a patient.
     },
     {
       "system": "phone",
-      "value": "346-555-3682"
+      "value": "346-555-3682",
+	  "use": "home"
+    },
+	{
+      "system": "phone",
+      "value": "346-555-3932",
+	  "use": "mobile"
     }
   ],
   "gender": "female",
@@ -91,9 +145,57 @@ The patient resource contains information about the demographics of a patient.
       ],
       "city": "Houston",
       "state": "TX",
-      "postalCode": "77014"
+      "postalCode": "77014",
+	  "country" : "USA"
     }
   ],
+  "maritalStatus": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/ValueSet/marital-status",
+                "code": "M"
+            }
+        ],
+        "text": "Married"
+  },
+  "contact": [
+  {
+	  "extension": [
+		  {
+			"url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+			"valueString": "Mother"
+		  }
+	  ],
+	  "relationship": [
+		  {
+			"coding": [
+				{
+					"system": "http://hl7.org/fhir/v2/0131",
+					"code": "C"
+				}
+			]
+		  }
+		],
+	  "name": {
+		  "text": "Brown, Sharon",
+		  "family": "Brown",
+		  "given": [
+			  "Sharon"
+			]
+	  },
+	  "telecom": [
+		  {
+			"system": "phone",
+			"value": "(999)888-9999",
+			"use": "home"
+		  },
+		  {
+			"system": "phone",
+			"value": "(111)222-3333",
+			"use": "work"
+		  }
+	  ]
+  },
   "communication": [
     {
       "language": {
@@ -106,6 +208,12 @@ The patient resource contains information about the demographics of a patient.
         "text": "English"
       },
       "preferred": true
+    }
+  ],
+  "generalPractitioner": [
+    {
+      "reference": "practitioner/93",
+      "display": "Jones, Robert"
     }
   ]
 }
@@ -182,6 +290,250 @@ _At least one of query parameters is required to perform a search._
 GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthdate=eq1972-04-21
 </pre>
 &nbsp;
+
+### *Create Patient*
+Create a patient.
+
+#### HTTP Request 
+`POST /Patient/` 
+
+
+#### Parameters
+| Name | Description | Type | Required | Initial Version |
+| ---- | ----------- | ---- | -------- | --------------- |
+| name | Names of the patient, only one HumanName element is supported | First and last name are required | _12.9.20_  |
+| telecom | Contact details for the patient, one each of home, work, mobile, email address is supported | One of home, work, or mobile phone are required as well as an email address | _12.9.20_  |
+| gender | The gender of the patient | No | _12.9.20_  |
+| birthDate | The date of birth of the patient | Yes | _12.9.20_  |
+| address | Address associated with the patient, only one address is currently supported.  For country, an ISO-3166 2 or 3 digit code is supported | Postal Code is required | _12.6_ |
+| communication | A list of Languages which may be used to communicate with the patient about his or her health | No | _12.9.20_  |
+| maritalStatus | The marital status of the patient, a code of 'M' (married) maps to Married status in Nextech, 'U' (unmarried) and 'S' (never married) map to Single in Nextech, all others map to Other in Nextech | No | _12.9.20_ | 
+| contact | The emergency contact for the patient, only one contact is supported and only a relationship code of C is supported | No | _12.9.20_ |
+| generalPractitioner | The practitioner at this office who is responsible for the patient, only one generalPractitioner is currently supported | No | _12.9.20_ |
+| race | The race of the patient | No | _12.9.20_  |
+| ethnicity | The ethnicity of the patient | No | _12.9.20_ |
+| patient-note | The text of the General 1 note for the patient | No | _12.9.20_ |
+| referral-source | The primary referral source for the patient | No | _12.9.20_ |
+| referring-physician | The referring physician for the patient | No | _12.9.20_ |
+| referring-patient | The unique identifier for the referring patient for the patient | No | _12.9.20_ |
+| primary-care-physician | The primary care physician for the patient | No | _12.9.20_ |
+| patient-location | The default location for patient, must be an active, managed location of General type. | No | _12.9.20_ |
+
+Whether the patient is created as a patient, or a prospect is controlled by the Default Status preference in Nextech found under Tools->Preferences->Patients Module->New Patients->Default Status Preference.
+
+Before creating a patient, the system will check the required fields (first, last, email address, birthdate, zip code, and one of home, work, or mobile phone numbers, to see if they match existing patients.  If a match is found, the patient will not be created and a 409 Conflict with a message indicating the patient already exists.
+
+#### Example: Create a new patient with minimum information
+<pre class="center-column">
+{
+  "resourceType": "Patient",	
+	"name": [
+		{			
+			"family": "Brimley",
+			"given": [
+				"Henry"				
+			]			
+		}
+	],
+	"telecom": [
+		{
+			"system": "phone",
+			"value": "(518)929-8978",
+			"use": "home"
+		},		
+		{
+			"system": "email",
+			"value": "test@test.com"
+		}
+	],	 
+	"birthDate": "1970-09-28",
+	"address": [
+		{	"use": "home",		
+			"postalCode": "20787"		
+		}
+	]	
+}
+</pre>
+&nbsp;  
+ 
+#### Example: Create a new patient with all currently supported options
+
+<pre class="center-column">
+{
+  "resourceType": "Patient",	
+	"extension": [
+		{
+			"url": "http://hl7.org/fhir/v3/Race",
+			"valueCodeableConcept": {
+				"coding": [
+					{
+						"system": "http://hl7.org/fhir/v3/Race",
+						"code": "2106-3"
+					}
+				],
+				"text": "Caucasian"
+			}
+		},
+		{
+			"url": "http://hl7.org/fhir/v3/Ethnicity",
+			"valueCodeableConcept": {
+				"coding": [
+					{
+						"system": "http://hl7.org/fhir/v3/Ethnicity",
+						"code": "2186-5"
+					}
+				],
+				"text": "Not Hispanic or Latino"
+			}
+		},
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/referral-source",
+			"valueReference": {
+				"reference": "referral-source/23",
+				"display": "Yellow Pages"
+			}
+		},
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
+			"valueReference": {
+				"reference": "referring-physician/77",				
+			}
+		},
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/primary-care-physician",
+			"valueReference": {
+				"reference": "primary-care-physician/79"
+			}
+		},
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
+			"valueReference": {
+				"reference": "referring-patient/14B95B72-A9EE-5B97-8B31-B8E33EB1A9BA"
+			}
+		},
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/patient-location",
+			"valueReference": {
+				"reference": "location/1"
+			}
+		},
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/patient-note",
+			"valueString": "note text"
+		}
+	],	
+	"name": [
+		{
+			"text": "Henry Brimley",
+			"family": "Brimley",
+			"given": [
+				"Henry",
+				"A"
+			]			
+		}
+	],
+	"telecom": [
+		{
+			"system": "phone",
+			"value": "(518)929-8978",
+			"use": "home"
+		},
+		{
+			"system": "phone",
+			"value": "(335)397-0319",
+			"use": "mobile"
+		},
+		{
+			"system": "email",
+			"value": "test@test.com"
+		}
+	],
+	"gender": "male",
+	"maritalstatus": {
+				"coding": [
+					{
+						"system": "http://hl7.org/fhir/ValueSet/marital-status",
+						"code": "M"
+					}
+				],
+				"text": "Married"
+			},
+	"generalPractitioner" : {
+		"reference": "practitioner/9423"
+	}, 
+	"birthDate": "1970-09-28",
+	"address": [
+		{
+			"use": "home",
+			"type": "both",
+			"line": [
+				"9801 Jetson Ave",
+				"Apt A"
+			],
+			"city": "Hyattsville",
+			"state": "MD",
+			"postalCode": "20787",
+			"country":"US"
+		}
+	],
+	"communication": [
+		{
+			"language": {
+				"coding": [
+					{
+						"system": "BCP-47",
+						"code": "en"
+					}
+				],
+				"text": "English"
+			},
+			"preferred": true
+		}
+	],
+	"contact": {
+		"relationship": [
+		{
+		  "coding": [
+			{
+			  "system": "http://hl7.org/fhir/patient-contact-relationship",
+			  "code": "C"
+			}
+		  ]
+		}
+	  ],
+		"name": [
+			{
+			"text": "Sharon Brimley",
+			"family": "Brimley",
+			"given": [
+				"Sharon"
+			],
+			}
+		 ],
+		 "telecom": [
+			{
+				"system": "phone",
+				"value": "(999)888-9999",
+				"use": "home"
+			},
+			{
+				"system": "phone",
+				"value": "(111)222-3333",
+				"use": "work"
+			},
+		],
+		"extension":
+		[
+			{
+			"url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+			"valueString": "Wife"
+			}
+		]
+		 
+	}
+}
+</pre>
+&nbsp; 
 
 ## Allergy Intolerance
 
