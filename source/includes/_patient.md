@@ -124,12 +124,12 @@ The patient resource contains information about the demographics of a patient.
     },
     {
       "system": "phone",
-      "value": "346-555-3682"
+      "value": "346-555-3682",
 	  "use": "home"
     },
 	{
       "system": "phone",
-      "value": "346-555-3932"
+      "value": "346-555-3932",
 	  "use": "mobile"
     }
   ],
@@ -145,7 +145,7 @@ The patient resource contains information about the demographics of a patient.
       ],
       "city": "Houston",
       "state": "TX",
-      "postalCode": "77014"
+      "postalCode": "77014",
 	  "country" : "USA"
     }
   ],
