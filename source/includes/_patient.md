@@ -305,7 +305,7 @@ Create a patient.
 | telecom | Contact details for the patient, one each of home, work, mobile, email address is supported | One of home, work, or mobile phone are required as well as an email address | _12.9.20_  |
 | gender | The gender of the patient | No | _12.9.20_  |
 | birthDate | The date of birth of the patient | Yes | _12.9.20_  |
-| address | Address associated with the patient, only one address is currently supported.  For country, an ISO-3166 2 or 3 digit code is supported | Postal Code is required | _12.6_ |
+| address | Address associated with the patient, only one address is currently supported.  For country, only an ISO-3166 3 character code is supported | Postal Code is required | _12.6_ |
 | communication | A list of Languages which may be used to communicate with the patient about his or her health | No | _12.9.20_  |
 | maritalStatus | The marital status of the patient, a code of 'M' (married) maps to Married status in Nextech, 'U' (unmarried) and 'S' (never married) map to Single in Nextech, all others map to Other in Nextech | No | _12.9.20_ | 
 | contact | The emergency contact for the patient, only one contact is supported and only a relationship code of C is supported | No | _12.9.20_ |
@@ -473,7 +473,7 @@ Before creating a patient, the system will check the required fields (first, las
 			"city": "Hyattsville",
 			"state": "MD",
 			"postalCode": "20787",
-			"country":"US"
+			"country":"USA"
 		}
 	],
 	"communication": [
