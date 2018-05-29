@@ -11,14 +11,14 @@ The patient resource contains information about the demographics of a patient.
 | identifier | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
 | race | The race of the patient | [Race](https://www.hl7.org/fhir/v3/Race/cs.html) | _12.6_ |
 | ethnicity | The ethnicity of the patient | [Ethnicity](https://www.hl7.org/fhir/v3/Ethnicity/cs.html) | _12.6_ |
-| name | Names of the patient | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) | _12.6_ |
-| telecom | Contact details for the patient | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.6_ |
+| name | Names of the patient, additional information including prefix and nickname added in version 12.9.20 | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) | _12.6_ |
+| telecom | Contact details for the patient, fax, preferred contact, and other phone added 12.9.20 | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.6_ |
 | gender | The gender of the patient | [AdministrativeGender](https://www.hl7.org/fhir/valueset-administrative-gender.html) | _12.6_ |
 | birthDate | The date of birth of the patient | [date](https://www.hl7.org/fhir/datatypes.html#date) | _12.6_ |
 | address | Addresses associated with the patient | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.6_ |
 | communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
 | maritalStatus | The marital status of the patient | [Codeable Concept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9.20_ | 
-| contact | The emergency contact for the patient | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.9.20_ |
+| contact | The emergency contact and employer for the patient | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.9.20_ |
 | generalPractitioner | The practitioner at this office who is responsible for the patient | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
 | patient-note | The text of the General 1 note for the patient, contained in the extension | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9.20_ |
 | referral-source | The primary referral source for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
@@ -26,130 +26,176 @@ The patient resource contains information about the demographics of a patient.
 | referring-patient | The unique identifier for the referring patient for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
 | primary-care-physician | The primary care physician for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
 | patient-location | The default location for patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
+| affiliate-physician | The affiliate physician for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
+| affiliate-physician-type | The affiliate physician type for the patient, contained in the extension | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9.20_ |
+| patient-employment-status | The employment status for the patient, contained in the extension | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9.20_ |
+
 
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Patient",
-  "id": "ad2085b5-b974-401d-bfcb-3b865109fd35",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/v3/Race",
-      "valueCodeableConcept": {
-        "coding": [
-          {
-            "system": "http://hl7.org/fhir/v3/Race",
-            "code": "2106-3"
-          }
-        ],
-        "text": "Caucasian"
-      }
-    },
-    {
-      "url": "http://hl7.org/fhir/v3/Ethnicity",
-      "valueCodeableConcept": {
-        "coding": [
-          {
-            "system": "http://hl7.org/fhir/v3/Ethnicity",
-            "code": "2186-5"
-          }
-        ],
-        "text": "Not Hispanic or Latino"
-      },
-	},
-	{
-	  "url": "https://select.nextech-api.com/api/structuredefinition/patient-note",
-      "valueString": "patient note"
-    },
-	{
-	  "url": "https://select.nextech-api.com/api/structuredefinition/referral-source",
-	  "valueReference": {
-		  "reference": "referral-source/12",
-		  "display": "Yellow Pages"
-	  }
-	},
-	{
-	  "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
-	  "valueReference": {
-		  "reference": "referring-physician/77",
-		  "display": "Dole, Robert"
-	  }
-	},
-	{
-	  "url": "https://select.nextech-api.com/api/structuredefinition/primary-care-physician",
-	  "valueReference": {
-		  "reference": "primary-care-physician/79",
-		  "display": "Trespat, Jean"
-	  }
-	},
-	{
-	  "url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
-	  "valueReference": {
-		  "reference": "patient/14a45b72-a9ee-4b97-8b31-b8e33eb1a9ca",
-		  "display": "Smith, Henry"
-	  }
-	},
-	{
-	  "url": "https://select.nextech-api.com/api/structuredefinition/patient-location",
-	  "valueReference": {
-		  "reference": "location/1",
-		  "display": "NexTech Dermatology"
-	  }
-	}    
-  ],
-  "identifier": [
-    {
-      "use": "official",
-      "value": "ad2085b5-b974-401d-bfcb-3b865109fd35"
-    },
-    {
-      "use": "usual",
-      "value": "4471"
-    }
-  ],
-  "name": [
-    {
-      "text": "Jane L Smith",
-      "family": "Smith",
-      "given": [
-        "Jane",
-        "L"
-      ]
-    }
-  ],
-  "telecom": [
-    {
-      "system": "email",
-      "value": "jsmith@email.com"
-    },
-    {
-      "system": "phone",
-      "value": "346-555-3682",
-	  "use": "home"
-    },
-	{
-      "system": "phone",
-      "value": "346-555-3932",
-	  "use": "mobile"
-    }
-  ],
-  "gender": "female",
-  "birthDate": "1968-02-04",
-  "address": [
-    {
-      "use": "home",
-      "type": "both",
-      "line": [
-        "3485 Forest Lane",
-        "Apt 324"
-      ],
-      "city": "Houston",
-      "state": "TX",
-      "postalCode": "77014",
-	  "country" : "USA"
-    }
-  ],
-  "maritalStatus": {
+    "resourceType": "Patient",
+    "id": "45bb641e-44c5-49a8-a36f-9dd7a0a50828",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/v3/Race",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Race",
+                        "code": "2106-3"
+                    }
+                ],
+                "text": "Caucasian"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/v3/Ethnicity",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Ethnicity",
+                        "code": "2186-5"
+                    }
+                ],
+                "text": "Not Hispanic or Latino"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referral-source",
+            "valueReference": {
+                "reference": "referral-source/9238",
+                "display": "Website"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
+            "valueReference": {
+                "reference": "referring-physician/23",
+                "display": "Dole, Robert"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "valueReference": {
+                "reference": "primary-care-physician/43",
+                "display": "Hogan, Terry "
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
+            "valueReference": {
+                "reference": "patient/f5a46423-0071-4437-aa34-231419fe970f",
+                "display": "Brown, Phyllis"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/affiliate-physician",
+            "valueReference": {
+                "reference": "affiliate-physician/6845",
+                "display": "Allen, Joan"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/affiliate-physician-type",
+            "valueString": "postop"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "valueString": "full time"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-note",
+            "valueString": "note text"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-location",
+            "valueReference": {
+                "reference": "location/1",
+                "display": "NexTech Dermatology"
+            }
+        }
+    ],
+    "identifier": [
+        {
+            "use": "official",
+            "value": "45bb641e-44c5-49a8-a36f-9dd7a0a50828"
+        },
+        {
+            "use": "usual",
+            "value": "112711"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "text": "Mr. Gregory Brinkley Jr.",
+            "family": "Brinkley",
+            "given": [
+                "Gregory",
+                ""
+            ],
+            "prefix": [
+                "Mr."
+            ],
+            "suffix": [
+                "Jr."
+            ]
+        },
+        {
+            "use": "nickname",
+            "text": "Greg",
+            "given": [
+                "Greg"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "email",
+            "value": "abcde@test.com"
+        },
+        {
+            "system": "phone",
+            "value": "(411)941-0786",
+            "use": "mobile",
+            "rank": 1
+        },
+        {
+            "system": "other",
+            "value": "(555)234-1233"
+        },
+        {
+            "system": "fax",
+            "value": "(111)332-1232"
+        },
+        {
+            "extension": [
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/method-privacy",
+                    "valueBoolean": true
+                }
+            ],
+            "system": "sms"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "1970-09-28",
+    "address": [
+        {
+            "use": "home",
+            "type": "both",
+            "line": [
+                "9801 Jetson Ave",
+                "Apt A"
+            ],
+            "city": "Hyattsville",
+            "state": "MD",
+            "postalCode": "20787",
+            "country": "USA"
+        }
+    ],
+    "maritalStatus": {
         "coding": [
             {
                 "system": "http://hl7.org/fhir/ValueSet/marital-status",
@@ -157,65 +203,114 @@ The patient resource contains information about the demographics of a patient.
             }
         ],
         "text": "Married"
-  },
-  "contact": [
-  {
-	  "extension": [
-		  {
-			"url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
-			"valueString": "Mother"
-		  }
-	  ],
-	  "relationship": [
-		  {
-			"coding": [
-				{
-					"system": "http://hl7.org/fhir/v2/0131",
-					"code": "C"
-				}
-			]
-		  }
-		],
-	  "name": {
-		  "text": "Brown, Sharon",
-		  "family": "Brown",
-		  "given": [
-			  "Sharon"
-			]
-	  },
-	  "telecom": [
-		  {
-			"system": "phone",
-			"value": "(999)888-9999",
-			"use": "home"
-		  },
-		  {
-			"system": "phone",
-			"value": "(111)222-3333",
-			"use": "work"
-		  }
-	  ]
-  },
-  "communication": [
-    {
-      "language": {
-        "coding": [
-          {
-            "system": "BCP-47",
-            "code": "en"
-          }
-        ],
-        "text": "English"
-      },
-      "preferred": true
-    }
-  ],
-  "generalPractitioner": [
-    {
-      "reference": "practitioner/93",
-      "display": "Jones, Robert"
-    }
-  ]
+    },
+    "contact": [
+        {
+            "extension": [
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+                    "valueString": "Wife"
+                }
+            ],
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v2/0131",
+                            "code": "C"
+                        }
+                    ]
+                }
+            ],
+            "name": {
+                "text": "Jane Smith",
+                "family": "Smith",
+                "given": [
+                    "Jane"
+                ]
+            },
+            "telecom": [
+                {
+                    "system": "phone",
+                    "value": "(999)888-9999",
+                    "use": "home"
+                },
+                {
+                    "system": "phone",
+                    "value": "(111)222-3333",
+                    "use": "work"
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/patient-occupation",
+                    "valueString": "Principal"
+                },
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/patient-company",
+                    "valueString": "Elementary School"
+                },
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/patient-occupation-code",
+                    "valueString": "0230"
+                },
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/patient-industry-code",
+                    "valueString": "7890"
+                }
+            ],
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v2/0131",
+                            "code": "E"
+                        }
+                    ]
+                }
+            ],
+            "name": {
+                "text": "Grace G Johnson",
+                "family": "Johnson",
+                "given": [
+                    "Grace",
+                    "G"
+                ]
+            },
+            "address": {
+                "use": "work",
+                "type": "both",
+                "line": [
+                    "9821 James Ave"
+                ],
+                "city": "Schenectady",
+                "state": "NY",
+                "postalCode": "12345"
+            }
+        }
+    ],
+    "communication": [
+        {
+            "language": {
+                "coding": [
+                    {
+                        "system": "BCP-47",
+                        "code": "en"
+                    }
+                ],
+                "text": "English"
+            },
+            "preferred": true
+        }
+    ],
+    "generalPractitioner": [
+        {
+            "reference": "practitioner/9219",
+            "display": "Jones, Robert"
+        }
+    ]
 }
 </pre>
 &nbsp;
@@ -299,16 +394,17 @@ Create a patient.
 
 
 #### Parameters
-| Name | Description | Type | Required | Initial Version |
-| ---- | ----------- | ---- | -------- | --------------- |
-| name | Names of the patient, only one HumanName element is supported | First and last name are required | _12.9.20_  |
-| telecom | Contact details for the patient, one each of home, work, mobile, email address is supported | One of home, work, or mobile phone are required as well as an email address | _12.9.20_  |
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+|identifier| Social Security number of the patient. Note: Social Security Number is not returned in the response. | No | _12.9.20_ |
+| name | Names of the patient, use element must be included.  Only one use of "official" is supported and one use of "nickname" is supported | First and last name are required | _12.9.20_  |
+| telecom | Contact details for the patient, one each of home, work, mobile, other, fax, email address is supported. Preferred Contact is designated by setting a rank of 1 on a contact point.  Privacy fields are designated by having an extension of method-privacy set to true.  You may set Text messaging privacy and preferred contact by using SMS as a system without a value. Note: when a contact detail is set to privacy, it is not returned in the response. | One of home, work, or mobile phone are required as well as an email address | _12.9.20_  |
 | gender | The gender of the patient | No | _12.9.20_  |
 | birthDate | The date of birth of the patient | Yes | _12.9.20_  |
 | address | Address associated with the patient, only one address is currently supported.  For country, only an ISO-3166 3 character code is supported | Postal Code is required | _12.6_ |
 | communication | A list of Languages which may be used to communicate with the patient about his or her health | No | _12.9.20_  |
 | maritalStatus | The marital status of the patient, a code of 'M' (married) maps to Married status in Nextech, 'U' (unmarried) and 'S' (never married) map to Single in Nextech, all others map to Other in Nextech | No | _12.9.20_ | 
-| contact | The emergency contact for the patient, only one contact is supported and only a relationship code of C is supported | No | _12.9.20_ |
+| contact | The emergency contact and/or employer for the patient, only a relationship code of C for emergency contact or E for employer is supported | No | _12.9.20_ |
 | generalPractitioner | The practitioner at this office who is responsible for the patient, only one generalPractitioner is currently supported | No | _12.9.20_ |
 | race | The race of the patient | No | _12.9.20_  |
 | ethnicity | The ethnicity of the patient | No | _12.9.20_ |
@@ -317,7 +413,11 @@ Create a patient.
 | referring-physician | The referring physician for the patient | No | _12.9.20_ |
 | referring-patient | The unique identifier for the referring patient for the patient | No | _12.9.20_ |
 | primary-care-physician | The primary care physician for the patient | No | _12.9.20_ |
+| affiliate-physician | The affiliate physician for the patient | No | _12.9.20_ |
+| affiliate-physician-type | The affiliate physician type for the patient. Must be a value of: "preop", "postop", "preandpostop" | No | _12.9.20_ |
 | patient-location | The default location for patient, must be an active, managed location of General type. | No | _12.9.20_ |
+| patient-employment-status | The employment status for patient. Must be a value of: "full time","part time", "full time student", "part time student", "retired", "other" | No | _12.9.20_ |
+
 
 Whether the patient is created as a patient, or a prospect is controlled by the Default Status preference in Nextech found under Tools->Preferences->Patients Module->New Patients->Default Status Preference.
 
@@ -360,177 +460,298 @@ Before creating a patient, the system will check the required fields (first, las
 
 <pre class="center-column">
 {
-  "resourceType": "Patient",	
-	"extension": [
+  "resourceType": "Patient",    
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/v3/Race",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Race",
+                        "code": "2106-3"
+                    }
+                ]
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/v3/Ethnicity",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Ethnicity",
+                        "code": "2186-5"
+                    }
+                ]                
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referral-source",
+            "valueReference": {
+                "reference": "referral-source/9238"                
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
+            "valueReference": {
+                "reference": "referring-physician/23",              
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "valueReference": {
+                "reference": "primary-care-physician/123"
+            }
+        },
+        
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
+            "valueReference": {
+                "reference": "referring-patient/F4B46423-0071-4127-BD44-231419FE980F"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-location",
+            "valueReference": {
+                "reference": "location/1"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-note",
+            "valueString": "note text"
+        },
 		{
-			"url": "http://hl7.org/fhir/v3/Race",
-			"valueCodeableConcept": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/v3/Race",
-						"code": "2106-3"
-					}
-				],
-				"text": "Caucasian"
+            "url": "https://select.nextech-api.com/api/structuredefinition/affiliate-physician",
+            "valueReference": {
+                "reference": "affiliate-physician/62345"
+            }
+        },
+		{
+            "url": "https://select.nextech-api.com/api/structuredefinition/affiliate-physician-type",
+            "valueString": "postop"
+        },
+		{
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "valueString": "full time student"
+        },
+    ],  
+    "name": [
+        {            
+            "family": "Brinkley",
+            "use":"official",
+            "given": [
+                "Gregory"
+            ],
+            "prefix" : [
+            	"Mr."
+            ],
+            "suffix" : [
+            	"Jr."
+            ]
+        	
+        },
+		{           
+            "use" : "nickname",
+            "given": [
+                "Greg"
+            ]           
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(311)211-8888",
+            "use": "home",
+            "extension": [
+			{
+				"url": "https://select.nextech-api.com/api/structuredefinition/method-privacy",
+				"valueBoolean": "true"
 			}
-		},
+			]
+        },
+        {
+            "system": "phone",
+            "value": "(411)941-0786",
+            "use": "mobile",
+			"rank": "1"
+        },
 		{
-			"url": "http://hl7.org/fhir/v3/Ethnicity",
-			"valueCodeableConcept": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/v3/Ethnicity",
-						"code": "2186-5"
-					}
-				],
-				"text": "Not Hispanic or Latino"
-			}
-		},
+            "system": "phone",
+            "value": "(111)332-1232",
+			"use" : "work"
+        },
+        {
+            "system": "email",
+            "value": "abcde@test.com"
+        },
 		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/referral-source",
-			"valueReference": {
-				"reference": "referral-source/23",
-				"display": "Yellow Pages"
-			}
-		},
+            "system": "other",
+            "value": "(555)234-1233"            
+        },
 		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
-			"valueReference": {
-				"reference": "referring-physician/77",				
-			}
-		},
+            "system": "fax",
+            "value": "(111)332-1232"           
+        },
 		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/primary-care-physician",
-			"valueReference": {
-				"reference": "primary-care-physician/79"
-			}
-		},
-		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
-			"valueReference": {
-				"reference": "referring-patient/14B95B72-A9EE-5B97-8B31-B8E33EB1A9BA"
-			}
-		},
-		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/patient-location",
-			"valueReference": {
-				"reference": "location/1"
-			}
-		},
-		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/patient-note",
-			"valueString": "note text"
-		}
-	],	
-	"name": [
-		{
-			"text": "Henry Brimley",
-			"family": "Brimley",
-			"given": [
-				"Henry",
-				"A"
+            "system": "sms",
+			"extension": [
+			{
+				"url": "https://select.nextech-api.com/api/structuredefinition/method-privacy",
+				"valueBoolean": "true"
+			}			
 			]			
-		}
-	],
-	"telecom": [
+        }
+    ],
+    "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0203",
+                  "code": "SS"
+                }
+              ]
+            },
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "123456789"
+          }
+        ],
+    "gender": "male",
+    "maritalstatus": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/ValueSet/marital-status",
+                        "code": "M"
+                    }
+                ],
+                "text": "Married"
+            },
+    "generalPractitioner" : {
+        "reference": "practitioner/9219"
+    }, 
+    "birthDate": "1970-09-28",
+    "address": [
+        {
+            "use": "home",
+            "type": "both",
+            "line": [
+                "9801 Jetson Ave",
+                "Apt A"
+            ],
+            "city": "Hyattsville",
+            "state": "MD",
+            "postalCode": "20787",
+            "country":"USA"
+        }
+    ],
+    "communication": [
+        {
+            "language": {
+                "coding": [
+                    {
+                        "system": "BCP-47",
+                        "code": "en"
+                    }
+                ]
+            },
+            "preferred": true
+        }
+    ],
+    "contact": [
 		{
-			"system": "phone",
-			"value": "(518)929-8978",
-			"use": "home"
-		},
-		{
-			"system": "phone",
-			"value": "(335)397-0319",
-			"use": "mobile"
-		},
-		{
-			"system": "email",
-			"value": "test@test.com"
-		}
-	],
-	"gender": "male",
-	"maritalstatus": {
-				"coding": [
-					{
-						"system": "http://hl7.org/fhir/ValueSet/marital-status",
-						"code": "M"
-					}
-				],
-				"text": "Married"
-			},
-	"generalPractitioner" : {
-		"reference": "practitioner/9423"
-	}, 
-	"birthDate": "1970-09-28",
-	"address": [
-		{
-			"use": "home",
-			"type": "both",
-			"line": [
-				"9801 Jetson Ave",
-				"Apt A"
-			],
-			"city": "Hyattsville",
-			"state": "MD",
-			"postalCode": "20787",
-			"country":"USA"
-		}
-	],
-	"communication": [
-		{
-			"language": {
-				"coding": [
-					{
-						"system": "BCP-47",
-						"code": "en"
-					}
-				],
-				"text": "English"
-			},
-			"preferred": true
-		}
-	],
-	"contact": {
-		"relationship": [
-		{
-		  "coding": [
+        "relationship": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/patient-contact-relationship",
+              "code": "C"
+            }
+          ]
+        }
+      ],
+        "name": [
+            {
+            "text": "Sally Smith",
+            "family": "Smith",
+            "given": [
+                "Sally"
+            ],
+            }
+         ],
+         "telecom": [
+            {
+                "system": "phone",
+                "value": "(999)888-9999",
+                "use": "home"
+            },
+            {
+                "system": "phone",
+                "value": "(111)222-3333",
+                "use": "work"
+            },
+        ],
+        "extension":
+        [
+            {
+            "url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+            "valueString": "Wife"
+            }
+        ]
+         
+    },
+	{
+        "relationship": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/patient-contact-relationship",
+              "code": "E"
+            }
+          ]
+        }
+      ],
+        "name": [
+            {            
+            "family": "Jenkins",
+            "given": [
+                "George",
+				"G"
+            ],
+            }
+         ],
+		 "address": [
+          {
+            "use": "work",
+            "type": "both",
+            "line": [
+                "9821 James Ave"
+            ],
+            "city": "Schenectady",
+            "state": "NY",
+            "postalCode": "12345"
+		  }
+		],         
+        "extension":
+        [
+            {
+				"url": "https://select.nextech-api.com/api/structuredefinition/patient-occupation",
+				"valueString": "Teacher"
+            },
 			{
-			  "system": "http://hl7.org/fhir/patient-contact-relationship",
-			  "code": "C"
-			}
-		  ]
-		}
-	  ],
-		"name": [
+				"url": "https://select.nextech-api.com/api/structuredefinition/patient-company",
+				"valueString": "Williams High School"
+            },
 			{
-			"text": "Sharon Brimley",
-			"family": "Brimley",
-			"given": [
-				"Sharon"
-			],
-			}
-		 ],
-		 "telecom": [
+				"url": "https://select.nextech-api.com/api/structuredefinition/patient-occupation-code",
+				"valueString": "0230"
+            },
 			{
-				"system": "phone",
-				"value": "(999)888-9999",
-				"use": "home"
-			},
-			{
-				"system": "phone",
-				"value": "(111)222-3333",
-				"use": "work"
-			},
-		],
-		"extension":
-		[
-			{
-			"url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
-			"valueString": "Wife"
-			}
-		]
-		 
-	}
+				"url": "https://select.nextech-api.com/api/structuredefinition/patient-industry-code",
+				"valueString": "7890"
+            }
+        ]
+         
+    }
+	]
 }
 </pre>
 &nbsp; 
