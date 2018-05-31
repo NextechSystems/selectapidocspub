@@ -1100,7 +1100,8 @@ The DocumentReference resource is used to describe a document that is made avail
 | description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
 | content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _12.7_ |
 | content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
-| extension | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string)  | _12.8_ |
+| extension: note-category | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
+| extension: document-publish-portal | Contains whether the document is published to myPatientVisit | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _12.9.20_ |
 
 ### Example
 <pre class="center-column">
@@ -1127,6 +1128,10 @@ The DocumentReference resource is used to describe a document that is made avail
 		{
 			"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
 			"valueString": "Past Medical History"
+		},
+		{
+ 		    "url": "https://select.nextech-api.com/api/structuredefinition/document-publish-portal",
+		    "valueBoolean": true
 		}
     ],
     "content": [
@@ -1163,12 +1168,20 @@ Creates the document in the content.attachment for a patient and attaches it to 
 | content.attachment.contentType | The mimetype of the document. See Allowed Mimetypes below | Yes | _12.7_ |
 | content.attachment.data | The base64 data of the document | Yes | _12.7_ |
 | content.attachment.title | The title of the document, will be used as the filename| Yes | _12.7_ |
-| extension | Allows setting category of the document | No | _12.8_ |
+| extension: note-category | Allows setting category of the document | No | _12.8_ |
+| extension: document-publish-portal | Allows setting whether or not to publish the document to myPatientVisit. Note: Must be licensed for myPatientVisit and have permission to publish EMNs to MPV to work | No | _12.9.20_ |
 
-###Extension
-This is a custom extension to allow the setting of the category on the document.  This must match with an existing note category or is left blank.  There can only be one extension. 
+###Extension: note-category
+This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.
+
 Url: https://select.nextech-api.com/api/structuredefinition/note-category
 valueString: Name of Nextech note category
+
+###Extension: document-publish-portal
+This is a custom extension to allow publishing of a document to myPatientVisit. The client must be licensed for myPatientVisit and the caller must have permission to publish EMNs to MPV, otherwise the document will not be published.  There can be only one document-publish-portal extension.  If this extension is not included in the POST, the document is not published to myPatientVisit.
+
+Url: https://select.nextech-api.com/api/structuredefinition/document-publish-portal
+valueBoolean: true or false
 
 #### Example: Attach a new document for a patient
 <pre class="center-column">
@@ -1191,6 +1204,10 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 		{
 			"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
 			"valueString": "Past Medical History"
+		},
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/document-publish-portal",
+			"valueBoolean": "true"
 		}
   ],
   "content": [
