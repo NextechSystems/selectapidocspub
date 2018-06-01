@@ -1138,7 +1138,7 @@ The DocumentReference resource is used to describe a document that is made avail
         {
             "attachment": {				
                 "contentType": "application/pdf",
-                "title": "Document Title (6).pdf"
+                "title": "Document Title.pdf"
             }
         }
     ]
@@ -1171,13 +1171,13 @@ Creates the document in the content.attachment for a patient and attaches it to 
 | extension: note-category | Allows setting category of the document | No | _12.8_ |
 | extension: document-publish-portal | Allows setting whether or not to publish the document to myPatientVisit. Note: Must be licensed for myPatientVisit and have permission to publish EMNs to MPV to work | No | _12.9.20_ |
 
-###Extension: note-category
+### Extension: note-category
 This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.
 
 Url: https://select.nextech-api.com/api/structuredefinition/note-category
 valueString: Name of Nextech note category
 
-###Extension: document-publish-portal
+### Extension: document-publish-portal
 This is a custom extension to allow publishing of a document to myPatientVisit. The client must be licensed for myPatientVisit and the caller must have permission to publish EMNs to MPV, otherwise the document will not be published.  There can be only one document-publish-portal extension.  If this extension is not included in the POST, the document is not published to myPatientVisit.
 
 Url: https://select.nextech-api.com/api/structuredefinition/document-publish-portal
@@ -1213,9 +1213,9 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
   "content": [
     {
       "attachment": {
-        "contentType": "application/pdf",
-		"title": "Document Title",
-        "data": "<Snipped for Brevity>"
+        "contentType": "text/plain",
+		"title": "Sample Document",
+        "data": "c2FtcGxlIGRvY3VtZW50"
       }
     }
   ]
