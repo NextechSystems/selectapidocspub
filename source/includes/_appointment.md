@@ -99,13 +99,13 @@ The appointment resource contains information about a planned meeting between a 
           },
           {
             "actor": {
-              "reference": "#5",
+              "reference": "Location/5",
               "display": "South Dermatology"
             }
           },
           {
             "actor": {
-              "reference": "#2",
+              "reference": "Practitioner/2",
               "display": "Davison, Darren"
             }
           }
