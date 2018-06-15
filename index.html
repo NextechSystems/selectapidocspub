@@ -357,6 +357,14 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#claim" class="toc-h1 toc-link" data-title="Claim">Claim</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#claim-2" class="toc-h2 toc-link" data-title="Claim">Claim</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='http://hl7.org/fhir/'>FHIR Documentation</a></li>
@@ -807,13 +815,13 @@ Search results are limited to 50 matches per page.
 </tr>
 <tr>
 <td>name</td>
-<td>Names of the patient</td>
+<td>Names of the patient, additional information including prefix and nickname added in version 12.9.20</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
 <td><em>12.6</em></td>
 </tr>
 <tr>
 <td>telecom</td>
-<td>Contact details for the patient</td>
+<td>Contact details for the patient, fax, preferred contact, and other phone added 12.9.20</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#ContactPoint">ContactPoint</a></td>
 <td><em>12.6</em></td>
 </tr>
@@ -841,97 +849,359 @@ Search results are limited to 50 matches per page.
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
 <td><em>12.6</em></td>
 </tr>
+<tr>
+<td>maritalStatus</td>
+<td>The marital status of the patient</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">Codeable Concept</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>contact</td>
+<td>The emergency contact and employer for the patient</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>generalPractitioner</td>
+<td>The practitioner at this office who is responsible for the patient</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>patient-note</td>
+<td>The text of the General 1 note for the patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>referral-source</td>
+<td>The primary referral source for the patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>referring-physician</td>
+<td>The referring physician for the patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>referring-patient</td>
+<td>The unique identifier for the referring patient for the patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>primary-care-physician</td>
+<td>The primary care physician for the patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>patient-location</td>
+<td>The default location for patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>affiliate-physician</td>
+<td>The affiliate physician for the patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>affiliate-physician-type</td>
+<td>The affiliate physician type for the patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>patient-employment-status</td>
+<td>The employment status for the patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9.20</em></td>
+</tr>
 </tbody></table>
 <h3 id='example'>Example</h3>
 <pre class="center-column">
 {
-  "resourceType": "Patient",
-  "id": "ad2085b5-b974-401d-bfcb-3b865109fd35",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/v3/Race",
-      "valueCodeableConcept": {
+    "resourceType": "Patient",
+    "id": "45bb641e-44c5-49a8-a36f-9dd7a0a50828",
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/v3/Race",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Race",
+                        "code": "2106-3"
+                    }
+                ],
+                "text": "Caucasian"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/v3/Ethnicity",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Ethnicity",
+                        "code": "2186-5"
+                    }
+                ],
+                "text": "Not Hispanic or Latino"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referral-source",
+            "valueReference": {
+                "reference": "referral-source/9238",
+                "display": "Website"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
+            "valueReference": {
+                "reference": "referring-physician/23",
+                "display": "Dole, Robert"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "valueReference": {
+                "reference": "primary-care-physician/43",
+                "display": "Hogan, Terry "
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
+            "valueReference": {
+                "reference": "patient/f5a46423-0071-4437-aa34-231419fe970f",
+                "display": "Brown, Phyllis"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/affiliate-physician",
+            "valueReference": {
+                "reference": "affiliate-physician/6845",
+                "display": "Allen, Joan"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/affiliate-physician-type",
+            "valueString": "postop"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "valueString": "full time"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-note",
+            "valueString": "note text"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-location",
+            "valueReference": {
+                "reference": "location/1",
+                "display": "NexTech Dermatology"
+            }
+        }
+    ],
+    "identifier": [
+        {
+            "use": "official",
+            "value": "45bb641e-44c5-49a8-a36f-9dd7a0a50828"
+        },
+        {
+            "use": "usual",
+            "value": "112711"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "text": "Mr. Gregory Brinkley Jr.",
+            "family": "Brinkley",
+            "given": [
+                "Gregory",
+                ""
+            ],
+            "prefix": [
+                "Mr."
+            ],
+            "suffix": [
+                "Jr."
+            ]
+        },
+        {
+            "use": "nickname",
+            "text": "Greg",
+            "given": [
+                "Greg"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "email",
+            "value": "abcde@test.com"
+        },
+        {
+            "system": "phone",
+            "value": "(411)941-0786",
+            "use": "mobile",
+            "rank": 1
+        },
+        {
+            "system": "other",
+            "value": "(555)234-1233"
+        },
+        {
+            "system": "fax",
+            "value": "(111)332-1232"
+        },
+        {
+            "extension": [
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/method-privacy",
+                    "valueBoolean": true
+                }
+            ],
+            "system": "sms"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "1970-09-28",
+    "address": [
+        {
+            "use": "home",
+            "type": "both",
+            "line": [
+                "9801 Jetson Ave",
+                "Apt A"
+            ],
+            "city": "Hyattsville",
+            "state": "MD",
+            "postalCode": "20787",
+            "country": "USA"
+        }
+    ],
+    "maritalStatus": {
         "coding": [
-          {
-            "system": "http://hl7.org/fhir/v3/Race",
-            "code": "2106-3"
-          }
+            {
+                "system": "http://hl7.org/fhir/ValueSet/marital-status",
+                "code": "M"
+            }
         ],
-        "text": "Caucasian"
-      }
+        "text": "Married"
     },
-    {
-      "url": "http://hl7.org/fhir/v3/Ethnicity",
-      "valueCodeableConcept": {
-        "coding": [
-          {
-            "system": "http://hl7.org/fhir/v3/Ethnicity",
-            "code": "2186-5"
-          }
-        ],
-        "text": "Not Hispanic or Latino"
-      }
-    }
-  ],
-  "identifier": [
-    {
-      "use": "official",
-      "value": "ad2085b5-b974-401d-bfcb-3b865109fd35"
-    },
-    {
-      "use": "usual",
-      "value": "4471"
-    }
-  ],
-  "name": [
-    {
-      "text": "Jane L Smith",
-      "family": "Smith",
-      "given": [
-        "Jane",
-        "L"
-      ]
-    }
-  ],
-  "telecom": [
-    {
-      "system": "email",
-      "value": "jsmith@email.com"
-    },
-    {
-      "system": "phone",
-      "value": "346-555-3682"
-    }
-  ],
-  "gender": "female",
-  "birthDate": "1968-02-04",
-  "address": [
-    {
-      "use": "home",
-      "type": "both",
-      "line": [
-        "3485 Forest Lane",
-        "Apt 324"
-      ],
-      "city": "Houston",
-      "state": "TX",
-      "postalCode": "77014"
-    }
-  ],
-  "communication": [
-    {
-      "language": {
-        "coding": [
-          {
-            "system": "BCP-47",
-            "code": "en"
-          }
-        ],
-        "text": "English"
-      },
-      "preferred": true
-    }
-  ]
+    "contact": [
+        {
+            "extension": [
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+                    "valueString": "Wife"
+                }
+            ],
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v2/0131",
+                            "code": "C"
+                        }
+                    ]
+                }
+            ],
+            "name": {
+                "text": "Jane Smith",
+                "family": "Smith",
+                "given": [
+                    "Jane"
+                ]
+            },
+            "telecom": [
+                {
+                    "system": "phone",
+                    "value": "(999)888-9999",
+                    "use": "home"
+                },
+                {
+                    "system": "phone",
+                    "value": "(111)222-3333",
+                    "use": "work"
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/patient-occupation",
+                    "valueString": "Principal"
+                },
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/patient-company",
+                    "valueString": "Elementary School"
+                },
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/patient-occupation-code",
+                    "valueString": "0230"
+                },
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/patient-industry-code",
+                    "valueString": "7890"
+                }
+            ],
+            "relationship": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v2/0131",
+                            "code": "E"
+                        }
+                    ]
+                }
+            ],
+            "name": {
+                "text": "Grace G Johnson",
+                "family": "Johnson",
+                "given": [
+                    "Grace",
+                    "G"
+                ]
+            },
+            "address": {
+                "use": "work",
+                "type": "both",
+                "line": [
+                    "9821 James Ave"
+                ],
+                "city": "Schenectady",
+                "state": "NY",
+                "postalCode": "12345"
+            }
+        }
+    ],
+    "communication": [
+        {
+            "language": {
+                "coding": [
+                    {
+                        "system": "BCP-47",
+                        "code": "en"
+                    }
+                ],
+                "text": "English"
+            },
+            "preferred": true
+        }
+    ],
+    "generalPractitioner": [
+        {
+            "reference": "practitioner/9219",
+            "display": "Jones, Robert"
+        }
+    ]
 }
 </pre>
 
@@ -1155,6 +1425,482 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 </pre>
 
 <p>&nbsp;</p>
+<h3 id='em-create-patient-em'><em>Create Patient</em></h3>
+<p>Create a patient.</p>
+<h4 id='http-request-3'>HTTP Request</h4>
+<p><code>POST /Patient/</code> </p>
+<h4 id='parameters-3'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>Social Security number of the patient. Note: Social Security Number is not returned in the response.</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>Names of the patient, use element must be included.  Only one use of &quot;official&quot; is supported and one use of &quot;nickname&quot; is supported</td>
+<td>First and last name are required</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>telecom</td>
+<td>Contact details for the patient, one each of home, work, mobile, other, fax, email address is supported. Preferred Contact is designated by setting a rank of 1 on a contact point.  Privacy fields are designated by having an extension of method-privacy set to true.  You may set Text messaging privacy and preferred contact by using SMS as a system without a value. Note: when a contact detail is set to privacy, it is not returned in the response.</td>
+<td>One of home, work, or mobile phone are required as well as an email address</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>gender</td>
+<td>The gender of the patient</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>birthDate</td>
+<td>The date of birth of the patient</td>
+<td>Yes</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address associated with the patient, only one address is currently supported.  For country, only an ISO-3166 3 character code is supported</td>
+<td>Postal Code is required</td>
+<td><em>12.6</em></td>
+</tr>
+<tr>
+<td>communication</td>
+<td>A list of Languages which may be used to communicate with the patient about his or her health</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>maritalStatus</td>
+<td>The marital status of the patient, a code of &#39;M&#39; (married) maps to Married status in Nextech, &#39;U&#39; (unmarried) and &#39;S&#39; (never married) map to Single in Nextech, all others map to Other in Nextech</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>contact</td>
+<td>The emergency contact and/or employer for the patient, only a relationship code of C for emergency contact or E for employer is supported</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>generalPractitioner</td>
+<td>The practitioner at this office who is responsible for the patient, only one generalPractitioner is currently supported</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>race</td>
+<td>The race of the patient</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>ethnicity</td>
+<td>The ethnicity of the patient</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>patient-note</td>
+<td>The text of the General 1 note for the patient</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>referral-source</td>
+<td>The primary referral source for the patient</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>referring-physician</td>
+<td>The referring physician for the patient</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>referring-patient</td>
+<td>The unique identifier for the referring patient for the patient</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>primary-care-physician</td>
+<td>The primary care physician for the patient</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>affiliate-physician</td>
+<td>The affiliate physician for the patient</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>affiliate-physician-type</td>
+<td>The affiliate physician type for the patient. Must be a value of: &quot;preop&quot;, &quot;postop&quot;, &quot;preandpostop&quot;</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>patient-location</td>
+<td>The default location for patient, must be an active, managed location of General type.</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>patient-employment-status</td>
+<td>The employment status for patient. Must be a value of: &quot;full time&quot;,&quot;part time&quot;, &quot;full time student&quot;, &quot;part time student&quot;, &quot;retired&quot;, &quot;other&quot;</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+</tbody></table>
+
+<p>Whether the patient is created as a patient, or a prospect is controlled by the Default Status preference in Nextech found under Tools-&gt;Preferences-&gt;Patients Module-&gt;New Patients-&gt;Default Status Preference.</p>
+
+<p>Before creating a patient, the system will check the required fields (first, last, email address, birthdate, zip code, and one of home, work, or mobile phone numbers, to see if they match existing patients.  If a match is found, the patient will not be created and a 409 Conflict with a message indicating the patient already exists.</p>
+<h4 id='example-create-a-new-patient-with-minimum-information'>Example: Create a new patient with minimum information</h4>
+<pre class="center-column">
+{
+  "resourceType": "Patient",    
+    "name": [
+        {           
+            "family": "Brimley",
+            "given": [
+                "Henry"             
+            ]           
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(518)929-8978",
+            "use": "home"
+        },      
+        {
+            "system": "email",
+            "value": "test@test.com"
+        }
+    ],   
+    "birthDate": "1970-09-28",
+    "address": [
+        {   "use": "home",      
+            "postalCode": "20787"       
+        }
+    ]   
+}
+</pre>
+
+<p>&nbsp;  </p>
+<h4 id='example-create-a-new-patient-with-all-currently-supported-options'>Example: Create a new patient with all currently supported options</h4>
+<pre class="center-column">
+{
+  "resourceType": "Patient",    
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/v3/Race",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Race",
+                        "code": "2106-3"
+                    }
+                ]
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/v3/Ethnicity",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/v3/Ethnicity",
+                        "code": "2186-5"
+                    }
+                ]                
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referral-source",
+            "valueReference": {
+                "reference": "referral-source/9238"                
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
+            "valueReference": {
+                "reference": "referring-physician/23",              
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/primary-care-physician",
+            "valueReference": {
+                "reference": "primary-care-physician/123"
+            }
+        },
+        
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
+            "valueReference": {
+                "reference": "referring-patient/F4B46423-0071-4127-BD44-231419FE980F"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-location",
+            "valueReference": {
+                "reference": "location/1"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-note",
+            "valueString": "note text"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/affiliate-physician",
+            "valueReference": {
+                "reference": "affiliate-physician/62345"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/affiliate-physician-type",
+            "valueString": "postop"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
+            "valueString": "full time student"
+        },
+    ],  
+    "name": [
+        {            
+            "family": "Brinkley",
+            "use":"official",
+            "given": [
+                "Gregory"
+            ],
+            "prefix" : [
+                "Mr."
+            ],
+            "suffix" : [
+                "Jr."
+            ]
+            
+        },
+        {           
+            "use" : "nickname",
+            "given": [
+                "Greg"
+            ]           
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(311)211-8888",
+            "use": "home",
+            "extension": [
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/method-privacy",
+                "valueBoolean": "true"
+            }
+            ]
+        },
+        {
+            "system": "phone",
+            "value": "(411)941-0786",
+            "use": "mobile",
+            "rank": "1"
+        },
+        {
+            "system": "phone",
+            "value": "(111)332-1232",
+            "use" : "work"
+        },
+        {
+            "system": "email",
+            "value": "abcde@test.com"
+        },
+        {
+            "system": "other",
+            "value": "(555)234-1233"            
+        },
+        {
+            "system": "fax",
+            "value": "(111)332-1232"           
+        },
+        {
+            "system": "sms",
+            "extension": [
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/method-privacy",
+                "valueBoolean": "true"
+            }           
+            ]           
+        }
+    ],
+    "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0203",
+                  "code": "SS"
+                }
+              ]
+            },
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "123456789"
+          }
+        ],
+    "gender": "male",
+    "maritalstatus": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/ValueSet/marital-status",
+                        "code": "M"
+                    }
+                ],
+                "text": "Married"
+            },
+    "generalPractitioner" : {
+        "reference": "practitioner/9219"
+    }, 
+    "birthDate": "1970-09-28",
+    "address": [
+        {
+            "use": "home",
+            "type": "both",
+            "line": [
+                "9801 Jetson Ave",
+                "Apt A"
+            ],
+            "city": "Hyattsville",
+            "state": "MD",
+            "postalCode": "20787",
+            "country":"USA"
+        }
+    ],
+    "communication": [
+        {
+            "language": {
+                "coding": [
+                    {
+                        "system": "BCP-47",
+                        "code": "en"
+                    }
+                ]
+            },
+            "preferred": true
+        }
+    ],
+    "contact": [
+        {
+        "relationship": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/patient-contact-relationship",
+              "code": "C"
+            }
+          ]
+        }
+      ],
+        "name": [
+            {
+            "text": "Sally Smith",
+            "family": "Smith",
+            "given": [
+                "Sally"
+            ],
+            }
+         ],
+         "telecom": [
+            {
+                "system": "phone",
+                "value": "(999)888-9999",
+                "use": "home"
+            },
+            {
+                "system": "phone",
+                "value": "(111)222-3333",
+                "use": "work"
+            },
+        ],
+        "extension":
+        [
+            {
+            "url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+            "valueString": "Wife"
+            }
+        ]
+         
+    },
+    {
+        "relationship": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/patient-contact-relationship",
+              "code": "E"
+            }
+          ]
+        }
+      ],
+        "name": [
+            {            
+            "family": "Jenkins",
+            "given": [
+                "George",
+                "G"
+            ],
+            }
+         ],
+         "address": [
+          {
+            "use": "work",
+            "type": "both",
+            "line": [
+                "9821 James Ave"
+            ],
+            "city": "Schenectady",
+            "state": "NY",
+            "postalCode": "12345"
+          }
+        ],         
+        "extension":
+        [
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/patient-occupation",
+                "valueString": "Teacher"
+            },
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/patient-company",
+                "valueString": "Williams High School"
+            },
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/patient-occupation-code",
+                "valueString": "0230"
+            },
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/patient-industry-code",
+                "valueString": "7890"
+            }
+        ]
+         
+    }
+    ]
+}
+</pre>
+
+<p>&nbsp; </p>
 <h2 id='allergy-intolerance'>Allergy Intolerance</h2><h3 id='overview-2'>Overview</h3>
 <p>The allergy intolerance resource describes the risk of undesirable responses of exposure to a substance.</p>
 <h3 id='fields-2'>Fields</h3>
@@ -1232,9 +1978,9 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 <p>&nbsp;</p>
 <h3 id='em-search-em-2'><em>Search</em></h3>
 <p>Searches for allergy intolerances for a single patient</p>
-<h4 id='http-request-3'>HTTP Request</h4>
+<h4 id='http-request-4'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/AllergyIntolerance?{parameters}</code></p>
-<h4 id='parameters-3'>Parameters</h4>
+<h4 id='parameters-4'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1291,9 +2037,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </tbody></table>
 <h3 id='em-generate-ccda-em'><em>Generate CCDA</em></h3>
 <p>Generates a CCDA for a single patient</p>
-<h4 id='http-request-4'>HTTP Request</h4>
+<h4 id='http-request-5'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Binary/$autogen-ccd-if?{parameters}</code> </p>
-<h4 id='parameters-4'>Parameters</h4>
+<h4 id='parameters-5'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1405,9 +2151,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-3'><em>Search</em></h3>
 <p>Searches for care plans for a single patient</p>
-<h4 id='http-request-5'>HTTP Request</h4>
+<h4 id='http-request-6'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/CarePlan?{parameters}</code></p>
-<h4 id='parameters-5'>Parameters</h4>
+<h4 id='parameters-6'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1503,9 +2249,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-4'><em>Search</em></h3>
 <p>Searches for clinical impressions for a patient</p>
-<h4 id='http-request-6'>HTTP Request</h4>
+<h4 id='http-request-7'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/ClinicalImpression?{parameters}</code> </p>
-<h3 id='parameters-6'>Parameters</h3>
+<h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1669,9 +2415,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-create-em'><em>Create</em></h3>
 <p>Creates a non-clinical note for a patient that is visible in the patient&#39;s Notes tab in the Nextech software.  </p>
-<h4 id='http-request-7'>HTTP Request</h4>
+<h4 id='http-request-8'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/Composition</code> </p>
-<h4 id='parameters-7'>Parameters</h4>
+<h4 id='parameters-8'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1876,9 +2622,9 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <p>&nbsp;</p>
 <h3 id='em-search-em-5'><em>Search</em></h3>
 <p>Searches for conditions for a single patient</p>
-<h4 id='http-request-8'>HTTP Request</h4>
+<h4 id='http-request-9'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Condition?{parameters}</code> </p>
-<h4 id='parameters-8'>Parameters</h4>
+<h4 id='parameters-9'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2034,9 +2780,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-6'><em>Search</em></h3>
 <p>Searches for devices for a single patient</p>
-<h4 id='http-request-9'>HTTP Request</h4>
+<h4 id='http-request-10'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Device?{parameters}</code> </p>
-<h4 id='parameters-9'>Parameters</h4>
+<h4 id='parameters-10'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2121,10 +2867,16 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><em>12.7</em></td>
 </tr>
 <tr>
-<td>extension</td>
+<td>extension: note-category</td>
 <td>Contains the category of the document</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.8</em></td>
+</tr>
+<tr>
+<td>extension: document-publish-portal</td>
+<td>Contains whether the document is published to myPatientVisit</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+<td><em>12.9.20</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-8'>Example</h3>
@@ -2152,13 +2904,17 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/note-category",
             "valueString": "Past Medical History"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/document-publish-portal",
+            "valueBoolean": true
         }
     ],
     "content": [
         {
             "attachment": {             
                 "contentType": "application/pdf",
-                "title": "Document Title (6).pdf"
+                "title": "Document Title.pdf"
             }
         }
     ]
@@ -2168,9 +2924,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-create-em-2'><em>Create</em></h3>
 <p>Creates the document in the content.attachment for a patient and attaches it to the patient&#39;s history tab in the Nextech software.</p>
-<h4 id='http-request-10'>HTTP Request</h4>
+<h4 id='http-request-11'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/DocumentReference</code> </p>
-<h4 id='parameters-10'>Parameters</h4>
+<h4 id='parameters-11'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2247,16 +3003,28 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><em>12.7</em></td>
 </tr>
 <tr>
-<td>extension</td>
+<td>extension: note-category</td>
 <td>Allows setting category of the document</td>
 <td>No</td>
 <td><em>12.8</em></td>
 </tr>
+<tr>
+<td>extension: document-publish-portal</td>
+<td>Allows setting whether or not to publish the document to myPatientVisit. Note: Must be licensed for myPatientVisit and have permission to publish EMNs to MPV to work</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
 </tbody></table>
-<h3 id='extension'>Extension</h3>
-<p>This is a custom extension to allow the setting of the category on the document.  This must match with an existing note category or is left blank.  There can only be one extension. 
-Url: https://select.nextech-api.com/api/structuredefinition/note-category
+<h3 id='extension-note-category'>Extension: note-category</h3>
+<p>This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.</p>
+
+<p>Url: https://select.nextech-api.com/api/structuredefinition/note-category
 valueString: Name of Nextech note category</p>
+<h3 id='extension-document-publish-portal'>Extension: document-publish-portal</h3>
+<p>This is a custom extension to allow publishing of a document to myPatientVisit. The client must be licensed for myPatientVisit and the caller must have permission to publish EMNs to MPV, otherwise the document will not be published.  There can be only one document-publish-portal extension.  If this extension is not included in the POST, the document is not published to myPatientVisit.</p>
+
+<p>Url: https://select.nextech-api.com/api/structuredefinition/document-publish-portal
+valueBoolean: true or false</p>
 <h4 id='example-attach-a-new-document-for-a-patient'>Example: Attach a new document for a patient</h4>
 <pre class="center-column">
 POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/DocumentReference
@@ -2278,14 +3046,18 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/note-category",
             "valueString": "Past Medical History"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/document-publish-portal",
+            "valueBoolean": "true"
         }
   ],
   "content": [
     {
       "attachment": {
-        "contentType": "application/pdf",
-        "title": "Document Title",
-        "data": "<Snipped for Brevity>"
+        "contentType": "text/plain",
+        "title": "Sample Document",
+        "data": "c2FtcGxlIGRvY3VtZW50"
       }
     }
   ]
@@ -2455,9 +3227,9 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <p>&nbsp;</p>
 <h3 id='em-search-em-7'><em>Search</em></h3>
 <p>Searches for encounters for a single patient</p>
-<h4 id='http-request-11'>HTTP Request</h4>
+<h4 id='http-request-12'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Encounter?{parameters}</code></p>
-<h4 id='parameters-11'>Parameters</h4>
+<h4 id='parameters-12'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2568,9 +3340,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-8'><em>Search</em></h3>
 <p>Searches for goals for a single patient</p>
-<h4 id='http-request-12'>HTTP Request</h4>
+<h4 id='http-request-13'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Goal?{parameters}</code> </p>
-<h4 id='parameters-12'>Parameters</h4>
+<h4 id='parameters-13'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2683,9 +3455,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-9'><em>Search</em></h3>
 <p>Searches for immunizations for a single patient</p>
-<h4 id='http-request-13'>HTTP Request</h4>
+<h4 id='http-request-14'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Immunization?{parameters}</code> </p>
-<h4 id='parameters-13'>Parameters</h4>
+<h4 id='parameters-14'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2791,9 +3563,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-10'><em>Search</em></h3>
 <p>Searches for medication dispensements for a single patient</p>
-<h4 id='http-request-14'>HTTP Request</h4>
+<h4 id='http-request-15'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/MedicationDispense?{parameters}</code> </p>
-<h4 id='parameters-14'>Parameters</h4>
+<h4 id='parameters-15'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2906,9 +3678,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-11'><em>Search</em></h3>
 <p>Searches for current medications for a single patient</p>
-<h4 id='http-request-15'>HTTP Request</h4>
+<h4 id='http-request-16'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/MedicationStatement?{parameters}</code></p>
-<h4 id='parameters-15'>Parameters</h4>
+<h4 id='parameters-16'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3060,9 +3832,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-12'><em>Search</em></h3>
 <p>Searches for observations for a single patient</p>
-<h4 id='http-request-16'>HTTP Request</h4>
+<h4 id='http-request-17'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Observation?{parameters}</code> </p>
-<h4 id='parameters-16'>Parameters</h4>
+<h4 id='parameters-17'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3266,9 +4038,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-create-em-3'><em>Create</em></h3>
 <p>Creates a payment for an existing patient.</p>
-<h4 id='http-request-17'>HTTP Request</h4>
+<h4 id='http-request-18'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/PaymentReconciliation</code> </p>
-<h4 id='parameters-17'>Parameters</h4>
+<h4 id='parameters-18'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3533,9 +4305,9 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <p>&nbsp;</p>
 <h3 id='em-search-em-13'><em>Search</em></h3>
 <p>Searches for procedures for a single patient</p>
-<h4 id='http-request-18'>HTTP Request</h4>
+<h4 id='http-request-19'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Procedure?{parameters}</code> </p>
-<h4 id='parameters-18'>Parameters</h4>
+<h4 id='parameters-19'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3711,13 +4483,13 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
           },
           {
             "actor": {
-              "reference": "#5",
+              "reference": "Location/5",
               "display": "South Dermatology"
             }
           },
           {
             "actor": {
-              "reference": "#2",
+              "reference": "Practitioner/2",
               "display": "Davison, Darren"
             }
           }
@@ -5416,6 +6188,347 @@ GET https://select.nextech-api.com/api/Account/12
 <h4 id='example-get-coverages-for-a-single-patient'>Example: Get coverages for a single patient</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-911da841e72e
+</pre>
+
+<p>&nbsp;</p>
+<h1 id='claim'>Claim</h1><h2 id='claim-2'>Claim</h2><h3 id='overview'>Overview</h3>
+<p>A list of services and products provided, or to be provided, to a patient.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>Unique identifier used to reference the Claim.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name associated with the Claim.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>status</td>
+<td>Indicates whether the Claim is presently used/usable or not.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>total</td>
+<td>The total value of the claim.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>use</td>
+<td>Complete (Bill ), Exploratory (Quote).</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#code">Code</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>billablePeriod</td>
+<td>The billable period for which charges are being submitted.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Period">Period</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>created</td>
+<td>The date when the enclosed suite of services were performed or completed.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>patient</td>
+<td>Identifies the patient the Claim is associated with.</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>facility</td>
+<td>Place of service where the services were provided.</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>careTeam</td>
+<td>The members of the team who provided the overall service.</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>diagnosis</td>
+<td>List of patient diagnosis for which care is sought.</td>
+<td><a href="https://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>diagnosis.sequence</td>
+<td>Sequence of diagnosis.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#positiveInt">positiveInt</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>diagnosis.diagnosis</td>
+<td>The diagnosis</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>item</td>
+<td>First tier of goods and services.</td>
+<td><a href="https://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>item.careTeamLinkId</td>
+<td>CareTeam applicable for this service or product line.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#positiveInt">positiveInt</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>item.service</td>
+<td>Code to indicate the Professional Service or Product supplied.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>item.modifier</td>
+<td>Item typification or modifiers codes</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>item.serviced</td>
+<td>The date or dates when the enclosed suite of services were performed or completed.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>item.location</td>
+<td>Place of service code.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>item.item.quantity</td>
+<td>The number of repetitions of a service or product.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#SimpleQuantity">SimpleQuantity</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>item.unitPrice</td>
+<td>Fee for the product or service.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>item.net</td>
+<td>The quantity times the unit price for an additional service or product or charge.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+</tbody></table>
+<h3 id='extensions'>Extensions</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Url</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>item-status</td>
+<td>Indicates whether the Claim item is presently used/usable or not.</td>
+<td>https://select.nextech-api.com/api/structuredefinition/item-status</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
+<td><em>12.9.20</em></td>
+</tr>
+</tbody></table>
+<h3 id='example'>Example</h3>
+<pre class="center-column">
+{
+    "resourceType": "Claim",
+    "id": "58179",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "58179"
+        }
+    ],
+    "status": "active",
+    "use": "complete",
+    "patient": {
+        "reference": "Patient/9ad0f4a0-f407-4df8-9561-767e09d3e8df"
+    },
+    "billablePeriod": {
+        "start": "6/13/2018"
+    },
+    "created": "6/13/2018",
+    "facility": {
+        "reference": "Location/1"
+    },
+    "careTeam": [
+        {
+            "sequence": 1,
+            "provider": {
+                "reference": "Practitioner/9323"
+            }
+        }
+    ],
+    "diagnosis": [
+        {
+            "diagnosisCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "ICD-10",
+                        "code": "M23.42"
+                    }
+                ],
+                "text": "Loose body in knee, left knee"
+            }
+        }
+    ],
+    "item": [
+        {
+            "extension": [
+                {
+                    "url": "https://select.nextech-api.com/api/structuredefinition/item-status",
+                    "valueString": "active"
+                }
+            ],
+            "careTeamLinkId": [
+                1
+            ],
+            "service": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/ValueSet/service-uscls",
+                        "code": "99244"
+                    }
+                ],
+                "text": "CONSULT LEVEL 4"
+            },
+            "servicedDateTime": "6/13/2018",
+            "locationCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/ValueSet/service-place",
+                        "code": "11"
+                    }
+                ],
+                "text": "Office"
+            },
+            "quantity": {
+                "value": 1
+            },
+            "unitPrice": {
+                "value": 125
+            },
+            "net": {
+                "value": 125
+            }
+        }
+    ],
+    "total": {
+        "value": 125
+    }
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all  based on the given search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /Claim?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query or uri</td>
+<td>The unique value assigned to each Claim which discerns it from all others.</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>use</td>
+<td>query</td>
+<td>The use of the Claim. (exploratory for quote or complete for bill)</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>facility</td>
+<td>query</td>
+<td>The place of service for the Claim.</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>patient</td>
+<td>query</td>
+<td>The patient the Claim is tied to.</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>created</td>
+<td>query</td>
+<td>The date the Claim was created.</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+<tr>
+<td>care-team</td>
+<td>query</td>
+<td>Member of the CareTeam.</td>
+<td>No</td>
+<td><em>12.9.20</em></td>
+</tr>
+</tbody></table>
+<h4 id='example-get-claims-with-a-particular-place-of-service'>Example: Get Claims with a particular place of service</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Claim?facility=1
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-claims-with-a-use-of-complete'>Example: Get Claims with a use of complete</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Claim?use=complete 
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-claims-attached-to-a-patient'>Example: Get a specific Claims attached to a patient</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Claim?patient=59015300-e15b-474c-8314-7864712f6946
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-claims-that-were-created-on-a-certain-date'>Example: Get all Claims that were created on a certain date</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Claim?created=2018-06-01
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-claim-based-on-identifier'>Example: Get a specific Claim based on identifier</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Claim/12
 </pre>
 
 <p>&nbsp;</p>
