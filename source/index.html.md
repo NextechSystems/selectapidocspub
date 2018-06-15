@@ -18,6 +18,7 @@ includes:
   - practitioner
   - account
   - coverage
+  - claim
 
 search: false
 ---
