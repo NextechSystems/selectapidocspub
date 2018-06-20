@@ -10,7 +10,7 @@ A list of services and products provided, or to be provided, to a patient.
 | ---- | ----------- | ---- | --------------- |
 | identifier | Unique identifier used to reference the Claim. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.9.20_ |
 | name |The name associated with the Claim. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9.20_ |
-| status | Indicates whether the Claim is presently used/usable or not. | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9.20_ |
+| status | Indicates whether the Bill or Quote is presently active or cancelled. If a Bill is deleted or voided it will have a status of Cancelled. If a closed bill is corrected, the original bill will be voided with a status of Cancelled and a new bill will be created to replace it with an Active status. | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9.20_ |
 | total | The total value of the claim. | [Money](https://www.hl7.org/fhir/datatypes.html#Money) | _12.9.20_ |
 | use | Complete (Bill ), Exploratory (Quote). | [Code](https://www.hl7.org/fhir/datatypes.html#code) | _12.9.20_ |
 | billablePeriod | The billable period for which charges are being submitted. | [Period](https://www.hl7.org/fhir/datatypes.html#Period) | _12.9.20_ |
@@ -34,7 +34,7 @@ A list of services and products provided, or to be provided, to a patient.
 ### Extensions
 | Name | Description | Url  | Type | Initial Version |
 | ---- | ----------- | ---  | ---- | --------------- |
-| item-status | Indicates whether the Claim item is presently used/usable or not. | https://select.nextech-api.com/api/structuredefinition/item-status | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9.20_ |
+| item-status | Indicates whether the Charge line is presently active or cancelled. If a Charge is deleted or voided it will have a status of Cancelled. If a closed charge is corrected, the original Charge will be voided with a status of Cancelled and a new Charge will be created to replace it with an Active status. | https://select.nextech-api.com/api/structuredefinition/item-status | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9.20_ |
 
 
 ### Example
