@@ -200,7 +200,7 @@ Confirm a scheduled appointment.
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
 | identifier | path | The unique identifier of the appointment to be updated | Yes | _12.6_ |
-| commit | body | The object representing the changes to be made | Yes | _12.6_ |
+| appointment | body | The appointment object representing the changes to be made | Yes | _12.6_ |
 
 The commit parameter should be in the form of an Appointment status field. See [https://www.hl7.org/fhir/http.html#update](https://www.hl7.org/fhir/http.html#update) for details on formatting PUT requests in RESTful API’s.
 
@@ -210,7 +210,10 @@ The commit parameter should be in the form of an Appointment status field. See [
 PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 <pre class="center-column">
-{ "status": "booked" }
+{
+	"resourceType": "Appointment",
+	"status": "booked"
+}
 </pre>
 &nbsp;
 
