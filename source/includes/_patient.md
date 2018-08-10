@@ -532,7 +532,7 @@ Before creating a patient, the system will check the required fields (first, las
 		{
             "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time student"
-        },
+        }
     ],  
     "name": [
         {            
@@ -670,11 +670,11 @@ Before creating a patient, the system will check the required fields (first, las
       ],
         "name": [
             {
-            "text": "Sally Smith",
-            "family": "Smith",
-            "given": [
-                "Sally"
-            ],
+				"text": "Sally Smith",
+				"family": "Smith",
+				"given": [
+					"Sally"
+				]
             }
          ],
          "telecom": [
@@ -687,13 +687,13 @@ Before creating a patient, the system will check the required fields (first, las
                 "system": "phone",
                 "value": "(111)222-3333",
                 "use": "work"
-            },
+            }
         ],
         "extension":
         [
             {
-            "url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
-            "valueString": "Wife"
+				"url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+				"valueString": "Wife"
             }
         ]
          
@@ -712,10 +712,10 @@ Before creating a patient, the system will check the required fields (first, las
         "name": [
             {            
             "family": "Jenkins",
-            "given": [
-                "George",
-				"G"
-            ],
+				"given": [
+					"George",
+					"G"
+				]
             }
          ],
 		 "address": [
