@@ -506,7 +506,7 @@ Before creating a patient, the system will check the required fields (first, las
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
             "valueReference": {
-                "reference": "referring-patient/F4B46423-0071-4127-BD44-231419FE980F"
+                "reference": "patient/F4B46423-0071-4127-BD44-231419FE980F"
             }
         },
         {
@@ -532,7 +532,7 @@ Before creating a patient, the system will check the required fields (first, las
 		{
             "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time student"
-        },
+        }
     ],  
     "name": [
         {            
@@ -670,11 +670,11 @@ Before creating a patient, the system will check the required fields (first, las
       ],
         "name": [
             {
-            "text": "Sally Smith",
-            "family": "Smith",
-            "given": [
-                "Sally"
-            ],
+				"text": "Sally Smith",
+				"family": "Smith",
+				"given": [
+					"Sally"
+				]
             }
          ],
          "telecom": [
@@ -687,13 +687,13 @@ Before creating a patient, the system will check the required fields (first, las
                 "system": "phone",
                 "value": "(111)222-3333",
                 "use": "work"
-            },
+            }
         ],
         "extension":
         [
             {
-            "url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
-            "valueString": "Wife"
+				"url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+				"valueString": "Wife"
             }
         ]
          
@@ -712,10 +712,10 @@ Before creating a patient, the system will check the required fields (first, las
         "name": [
             {            
             "family": "Jenkins",
-            "given": [
-                "George",
-				"G"
-            ],
+				"given": [
+					"George",
+					"G"
+				]
             }
          ],
 		 "address": [
@@ -752,6 +752,43 @@ Before creating a patient, the system will check the required fields (first, las
          
     }
 	]
+}
+</pre>
+&nbsp; 
+
+### *Update Patient*
+Update a patient.
+
+#### HTTP Request 
+`PUT /Patient/` 
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+|FHIR Patient object| The full patient FHIR object is accepted in the body. | Yes | _14.0_ |
+
+*Note: 
+* Patient name, date of birth and postal code cannot be updated. The fields will be ignored when updating the patient.
+* All other patient related fields can be updated. However, if they are updated with invalid values (e.g. updating the country with a country code of JGU) the result of the update will be a success but the field will not be updated.
+
+#### Example: Update a patient's home number
+
+<pre class="center-column">
+{
+    "resourceType": "Patient",    
+    "identifier": [
+        {
+            "use": "official",
+            "value": "f4a46423-0071-4127-bd34-231419fe970f"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(813) 217-4571",
+            "use": "home"
+        }
+    ]
 }
 </pre>
 &nbsp; 
