@@ -432,7 +432,8 @@ Before creating a patient, the system will check the required fields (first, las
 			"family": "Brimley",
 			"given": [
 				"Henry"				
-			]			
+			],
+			"use": "official"
 		}
 	],
 	"telecom": [
