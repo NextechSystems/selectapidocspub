@@ -397,7 +397,7 @@ Create a patient.
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
 |identifier| Social Security number of the patient. Note: Social Security Number is not returned in the response. | No | _12.9.20_ |
-| name | Names of the patient, use element must be included.  Only one use of "official" is supported and one use of "nickname" is supported | First and last name are required | _12.9.20_  |
+| name | Names of the patient, use element must be included.  Only one use of "official" is supported and one use of "nickname" is supported | Yes | _12.9.20_  |
 | telecom | Contact details for the patient, one each of home, work, mobile, other, fax, email address is supported. Preferred Contact is designated by setting a rank of 1 on a contact point.  Privacy fields are designated by having an extension of method-privacy set to true.  You may set Text messaging privacy and preferred contact by using SMS as a system without a value. Note: when a contact detail is set to privacy, it is not returned in the response. | One of home, work, or mobile phone are required as well as an email address | _12.9.20_  |
 | gender | The gender of the patient | No | _12.9.20_  |
 | birthDate | The date of birth of the patient | Yes | _12.9.20_  |
@@ -428,7 +428,8 @@ Before creating a patient, the system will check the required fields (first, las
 {
   "resourceType": "Patient",	
 	"name": [
-		{			
+		{
+			"use": "official",
 			"family": "Brimley",
 			"given": [
 				"Henry"				
