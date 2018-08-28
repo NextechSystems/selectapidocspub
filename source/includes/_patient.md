@@ -399,21 +399,21 @@ Create a patient.
 |identifier| Social Security number of the patient. | Social Security Number is not returned in the response. | No | _12.9.20_ |
 | name | Names of the patient. | The family, given and use elements, are required.<br> Only one use of "official" is supported and one use of "nickname" is supported | Yes | _12.9.20_  |
 | telecom | Contact details for the patient. | E-mail, and phone contacts: mobile, work, home are required.<br> *As of 14.0* : only one phone contact is required.<br> One each of home, work, mobile, other, fax, email address is supported.<br> Preferred Contact is designated by setting a rank of 1 on a contact point.<br> Privacy fields are designated by having an extension of method-privacy set to true. You may set Text messaging privacy and preferred contact by using SMS as a system without a value.<br> When a contact detail is set to privacy, it is not returned in the response. | Yes | _12.9.20_  |
-| gender | The gender of the patient | | No | _12.9.20_  |
-| birthDate | The date of birth of the patient | | Yes | _12.9.20_  |
+| gender | The gender of the patient | - | No | _12.9.20_  |
+| birthDate | The date of birth of the patient | - | Yes | _12.9.20_  |
 | address | Address associated with the patient.  |  Postal code is required. Only one address is currently supported.  For country, only an ISO-3166 3 character code is supported. | Yes | _12.9.20_ |
-| communication | A list of Languages which may be used to communicate with the patient about his or her health | | No | _12.9.20_  |
+| communication | A list of Languages which may be used to communicate with the patient about his or her health | - | No | _12.9.20_  |
 | maritalStatus | The marital status of the patient. | A code of 'M' (married) maps to Married status in Nextech, 'U' (unmarried) and 'S' (never married) map to Single in Nextech, all others map to Other in Nextech. | No | _12.9.20_ | 
 | contact | The emergency contact and/or employer for the patient. | Only a relationship code of C for emergency contact or E for employer is supported. | No | _12.9.20_ |
 | generalPractitioner | The practitioner at this office who is responsible for the patient | Only one generalPractitioner is currently supported. | No | _12.9.20_ |
-| race | The race of the patient | | No | _12.9.20_  |
-| ethnicity | The ethnicity of the patient | | No | _12.9.20_ |
-| patient-note | The text of the General 1 note for the patient | | No | _12.9.20_ |
-| referral-source | The primary referral source for the patient | | No | _12.9.20_ |
-| referring-physician | The referring physician for the patient | | No | _12.9.20_ |
-| referring-patient | The unique identifier for the referring patient for the patient | | No | _12.9.20_ |
-| primary-care-physician | The primary care physician for the patient | | No | _12.9.20_ |
-| affiliate-physician | The affiliate physician for the patient | | No | _12.9.20_ |
+| race | The race of the patient | - | No | _12.9.20_  |
+| ethnicity | The ethnicity of the patient | - | No | _12.9.20_ |
+| patient-note | The text of the General 1 note for the patient | - | No | _12.9.20_ |
+| referral-source | The primary referral source for the patient | - | No | _12.9.20_ |
+| referring-physician | The referring physician for the patient | - | No | _12.9.20_ |
+| referring-patient | The unique identifier for the referring patient for the patient | - | No | _12.9.20_ |
+| primary-care-physician | The primary care physician for the patient | - | No | _12.9.20_ |
+| affiliate-physician | The affiliate physician for the patient | - | No | _12.9.20_ |
 | affiliate-physician-type | The affiliate physician type for the patient. | Must be a value of: "preop", "postop", "preandpostop" | No | _12.9.20_ |
 | patient-location | The default location for patient. | Must be an active, managed location of General type. | No | _12.9.20_ |
 | patient-employment-status | The employment status for patient. | Must be a value of: "full time","part time", "full time student", "part time student", "retired", "other"  | No | _12.9.20_ |
