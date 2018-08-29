@@ -1578,7 +1578,8 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
             "family": "Brimley",
             "given": [
                 "Henry"             
-            ]           
+            ],
+            "use": "official"
         }
     ],
     "telecom": [
@@ -1651,7 +1652,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
             "valueReference": {
-                "reference": "referring-patient/F4B46423-0071-4127-BD44-231419FE980F"
+                "reference": "patient/F4B46423-0071-4127-BD44-231419FE980F"
             }
         },
         {
@@ -1677,7 +1678,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time student"
-        },
+        }
     ],  
     "name": [
         {            
@@ -1815,11 +1816,11 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
       ],
         "name": [
             {
-            "text": "Sally Smith",
-            "family": "Smith",
-            "given": [
-                "Sally"
-            ],
+                "text": "Sally Smith",
+                "family": "Smith",
+                "given": [
+                    "Sally"
+                ]
             }
          ],
          "telecom": [
@@ -1832,13 +1833,13 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
                 "system": "phone",
                 "value": "(111)222-3333",
                 "use": "work"
-            },
+            }
         ],
         "extension":
         [
             {
-            "url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
-            "valueString": "Wife"
+                "url": "https://select.nextech-api.com/api/structuredefinition/emergency-contact-relation",
+                "valueString": "Wife"
             }
         ]
          
@@ -1857,10 +1858,10 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
         "name": [
             {            
             "family": "Jenkins",
-            "given": [
-                "George",
-                "G"
-            ],
+                "given": [
+                    "George",
+                    "G"
+                ]
             }
          ],
          "address": [
@@ -1896,6 +1897,51 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
         ]
          
     }
+    ]
+}
+</pre>
+
+<p>&nbsp; </p>
+<h3 id='em-update-patient-em'><em>Update Patient</em></h3>
+<p>Update a patient.</p>
+<h4 id='http-request-4'>HTTP Request</h4>
+<p><code>PUT /Patient/</code> </p>
+<h4 id='parameters-4'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>FHIR Patient object</td>
+<td>The full patient FHIR object is accepted in the body.</td>
+<td>Yes</td>
+<td><em>14.0</em></td>
+</tr>
+</tbody></table>
+
+<p>*Note: 
+* Patient name, date of birth and postal code cannot be updated. The fields will be ignored when updating the patient.
+* All other patient related fields can be updated. However, if they are updated with invalid values (e.g. updating the country with a country code of JGU) the result of the update will be a success but the field will not be updated.</p>
+<h4 id='example-update-a-patient-39-s-home-number'>Example: Update a patient&#39;s home number</h4>
+<pre class="center-column">
+{
+    "resourceType": "Patient",    
+    "identifier": [
+        {
+            "use": "official",
+            "value": "f4a46423-0071-4127-bd34-231419fe970f"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(813) 217-4571",
+            "use": "home"
+        }
     ]
 }
 </pre>
@@ -1978,9 +2024,9 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 <p>&nbsp;</p>
 <h3 id='em-search-em-2'><em>Search</em></h3>
 <p>Searches for allergy intolerances for a single patient</p>
-<h4 id='http-request-4'>HTTP Request</h4>
+<h4 id='http-request-5'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/AllergyIntolerance?{parameters}</code></p>
-<h4 id='parameters-4'>Parameters</h4>
+<h4 id='parameters-5'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2037,9 +2083,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </tbody></table>
 <h3 id='em-generate-ccda-em'><em>Generate CCDA</em></h3>
 <p>Generates a CCDA for a single patient</p>
-<h4 id='http-request-5'>HTTP Request</h4>
+<h4 id='http-request-6'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Binary/$autogen-ccd-if?{parameters}</code> </p>
-<h4 id='parameters-5'>Parameters</h4>
+<h4 id='parameters-6'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2151,9 +2197,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-3'><em>Search</em></h3>
 <p>Searches for care plans for a single patient</p>
-<h4 id='http-request-6'>HTTP Request</h4>
+<h4 id='http-request-7'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/CarePlan?{parameters}</code></p>
-<h4 id='parameters-6'>Parameters</h4>
+<h4 id='parameters-7'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2249,9 +2295,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-4'><em>Search</em></h3>
 <p>Searches for clinical impressions for a patient</p>
-<h4 id='http-request-7'>HTTP Request</h4>
+<h4 id='http-request-8'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/ClinicalImpression?{parameters}</code> </p>
-<h3 id='parameters-7'>Parameters</h3>
+<h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2415,9 +2461,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-create-em'><em>Create</em></h3>
 <p>Creates a non-clinical note for a patient that is visible in the patient&#39;s Notes tab in the Nextech software.  </p>
-<h4 id='http-request-8'>HTTP Request</h4>
+<h4 id='http-request-9'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/Composition</code> </p>
-<h4 id='parameters-8'>Parameters</h4>
+<h4 id='parameters-9'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2622,9 +2668,9 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <p>&nbsp;</p>
 <h3 id='em-search-em-5'><em>Search</em></h3>
 <p>Searches for conditions for a single patient</p>
-<h4 id='http-request-9'>HTTP Request</h4>
+<h4 id='http-request-10'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Condition?{parameters}</code> </p>
-<h4 id='parameters-9'>Parameters</h4>
+<h4 id='parameters-10'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2780,9 +2826,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-6'><em>Search</em></h3>
 <p>Searches for devices for a single patient</p>
-<h4 id='http-request-10'>HTTP Request</h4>
+<h4 id='http-request-11'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Device?{parameters}</code> </p>
-<h4 id='parameters-10'>Parameters</h4>
+<h4 id='parameters-11'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -2924,9 +2970,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-create-em-2'><em>Create</em></h3>
 <p>Creates the document in the content.attachment for a patient and attaches it to the patient&#39;s history tab in the Nextech software.</p>
-<h4 id='http-request-11'>HTTP Request</h4>
+<h4 id='http-request-12'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/DocumentReference</code> </p>
-<h4 id='parameters-11'>Parameters</h4>
+<h4 id='parameters-12'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3227,9 +3273,9 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <p>&nbsp;</p>
 <h3 id='em-search-em-7'><em>Search</em></h3>
 <p>Searches for encounters for a single patient</p>
-<h4 id='http-request-12'>HTTP Request</h4>
+<h4 id='http-request-13'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Encounter?{parameters}</code></p>
-<h4 id='parameters-12'>Parameters</h4>
+<h4 id='parameters-13'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3340,9 +3386,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-8'><em>Search</em></h3>
 <p>Searches for goals for a single patient</p>
-<h4 id='http-request-13'>HTTP Request</h4>
+<h4 id='http-request-14'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Goal?{parameters}</code> </p>
-<h4 id='parameters-13'>Parameters</h4>
+<h4 id='parameters-14'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3455,9 +3501,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-9'><em>Search</em></h3>
 <p>Searches for immunizations for a single patient</p>
-<h4 id='http-request-14'>HTTP Request</h4>
+<h4 id='http-request-15'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Immunization?{parameters}</code> </p>
-<h4 id='parameters-14'>Parameters</h4>
+<h4 id='parameters-15'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3563,9 +3609,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-10'><em>Search</em></h3>
 <p>Searches for medication dispensements for a single patient</p>
-<h4 id='http-request-15'>HTTP Request</h4>
+<h4 id='http-request-16'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/MedicationDispense?{parameters}</code> </p>
-<h4 id='parameters-15'>Parameters</h4>
+<h4 id='parameters-16'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3678,9 +3724,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-11'><em>Search</em></h3>
 <p>Searches for current medications for a single patient</p>
-<h4 id='http-request-16'>HTTP Request</h4>
+<h4 id='http-request-17'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/MedicationStatement?{parameters}</code></p>
-<h4 id='parameters-16'>Parameters</h4>
+<h4 id='parameters-17'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -3832,9 +3878,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-search-em-12'><em>Search</em></h3>
 <p>Searches for observations for a single patient</p>
-<h4 id='http-request-17'>HTTP Request</h4>
+<h4 id='http-request-18'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Observation?{parameters}</code> </p>
-<h4 id='parameters-17'>Parameters</h4>
+<h4 id='parameters-18'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -4038,9 +4084,9 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <p>&nbsp;</p>
 <h3 id='em-create-em-3'><em>Create</em></h3>
 <p>Creates a payment for an existing patient.</p>
-<h4 id='http-request-18'>HTTP Request</h4>
+<h4 id='http-request-19'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/PaymentReconciliation</code> </p>
-<h4 id='parameters-18'>Parameters</h4>
+<h4 id='parameters-19'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -4305,9 +4351,9 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <p>&nbsp;</p>
 <h3 id='em-search-em-13'><em>Search</em></h3>
 <p>Searches for procedures for a single patient</p>
-<h4 id='http-request-19'>HTTP Request</h4>
+<h4 id='http-request-20'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Procedure?{parameters}</code> </p>
-<h4 id='parameters-19'>Parameters</h4>
+<h4 id='parameters-20'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -4652,9 +4698,9 @@ GET https://select.nextech-api.com/api/Appointment?created=2017-07-27
 <td><em>12.6</em></td>
 </tr>
 <tr>
-<td>commit</td>
+<td>appointment</td>
 <td>body</td>
-<td>The object representing the changes to be made</td>
+<td>The appointment object representing the changes to be made</td>
 <td>Yes</td>
 <td><em>12.6</em></td>
 </tr>
@@ -4667,7 +4713,10 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 
 <pre class="center-column">
-{ "status": "booked" }
+{
+    "resourceType": "Appointment",
+    "status": "booked"
+}
 </pre>
 
 <p>&nbsp;</p>
@@ -6216,7 +6265,7 @@ GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-
 </tr>
 <tr>
 <td>status</td>
-<td>Indicates whether the Claim is presently used/usable or not.</td>
+<td>Indicates whether the Bill or Quote is presently active or cancelled. If a Bill is deleted or voided it will have a status of Cancelled. If a closed bill is corrected, the original bill will be voided with a status of Cancelled and a new bill will be created to replace it with an Active status.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 <td><em>12.9.20</em></td>
 </tr>
@@ -6347,7 +6396,7 @@ GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-
 </thead><tbody>
 <tr>
 <td>item-status</td>
-<td>Indicates whether the Claim item is presently used/usable or not.</td>
+<td>Indicates whether the Charge line is presently active or cancelled. If a Charge is deleted or voided it will have a status of Cancelled. If a closed charge is corrected, the original Charge will be voided with a status of Cancelled and a new Charge will be created to replace it with an Active status.</td>
 <td>https://select.nextech-api.com/api/structuredefinition/item-status</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 <td><em>12.9.20</em></td>
