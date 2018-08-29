@@ -1434,133 +1434,155 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 <tr>
 <th>Name</th>
 <th>Description</th>
+<th>Notes</th>
 <th>Required</th>
 <th>Initial Version</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>identifier</td>
-<td>Social Security number of the patient. Note: Social Security Number is not returned in the response.</td>
+<td>Social Security number of the patient.</td>
+<td>Social Security Number is not returned in the response.</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>name</td>
-<td>Names of the patient, use element must be included.  Only one use of &quot;official&quot; is supported and one use of &quot;nickname&quot; is supported</td>
-<td>First and last name are required</td>
+<td>Names of the patient.</td>
+<td>The family, given and use elements, are required.<br> Only one use of &quot;official&quot; is supported and one use of &quot;nickname&quot; is supported</td>
+<td>Yes</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>telecom</td>
-<td>Contact details for the patient, one each of home, work, mobile, other, fax, email address is supported. Preferred Contact is designated by setting a rank of 1 on a contact point.  Privacy fields are designated by having an extension of method-privacy set to true.  You may set Text messaging privacy and preferred contact by using SMS as a system without a value. Note: when a contact detail is set to privacy, it is not returned in the response.</td>
-<td>One of home, work, or mobile phone are required as well as an email address</td>
+<td>Contact details for the patient.</td>
+<td>E-mail, and one phone contact is required.<br> One each of home, work, mobile, other, fax, email address is supported.<br> Preferred Contact is designated by setting a rank of 1 on a contact point.<br> Privacy fields are designated by having an extension of method-privacy set to true. You may set Text messaging privacy and preferred contact by using SMS as a system without a value.<br> When a contact detail is set to privacy, it is not returned in the response.</td>
+<td>Yes</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>gender</td>
 <td>The gender of the patient</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>birthDate</td>
 <td>The date of birth of the patient</td>
+<td>-</td>
 <td>Yes</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>address</td>
-<td>Address associated with the patient, only one address is currently supported.  For country, only an ISO-3166 3 character code is supported</td>
-<td>Postal Code is required</td>
-<td><em>12.6</em></td>
+<td>Address associated with the patient.</td>
+<td>Postal code is required. Only one address is currently supported.  For country, only an ISO-3166 3 character code is supported.</td>
+<td>Yes</td>
+<td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>communication</td>
 <td>A list of Languages which may be used to communicate with the patient about his or her health</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>maritalStatus</td>
-<td>The marital status of the patient, a code of &#39;M&#39; (married) maps to Married status in Nextech, &#39;U&#39; (unmarried) and &#39;S&#39; (never married) map to Single in Nextech, all others map to Other in Nextech</td>
+<td>The marital status of the patient.</td>
+<td>A code of &#39;M&#39; (married) maps to Married status in Nextech, &#39;U&#39; (unmarried) and &#39;S&#39; (never married) map to Single in Nextech, all others map to Other in Nextech.</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>contact</td>
-<td>The emergency contact and/or employer for the patient, only a relationship code of C for emergency contact or E for employer is supported</td>
+<td>The emergency contact and/or employer for the patient.</td>
+<td>Only a relationship code of C for emergency contact or E for employer is supported.</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>generalPractitioner</td>
-<td>The practitioner at this office who is responsible for the patient, only one generalPractitioner is currently supported</td>
+<td>The practitioner at this office who is responsible for the patient</td>
+<td>Only one generalPractitioner is currently supported.</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>race</td>
 <td>The race of the patient</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>ethnicity</td>
 <td>The ethnicity of the patient</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>patient-note</td>
 <td>The text of the General 1 note for the patient</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>referral-source</td>
 <td>The primary referral source for the patient</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>referring-physician</td>
 <td>The referring physician for the patient</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>referring-patient</td>
 <td>The unique identifier for the referring patient for the patient</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>primary-care-physician</td>
 <td>The primary care physician for the patient</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>affiliate-physician</td>
 <td>The affiliate physician for the patient</td>
+<td>-</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>affiliate-physician-type</td>
-<td>The affiliate physician type for the patient. Must be a value of: &quot;preop&quot;, &quot;postop&quot;, &quot;preandpostop&quot;</td>
+<td>The affiliate physician type for the patient.</td>
+<td>Must be a value of: &quot;preop&quot;, &quot;postop&quot;, &quot;preandpostop&quot;</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>patient-location</td>
-<td>The default location for patient, must be an active, managed location of General type.</td>
+<td>The default location for patient.</td>
+<td>Must be an active, managed location of General type.</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>patient-employment-status</td>
-<td>The employment status for patient. Must be a value of: &quot;full time&quot;,&quot;part time&quot;, &quot;full time student&quot;, &quot;part time student&quot;, &quot;retired&quot;, &quot;other&quot;</td>
+<td>The employment status for patient.</td>
+<td>Must be a value of: &quot;full time&quot;,&quot;part time&quot;, &quot;full time student&quot;, &quot;part time student&quot;, &quot;retired&quot;, &quot;other&quot;</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
@@ -1572,12 +1594,13 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 <h4 id='example-create-a-new-patient-with-minimum-information'>Example: Create a new patient with minimum information</h4>
 <pre class="center-column">
 {
-  "resourceType": "Patient",    
+  "resourceType": "Patient",
     "name": [
-        {           
+        {
+            "use": "official",
             "family": "Brimley",
             "given": [
-                "Henry"             
+                "Henry"
             ],
             "use": "official"
         }
@@ -1587,18 +1610,18 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
             "system": "phone",
             "value": "(518)929-8978",
             "use": "home"
-        },      
+        },
         {
             "system": "email",
             "value": "test@test.com"
         }
-    ],   
+    ],
     "birthDate": "1970-09-28",
     "address": [
-        {   "use": "home",      
-            "postalCode": "20787"       
+        {   "use": "home",
+            "postalCode": "20787"
         }
-    ]   
+    ]
 }
 </pre>
 
