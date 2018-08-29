@@ -6,9 +6,12 @@ Available API functionality:
 
 * [Patient demographics](#patient-2)  
 * [Patient clinical information](#allergy-intolerance)  
+* [Create patient](#patient-2)  
+* [Update patient](#patient-2)  
 * [Patient payment posting](#payment-reconciliation)
 * [Appointment information](#appointment)  
 * [Confirm appointments](#appointment-2)  
+* [Book appointment](#appointment-2)
 * [Slot information](#slot)
 * [Create non-clinical patient notes](#composition)
 * [Attach patient documents](#document-reference)
