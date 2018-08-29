@@ -17,7 +17,7 @@ The patient resource contains information about the demographics of a patient.
 | birthDate | The date of birth of the patient | [date](https://www.hl7.org/fhir/datatypes.html#date) | _12.6_ |
 | address | Addresses associated with the patient | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.6_ |
 | communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
-| maritalStatus | The marital status of the patient | [Codeable Concept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9.20_ |
+| maritalStatus | The marital status of the patient | [Codeable Concept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9.20_ | 
 | contact | The emergency contact and employer for the patient | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.9.20_ |
 | generalPractitioner | The practitioner at this office who is responsible for the patient | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
 | patient-note | The text of the General 1 note for the patient, contained in the extension | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9.20_ |
@@ -318,7 +318,7 @@ The patient resource contains information about the demographics of a patient.
 ### *Search*
 Searches for all patients matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
 
-#### HTTP Request
+#### HTTP Request 
 `GET /Patient?{parameters}`
 
 #### Parameters
@@ -358,12 +358,12 @@ GET https://select.nextech-api.com/api/Patient?birthdate=ge1981-01-01&birthdate=
 
 ### Patient ID Search
 Attempts to find a single patient that matches the given search criteria and if
-successful returns only that patient's unique identifier.
+successful returns only that patient's unique identifier.   
 
 _At least one of query parameters is required to perform a search._
 
-### HTTP Request
-`GET /Patient/ID?{parameters}`
+### HTTP Request 
+`GET /Patient/ID?{parameters}` 
 
 ### Parameters
 | Name | Located in | Description | Required | Type | Initial Version |
@@ -389,8 +389,8 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 ### *Create Patient*
 Create a patient.
 
-#### HTTP Request
-`POST /Patient/`
+#### HTTP Request 
+`POST /Patient/` 
 
 
 #### Parameters
@@ -456,13 +456,13 @@ Before creating a patient, the system will check the required fields (first, las
 	]
 }
 </pre>
-&nbsp;
-
+&nbsp;  
+ 
 #### Example: Create a new patient with all currently supported options
 
 <pre class="center-column">
 {
-  "resourceType": "Patient",
+  "resourceType": "Patient",    
     "extension": [
         {
             "url": "http://hl7.org/fhir/v3/Race",
@@ -483,19 +483,19 @@ Before creating a patient, the system will check the required fields (first, las
                         "system": "http://hl7.org/fhir/v3/Ethnicity",
                         "code": "2186-5"
                     }
-                ]
+                ]                
             }
         },
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/referral-source",
             "valueReference": {
-                "reference": "referral-source/9238"
+                "reference": "referral-source/9238"                
             }
         },
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
             "valueReference": {
-                "reference": "referring-physician/23",
+                "reference": "referring-physician/23",              
             }
         },
         {
@@ -504,7 +504,7 @@ Before creating a patient, the system will check the required fields (first, las
                 "reference": "primary-care-physician/123"
             }
         },
-
+        
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/referring-patient",
             "valueReference": {
@@ -535,9 +535,9 @@ Before creating a patient, the system will check the required fields (first, las
             "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time student"
         }
-    ],
+    ],  
     "name": [
-        {
+        {            
             "family": "Brinkley",
             "use":"official",
             "given": [
@@ -549,13 +549,13 @@ Before creating a patient, the system will check the required fields (first, las
             "suffix" : [
             	"Jr."
             ]
-
+        	
         },
-		{
+		{           
             "use" : "nickname",
             "given": [
                 "Greg"
-            ]
+            ]           
         }
     ],
     "telecom": [
@@ -587,11 +587,11 @@ Before creating a patient, the system will check the required fields (first, las
         },
 		{
             "system": "other",
-            "value": "(555)234-1233"
+            "value": "(555)234-1233"            
         },
 		{
             "system": "fax",
-            "value": "(111)332-1232"
+            "value": "(111)332-1232"           
         },
 		{
             "system": "sms",
@@ -599,8 +599,8 @@ Before creating a patient, the system will check the required fields (first, las
 			{
 				"url": "https://select.nextech-api.com/api/structuredefinition/method-privacy",
 				"valueBoolean": "true"
-			}
-			]
+			}			
+			]			
         }
     ],
     "identifier": [
@@ -629,7 +629,7 @@ Before creating a patient, the system will check the required fields (first, las
             },
     "generalPractitioner" : {
         "reference": "practitioner/9219"
-    },
+    }, 
     "birthDate": "1970-09-28",
     "address": [
         {
@@ -698,7 +698,7 @@ Before creating a patient, the system will check the required fields (first, las
 				"valueString": "Wife"
             }
         ]
-
+         
     },
 	{
         "relationship": [
@@ -712,7 +712,7 @@ Before creating a patient, the system will check the required fields (first, las
         }
       ],
         "name": [
-            {
+            {            
             "family": "Jenkins",
 				"given": [
 					"George",
@@ -731,7 +731,7 @@ Before creating a patient, the system will check the required fields (first, las
             "state": "NY",
             "postalCode": "12345"
 		  }
-		],
+		],         
         "extension":
         [
             {
@@ -751,25 +751,25 @@ Before creating a patient, the system will check the required fields (first, las
 				"valueString": "7890"
             }
         ]
-
+         
     }
 	]
 }
 </pre>
-&nbsp;
+&nbsp; 
 
 ### *Update Patient*
 Update a patient.
 
-#### HTTP Request
-`PUT /Patient/`
+#### HTTP Request 
+`PUT /Patient/` 
 
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
 |FHIR Patient object| The full patient FHIR object is accepted in the body. | Yes | _14.0_ |
 
-*Note:
+*Note: 
 * Patient name, date of birth and postal code cannot be updated. The fields will be ignored when updating the patient.
 * All other patient related fields can be updated. However, if they are updated with invalid values (e.g. updating the country with a country code of JGU) the result of the update will be a success but the field will not be updated.
 
@@ -777,7 +777,7 @@ Update a patient.
 
 <pre class="center-column">
 {
-    "resourceType": "Patient",
+    "resourceType": "Patient",    
     "identifier": [
         {
             "use": "official",
@@ -793,7 +793,7 @@ Update a patient.
     ]
 }
 </pre>
-&nbsp;
+&nbsp; 
 
 ## Allergy Intolerance
 
@@ -875,8 +875,8 @@ Binary resources contain patient health information in a structured document or 
 ### *Generate CCDA*
 Generates a CCDA for a single patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/Binary/$autogen-ccd-if?{parameters}`
+#### HTTP Request 
+`GET /Patient/{patientUid}/Binary/$autogen-ccd-if?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -896,7 +896,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 ## Care Plan
 
 ### Overview
-A Care Plan contains patient diet, procedure, lab work and counseling and other care information for a single patient.
+A Care Plan contains patient diet, procedure, lab work and counseling and other care information for a single patient.   
 
 ### Fields
 | Name | Description | Type | Initial Version |
@@ -950,7 +950,7 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
 ### *Search*
 Searches for care plans for a single patient
 
-#### HTTP Request
+#### HTTP Request 
 `GET /Patient/{patientUid}/CarePlan?{parameters}`
 
 #### Parameters
@@ -1010,8 +1010,8 @@ The clinical impression resource contains information regarding what problem(s) 
 ### *Search*
 Searches for clinical impressions for a patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/ClinicalImpression?{parameters}`
+#### HTTP Request 
+`GET /Patient/{patientUid}/ClinicalImpression?{parameters}` 
 
 ### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1030,7 +1030,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 ## Composition
 
 ### Overview
-The Composition resource defines a collection of healthcare-related information bundled together as a single document that provides meaning for a given patient.
+The Composition resource defines a collection of healthcare-related information bundled together as a single document that provides meaning for a given patient. 
 
 ### Fields
 | Name | Description | Type | Initial Version |
@@ -1121,10 +1121,10 @@ The Composition resource defines a collection of healthcare-related information 
 &nbsp;
 
 ### *Create*
-Creates a non-clinical note for a patient that is visible in the patient's Notes tab in the Nextech software.
+Creates a non-clinical note for a patient that is visible in the patient's Notes tab in the Nextech software.  
 
-#### HTTP Request
-`POST /Patient/{patientUid}/Composition`
+#### HTTP Request 
+`POST /Patient/{patientUid}/Composition` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1160,7 +1160,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 					{
 						"system": "http://hl7.org/fhir/flag-priority-code",
 						"code": "PM"
-					}
+					}	
 				]
 			}
 		}
@@ -1240,8 +1240,8 @@ The condition resource describes a certain state of health of a patient.
 ### *Search*
 Searches for conditions for a single patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/Condition?{parameters}`
+#### HTTP Request 
+`GET /Patient/{patientUid}/Condition?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1329,8 +1329,8 @@ The device resource identifies an instance or type of manufactured item used in 
 ### *Search*
 Searches for devices for a single patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/Device?{parameters}`
+#### HTTP Request 
+`GET /Patient/{patientUid}/Device?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1396,7 +1396,7 @@ The DocumentReference resource is used to describe a document that is made avail
     ],
     "content": [
         {
-            "attachment": {
+            "attachment": {				
                 "contentType": "application/pdf",
                 "title": "Document Title.pdf"
             }
@@ -1409,8 +1409,8 @@ The DocumentReference resource is used to describe a document that is made avail
 ### *Create*
 Creates the document in the content.attachment for a patient and attaches it to the patient's history tab in the Nextech software.
 
-#### HTTP Request
-`POST /Patient/{patientUid}/DocumentReference`
+#### HTTP Request 
+`POST /Patient/{patientUid}/DocumentReference` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1452,12 +1452,12 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 #### Body
 <pre class="center-column">
 {
-  "resourceType": "DocumentReference",
+  "resourceType": "DocumentReference",  
   "author": [
         {
             "display": "API user"
         }
-  ],
+  ],  
   "created": "2017-10-16T20:32:28.9692476Z",
   "description": "A description of the document",
   "extension": [
@@ -1587,7 +1587,7 @@ The encounter resource describes an interaction between a patient and healthcare
 ### *Search*
 Searches for encounters for a single patient
 
-#### HTTP Request
+#### HTTP Request 
 `GET /Patient/{patientUid}/Encounter?{parameters}`
 
 #### Parameters
@@ -1662,8 +1662,8 @@ The goal resource describes a desired state of health for a patient.
 ### *Search*
 Searches for goals for a single patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/Goal?{parameters}`
+#### HTTP Request 
+`GET /Patient/{patientUid}/Goal?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1734,8 +1734,8 @@ The immunization resource describes an administered vaccine.
 ### *Search*
 Searches for immunizations for a single patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/Immunization?{parameters}`
+#### HTTP Request 
+`GET /Patient/{patientUid}/Immunization?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1804,8 +1804,8 @@ The medication dispersement resource describes the supply of medications by a he
 ### *Search*
 Searches for medication dispensements for a single patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/MedicationDispense?{parameters}`
+#### HTTP Request 
+`GET /Patient/{patientUid}/MedicationDispense?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1824,7 +1824,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 ## Medication Statements
 
 ### Overview
-A medication statement resource describes a medication being consumed by a patient. This includes medications not prescribed by the health care provider.
+A medication statement resource describes a medication being consumed by a patient. This includes medications not prescribed by the health care provider. 
 
 ### Fields
 | Name | Description | Type | Initial Version |
@@ -1876,7 +1876,7 @@ A medication statement resource describes a medication being consumed by a patie
 ### *Search*
 Searches for current medications for a single patient
 
-#### HTTP Request
+#### HTTP Request 
 `GET /Patient/{patientUid}/MedicationStatement?{parameters}`
 
 #### Parameters
@@ -1969,14 +1969,14 @@ An observation resource describes a measurement or an assertion made about a pat
     }
   ]
 }
-</pre>
+</pre> 
 &nbsp;
 
 ### *Search*
 Searches for observations for a single patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/Observation?{parameters}`
+#### HTTP Request 
+`GET /Patient/{patientUid}/Observation?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -2098,8 +2098,8 @@ The PaymentReconciliation resource is used in a POST command to post a single pa
 ### *Create*
 Creates a payment for an existing patient.
 
-#### HTTP Request
-`POST /Patient/{patientUid}/PaymentReconciliation`
+#### HTTP Request 
+`POST /Patient/{patientUid}/PaymentReconciliation` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -2124,7 +2124,7 @@ Creates a payment for an existing patient.
 | extension: apply-payment | Value indicating whether the payment should be applied to patient's responsibility. The payment will be applied to patient responsiblity charges with a balance from oldest to newest. | N | _12.8_ |
 
 ### Extensions
-Extensions are used to support required values not part of the FHIR standard.
+Extensions are used to support required values not part of the FHIR standard. 
 
 #### Example: Post a $200 check for a patient
 <pre class="center-column">
@@ -2260,8 +2260,8 @@ A procedure resource describes an activity performed with or on a patient as par
 ### *Search*
 Searches for procedures for a single patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/Procedure?{parameters}`
+#### HTTP Request 
+`GET /Patient/{patientUid}/Procedure?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
