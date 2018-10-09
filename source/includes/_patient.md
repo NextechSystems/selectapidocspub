@@ -828,6 +828,8 @@ Field Update Exceptions:
 * Patients Referred cannot be updated.
 * Prospects Referred cannot be updated.
 
+For identifier fields, a use type is required.  A use type of "official" must be used when including the patient's unique identifier. A use type of "usual" must be used when including the patient's chart number.
+
 #### Example: Update a patient's home number
 
 <pre class="center-column">
