@@ -16,7 +16,7 @@ The appointment resource contains information about a planned meeting between a 
 | start | The date and time the appointment begins | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6_ |
 | end | The date and time the appointment ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6_ |
 | comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
-| participant | The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| participant | The collection of appointment participants which includes patient, provider and location.  As of version 14.1, the patient reference will not be included for non-patient appointments | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
 | created | The date that this appointment was initially created | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _12.8_ |
 | Extension | This is an extension of the class to provide more indepth objects like for appointment types(_12.8_) and appointment purposes (_12.9_)|  [extension](https://www.hl7.org/fhir/extensibility.html)  | _12.9_ |
 
