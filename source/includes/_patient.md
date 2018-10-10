@@ -8,7 +8,7 @@ The patient resource contains information about the demographics of a patient.
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| identifier | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier, the patient's Nextech chart number, or with version 14.1, the patient's masked social security number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_, 14.1 for masked Social Security Number |
 | race | The race of the patient | [Race](https://www.hl7.org/fhir/v3/Race/cs.html) | _12.6_ |
 | ethnicity | The ethnicity of the patient | [Ethnicity](https://www.hl7.org/fhir/v3/Ethnicity/cs.html) | _12.6_ |
 | name | Names of the patient, additional information including prefix and nickname added in version 12.9.20 | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) | _12.6_ |
@@ -29,6 +29,11 @@ The patient resource contains information about the demographics of a patient.
 | affiliate-physician | The affiliate physician for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _12.9.20_ |
 | affiliate-physician-type | The affiliate physician type for the patient, contained in the extension | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9.20_ |
 | patient-employment-status | The employment status for the patient, contained in the extension | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9.20_ |
+| patients-referred | The number of patients this patient has referred, contained in the extension | [integer](https://www.hl7.org/fhir/datatypes.html#integer) | _14.1_ |
+| prospects-referred | The number of prospects this patient has referred, contained in the extension | [integer](https://www.hl7.org/fhir/datatypes.html#integer) | _14.1_ |
+| patient-type | The patient type for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _14.1_ |
+| patient-status | The status for the patient (patient, prospect, or patientprospect), contained in the extension | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.1_ |
+| exclude-from-mailings | Whether this patient is excluded from mailings, contained in the extension | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | _14.1_ |
 
 
 ### Example
@@ -114,6 +119,29 @@ The patient resource contains information about the demographics of a patient.
                 "reference": "location/1",
                 "display": "NexTech Dermatology"
             }
+        },
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/patients-referred",
+			"valueInteger": 2
+		},
+		{
+			"url": "https://select.nextech-api.com/api/structuredefinition/prospects-referred",
+			"valueInteger": 1
+		},
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-status",
+            "valueString": "prospect"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/exclude-from-mailings",
+            "valueBoolean": true
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-type",
+            "valueReference": {
+                "reference": "patient-type/2",
+                "display": "Insurance Patient"
+            }
         }
     ],
     "identifier": [
@@ -124,6 +152,10 @@ The patient resource contains information about the demographics of a patient.
         {
             "use": "usual",
             "value": "112711"
+        },
+		{
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "###-##-1234"
         }
     ],
     "name": [
@@ -396,7 +428,7 @@ Create a patient.
 #### Parameters
 | Name | Description | Notes | Required | Initial Version |
 | ---- | ----------- | ----- | -------- | --------------- |
-|identifier| Social Security number of the patient. | Social Security Number is not returned in the response. | No | _12.9.20_ |
+|identifier| Social Security number of the patient. | Social Security Number is not returned in the response until version 14.1 when it is returned masked. | No | _12.9.20_ |
 | name | Names of the patient. | The family, given and use elements, are required.<br> Only one use of "official" is supported and one use of "nickname" is supported | Yes | _12.9.20_  |
 | telecom | Contact details for the patient. | E-mail, and one phone contact is required.<br> One each of home, work, mobile, other, fax, email address is supported.<br> Preferred Contact is designated by setting a rank of 1 on a contact point.<br> Privacy fields are designated by having an extension of method-privacy set to true. You may set Text messaging privacy and preferred contact by using SMS as a system without a value.<br> When a contact detail is set to privacy, it is not returned in the response. | Yes | _12.9.20_  |
 | gender | The gender of the patient | - | No | _12.9.20_  |
@@ -415,11 +447,14 @@ Create a patient.
 | primary-care-physician | The primary care physician for the patient | - | No | _12.9.20_ |
 | affiliate-physician | The affiliate physician for the patient | - | No | _12.9.20_ |
 | affiliate-physician-type | The affiliate physician type for the patient. | Must be a value of: "preop", "postop", "preandpostop" | No | _12.9.20_ |
-| patient-location | The default location for patient. | Must be an active, managed location of General type. | No | _12.9.20_ |
-| patient-employment-status | The employment status for patient. | Must be a value of: "full time","part time", "full time student", "part time student", "retired", "other"  | No | _12.9.20_ |
+| patient-location | The default location for the patient. | Must be an active, managed location of General type. | No | _12.9.20_ |
+| patient-employment-status | The employment status for the patient. | Must be a value of: "full time","part time", "full time student", "part time student", "retired", "other"  | No | _12.9.20_ |
+| patient-status | The status for the new record. | Must be a value of: "patient","prospect", "patientprospect"  | No | _14.1_ |
+| patient-type | The patient type for the patient. | - | No | _14.1_ |
+| exclude-from-mailings | Whether to exclude the patient from mailings. | Must be true or false | No | _14.1_ |
 
 
-Whether the patient is created as a patient, or a prospect is controlled by the Default Status preference in Nextech found under Tools->Preferences->Patients Module->New Patients->Default Status Preference.
+Prior to version 14.1, whether the patient is created as a patient, or a prospect is controlled by the Default Status preference in Nextech found under Tools->Preferences->Patients Module->New Patients->Default Status Preference.  As of version 14.1 the patient status may be specified in the patient-status extension.  If not specified, the preference is used.
 
 Before creating a patient, the system will check the required fields (first, last, email address, birthdate, zip code, and one of home, work, or mobile phone numbers, to see if they match existing patients.  If a match is found, the patient will not be created and a 409 Conflict with a message indicating the patient already exists.
 
@@ -534,6 +569,20 @@ Before creating a patient, the system will check the required fields (first, las
 		{
             "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time student"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-status",
+            "valueString": "prospect"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/exclude-from-mailings",
+            "valueBoolean": true
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-type",
+            "valueReference": {
+                "reference": "patient-type/2"                
+            }
         }
     ],  
     "name": [
@@ -769,9 +818,17 @@ Update a patient.
 | ---- | ----------- | -------- | --------------- |
 |FHIR Patient object| The full patient FHIR object is accepted in the body. | Yes | _14.0_ |
 
-*Note: 
-* Patient name, date of birth and postal code cannot be updated. The fields will be ignored when updating the patient.
-* All other patient related fields can be updated. However, if they are updated with invalid values (e.g. updating the country with a country code of JGU) the result of the update will be a success but the field will not be updated.
+All patient related fields can be updated, except for the below exceptions. If a field is updated with an invalid value (e.g. updating the country with a country code of JGU) the result of the update will be a success but the field will not be updated.
+
+Field Update Exceptions:
+* Patient Name cannot be updated and will be ignored.
+* Date of Birth cannot be updated and will be ignored.
+* Postal Code cannot be updated prior to version 14.1.  On version 14.1 and after postal code can be updated, but it cannot be cleared.
+* Social Security Number cannot be updated prior to version 14.1.  On version 14.1 and after social security number can be changed, but it cannot be cleared.
+* Patients Referred cannot be updated.
+* Prospects Referred cannot be updated.
+
+For identifier fields, a use type is required.  A use type of "official" must be used when including the patient's unique identifier. A use type of "usual" must be used when including the patient's chart number.
 
 #### Example: Update a patient's home number
 
