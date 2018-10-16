@@ -10,6 +10,7 @@ includes:
   - introduction
   - gettingstarted
   - patient
+  - patienttype
   - appointment
   - slot
   - appointmenttype
