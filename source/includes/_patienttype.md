@@ -4,7 +4,7 @@
 
 ### Overview
 
-The patient type resource contains information about a patient and their releation to the practice. Examples include new patient, prospect, deceased.
+The patient type resource contains information about a patient and their relation to the practice. Examples include new patient, prospect, deceased.
 
 ### Fields
 
@@ -67,7 +67,7 @@ The patient type resource contains information about a patient and their releati
 Searches for all patient types matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
 
 #### HTTP Request 
-`GET /appointment-type?{parameters}`
+`GET /patient-type?{parameters}`
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -89,7 +89,7 @@ GET https://select.nextech-api.com/api/patient-type?name:contains=cosmetic
 </pre>
 &nbsp;
 
-#### Example: Get a specific location based on identifier
+#### Example: Get a specific patient type based on identifier
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-type/5
