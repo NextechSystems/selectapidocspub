@@ -4,7 +4,7 @@
 
 ### Overview
 
-The patient type resource contains information about a patient and their relation to the practice. Examples include new patient, prospect, deceased.
+The patient type resource contains information about a patient and their relation to the practice. Examples include Deceased, Moved, Insurance Patient.
 
 ### Fields
 
