@@ -4,6 +4,9 @@ All API requests are performed over HTTPS. Although the [FHIR® standard](https:
 
 Before you can access the Nextech API you must have the proper credentials to authenticate. These credentials will be provided to you by your Nextech representative.  
 
+**API Limitations**  
+- Users of the Nextech API are restricted to a limit of 5,000 API calls per day combined across all applications for a single client  
+- Nextech is not responsible for the development or maintenance of any third-party application
 
 **API Endpoint**  
 `https://select.nextech-api.com/api`
@@ -260,4 +263,5 @@ The Nextech Select APIs use the standard HTTP response codes to indicate success
 | 400 | Bad Request - The request is missing information or is malformed |
 | 403 | Forbidden - The request is valid, but the server is refusing action |
 | 404 | Not Found - The requested resource cannot be found |
+| 429 | Too Many Requests - The user has sent too many requests in a given amount of time |
 | 500 | Internal Server Error - We had a problem with our server |
