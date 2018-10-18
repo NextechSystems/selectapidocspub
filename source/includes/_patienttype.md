@@ -10,9 +10,9 @@ The patient type resource contains information about a patient and their relatio
 
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| resourcetype | The declaration of the type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.2_ |
-| id | The unique value assigned to each patient type which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.2_ |
-| extension | The patient type values as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
+| resourcetype | The declaration of the type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.1_ |
+| id | The unique value assigned to each patient type which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.1_ |
+| extension | The patient type values as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
 
 
 ### Sample
@@ -72,8 +72,8 @@ Searches for all patient types matching the given search criteria. See [https://
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query | The unique identifier for a single patient type | N | _14.2_ |
-| name | query | The name of the patient type | N | _14.2_ |
+| identifier | query | The unique identifier for a single patient type | N | _14.1_ |
+| name | query | The name of the patient type | N | _14.1_ |
 
 #### Example: Get all patient types
 
