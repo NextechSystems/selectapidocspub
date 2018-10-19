@@ -95,7 +95,7 @@ GET https://select.nextech-api.com/api/patient-type?name:contains=cosmetic
 GET https://select.nextech-api.com/api/patient-type/5
 </pre>
 #### Response
-<pre>
+<pre class="center-column">
 {
     "resourceType": "patient-type",
     "id": "5",
