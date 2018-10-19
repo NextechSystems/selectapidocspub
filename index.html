@@ -294,6 +294,14 @@
               </ul>
           </li>
           <li>
+            <a href="#patient-type" class="toc-h1 toc-link" data-title="Patient-Type">Patient-Type</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#patient-type-2" class="toc-h2 toc-link" data-title="Patient-Type">Patient-Type</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#appointment" class="toc-h1 toc-link" data-title="Appointment">Appointment</a>
               <ul class="toc-list-h2">
                   <li>
@@ -399,6 +407,10 @@
 <p>All API requests are performed over HTTPS. Although the <a href="https://www.hl7.org/fhir/index.html">FHIR® standard</a> supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request&#39;s <code>Accept</code> header will be ignored.</p>
 
 <p>Before you can access the Nextech API you must have the proper credentials to authenticate. These credentials will be provided to you by your Nextech representative.  </p>
+
+<p><strong>API Limitations</strong><br>
+- Users of the Nextech API are restricted to a limit of 5,000 API calls per day combined across all applications for a single client<br>
+- Nextech is not responsible for the development or maintenance of any third-party application</p>
 
 <p><strong>API Endpoint</strong><br>
 <code>https://select.nextech-api.com/api</code></p>
@@ -783,6 +795,10 @@ Search results are limited to 50 matches per page.
 <td>Not Found - The requested resource cannot be found</td>
 </tr>
 <tr>
+<td>429</td>
+<td>Too Many Requests - The user has sent too many requests in a given amount of time</td>
+</tr>
+<tr>
 <td>500</td>
 <td>Internal Server Error - We had a problem with our server</td>
 </tr>
@@ -800,9 +816,9 @@ Search results are limited to 50 matches per page.
 </thead><tbody>
 <tr>
 <td>identifier</td>
-<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier, the patient&#39;s Nextech chart number, or with version 14.1, the patient&#39;s masked social security number</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-<td><em>12.6</em></td>
+<td><em>12.6</em>, 14.1 for masked Social Security Number</td>
 </tr>
 <tr>
 <td>race</td>
@@ -924,6 +940,36 @@ Search results are limited to 50 matches per page.
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>12.9.20</em></td>
 </tr>
+<tr>
+<td>patients-referred</td>
+<td>The number of patients this patient has referred, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#integer">integer</a></td>
+<td><em>14.1</em></td>
+</tr>
+<tr>
+<td>prospects-referred</td>
+<td>The number of prospects this patient has referred, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#integer">integer</a></td>
+<td><em>14.1</em></td>
+</tr>
+<tr>
+<td>patient-type</td>
+<td>The patient type for the patient, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
+<td><em>14.1</em></td>
+</tr>
+<tr>
+<td>patient-status</td>
+<td>The status for the patient (patient, prospect, or patientprospect), contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.1</em></td>
+</tr>
+<tr>
+<td>exclude-from-mailings</td>
+<td>Whether this patient is excluded from mailings, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+<td><em>14.1</em></td>
+</tr>
 </tbody></table>
 <h3 id='example'>Example</h3>
 <pre class="center-column">
@@ -1008,6 +1054,29 @@ Search results are limited to 50 matches per page.
                 "reference": "location/1",
                 "display": "NexTech Dermatology"
             }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patients-referred",
+            "valueInteger": 2
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/prospects-referred",
+            "valueInteger": 1
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-status",
+            "valueString": "prospect"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/exclude-from-mailings",
+            "valueBoolean": true
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-type",
+            "valueReference": {
+                "reference": "patient-type/2",
+                "display": "Insurance Patient"
+            }
         }
     ],
     "identifier": [
@@ -1018,6 +1087,10 @@ Search results are limited to 50 matches per page.
         {
             "use": "usual",
             "value": "112711"
+        },
+        {
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "###-##-1234"
         }
     ],
     "name": [
@@ -1445,7 +1518,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 <tr>
 <td>identifier</td>
 <td>Social Security number of the patient.</td>
-<td>Social Security Number is not returned in the response.</td>
+<td>Social Security Number is not returned in the response until version 14.1 when it is returned masked.</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
@@ -1577,21 +1650,42 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 </tr>
 <tr>
 <td>patient-location</td>
-<td>The default location for patient.</td>
+<td>The default location for the patient.</td>
 <td>Must be an active, managed location of General type.</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
 <td>patient-employment-status</td>
-<td>The employment status for patient.</td>
+<td>The employment status for the patient.</td>
 <td>Must be a value of: &quot;full time&quot;,&quot;part time&quot;, &quot;full time student&quot;, &quot;part time student&quot;, &quot;retired&quot;, &quot;other&quot;</td>
 <td>No</td>
 <td><em>12.9.20</em></td>
 </tr>
+<tr>
+<td>patient-status</td>
+<td>The status for the new record.</td>
+<td>Must be a value of: &quot;patient&quot;,&quot;prospect&quot;, &quot;patientprospect&quot;</td>
+<td>No</td>
+<td><em>14.1</em></td>
+</tr>
+<tr>
+<td>patient-type</td>
+<td>The patient type for the patient.</td>
+<td>-</td>
+<td>No</td>
+<td><em>14.1</em></td>
+</tr>
+<tr>
+<td>exclude-from-mailings</td>
+<td>Whether to exclude the patient from mailings.</td>
+<td>Must be true or false</td>
+<td>No</td>
+<td><em>14.1</em></td>
+</tr>
 </tbody></table>
 
-<p>Whether the patient is created as a patient, or a prospect is controlled by the Default Status preference in Nextech found under Tools-&gt;Preferences-&gt;Patients Module-&gt;New Patients-&gt;Default Status Preference.</p>
+<p>Prior to version 14.1, whether the patient is created as a patient, or a prospect is controlled by the Default Status preference in Nextech found under Tools-&gt;Preferences-&gt;Patients Module-&gt;New Patients-&gt;Default Status Preference.  As of version 14.1 the patient status may be specified in the patient-status extension.  If not specified, the preference is used.</p>
 
 <p>Before creating a patient, the system will check the required fields (first, last, email address, birthdate, zip code, and one of home, work, or mobile phone numbers, to see if they match existing patients.  If a match is found, the patient will not be created and a 409 Conflict with a message indicating the patient already exists.</p>
 <h4 id='example-create-a-new-patient-with-minimum-information'>Example: Create a new patient with minimum information</h4>
@@ -1704,6 +1798,20 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/patient-employment-status",
             "valueString": "full time student"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-status",
+            "valueString": "prospect"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/exclude-from-mailings",
+            "valueBoolean": true
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-type",
+            "valueReference": {
+                "reference": "patient-type/2"                
+            }
         }
     ],  
     "name": [
@@ -1949,9 +2057,17 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 </tr>
 </tbody></table>
 
-<p>*Note: 
-* Patient name, date of birth and postal code cannot be updated. The fields will be ignored when updating the patient.
-* All other patient related fields can be updated. However, if they are updated with invalid values (e.g. updating the country with a country code of JGU) the result of the update will be a success but the field will not be updated.</p>
+<p>All patient related fields can be updated, except for the below exceptions. If a field is updated with an invalid value (e.g. updating the country with a country code of JGU) the result of the update will be a success but the field will not be updated.</p>
+
+<p>Field Update Exceptions:
+* Patient Name cannot be updated and will be ignored.
+* Date of Birth cannot be updated and will be ignored.
+* Postal Code cannot be updated prior to version 14.1.  On version 14.1 and after postal code can be updated, but it cannot be cleared.
+* Social Security Number cannot be updated prior to version 14.1.  On version 14.1 and after social security number can be changed, but it cannot be cleared.
+* Patients Referred cannot be updated.
+* Prospects Referred cannot be updated.</p>
+
+<p>For identifier fields, a use type is required.  A use type of &quot;official&quot; must be used when including the patient&#39;s unique identifier. A use type of &quot;usual&quot; must be used when including the patient&#39;s chart number.</p>
 <h4 id='example-update-a-patient-39-s-home-number'>Example: Update a patient&#39;s home number</h4>
 <pre class="center-column">
 {
@@ -4410,6 +4526,144 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
+<h1 id='patient-type'>Patient-Type</h1><h2 id='patient-type-2'>Patient-Type</h2><h3 id='overview'>Overview</h3>
+<p>The patient type resource contains information about a patient and their relation to the practice. Examples include Deceased, Moved, Insurance Patient.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>resourcetype</td>
+<td>The declaration of the type of resource this is.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.1</em></td>
+</tr>
+<tr>
+<td>id</td>
+<td>The unique value assigned to each patient type which discerns it from all others</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.1</em></td>
+</tr>
+<tr>
+<td>extension</td>
+<td>The patient type values as a packaged extension. Contains definition url and value</td>
+<td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
+<td><em>14.1</em></td>
+</tr>
+</tbody></table>
+<h3 id='sample'>Sample</h3>
+<pre class="center-column">
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 3,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "patient-type",
+                "id": "1",
+                "extension": [
+                    {
+                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-type#name",
+                        "valueString": "Cosmetic"
+                    }
+                ]
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "patient-type",
+                "id": "2",
+                "extension": [
+                    {
+                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-type#name",
+                        "valueString": "Insurance Patient"
+                    }
+                ]
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "patient-type",
+                "id": "3",
+                "extension": [
+                    {
+                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-type#name",
+                        "valueString": "Spa patient"
+                    }
+                ]
+            }
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all patient types matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /patient-type?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query</td>
+<td>The unique identifier for a single patient type</td>
+<td>N</td>
+<td><em>14.1</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td>The name of the patient type</td>
+<td>N</td>
+<td><em>14.1</em></td>
+</tr>
+</tbody></table>
+<h4 id='example-get-all-patient-types'>Example: Get all patient types</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-type
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-types-whose-name-contains-39-cosmetic-39'>Example: Get all types whose name contains &#39;Cosmetic&#39;</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-type?name:contains=cosmetic
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-patient-type-based-on-identifier'>Example: Get a specific patient type based on identifier</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-type/5
+</pre>
+<h4 id='response'>Response</h4>
+<pre>
+{
+    "resourceType": "patient-type",
+    "id": "5",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/patient-type#name",
+            "valueString": "Moved"
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
 <h1 id='appointment'>Appointment</h1><h2 id='appointment-2'>Appointment</h2><h3 id='overview'>Overview</h3>
 <p>The appointment resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
 <h3 id='fields'>Fields</h3>
@@ -4459,7 +4713,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </tr>
 <tr>
 <td>participant</td>
-<td>The collection of appointment participants which includes patient, provider and location. Each element in the collection references an embedded resource found in the “contained” collection field</td>
+<td>The collection of appointment participants which includes patient, provider and location.  As of version 14.1, the patient reference will not be included for non-patient appointments</td>
 <td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
 <td><em>12.6</em></td>
 </tr>
