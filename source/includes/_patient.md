@@ -8,7 +8,7 @@ The patient resource contains information about the demographics of a patient.
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier, the patient's Nextech chart number, or with version 14.1, the patient's masked social security number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_, 14.1 for masked Social Security Number |
+| identifier | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number. <br/><br/> As a convenience for some use cases, in version 14.1 and above, the patient's masked social security number (last four only) is also returned in this field if available. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
 | race | The race of the patient | [Race](https://www.hl7.org/fhir/v3/Race/cs.html) | _12.6_ |
 | ethnicity | The ethnicity of the patient | [Ethnicity](https://www.hl7.org/fhir/v3/Ethnicity/cs.html) | _12.6_ |
 | name | Names of the patient, additional information including prefix and nickname added in version 12.9.20 | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) | _12.6_ |
