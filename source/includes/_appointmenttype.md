@@ -43,4 +43,7 @@ Searches for all appointment types matching the given search criteria. See [http
 | name | query | The name of the appointment type | N | _12.8_ |
 
 
+### Appointment-Type ID Search
+Attempts to find a single appointment type that matches based on the identifier given
 
+`GET /appointment-type/{identifier}`

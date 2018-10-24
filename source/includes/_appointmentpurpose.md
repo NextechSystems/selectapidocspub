@@ -48,8 +48,11 @@ Searches for all appointment purposes matching the given search criteria. See [h
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| id | query | The unique identifier for a single appointment purpose  | No | _12.9_ |
+| identifier | query | The unique identifier for a single appointment purpose  | No | _12.9_ |
 | name | query | The name of the appointment purpose | No | _12.9_ |
 
+### Appointment-Purpose ID Search
+Attempts to find a single appointment purpose that matches based on the identifier given
 
+`GET /appointment-purpose/{identifier}`
 
