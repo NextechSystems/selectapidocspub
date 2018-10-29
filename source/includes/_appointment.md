@@ -228,8 +228,8 @@ Create a scheduled appointment.
 | Name | Description | Type | Required | Initial Version |
 | ---- | ----------- | ---- | -------- | --------------- |
 | status | The current status of the appointment - must be proposed | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | Yes | _12.9.10_ |
-| start | The start time of the appointment | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | Yes | _12.9.10_ |
-| end | The end time of the appointment  | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | Yes | _12.9.10_ |
+| start | The start time of the appointment in the format `yyyy-MM-dd'T'HH:mm:ssZ` | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | Yes | _12.9.10_ |
+| end | The end time of the appointment in the format `yyyy-MM-dd'T'HH:mm:ssZ` | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | Yes | _12.9.10_ |
 | Participant | Includes the patient reference (if existing patient), location for the appointment, and practitioner for the appointment  | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html)  | Location and practitioner are required, patient is required unless a contained section is included | _12.9.10_ |
 | Extension | Contains the appointment type and appointment purposes for this appointment |  [extension](https://www.hl7.org/fhir/extensibility.html) | No | _12.9.10_ |
 | Contained | Contains a patient resource if the patient does not already exist in Nextech | [Patient Resource](https://www.hl7.org/fhir/patient.html)   | Yes, unless a patient reference is included in the participant section | _12.9.10_ |
