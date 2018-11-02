@@ -530,7 +530,7 @@ Before creating a patient, the system will check the required fields (first, las
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
             "valueReference": {
-                "reference": "referring-physician/23",              
+                "reference": "referring-physician/23"              
             }
         },
         {
