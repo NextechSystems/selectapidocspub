@@ -530,7 +530,7 @@ Before creating a patient, the system will check the required fields (first, las
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
             "valueReference": {
-                "reference": "referring-physician/23",              
+                "reference": "referring-physician/23"              
             }
         },
         {
@@ -827,6 +827,7 @@ Field Update Exceptions:
 * Social Security Number cannot be updated prior to version 14.1.  On version 14.1 and after social security number can be changed, but it cannot be cleared.
 * Patients Referred cannot be updated.
 * Prospects Referred cannot be updated.
+* Preferred Contact method can be updated but not cleared out.
 
 For identifier fields, a use type is required.  A use type of "official" must be used when including the patient's unique identifier. A use type of "usual" must be used when including the patient's chart number.
 
