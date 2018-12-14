@@ -8,12 +8,12 @@ A list of payments, adjustments, and refunds. Can be insurance or self-pay.
 #### Body Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| requestProvider | The responsible practitioner | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html) | _14.2_ |
-| total | The PaymentReconciliation amount | [Money](http://hl7.org/fhir/datatypes.html#Money) | _14.2_ |
-| processNote | The PaymentReconciliation description | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _14.2_ |
-| created | The creation date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _14.2_ |
-| status | The status of the PaymentReconciliation. This will be one of the following values active, cancelled ( voided ), entered-in-error ( deleted ) | [code](https://www.hl7.org/fhir/datatypes.html#code) | _14.2_| 
-| organization | The Insurer who is associated with the PaymentReconciliation. ( Insurance payments, adjustments and refunds only ). If there is no organization associated with a PaymentReconciliation, i| [Reference(Organization)](https://www.hl7.org/fhir/references.html) | _14.2_ |
+| requestProvider | The responsible practitioner. | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html) | _14.2_ |
+| total | The PaymentReconciliation amount total. | [Money](http://hl7.org/fhir/datatypes.html#Money) | _14.2_ |
+| processNote | The PaymentReconciliation description. | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _14.2_ |
+| created | The creation date. | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _14.2_ |
+| status | The status of the PaymentReconciliation. This will be one of the following values active, cancelled ( voided ), entered-in-error ( deleted ) . <br> • For purposes of calculating the current balance of a patient account, Cancelled transactions may be excluded. <br> • For purposes of keeping a history of financial transactions that happened in a specific accounting period (by input date field/effective date extension) then the cancelled transactions should be included. <br> • When a transaction is Voided in Nextech, the original transaction remains unchanged in the original accounting period, but has a status of ‘Cancelled’. A new transaction that is the exact opposite of the original is created with a current input date/effective date and also has a status of ‘Cancelled’. The net of these transactions are $0. <br> • When a transaction is Voided & Corrected in Nextech, the original transaction remains unchanged in the the original accounting period, but has a status of ‘Cancelled’. A new transaction that is the exact opposite of the original is created with a current input date/effective date and also has a status of ‘Cancelled’. The net of these transactions are $0. A new “corrected” transaction is also created which is an copy of the original transaction, except for the input/effective date. The “corrected” transaction may be edited by the practice to change properties of the payment like the provider, location, amount, etc. | [code](https://www.hl7.org/fhir/datatypes.html#code) | _14.2_| 
+| organization | The Insurer who is associated with the PaymentReconciliation. ( Insurance payments, adjustments and refunds only ). If there is no organization associated with a PaymentReconciliation, the PaymentReconciliation is in reference patient responsibility. | [Reference(Organization)](https://www.hl7.org/fhir/references.html) | _14.2_ |
 | detail | List of individual settlement amounts and the corresponding transaction. | [Control](https://www.hl7.org/fhir/conformance-rules.html#conformance) | _14.2_| 
 | detail.request | 	The claim or financial resource. | [Reference(Claim)](https://www.hl7.org/fhir/references.html) | _14.2_| 
 | detail.type | Code to indicate the nature of the payment or adjustment (refund is categorized as a payment with negative amount). See [Payment Type Codes](http://hl7.org/fhir/codesystem-payment-type.html)  | [Code](https://www.hl7.org/fhir/datatypes.html#code) | _14.2_| 
@@ -164,12 +164,12 @@ Searches for all  based on the given search criteria.
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query or uri | The unique value assigned to each PaymentReconciliation |  No | _14.2_ |
+| identifier | query or uri | The unique value assigned to each PaymentReconciliation. |  No | _14.2_ |
 | location | query | The location for the PaymentReconciliation. | No | _14.2_ |
 | patient | query | The patient the PaymentReconciliation is tied to. | No | _14.2_ |
 | created | query | The date the PaymentReconciliation was created. | No | _14.2_ |
-| status | query | The status of the PaymentReconciliation. This must be one of the following active, cancelled ( voided ), entered-in-error ( deleted )  | No | _14.2_ |
-| payment-date | query |The date of service for the PaymentReconciliation | No | _14.2_ |
+| status | query | The status of the PaymentReconciliation. This must be one of the following active, cancelled ( voided ), entered-in-error ( deleted ).  | No | _14.2_ |
+| payment-date | query |The date of service for the PaymentReconciliation. | No | _14.2_ |
 | request-provider| query | The provider associated with the PaymentReconciliation. This is a practitioner reference. | No | _14.2_ |
 
 
