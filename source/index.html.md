@@ -20,6 +20,7 @@ includes:
   - account
   - coverage
   - claim
+  - paymentreconciliation
 
 search: false
 ---
