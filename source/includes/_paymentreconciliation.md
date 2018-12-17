@@ -165,7 +165,7 @@ Searches for all  based on the given search criteria.
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
 | identifier | query or uri | The unique value assigned to each PaymentReconciliation. |  No | _14.2_ |
-| location | query | The location for the PaymentReconciliation. | No | _14.2_ |
+| location.id | query | The location for the PaymentReconciliation. | No | _14.2_ |
 | patient | query | The patient the PaymentReconciliation is tied to. | No | _14.2_ |
 | created | query | The date the PaymentReconciliation was created. | No | _14.2_ |
 | status | query | The status of the PaymentReconciliation. This must be one of the following active, cancelled ( voided ), entered-in-error ( deleted ).  | No | _14.2_ |
@@ -176,7 +176,7 @@ Searches for all  based on the given search criteria.
 #### Example: Get PaymentReconciliations with a particular place of service
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/PaymentReconciliation?location=1
+GET https://select.nextech-api.com/api/PaymentReconciliation?location.id=1
 </pre>
 &nbsp;
 
