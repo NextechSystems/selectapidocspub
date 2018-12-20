@@ -468,8 +468,7 @@ Before creating a patient, the system will check the required fields (first, las
 			"family": "Brimley",
 			"given": [
 				"Henry"
-			],
-			"use": "official"
+			]
 		}
 	],
 	"telecom": [
@@ -713,7 +712,7 @@ Before creating a patient, the system will check the required fields (first, las
         {
           "coding": [
             {
-              "system": "http://hl7.org/fhir/patient-contact-relationship",
+              "system": "http://hl7.org/fhir/v2/0131",
               "code": "C"
             }
           ]
@@ -754,7 +753,7 @@ Before creating a patient, the system will check the required fields (first, las
         {
           "coding": [
             {
-              "system": "http://hl7.org/fhir/patient-contact-relationship",
+              "system": "http://hl7.org/fhir/v2/0131",
               "code": "E"
             }
           ]
