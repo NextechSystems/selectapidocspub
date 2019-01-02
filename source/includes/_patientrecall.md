@@ -10,17 +10,17 @@ The patient recall resource contains information about patient recalls.
 
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| resourcetype | The declaration of the type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.1_ |
-| id | The unique value assigned to each patient recall which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.1_ |
-| extension - createddate| The created date as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
-| extension - recalldate| The (optional) recall date as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
-| extension - appointmentdate| The (optional) appointment date as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
-| extension - recallstatusid| The status id of the recall as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
-| extension - templatename| The template name as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
-| extension - stepname| The recall step name as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
-| extension - patient| The patient as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
-| extension - location| The (optional) location as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
-| extension - resources| The (optional) resources as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.1_ |
+| resourcetype | The declaration of the type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.2_ |
+| id | The unique value assigned to each patient recall which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.2_ |
+| extension - createddate| The created date as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
+| extension - recalldate| The (optional) recall date as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
+| extension - appointmentdate| The (optional) appointment date as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
+| extension - recallstatusid| The status id of the recall as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
+| extension - templatename| The template name as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
+| extension - stepname| The recall step name as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
+| extension - patient| The patient as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
+| extension - location| The (optional) location as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
+| extension - resources| The (optional) resources as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
 
 
 ### Sample
@@ -461,7 +461,7 @@ Searches for all patient recalls matching the given search criteria. See [https:
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query | The unique identifier for a single patient recall | N | _14.1_ |
+| identifier | query | The unique identifier for a single patient recall | N | _14.2_ |
 
 #### Example: Get all patient recalls
 
