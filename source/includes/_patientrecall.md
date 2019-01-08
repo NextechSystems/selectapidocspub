@@ -4,456 +4,88 @@
 
 ### Overview
 
-The patient recall resource contains information about patient recalls.
+The patient-recall resource contains information about when a patient is expected to return for an appointment with their provider.
 
 ### Fields
 
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| resourcetype | The declaration of the type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.2_ |
-| id | The unique value assigned to each patient recall which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.2_ |
-| extension - createddate| The created date as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
-| extension - recalldate| The (optional) recall date as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
-| extension - appointmentdate| The (optional) appointment date as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
-| extension - recallstatusid| The status id of the recall as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
-| extension - templatename| The template name as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
-| extension - stepname| The recall step name as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
-| extension - patient| The patient as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
-| extension - location| The (optional) location as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
-| extension - resources| The (optional) resources as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.2_ |
-
+| identifier | The unique value assigned to each recall which discerns it from all others | [identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _14.2_ |
+| created | The date this recall was created in the system | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _14.2_ |
+| subject | A reference to the patient for whom this recall is for | [reference](https://www.hl7.org/fhir/references.html) | _14.2_ |
+| extension:practitioner | A reference to the practitioner associated with this recall. Not included if there is no practitioner associated to the recall | [reference](https://www.hl7.org/fhir/references.html) | _14.2_ |
+| extension:location | A reference to the location associated with this recall. Not included if there is no location associated to the recall | [reference](https://www.hl7.org/fhir/references.html) | _14.2_ |
+| extension:recall-date | The recall date | [date](https://www.hl7.org/fhir/datatypes.html#date) | _14.2_ |
+| extension:recall-status-name | The status of this recall. Possible values include: Need to Schedule, Past Due, Scheduled, Complete, Discontinued | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.2_ |
+| extension:recall-appointment-date | The start time of the appointment that fulfills this recall, if exists | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _14.2_ |
+| extension:recall-template-name | The name of the recall template this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
+| extension:recall-step-name | The name of the recall step this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
 
 ### Sample
 <pre class="center-column">
 {
-    "resourceType": "Bundle",
-    "type": "searchset",
-    "total": 41,
-    "link": [
-        {
-            "relation": "self",
-            "url": "http://localhost:57298/api/patient-recall"
-        },
-        {
-            "relation": "next",
-            "url": "http://localhost:57298/api/patient-recall?_getpagesoffset=10&_count=10"
-        },
-        {
-            "relation": "first",
-            "url": "http://localhost:57298/api/patient-recall?_getpagesoffset=0&_count=10"
-        },
-        {
-            "relation": "last",
-            "url": "http://localhost:57298/api/patient-recall?_getpagesoffset=31&_count=10"
-        }
-    ],
-    "entry": [
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "55",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2013-05-16T11:25:54.43-04:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2013-08-16T00:00:00-04:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "3 Month Recall"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "3 Month"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/5008a671-c8e9-47b2-a031-33b5b155f710"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "56",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2013-11-05T12:51:46.307-05:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2014-11-05T00:00:00-05:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "Annual Visit"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "12 month annual visit"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/e040b4a9-a855-4942-85bb-c11d5e5fbeee"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "57",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2013-11-05T12:54:16.48-05:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2014-11-05T00:00:00-05:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "Annual Visit"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "12 month annual visit"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/e040b4a9-a855-4942-85bb-c11d5e5fbeee"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "58",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2013-11-05T12:54:34.97-05:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2014-11-05T00:00:00-05:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "Annual Visit"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "12 month annual visit"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/e040b4a9-a855-4942-85bb-c11d5e5fbeee"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "59",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2013-11-19T16:46:21.937-05:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2013-12-03T00:00:00-05:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "Skin Cancer"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "2 Week Followup"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/2f014922-6984-4cdf-80c0-ed1f0f5c18f0"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "60",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2013-12-11T17:34:10.427-05:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2013-12-25T00:00:00-05:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "Skin Cancer"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "2 Week Followup"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/87cfc242-c7de-4d0a-90bd-0f9783c0b487"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "61",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2014-03-14T10:42:17.153-04:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2014-03-28T00:00:00-04:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "Skin Cancer"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "2 Week Followup"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/1452de00-88d1-4f5e-abdb-d1c25f8eeb4a"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "62",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2014-07-30T09:32:56.867-04:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2014-08-13T00:00:00-04:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "Skin Cancer"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "2 Week Followup"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/e409e81e-ae9c-48e2-858a-d97321344244"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "63",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2014-09-30T14:23:27.203-04:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2014-10-14T00:00:00-04:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "Melissa Test"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "2 week follow up"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/1452de00-88d1-4f5e-abdb-d1c25f8eeb4a"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "patient-recall",
-                "id": "64",
-                "extension": [
-                    {
-                        "id": "CreatedDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-                        "valueDateTime": "2014-10-20T13:32:55.237-04:00"
-                    },
-                    {
-                        "id": "RecallDate",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-                        "valueDateTime": "2014-11-03T00:00:00-05:00"
-                    },
-                    {
-                        "id": "RecallStatusID",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-                    },
-                    {
-                        "id": "TemplateName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-                        "valueString": "Skin Cancer"
-                    },
-                    {
-                        "id": "StepName",
-                        "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-                        "valueString": "2 Week Followup"
-                    },
-                    {
-                        "id": "Patient",
-                        "valueParticipantComponent": {
-                            "actor": {
-                                "reference": "Patient/53068d51-eae8-451a-8fd5-d06f33f6d208"
-                            }
-                        }
-                    }
-                ]
-            }
-        }
-    ]
-}</pre>
+  "resourceType": "Bundle",
+  "entry": [
+	{
+		"resource": {
+		"resourceType": "patient-recall",        
+		"identifier": [
+		{
+			"use": "official",
+			"value": "12312"
+		}
+		],
+		"created": "2017-07-27T21:09:19.913Z",
+		"subject": {
+			"reference": "Patient/5AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
+			"display": "Stephenson, Jim"
+		},
+		"extension" : [
+		{
+			"url" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
+			"valueResourceReference": {
+				"reference": "Practitioner/9978",
+				"display": "Davidson, Darren"
+			}
+		},
+		{
+			"url" : "http://hl7.org/fhir/StructureDefinition/Location",
+			"valueResourceReference": {
+				"reference": "Location/5",
+				"display": "South Dermatology"
+			}
+		},
+		{
+			"url" : "https://select.nextech-api.com/api/structuredefinition/recall-date",
+			"valueDate" : "2019-12-01"
+		},
+		{
+			"url" : "https://select.nextech-api.com/api/structuredefinition/recall-status-name",		
+			"valueString" : "Scheduled"
+		},
+		{
+			"url" : "https://select.nextech-api.com/api/structuredefinition/recall-appointment-date",		
+			"valueDateTime" : "2018-02-08T05:00:00.000Z"
+		},
+		{
+			"url" : "https://select.nextech-api.com/api/structuredefinition/recall-template-name",		
+			"valueString" : "Melanoma"
+		},
+		{
+			"url" : "https://select.nextech-api.com/api/structuredefinition/recall-step-name",		
+			"valueString" : "2 year follow-up"        
+		}
+		]
+		}
+	}
+  ]
+}
+
+</pre>
 &nbsp;
 
 ### *Search*
-Searches for all patient recalls matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
+Searches for all recalls matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
 
 #### HTTP Request 
 `GET /patient-recall?{parameters}`
@@ -461,59 +93,70 @@ Searches for all patient recalls matching the given search criteria. See [https:
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query | The unique identifier for a single patient recall | N | _14.2_ |
+| identifier | query | The unique identifier for a single recall | No | _14.2_ |
+| subject | query | The recall's patient reference | No | _14.2_ |
+| created | query | The recall's created date. When searching for recalls within a date range, the following prefixes should be used: lt, gt, eq, le, ge | No | _14.2_ |
+| location | query | The recall's location reference | No | _14.2_ |
+| practitioner | query | The recall's practitioner reference | No | _14.2_ |
+| recall-status-name | query | The status name of the recall.  Currently supported values are: Need to Schedule, Past Due, Scheduled, Complete, and Discontinued | No | _14.2_ |
+| recall-date | query | The recall date | No | _14.2_ |
 
-#### Example: Get all patient recalls
+#### Multiple Search Values
+Multiple search values are supported for all fields except dates.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   
 
-<pre class="center-column">
-GET https://select.nextech-api.com/api/patient-recall
-</pre>
-&nbsp;
-
-#### Example: Get a specific patient recall based on identifier
+#### Example: Get a specific recall based on identifier
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall/55
 </pre>
-#### Response
+&nbsp;
+
+
+#### Example: Get all recalls for a patient
+
 <pre class="center-column">
-{
-    "resourceType": "patient-recall",
-    "id": "55",
-    "extension": [
-        {
-            "id": "CreatedDate",
-            "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#created-date",
-            "valueDateTime": "2013-05-16T11:25:54.43-04:00"
-        },
-        {
-            "id": "RecallDate",
-            "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-date",
-            "valueDateTime": "2013-08-16T00:00:00-04:00"
-        },
-        {
-            "id": "RecallStatusID",
-            "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#recall-status-id"
-        },
-        {
-            "id": "TemplateName",
-            "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#template-name",
-            "valueString": "3 Month Recall"
-        },
-        {
-            "id": "StepName",
-            "url": "https://select.nextech-api.com/api/structuredefinition/patient-recall#step-name",
-            "valueString": "3 Month"
-        },
-        {
-            "id": "Patient",
-            "valueParticipantComponent": {
-                "actor": {
-                    "reference": "Patient/5008a671-c8e9-47b2-a031-33b5b155f710"
-                }
-            }
-        }
-    ]
-}
+GET https://select.nextech-api.com/api/patient-recall?subject=Patient/5AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A
+</pre>
+&nbsp;
+
+#### Example: Get all recalls between and including 1/1/2019 through 5/31/2019
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?recall-date=ge2019-01-01&date=lt2019-06-01
+</pre>
+&nbsp;
+
+#### Example: Get all recalls for Dr. Smith or Dr. Jones 
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?practitioner=practitioner/9323,practitioner/7945
+</pre>
+&nbsp;
+
+#### Example: Get all recalls for a location by id
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?location=location/1
+</pre>
+&nbsp;
+
+#### Example: Get all appointments for either of 2 locations
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?location=location/1,location/2
+</pre>
+&nbsp;
+
+#### Example: Get all completed recalls
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?recall-status-name=complete
+</pre>
+&nbsp;
+
+#### Example: Get all recalls  created on 7/27/2018
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
 </pre>
 &nbsp;
