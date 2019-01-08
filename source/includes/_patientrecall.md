@@ -26,33 +26,33 @@ The patient-recall resource contains information about when a patient is expecte
 {
   "resourceType": "Bundle",
   "entry": [
-    {
-      "resource": {
-        "resourceType": "patient-recall",        
-        "identifier": [
-          {
-            "use": "official",
-            "value": "12312"
-          }
-        ],
+	{
+		"resource": {
+		"resourceType": "patient-recall",        
+		"identifier": [
+		{
+			"use": "official",
+			"value": "12312"
+		}
+		],
 		"created": "2017-07-27T21:09:19.913Z",
 		"subject": {
-              "reference": "Patient/5AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
-              "display": "Stephenson, Jim"
-        },
+			"reference": "Patient/5AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
+			"display": "Stephenson, Jim"
+		},
 		"extension" : [
 		{
 			"url" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
 			"valueResourceReference": {
-				  "reference": "Practitioner/9978",
-				  "display": "Davidson, Darren"
+				"reference": "Practitioner/9978",
+				"display": "Davidson, Darren"
 			}
 		},
 		{
 			"url" : "http://hl7.org/fhir/StructureDefinition/Location",
 			"valueResourceReference": {
-				  "reference": "Location/5",
-				  "display": "South Dermatology"
+				"reference": "Location/5",
+				"display": "South Dermatology"
 			}
 		},
 		{
@@ -76,8 +76,8 @@ The patient-recall resource contains information about when a patient is expecte
 			"valueString" : "2 year follow-up"        
 		}
 		]
-      }
-    }
+		}
+	}
   ]
 }
 
@@ -103,6 +103,14 @@ Searches for all recalls matching the given search criteria. See [https://www.hl
 
 #### Multiple Search Values
 Multiple search values are supported for all fields except dates.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   
+
+#### Example: Get a specific recall based on identifier
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall/55
+</pre>
+&nbsp;
+
 
 #### Example: Get all recalls for a patient
 
