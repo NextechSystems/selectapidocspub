@@ -122,7 +122,7 @@ GET https://select.nextech-api.com/api/patient-recall?subject=Patient/5AAE9E3C-B
 #### Example: Get all recalls between and including 1/1/2019 through 5/31/2019
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/patient-recall?recall-date=ge2019-01-01&date=lt2019-06-01
+GET https://select.nextech-api.com/api/patient-recall?recall-date=ge2019-01-01&recall-date=lt2019-06-01
 </pre>
 &nbsp;
 
