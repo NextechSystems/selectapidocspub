@@ -366,18 +366,19 @@ Searches for all patients matching the given search criteria. See [https://www.h
 | address-state | query | The state of the patient's address | No | string | _12.6_ |
 | address-postalcode | query | The postal (zip) code of the patient's address | No | string | _12.6_ |
 | identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
+| active | query | The patient's active status | No | bool | _14.3_ |
 
-#### Example: Get the patient of a specific chart number
+#### Example: Get the patient of a specific chart number (regardless of patient active status)
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/12345
 </pre>
 &nbsp;
 
-#### Example: Get all patients who live within a specific zip code
+#### Example: Get all active patients who live within a specific zip code
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?address-postalcode=12345
+GET https://select.nextech-api.com/api/Patient?address-postalcode=12345&active=true
 </pre>
 &nbsp;
 
@@ -410,8 +411,9 @@ _At least one of query parameters is required to perform a search._
 | address-state | query | The state of the patient's address | No | string | _12.6_ |
 | address-postalcode | query | The postal (zip) code of the patient's address | No | string | _12.6_ |
 | identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
+| active | query | The patient's active status | No | bool | _14.3_ |
 
-#### Example: Get the unique identifier of a patient given first name, last name, and birthdate
+#### Example: Get the unique identifier of a patient given first name, last name, and birthdate (By default will search for all active patients.)
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthdate=eq1972-04-21
