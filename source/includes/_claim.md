@@ -35,6 +35,7 @@ A list of services and products provided, or to be provided, to a patient.
 | Name | Description | Url  | Type | Initial Version |
 | ---- | ----------- | ---  | ---- | --------------- |
 | item-status | Indicates whether the Charge line is presently active or cancelled. If a Charge is deleted or voided it will have a status of Cancelled. If a closed charge is corrected, the original Charge will be voided with a status of Cancelled and a new Charge will be created to replace it with an Active status. | https://select.nextech-api.com/api/structuredefinition/item-status | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9.20_ |
+| claim-item-identifier | Identifier for the claim item. | https://select.nextech-api.com/api/structuredefinition/claim-item-identifier| [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _14.3_ |
 
 
 ### Example
