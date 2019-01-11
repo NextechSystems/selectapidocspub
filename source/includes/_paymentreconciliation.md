@@ -22,6 +22,8 @@ A list of payments, adjustments, and refunds. Can be insurance or self-pay.
 ### Extensions
 | Name | Description | Url  | Type | Initial Version |
 | ---- | ----------- | ---  | ---- | --------------- |
+| extension: claim-item | Reference to a claim item. |`https://select.nextech-api.com/api/structuredefinition/claim-item`| [Reference(Claim.item)](https://www.hl7.org/fhir/references.html) | _14.3_ |
+| extension: applied-amount | The amount applied to a claim item from the PaymentReconciliation. |`https://select.nextech-api.com/api/structuredefinition/applied-amount` | [Money](http://hl7.org/fhir/datatypes.html#Money)| _14.3_ |
 | extension: payment-method | The PaymentReconciliation method. |`https://select.nextech-api.com/api/structuredefinition/payment-method` |[string](http://hl7.org/fhir/datatypes.html#string) | _14.2_ |
 | extension: payment-date | The PaymentReconciliation date.  |`https://select.nextech-api.com/api/structuredefinition/payment-date` |[dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) |  _14.2_ |
 | extension: effective-date | The PaymentReconciliation input date. |`https://select.nextech-api.com/api/structuredefinition/effective-date` | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _14.2_ |
