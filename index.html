@@ -334,6 +334,14 @@
               </ul>
           </li>
           <li>
+            <a href="#patient-recall" class="toc-h1 toc-link" data-title="Patient-Recall">Patient-Recall</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#patient-recall-2" class="toc-h2 toc-link" data-title="Patient-Recall">Patient-Recall</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#location" class="toc-h1 toc-link" data-title="Location">Location</a>
               <ul class="toc-list-h2">
                   <li>
@@ -370,6 +378,14 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#claim-2" class="toc-h2 toc-link" data-title="Claim">Claim</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#paymentreconciliation" class="toc-h1 toc-link" data-title="PaymentReconciliation">PaymentReconciliation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#paymentreconciliation-2" class="toc-h2 toc-link" data-title="PaymentReconciliation">PaymentReconciliation</a>
                   </li>
               </ul>
           </li>
@@ -816,9 +832,9 @@ Search results are limited to 50 matches per page.
 </thead><tbody>
 <tr>
 <td>identifier</td>
-<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier, the patient&#39;s Nextech chart number, or with version 14.1, the patient&#39;s masked social security number</td>
+<td>The unique value assigned to each patient which discerns them from all others. It can be the patient&#39;s unique identifier or the patient&#39;s Nextech chart number. <br/><br/> As a convenience for some use cases, in version 14.1 and above, the patient&#39;s masked social security number (last four only) is also returned in this field if available.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-<td><em>12.6</em>, 14.1 for masked Social Security Number</td>
+<td><em>12.6</em></td>
 </tr>
 <tr>
 <td>race</td>
@@ -1377,16 +1393,24 @@ Search results are limited to 50 matches per page.
 <td>string</td>
 <td><em>12.6</em></td>
 </tr>
+<tr>
+<td>active</td>
+<td>query</td>
+<td>The patient&#39;s active status</td>
+<td>No</td>
+<td>bool</td>
+<td><em>14.3</em></td>
+</tr>
 </tbody></table>
-<h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get the patient of a specific chart number</h4>
+<h4 id='example-get-the-patient-of-a-specific-chart-number-regardless-of-patient-active-status'>Example: Get the patient of a specific chart number (regardless of patient active status)</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/12345
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-patients-who-live-within-a-specific-zip-code'>Example: Get all patients who live within a specific zip code</h4>
+<h4 id='example-get-all-active-patients-who-live-within-a-specific-zip-code'>Example: Get all active patients who live within a specific zip code</h4>
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?address-postalcode=12345
+GET https://select.nextech-api.com/api/Patient?address-postalcode=12345&active=true
 </pre>
 
 <p>&nbsp;</p>
@@ -1494,8 +1518,16 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>string</td>
 <td><em>12.6</em></td>
 </tr>
+<tr>
+<td>active</td>
+<td>query</td>
+<td>The patient&#39;s active status</td>
+<td>No</td>
+<td>bool</td>
+<td><em>14.3</em></td>
+</tr>
 </tbody></table>
-<h4 id='example-get-the-unique-identifier-of-a-patient-given-first-name-last-name-and-birthdate'>Example: Get the unique identifier of a patient given first name, last name, and birthdate</h4>
+<h4 id='example-get-the-unique-identifier-of-a-patient-given-first-name-last-name-and-birthdate-by-default-will-search-for-all-active-patients'>Example: Get the unique identifier of a patient given first name, last name, and birthdate (By default will search for all active patients.)</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthdate=eq1972-04-21
 </pre>
@@ -1698,8 +1730,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
             "family": "Brimley",
             "given": [
                 "Henry"
-            ],
-            "use": "official"
+            ]
         }
     ],
     "telecom": [
@@ -1759,7 +1790,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/referring-physician",
             "valueReference": {
-                "reference": "referring-physician/23",              
+                "reference": "referring-physician/23"              
             }
         },
         {
@@ -1942,7 +1973,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
         {
           "coding": [
             {
-              "system": "http://hl7.org/fhir/patient-contact-relationship",
+              "system": "http://hl7.org/fhir/v2/0131",
               "code": "C"
             }
           ]
@@ -1983,7 +2014,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
         {
           "coding": [
             {
-              "system": "http://hl7.org/fhir/patient-contact-relationship",
+              "system": "http://hl7.org/fhir/v2/0131",
               "code": "E"
             }
           ]
@@ -2065,7 +2096,8 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 * Postal Code cannot be updated prior to version 14.1.  On version 14.1 and after postal code can be updated, but it cannot be cleared.
 * Social Security Number cannot be updated prior to version 14.1.  On version 14.1 and after social security number can be changed, but it cannot be cleared.
 * Patients Referred cannot be updated.
-* Prospects Referred cannot be updated.</p>
+* Prospects Referred cannot be updated.
+* Preferred Contact method can be updated but not cleared out.</p>
 
 <p>For identifier fields, a use type is required.  A use type of &quot;official&quot; must be used when including the patient&#39;s unique identifier. A use type of &quot;usual&quot; must be used when including the patient&#39;s chart number.</p>
 <h4 id='example-update-a-patient-39-s-home-number'>Example: Update a patient&#39;s home number</h4>
@@ -5023,14 +5055,14 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </tr>
 <tr>
 <td>start</td>
-<td>The start time of the appointment</td>
+<td>The start time of the appointment ie.<code>2017-04-13T09:10:00-04:00</code></td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
 <td>Yes</td>
 <td><em>12.9.10</em></td>
 </tr>
 <tr>
 <td>end</td>
-<td>The end time of the appointment</td>
+<td>The end time of the appointment ie. <code>2017-04-13T09:40:00-04:00</code></td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
 <td>Yes</td>
 <td><em>12.9.10</em></td>
@@ -5567,6 +5599,10 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 <td><em>12.8</em></td>
 </tr>
 </tbody></table>
+<h3 id='appointment-type-id-search'>Appointment-Type ID Search</h3>
+<p>Attempts to find a single appointment type that matches based on the identifier given</p>
+
+<p><code>GET /appointment-type/{identifier}</code></p>
 <h1 id='appointment-purpose'>Appointment-Purpose</h1><h2 id='appointment-purpose-2'>Appointment-Purpose</h2><h3 id='overview'>Overview</h3>
 <p>The appointment purpose resource provides specific reasons for a planned meeting between a patient and medical provider. Examples include laser skin resurfacing, chemical peel  or microdermabrasion.</p>
 
@@ -5636,7 +5672,7 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
+<td>identifier</td>
 <td>query</td>
 <td>The unique identifier for a single appointment purpose</td>
 <td>No</td>
@@ -5650,6 +5686,259 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 <td><em>12.9</em></td>
 </tr>
 </tbody></table>
+<h3 id='appointment-purpose-id-search'>Appointment-Purpose ID Search</h3>
+<p>Attempts to find a single appointment purpose that matches based on the identifier given</p>
+
+<p><code>GET /appointment-purpose/{identifier}</code></p>
+<h1 id='patient-recall'>Patient-Recall</h1><h2 id='patient-recall-2'>Patient-Recall</h2><h3 id='overview'>Overview</h3>
+<p>The patient-recall resource contains information about when a patient is expected to return for an appointment with their provider.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>The unique value assigned to each recall which discerns it from all others</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">identifier</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>created</td>
+<td>The date this recall was created in the system</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">dateTime</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>A reference to the patient for whom this recall is for</td>
+<td><a href="https://www.hl7.org/fhir/references.html">reference</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension:practitioner</td>
+<td>A reference to the practitioner associated with this recall. Not included if there is no practitioner associated to the recall</td>
+<td><a href="https://www.hl7.org/fhir/references.html">reference</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension:location</td>
+<td>A reference to the location associated with this recall. Not included if there is no location associated to the recall</td>
+<td><a href="https://www.hl7.org/fhir/references.html">reference</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension:recall-date</td>
+<td>The recall date</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#date">date</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension:recall-status-name</td>
+<td>The status of this recall. Possible values include: Need to Schedule, Past Due, Scheduled, Complete, Discontinued</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension:recall-appointment-date</td>
+<td>The start time of the appointment that fulfills this recall, if exists</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">dateTime</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension:recall-template-name</td>
+<td>The name of the recall template this recall is for</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension:recall-step-name</td>
+<td>The name of the recall step this recall is for</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.2</em></td>
+</tr>
+</tbody></table>
+<h3 id='sample'>Sample</h3>
+<pre class="center-column">
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+        "resource": {
+        "resourceType": "patient-recall",        
+        "identifier": [
+        {
+            "use": "official",
+            "value": "12312"
+        }
+        ],
+        "created": "2017-07-27T21:09:19.913Z",
+        "subject": {
+            "reference": "Patient/5AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
+            "display": "Stephenson, Jim"
+        },
+        "extension" : [
+        {
+            "url" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
+            "valueResourceReference": {
+                "reference": "Practitioner/9978",
+                "display": "Davidson, Darren"
+            }
+        },
+        {
+            "url" : "http://hl7.org/fhir/StructureDefinition/Location",
+            "valueResourceReference": {
+                "reference": "Location/5",
+                "display": "South Dermatology"
+            }
+        },
+        {
+            "url" : "https://select.nextech-api.com/api/structuredefinition/recall-date",
+            "valueDate" : "2019-12-01"
+        },
+        {
+            "url" : "https://select.nextech-api.com/api/structuredefinition/recall-status-name",        
+            "valueString" : "Scheduled"
+        },
+        {
+            "url" : "https://select.nextech-api.com/api/structuredefinition/recall-appointment-date",       
+            "valueDateTime" : "2018-02-08T05:00:00.000Z"
+        },
+        {
+            "url" : "https://select.nextech-api.com/api/structuredefinition/recall-template-name",      
+            "valueString" : "Melanoma"
+        },
+        {
+            "url" : "https://select.nextech-api.com/api/structuredefinition/recall-step-name",      
+            "valueString" : "2 year follow-up"        
+        }
+        ]
+        }
+    }
+  ]
+}
+
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all recalls matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /patient-recall?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query</td>
+<td>The unique identifier for a single recall</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>subject</td>
+<td>query</td>
+<td>The recall&#39;s patient reference</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>created</td>
+<td>query</td>
+<td>The recall&#39;s created date. When searching for recalls within a date range, the following prefixes should be used: lt, gt, eq, le, ge</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>location</td>
+<td>query</td>
+<td>The recall&#39;s location reference</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>practitioner</td>
+<td>query</td>
+<td>The recall&#39;s practitioner reference</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>recall-status-name</td>
+<td>query</td>
+<td>The status name of the recall.  Currently supported values are: Need to Schedule, Past Due, Scheduled, Complete, and Discontinued</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>recall-date</td>
+<td>query</td>
+<td>The recall date</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+</tbody></table>
+<h4 id='multiple-search-values'>Multiple Search Values</h4>
+<p>Multiple search values are supported for all fields except dates.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   </p>
+<h4 id='example-get-a-specific-recall-based-on-identifier'>Example: Get a specific recall based on identifier</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall/55
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-recalls-for-a-patient'>Example: Get all recalls for a patient</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?subject=Patient/5AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-recalls-between-and-including-1-1-2019-through-5-31-2019'>Example: Get all recalls between and including 1/1/2019 through 5/31/2019</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?recall-date=ge2019-01-01&recall-date=lt2019-06-01
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-recalls-for-dr-smith-or-dr-jones'>Example: Get all recalls for Dr. Smith or Dr. Jones</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?practitioner=practitioner/9323,practitioner/7945
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-recalls-for-a-location-by-id'>Example: Get all recalls for a location by id</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?location=location/1
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-appointments-for-either-of-2-locations'>Example: Get all appointments for either of 2 locations</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?location=location/1,location/2
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-completed-recalls'>Example: Get all completed recalls</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?recall-status-name=complete
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-recalls-created-on-7-27-2018'>Example: Get all recalls  created on 7/27/2018</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
+</pre>
+
+<p>&nbsp;</p>
 <h1 id='location'>Location</h1><h2 id='location-2'>Location</h2><h3 id='overview'>Overview</h3>
 <p>A physical location where services are provided. These locations specifically include managed locations configured in the Nextech software.</p>
 <h3 id='fields'>Fields</h3>
@@ -6681,6 +6970,13 @@ GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-
 <td><a href="https://www.hl7.org/fhir/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 <td><em>12.9.20</em></td>
 </tr>
+<tr>
+<td>claim-item-identifier</td>
+<td>Identifier for the claim item.</td>
+<td>https://select.nextech-api.com/api/structuredefinition/claim-item-identifier</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
+<td><em>14.3</em></td>
+</tr>
 </tbody></table>
 <h3 id='example'>Example</h3>
 <pre class="center-column">
@@ -6858,6 +7154,388 @@ GET https://select.nextech-api.com/api/Claim?created=2018-06-01
 <h4 id='example-get-a-specific-claim-based-on-identifier'>Example: Get a specific Claim based on identifier</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Claim/12
+</pre>
+
+<p>&nbsp;</p>
+<h1 id='paymentreconciliation'>PaymentReconciliation</h1><h2 id='paymentreconciliation-2'>PaymentReconciliation</h2><h3 id='overview'>Overview</h3>
+<p>A list of payments, adjustments, and refunds. Can be insurance or self-pay. </p>
+<h4 id='body-fields'>Body Fields</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>requestProvider</td>
+<td>The responsible practitioner.</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Practitioner)</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>total</td>
+<td>The PaymentReconciliation amount total.</td>
+<td><a href="http://hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>processNote</td>
+<td>The PaymentReconciliation description.</td>
+<td><a href="https://www.hl7.org/fhir/backboneelement.html">BackboneElement</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>created</td>
+<td>The creation date.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>status</td>
+<td>The status of the PaymentReconciliation. This will be one of the following values active, cancelled ( voided ), entered-in-error ( deleted ) . <br> • For purposes of calculating the current balance of a patient account, Cancelled transactions may be excluded. <br> • For purposes of keeping a history of financial transactions that happened in a specific accounting period (by input date field/effective date extension) then the cancelled transactions should be included. <br> • When a transaction is Voided in Nextech, the original transaction remains unchanged in the original accounting period, but has a status of ‘Cancelled’. A new transaction that is the exact opposite of the original is created with a current input date/effective date and also has a status of ‘Cancelled’. The net of these transactions are $0. <br> • When a transaction is Voided &amp; Corrected in Nextech, the original transaction remains unchanged in the the original accounting period, but has a status of ‘Cancelled’. A new transaction that is the exact opposite of the original is created with a current input date/effective date and also has a status of ‘Cancelled’. The net of these transactions are $0. A new “corrected” transaction is also created which is an copy of the original transaction, except for the input/effective date. The “corrected” transaction may be edited by the practice to change properties of the payment like the provider, location, amount, etc.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#code">code</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>organization</td>
+<td>The Insurer who is associated with the PaymentReconciliation. ( Insurance payments, adjustments and refunds only ). If there is no organization associated with a PaymentReconciliation, the PaymentReconciliation is in reference patient responsibility.</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Organization)</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>detail</td>
+<td>List of individual settlement amounts and the corresponding transaction.</td>
+<td><a href="https://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>detail.request</td>
+<td>The claim or financial resource.</td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Claim)</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>detail.type</td>
+<td>Code to indicate the nature of the payment or adjustment (refund is categorized as a payment with negative amount). See <a href="http://hl7.org/fhir/codesystem-payment-type.html">Payment Type Codes</a></td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#code">Code</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>detail.amount</td>
+<td>Amount paid for this detail. ( payments, adjustments, or refund amount applied to claim )</td>
+<td><a href="http://hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>14.2</em></td>
+</tr>
+</tbody></table>
+<h3 id='extensions'>Extensions</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Url</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>extension: claim-item</td>
+<td>Reference to a claim item.</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/claim-item</code></td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Claim.item)</a></td>
+<td><em>14.3</em></td>
+</tr>
+<tr>
+<td>extension: applied-amount</td>
+<td>The amount applied to a claim item from the PaymentReconciliation.</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/applied-amount</code></td>
+<td><a href="http://hl7.org/fhir/datatypes.html#Money">Money</a></td>
+<td><em>14.3</em></td>
+</tr>
+<tr>
+<td>extension: payment-method</td>
+<td>The PaymentReconciliation method.</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/payment-method</code></td>
+<td><a href="http://hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension: payment-date</td>
+<td>The PaymentReconciliation date.</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/payment-date</code></td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension: effective-date</td>
+<td>The PaymentReconciliation input date.</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/effective-date</code></td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension: deposited-date</td>
+<td>The PaymentReconciliation deposit date.</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/deposit-date</code></td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension: payment-category</td>
+<td>The PaymentReconciliation category.</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/payment-category</code></td>
+<td><a href="http://hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension: credit-cardtype</td>
+<td>The PaymentReconciliation credit card type.</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/credit-cardtype</code></td>
+<td><a href="http://hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension: check-number</td>
+<td>The PaymentReconciliation check number</td>
+<td><code>https://select.nextech-api.com/api/structuredefinition/check-number</code></td>
+<td><a href="http://hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>extension: location</td>
+<td>The PaymentReconciliation location reference. The practice must have at least one Location resource with this identifier.</td>
+<td><code>http://hl7.org/fhir/StructureDefinition/Location</code></td>
+<td><a href="https://www.hl7.org/fhir/references.html">Reference(Location)</a></td>
+<td><em>14.2</em></td>
+</tr>
+</tbody></table>
+<h3 id='example'>Example</h3>
+<pre class="center-column">
+{
+    "resourceType": "PaymentReconciliation",
+    "id": "126671",
+    "contained": [
+        {
+            "resourceType": "Organization",
+            "id": "14",
+            "identifier": [
+                {
+                    "use": "official",
+                    "value": "14"
+                }
+            ],
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/organization-type",
+                            "code": "ins",
+                            "display": "Insurance Company"
+                        }
+                    ]
+                }
+            ],
+            "name": "Blue Cross/Blue Shield",
+            "address": [
+                {
+                    "use": "work",
+                    "type": "both",
+                    "line": [
+                        "123 Great Payment Way"
+                    ],
+                    "city": "Dallas",
+                    "state": "TX",
+                    "postalCode": "75201"
+                }
+            ]
+        }
+    ],
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "valueResourceReference": {
+                "reference": "Patient/1ed5d91a-ce2d-4551-98d9-eecfc3b1ed2c",
+                "display": "RevAPI, Test"
+            }
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Location",
+            "valueResourceReference": {
+                "reference": "Location/1",
+                "display": "NexTech Dermatology"
+            }
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/payment-date",
+            "valueDateTime": "2018-12-12T05:00:00.000Z"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/effective-date",
+            "valueDateTime": "2018-12-12T15:13:24.690Z"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/payment-method",
+            "valueString": "Check"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/payment-category",
+            "valueString": "CO- Patient Co-Pay"
+        }
+    ],
+    "identifier": [
+        {
+            "use": "official",
+            "value": "126671"
+        }
+    ],
+    "status": "active",
+    "created": "2018-12-12T15:13:24.690Z",
+    "organization": {
+        "reference": "#14",
+        "display": "Blue Cross/Blue Shield"
+    },
+    "detail": [
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/payment-type",
+                        "code": "payment"
+                    }
+                ]
+            },
+            "request": {
+                "reference": "Claim/58195"
+            },
+            "amount": {
+                "value": 1000
+            }
+        }
+    ],
+    "total": {
+        "value": 1000
+    },
+    "processNote": [
+        {
+            "type": {
+                "coding": [
+                    {
+                        "system": "NoteType",
+                        "code": "display"
+                    }
+                ]
+            },
+            "text": "Insurance Payment"
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='em-search-em'><em>Search</em></h3>
+<p>Searches for all  based on the given search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /PaymentReconciliation?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query or uri</td>
+<td>The unique value assigned to each PaymentReconciliation.</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>location.id</td>
+<td>query</td>
+<td>The location for the PaymentReconciliation.</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>patient</td>
+<td>query</td>
+<td>The patient the PaymentReconciliation is tied to.</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>created</td>
+<td>query</td>
+<td>The date the PaymentReconciliation was created.</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>status</td>
+<td>query</td>
+<td>The status of the PaymentReconciliation. This must be one of the following active, cancelled ( voided ), entered-in-error ( deleted ).</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>payment-date</td>
+<td>query</td>
+<td>The date of service for the PaymentReconciliation.</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+<tr>
+<td>request-provider</td>
+<td>query</td>
+<td>The provider associated with the PaymentReconciliation. This is a practitioner reference.</td>
+<td>No</td>
+<td><em>14.2</em></td>
+</tr>
+</tbody></table>
+<h4 id='example-get-paymentreconciliations-with-a-particular-place-of-service'>Example: Get PaymentReconciliations with a particular place of service</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/PaymentReconciliation?location.id=1
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-paymentreconciliations-with-a-status-of-active'>Example: Get PaymentReconciliations with a status of active</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/PaymentReconciliation?status=active
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-paymentreconciliations-attached-to-a-patient'>Example: Get a specific PaymentReconciliations attached to a patient</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/PaymentReconciliation?patient=59015300-e15b-474c-8314-7864712f6946
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-paymentreconciliations-that-were-created-on-a-certain-date'>Example: Get all PaymentReconciliations that were created on a certain date</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/PaymentReconciliation?created=2018-06-01
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-paymentreconciliations-on-a-certain-date-of-service'>Example: Get all PaymentReconciliations on a certain date of service.</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/PaymentReconciliation?payment-date=2018-06-01
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-paymentreconciliations-for-a-certain-practitioner'>Example: Get all PaymentReconciliations for a certain practitioner.</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/PaymentReconciliation?request-provider=1
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-a-specific-paymentreconciliation-based-on-identifier'>Example: Get a specific PaymentReconciliation based on identifier</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/PaymentReconciliation/12
 </pre>
 
 <p>&nbsp;</p>
