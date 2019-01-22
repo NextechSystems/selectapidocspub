@@ -166,7 +166,7 @@ Searches for all  based on the given search criteria.
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _lastUpdated | query | The date the appointment was last modified formatted as YYYY-MM-DD | No | _14.3_ |
+| _lastUpdated | query | The date the payment was last modified formatted as YYYY-MM-DD | No | _14.3_ |
 | identifier | query or uri | The unique value assigned to each PaymentReconciliation. |  No | _14.2_ |
 | location.id | query | The location for the PaymentReconciliation. | No | _14.2_ |
 | patient | query | The patient the PaymentReconciliation is tied to. | No | _14.2_ |
