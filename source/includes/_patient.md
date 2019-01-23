@@ -34,6 +34,7 @@ The patient resource contains information about the demographics of a patient.
 | patient-type | The patient type for the patient, contained in the extension | [Reference](https://www.hl7.org/fhir/references.html) | _14.1_ |
 | patient-status | The status for the patient (patient, prospect, or patientprospect), contained in the extension | [string](https://www.hl7.org/fhir/datatypes.html#string) | _14.1_ |
 | exclude-from-mailings | Whether this patient is excluded from mailings, contained in the extension | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | _14.1_ |
+| meta.lastUpdated | The last time the patient was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 
 
 ### Example
@@ -41,6 +42,10 @@ The patient resource contains information about the demographics of a patient.
 {
     "resourceType": "Patient",
     "id": "45bb641e-44c5-49a8-a36f-9dd7a0a50828",
+    "meta":
+    {
+        "lastUpdated": "2018-12-20T09:13:28.297-05:00"
+    },
     "extension": [
         {
             "url": "http://hl7.org/fhir/v3/Race",
