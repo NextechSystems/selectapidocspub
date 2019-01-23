@@ -18,6 +18,7 @@ A list of payments, adjustments, and refunds. Can be insurance or self-pay.
 | detail.request | 	The claim or financial resource. | [Reference(Claim)](https://www.hl7.org/fhir/references.html) | _14.2_| 
 | detail.type | Code to indicate the nature of the payment or adjustment (refund is categorized as a payment with negative amount). See [Payment Type Codes](http://hl7.org/fhir/codesystem-payment-type.html)  | [Code](https://www.hl7.org/fhir/datatypes.html#code) | _14.2_| 
 | detail.amount | Amount paid for this detail. ( payments, adjustments, or refund amount applied to claim ) | [Money](http://hl7.org/fhir/datatypes.html#Money) | _14.2_ |
+| meta.lastUpdated | The last time the payment, adjustment, or refund was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 
 ### Extensions
 | Name | Description | Url  | Type | Initial Version |
@@ -43,6 +44,10 @@ A list of payments, adjustments, and refunds. Can be insurance or self-pay.
         {
             "resourceType": "Organization",
             "id": "14",
+            "meta":
+            {
+                "lastUpdated": "2018-12-13T09:39:30.827-05:00"
+            },
             "identifier": [
                 {
                     "use": "official",
