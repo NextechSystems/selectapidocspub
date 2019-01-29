@@ -30,6 +30,7 @@ A list of services and products provided, or to be provided, to a patient.
 | item.item.quantity | The number of repetitions of a service or product. | [SimpleQuantity](https://www.hl7.org/fhir/datatypes.html#SimpleQuantity) | _12.9.20_ |
 | item.unitPrice | Fee for the product or service. | [Money](https://www.hl7.org/fhir/datatypes.html#Money) | _12.9.20_ |
 | item.net | The quantity times the unit price for an additional service or product or charge. | [Money](https://www.hl7.org/fhir/datatypes.html#Money) | _12.9.20_ |
+| meta.lastUpdated | The last time the claim was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 
 ### Extensions
 | Name | Description | Url  | Type | Initial Version |
@@ -43,6 +44,10 @@ A list of services and products provided, or to be provided, to a patient.
 {
     "resourceType": "Claim",
     "id": "58179",
+    "meta":
+        {
+          "lastUpdated": "2018-01-25T13:23:00.55+00:00"
+        },
     "identifier": [
         {
             "use": "official",
@@ -139,6 +144,7 @@ Searches for all  based on the given search criteria.
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
+| _lastUpdated | query | The date the claim was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z\|(+\|-)hh:mm\] | No | _14.3_ |
 | identifier | query or uri | The unique value assigned to each Claim which discerns it from all others. |  No | _12.9.20_ |
 | use | query | The use of the Claim. (exploratory for quote or complete for bill) | No | _12.9.20_ |
 | facility | query | The place of service for the Claim. | No | _12.9.20_ |
