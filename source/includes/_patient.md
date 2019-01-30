@@ -362,7 +362,7 @@ Searches for all patients matching the given search criteria. See [https://www.h
 #### Parameters
 | Name | Located in | Description | Required | Type | Initial Version |
 | ---- | ---------- | ----------- | -------- | ---- | --------------- |
-| _lastUpdated | query | The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss\[Z\|(+\|-)hh:mm\] | No | dateTime | _12.8_ |
+| _lastUpdated | query | The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] | No | dateTime | _12.8_ |
 | family | query | The family (last) name of the patient | No | string | _12.6_ |
 | given | query | The given (first) name of the patient | No | string | _12.6_ |
 | birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime | _12.6_ |
@@ -406,7 +406,7 @@ _At least one of query parameters is required to perform a search._
 ### Parameters
 | Name | Located in | Description | Required | Type | Initial Version |
 | ---- | ---------- | ----------- | -------- | ---- | --------------- |
-| _lastUpdated | query | The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss\[Z\|(+\|-)hh:mm\] | No | dateTime | _12.8_ |
+| _lastUpdated | query | The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] | No | dateTime | _12.8_ |
 | family | query | The family (last) name of the patient | No | string | _12.6_ |
 | given | query | The given (first) name of the patient | No | string | _12.6_ |
 | birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime | _12.6_ |

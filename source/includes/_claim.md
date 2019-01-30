@@ -144,7 +144,7 @@ Searches for all  based on the given search criteria.
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _lastUpdated | query | The date the claim was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z\|(+\|-)hh:mm\] | No | _14.3_ |
+| _lastUpdated | query | The date the claim was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] | No | _14.3_ |
 | identifier | query or uri | The unique value assigned to each Claim which discerns it from all others. |  No | _12.9.20_ |
 | use | query | The use of the Claim. (exploratory for quote or complete for bill) | No | _12.9.20_ |
 | facility | query | The place of service for the Claim. | No | _12.9.20_ |
