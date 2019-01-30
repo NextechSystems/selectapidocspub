@@ -921,6 +921,12 @@ Search results are limited to 50 matches per page.
 <td><em>12.9.20</em></td>
 </tr>
 <tr>
+<td>referring-physician.HumanName</td>
+<td>The referring physician name, contained in the extension</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#HumanName">HumanName</a></td>
+<td><em>14.3</em></td>
+</tr>
+<tr>
 <td>referring-patient</td>
 <td>The unique identifier for the referring patient for the patient, contained in the extension</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference</a></td>
@@ -986,12 +992,22 @@ Search results are limited to 50 matches per page.
 <td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
 <td><em>14.1</em></td>
 </tr>
+<tr>
+<td>meta.lastUpdated</td>
+<td>The last time the patient was modified</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+<td><em>14.3</em></td>
+</tr>
 </tbody></table>
 <h3 id='example'>Example</h3>
 <pre class="center-column">
 {
     "resourceType": "Patient",
     "id": "45bb641e-44c5-49a8-a36f-9dd7a0a50828",
+    "meta":
+    {
+        "lastUpdated": "2018-12-20T09:13:28.297+00:00"
+    },
     "extension": [
         {
             "url": "http://hl7.org/fhir/v3/Race",
@@ -1316,7 +1332,7 @@ Search results are limited to 50 matches per page.
 <tr>
 <td>_lastUpdated</td>
 <td>query</td>
-<td>The date the patient was last modified formatted as YYYY-MM-DD</td>
+<td>The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm]</td>
 <td>No</td>
 <td>dateTime</td>
 <td><em>12.8</em></td>
@@ -1393,24 +1409,16 @@ Search results are limited to 50 matches per page.
 <td>string</td>
 <td><em>12.6</em></td>
 </tr>
-<tr>
-<td>active</td>
-<td>query</td>
-<td>The patient&#39;s active status</td>
-<td>No</td>
-<td>bool</td>
-<td><em>14.3</em></td>
-</tr>
 </tbody></table>
-<h4 id='example-get-the-patient-of-a-specific-chart-number-regardless-of-patient-active-status'>Example: Get the patient of a specific chart number (regardless of patient active status)</h4>
+<h4 id='example-get-the-patient-of-a-specific-chart-number'>Example: Get the patient of a specific chart number</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/12345
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-active-patients-who-live-within-a-specific-zip-code'>Example: Get all active patients who live within a specific zip code</h4>
+<h4 id='example-get-all-patients-who-live-within-a-specific-zip-code'>Example: Get all patients who live within a specific zip code</h4>
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?address-postalcode=12345&active=true
+GET https://select.nextech-api.com/api/Patient?address-postalcode=12345
 </pre>
 
 <p>&nbsp;</p>
@@ -1441,7 +1449,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <tr>
 <td>_lastUpdated</td>
 <td>query</td>
-<td>The date the patient was last modified formatted as YYYY-MM-DD</td>
+<td>The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm]</td>
 <td>No</td>
 <td>dateTime</td>
 <td><em>12.8</em></td>
@@ -1518,16 +1526,8 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <td>string</td>
 <td><em>12.6</em></td>
 </tr>
-<tr>
-<td>active</td>
-<td>query</td>
-<td>The patient&#39;s active status</td>
-<td>No</td>
-<td>bool</td>
-<td><em>14.3</em></td>
-</tr>
 </tbody></table>
-<h4 id='example-get-the-unique-identifier-of-a-patient-given-first-name-last-name-and-birthdate-by-default-will-search-for-all-active-patients'>Example: Get the unique identifier of a patient given first name, last name, and birthdate (By default will search for all active patients.)</h4>
+<h4 id='example-get-the-unique-identifier-of-a-patient-given-first-name-last-name-and-birthdate'>Example: Get the unique identifier of a patient given first name, last name, and birthdate</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthdate=eq1972-04-21
 </pre>
@@ -4761,6 +4761,12 @@ GET https://select.nextech-api.com/api/patient-type/5
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
 <td><em>12.9</em></td>
 </tr>
+<tr>
+<td>meta.lastUpdated</td>
+<td>The last time the appointment was modified</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+<td><em>14.3</em></td>
+</tr>
 </tbody></table>
 <h3 id='sample'>Sample</h3>
 <pre class="center-column">
@@ -4771,6 +4777,10 @@ GET https://select.nextech-api.com/api/patient-type/5
       "resource": {
         "resourceType": "Appointment",
         "id": "12312",
+        "meta":
+        {
+          "lastUpdated": "2018-01-25T13:23:00.55+00:00"
+        },
         "contained": [
           {
             "resourceType": "Location",
@@ -4876,7 +4886,7 @@ GET https://select.nextech-api.com/api/patient-type/5
 <tr>
 <td>_lastUpdated</td>
 <td>query</td>
-<td>The date the appointment was last modified formatted as YYYY-MM-DD</td>
+<td>The date the appointment was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm]</td>
 <td>No</td>
 <td><em>12.8</em></td>
 </tr>
@@ -6952,6 +6962,12 @@ GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Money">Money</a></td>
 <td><em>12.9.20</em></td>
 </tr>
+<tr>
+<td>meta.lastUpdated</td>
+<td>The last time the claim was modified</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+<td><em>14.3</em></td>
+</tr>
 </tbody></table>
 <h3 id='extensions'>Extensions</h3>
 <table><thead>
@@ -6983,6 +6999,10 @@ GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-
 {
     "resourceType": "Claim",
     "id": "58179",
+    "meta":
+        {
+          "lastUpdated": "2018-01-25T13:23:00.55+00:00"
+        },
     "identifier": [
         {
             "use": "official",
@@ -7084,6 +7104,13 @@ GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-
 <th>Initial Version</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>_lastUpdated</td>
+<td>query</td>
+<td>The date the claim was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm]</td>
+<td>No</td>
+<td><em>14.3</em></td>
+</tr>
 <tr>
 <td>identifier</td>
 <td>query or uri</td>
@@ -7228,6 +7255,12 @@ GET https://select.nextech-api.com/api/Claim/12
 <td><a href="http://hl7.org/fhir/datatypes.html#Money">Money</a></td>
 <td><em>14.2</em></td>
 </tr>
+<tr>
+<td>meta.lastUpdated</td>
+<td>The last time the payment, adjustment, or refund was modified</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#instant">instant</a></td>
+<td><em>14.3</em></td>
+</tr>
 </tbody></table>
 <h3 id='extensions'>Extensions</h3>
 <table><thead>
@@ -7319,6 +7352,10 @@ GET https://select.nextech-api.com/api/Claim/12
         {
             "resourceType": "Organization",
             "id": "14",
+            "meta":
+            {
+                "lastUpdated": "2018-12-13T09:39:30.827+00:00"
+            },
             "identifier": [
                 {
                     "use": "official",
@@ -7447,6 +7484,13 @@ GET https://select.nextech-api.com/api/Claim/12
 <th>Initial Version</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>_lastUpdated</td>
+<td>query</td>
+<td>The date the payment was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm]</td>
+<td>No</td>
+<td><em>14.3</em></td>
+</tr>
 <tr>
 <td>identifier</td>
 <td>query or uri</td>
