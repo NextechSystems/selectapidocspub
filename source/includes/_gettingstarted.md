@@ -266,5 +266,5 @@ The Nextech Select APIs use the standard HTTP response codes to indicate success
 | 429 | Too Many Requests - The user has sent too many requests in a given amount of time |
 | 500 | Internal Server Error - We had a problem with our server |
 
-### *Remarks*
+## Remarks ##
 Each resource has a Remarks section at the end of its documentation page, which contains details on common questions and solutions for that resource.

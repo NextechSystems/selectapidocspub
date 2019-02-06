@@ -129,6 +129,6 @@ GET https://select.nextech-api.com/api/Practitioner/12
 </pre>
 &nbsp;
 
-### *Remarks*
+### Remarks
 * Providers will not show up as Practitioners unless their Contacts module record has the Linked User setting configured.
-** Prior to version 14.1, Practitioners could be returned more than once if multiple users are assigned to use the same provider in their Contacts module User properties.
+    * Prior to version 14.1, Practitioners could be returned more than once if multiple users are assigned to use the same provider in their Contacts module User properties.
