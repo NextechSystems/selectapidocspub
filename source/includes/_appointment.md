@@ -481,5 +481,5 @@ POST https://select.nextech-api.com/api/Appointment/
 
 ### Remarks
 * If an appointment is returned without a practitioner in the participants section, please check the following:
-	* Make sure the appointment's resource is linked to a provider in the Resource Editor screen.
+	* Make sure the appointment's resource is linked to a provider in the Scheduler module's Resource Editor screen.
     * Make sure the provider that the appointment resource is linked to is listed in the Practitioner API resource. A provider is not returned as a Practitioner unless their Contacts module record has the Linked User setting configured.
