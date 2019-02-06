@@ -480,5 +480,6 @@ POST https://select.nextech-api.com/api/Appointment/
 &nbsp;
 
 ### Remarks
-* Appointments will not be returned if their appointment resource does not have a location or provider configured. In addition, appointments will not be returned if their resource's linked provider is not listed in the Practitioner API resource. A provider is not returned as a Practitioner unless their Contacts module record has the Linked User setting configured.
-    * Prior to version 14.1, Practitioners could be returned more than once if multiple users are assigned to use the same provider in their Contacts module User properties. This would cause appointments to be duplicated if their appointment resource provider is returned multiple times in the Practitioner API resource.
+* If an appointment is returned without a practitioner in the participants section, please check the following:
+	* Make sure the appointment's resource is linked to a provider in the Resource Editor screen.
+    * Make sure the provider that the appointment resource is linked to is listed in the Practitioner API resource. A provider is not returned as a Practitioner unless their Contacts module record has the Linked User setting configured.
