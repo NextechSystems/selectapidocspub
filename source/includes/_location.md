@@ -3,13 +3,14 @@
 ## Location
 
 ### Overview
-A physical location where services are provided. These locations specifically include managed locations configured in the Nextech software.
+A physical location where services are provided. These locations specifically include general type locations configured in the Nextech software.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.8_ |
 | status | The status of the location (ie. active, inactive) | [code](https://www.hl7.org/fhir/datatypes.html#code) | _12.8_ |
+| managed | Indicates whether or not the location is categorized as 'managed' in Practice. Managed locations are used for the practice's main office or when an office has multiple locations. These are the locations that the users of Nextech will select to log in. | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | _14.4_ |
 | name | The name of the location | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
@@ -19,12 +20,19 @@ A physical location where services are provided. These locations specifically in
 {
     "resourceType": "Location",
     "id": "2",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/managed",
+            "valueBoolean": true
+        }
+    ],
     "identifier": [
         {
             "use": "official",
             "value": "2"
         }
     ],
+    "status": "active",
     "name": "South Dermatology",
     "telecom": [
         {
@@ -68,6 +76,7 @@ Searches for all locations based on the given search criteria.
 | ---- | ---------- | ----------- | -------- | --------------- |
 | identifier | query or uri | The unique value assigned to each location which discerns it from all others |  No | _12.8_ |
 | status | query | Searches for locations with a specific kind of status. See [LocationStatus](https://www.hl7.org/fhir/valueset-location-status.html) | No | _12.8_ |
+| managed | query | Searches for locations based on whether they categorized as 'managed' in Practice | No | _14.4_ |
 | name | query | The name of the location | No | _12.8_ |
 | address | query | A (part of the) address of the location | No | _12.8_ |
 | address-city | query | A city specified in an address | No | _12.8_ |
@@ -79,6 +88,13 @@ Searches for all locations based on the given search criteria.
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Location?status=active
+</pre>
+&nbsp;
+
+#### Example: Get all managed locations
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Location?managed=true
 </pre>
 &nbsp;
 
