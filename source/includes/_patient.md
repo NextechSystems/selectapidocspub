@@ -1479,7 +1479,7 @@ Creates the document in the content.attachment for a patient and attaches it to 
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
 | patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.7_ |
-| documentreference | body | Represents the `DocumentReference` resource to create for the given patient | Yes | _12.7_ |
+| documentreference | body | Represents the `DocumentReference` resource to create for the given patient. The request length must not exceed 10 MB in size. | Yes | _12.7_ |
 
 #### Body Fields
 | Name | Description | Required | Initial Version |
