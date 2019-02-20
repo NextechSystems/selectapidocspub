@@ -20,7 +20,7 @@ The patient-recall resource contains information about when a patient is expecte
 | extension:recall-appointment-date | The start time of the appointment that fulfills this recall, if exists | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _14.2_ |
 | extension:recall-template-name | The name of the recall template this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
 | extension:recall-step-name | The name of the recall step this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
-| extension:recall-deleted | Whether the recall indicating if the recall has been deleted |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.4_ |
+| extension:recall-deleted | Indicates if the recall has been deleted |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.4_ |
 
 ### Sample
 <pre class="center-column">
