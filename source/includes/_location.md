@@ -3,14 +3,14 @@
 ## Location
 
 ### Overview
-A physical location where services are provided. These locations specifically include general type locations configured in the Nextech software.
+A physical location where services are provided. This may or may not be under the practice's management.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.8_ |
 | status | The status of the location (ie. active, inactive) | [code](https://www.hl7.org/fhir/datatypes.html#code) | _12.8_ |
-| managed | Indicates whether or not the location is categorized as 'managed' in Practice. Managed locations are used for the practice's main office or when an office has multiple locations. These are the locations that the users of Nextech will select to log in. | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | _14.4_ |
+| managed | True if this location is under practice management, for example the practice's primary office location. False if this location is not under practice management, but where services are provided, for example a hospital or clinic. | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | _14.4_ |
 | name | The name of the location | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
