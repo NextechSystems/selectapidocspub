@@ -20,6 +20,7 @@ The patient-recall resource contains information about when a patient is expecte
 | extension:recall-appointment-date | The start time of the appointment that fulfills this recall, if exists | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _14.2_ |
 | extension:recall-template-name | The name of the recall template this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
 | extension:recall-step-name | The name of the recall step this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
+| extension:recall-deleted | Indicates if the recall has been deleted |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.4_ |
 
 ### Sample
 <pre class="center-column">
@@ -74,7 +75,11 @@ The patient-recall resource contains information about when a patient is expecte
 		{
 			"url" : "https://select.nextech-api.com/api/structuredefinition/recall-step-name",		
 			"valueString" : "2 year follow-up"        
-		}
+		},
+		{
+            "url": "https://select.nextech-api.com/api/structuredefinition/recall-deleted",
+            "valueBoolean": false
+        }
 		]
 		}
 	}
@@ -100,6 +105,7 @@ Searches for all recalls matching the given search criteria. See [https://www.hl
 | practitioner | query | The recall's practitioner reference | No | _14.2_ |
 | recall-status-name | query | The status name of the recall.  Currently supported values are: Need to Schedule, Past Due, Scheduled, Complete, and Discontinued | No | _14.2_ |
 | recall-date | query | The recall date | No | _14.2_ |
+| deleted | query | The recall's deleted status | No | _14.4_ |
 
 #### Multiple Search Values
 Multiple search values are supported for all fields except dates.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   
