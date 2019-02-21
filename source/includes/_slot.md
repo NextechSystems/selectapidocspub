@@ -133,3 +133,5 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 </pre>
 &nbsp;
 
+### Remarks
+* Slots will not be returned for appointment resources without a provider configured. In addition, slots will not be returned if the linked provider is not listed in the Practitioner API resource. A provider is not returned as a Practitioner unless their Contacts module record has the Linked User setting configured.

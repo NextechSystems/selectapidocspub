@@ -858,6 +858,10 @@ For identifier fields, a use type is required.  A use type of "official" must be
 </pre>
 &nbsp; 
 
+### Remarks
+* The generalPractitioner field will not be returned if the provider is not listed in the Practitioner resource. A provider is not returned as a Practitioner unless their Contacts module record has the Linked User setting configured.
+    * Prior to version 14.1, Practitioners could be returned more than once if multiple users are assigned to use the same provider in their Contacts module User properties. This would cause patients to be duplicated if their generalPractitioner is returned multiple times in the Practitioner resource.
+
 ## Allergy Intolerance
 
 ### Overview
