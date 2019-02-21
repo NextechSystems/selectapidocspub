@@ -21,11 +21,11 @@ The following values are required in the Header for every request...
 
 ## Rate Limiting ##
 
-Rate limiting of the API is primarily on a per-user, per-endpoint basis. The default rate limit of 20 requests per second per endpoint. When a user exceeds the rate limit for a given API endpoint, the API will reject the request and return a HTTP 429 “Too Many Requests” response code.
+Rate limiting of the API is primarily on a per-user, per-endpoint basis. The default rate limit of 20 requests per second per endpoint. When a user exceeds the rate limit for a given API endpoint, the API will reject the request and return a HTTP 429 “Too Many Requests” response code. The API rate limit is subjet to change.
 
 **Handling 429 response codes**
 
-If your API user exceeds the rate limit, you will receive a HTTP 429 response code. We advise to design to handle these requests by exponentially backing off and trying the request again.
+If your API user exceeds the rate limit, you will receive a HTTP 429 response code. We advise to design to handle these requests with [Exponential backoff](https://en.wikipedia.org/wiki/Exponential_backoff).
 
 **Best practices to avoid Rate Limiting**
 - The API is intended for on-demand requests for user interaction in real-time, try to avoid synchronizing data.  
