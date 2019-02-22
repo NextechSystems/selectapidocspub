@@ -135,3 +135,7 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 
 ### Remarks
 * Slots will not be returned for appointment resources without a provider configured. In addition, slots will not be returned if the linked provider is not listed in the Practitioner API resource. A provider is not returned as a Practitioner unless their Contacts module record has the Linked User setting configured.
+* Slots will not return for an appointment-type that has a default slot duration of 0 minutes, unless a slot-length > 0 is specified.
+* This endpoint is to be used during the act of scheduling an appointment.
+* This call is used to find available appointment times for one patient appointment, based on the desired appointment type, purpose, and provider.
+* This endpoint should **not** be used to generically find all open times on the schedule for display purposes, or data syncing.
