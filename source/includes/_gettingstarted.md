@@ -29,7 +29,7 @@ If your API user exceeds the rate limit, you will receive a HTTP 429 response co
 
 **Best practices to avoid Rate Limiting**
 - The API is intended for on-demand requests for user interaction in real-time, try to avoid synchronizing data.  
-- Requests be staggered as much as possible to avoid bursts of high traffic volume. 
+- Requests should be staggered as much as possible to avoid bursts of high traffic volume. 
 - Cache your own data when you need to store specialized values or rapidly review very large data sets.
 - Query with _lastUpdated search parameters to avoid re-querying unmodified data.
 - If you need to synchronize data, it is best to do so during non-peak business hours.
