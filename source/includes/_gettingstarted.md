@@ -6,6 +6,7 @@ Before you can access the Nextech API you must have the proper credentials to au
 
 **API Limitations**  
 - Users of the Nextech API are restricted to a limit of 5,000 API calls per day combined across all applications for a single client  
+- Users of the Nextech API are restricted to a rate limit of 20 requests per second per endpoint
 - Nextech is not responsible for the development or maintenance of any third-party application
 
 **API Endpoint**  
@@ -17,6 +18,21 @@ The following values are required in the Header for every request...
 | ---- | ----------- | --------- |
 | Authorization | Every request requires a Bearer token `Bearer {access_token}` | Yes |
 | nx-practice-id | The unique identifier for a practice | Yes |
+
+## Rate Limiting ##
+
+Rate limiting of the API is primarily on a per-user, per-endpoint basis. The default rate limit of 20 requests per second per endpoint. When a user exceeds the rate limit for a given API endpoint, the API will reject the request and return a HTTP 429 “Too Many Requests” response code. The API rate limit is subjet to change.
+
+**Handling 429 response codes**
+
+If your API user exceeds the rate limit, you will receive a HTTP 429 response code. We advise to design to handle these requests with [Exponential backoff](https://en.wikipedia.org/wiki/Exponential_backoff).
+
+**Best practices to avoid Rate Limiting**
+- The API is intended for on-demand requests for user interaction in real-time, try to avoid synchronizing data.  
+- Requests should be staggered as much as possible to avoid bursts of high traffic volume. 
+- Cache your own data when you need to store specialized values or rapidly review very large data sets.
+- Query with _lastUpdated search parameters to avoid re-querying unmodified data.
+- If you need to synchronize data, it is best to do so during non-peak business hours.
 
 ## Authentication ##
 
