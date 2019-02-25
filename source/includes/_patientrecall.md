@@ -20,7 +20,8 @@ The patient-recall resource contains information about when a patient is expecte
 | extension:recall-appointment-date | The start time of the appointment that fulfills this recall, if exists | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _14.2_ |
 | extension:recall-template-name | The name of the recall template this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
 | extension:recall-step-name | The name of the recall step this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
-| extension:recall-deleted | Indicates if the recall has been deleted |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.4_ |
+| extension:recall-deleted | Indicates if the recall has been deleted |  [string](https://www.hl7.org/fhir/datatypes.html#boolean)  | _14.4_ |
+| extension:recall-last-updated | The last time the recall was updated |  [string](https://www.hl7.org/fhir/datatypes.html#datetime)  | _14.4_ |
 
 ### Sample
 <pre class="center-column">
@@ -79,6 +80,10 @@ The patient-recall resource contains information about when a patient is expecte
 		{
             "url": "https://select.nextech-api.com/api/structuredefinition/recall-deleted",
             "valueBoolean": false
+        },
+		{
+            "url": "https://select.nextech-api.com/api/structuredefinition/recall-last-updated",
+            "valueDateTime": "2019-02-22T16:38:23.057Z"
         }
 		]
 		}
@@ -106,6 +111,8 @@ Searches for all recalls matching the given search criteria. See [https://www.hl
 | recall-status-name | query | The status name of the recall.  Currently supported values are: Need to Schedule, Past Due, Scheduled, Complete, and Discontinued | No | _14.2_ |
 | recall-date | query | The recall date | No | _14.2_ |
 | deleted | query | The recall's deleted status | No | _14.4_ |
+| deleted | query | The recall's deleted status | No | _14.4_ |
+| last-updated | query | The last time the recall was updated __Note: You must url encode the + in the UTC date (%2B)__ | No | _14.4_ |
 
 #### Multiple Search Values
 Multiple search values are supported for all fields except dates.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   
@@ -164,5 +171,12 @@ GET https://select.nextech-api.com/api/patient-recall?recall-status-name=complet
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
+</pre>
+&nbsp;
+
+#### Example: Get all non deleted recalls last updated after 07/27/2018
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00&deleted=false
 </pre>
 &nbsp;
