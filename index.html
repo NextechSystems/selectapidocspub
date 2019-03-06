@@ -218,6 +218,9 @@
             <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#rate-limiting" class="toc-h2 toc-link" data-title="Getting Started">Rate Limiting</a>
+                  </li>
+                  <li>
                     <a href="#authentication" class="toc-h2 toc-link" data-title="Getting Started">Authentication</a>
                   </li>
                   <li>
@@ -234,6 +237,9 @@
                   </li>
                   <li>
                     <a href="#response-codes" class="toc-h2 toc-link" data-title="Getting Started">Response Codes</a>
+                  </li>
+                  <li>
+                    <a href="#remarks" class="toc-h2 toc-link" data-title="Getting Started">Remarks</a>
                   </li>
               </ul>
           </li>
@@ -426,6 +432,7 @@
 
 <p><strong>API Limitations</strong><br>
 - Users of the Nextech API are restricted to a limit of 5,000 API calls per day combined across all applications for a single client<br>
+- Users of the Nextech API are restricted to a rate limit of 20 requests per second per endpoint
 - Nextech is not responsible for the development or maintenance of any third-party application</p>
 
 <p><strong>API Endpoint</strong><br>
@@ -451,6 +458,19 @@
 <td>Yes</td>
 </tr>
 </tbody></table>
+<h2 id='rate-limiting'>Rate Limiting</h2>
+<p>Rate limiting of the API is primarily on a per-user, per-endpoint basis. The default rate limit of 20 requests per second per endpoint. When a user exceeds the rate limit for a given API endpoint, the API will reject the request and return a HTTP 429 “Too Many Requests” response code. The API rate limit is subjet to change.</p>
+
+<p><strong>Handling 429 response codes</strong></p>
+
+<p>If your API user exceeds the rate limit, you will receive a HTTP 429 response code. We advise to design to handle these requests with <a href="https://en.wikipedia.org/wiki/Exponential_backoff">Exponential backoff</a>.</p>
+
+<p><strong>Best practices to avoid Rate Limiting</strong>
+- The API is intended for on-demand requests for user interaction in real-time, try to avoid synchronizing data.<br>
+- Requests should be staggered as much as possible to avoid bursts of high traffic volume. 
+- Cache your own data when you need to store specialized values or rapidly review very large data sets.
+- Query with _lastUpdated search parameters to avoid re-querying unmodified data.
+- If you need to synchronize data, it is best to do so during non-peak business hours.</p>
 <h2 id='authentication'>Authentication</h2>
 <p>Nextech&#39;s implementation of the FHIR® standard is protected by the <a href="https://oauth.net/2/">OAuth 2.0 standard</a> for authenticating requests.  All API requests are authenticated by passing a Bearer token in the Authorization Header.</p>
 
@@ -819,6 +839,8 @@ Search results are limited to 50 matches per page.
 <td>Internal Server Error - We had a problem with our server</td>
 </tr>
 </tbody></table>
+<h2 id='remarks'>Remarks</h2>
+<p>Each resource has a Remarks section at the end of its documentation page, which contains details on common questions and solutions for that resource.</p>
 <h1 id='patient'>Patient</h1><h2 id='patient-2'>Patient</h2><h3 id='overview'>Overview</h3>
 <p>The patient resource contains information about the demographics of a patient.</p>
 <h3 id='fields'>Fields</h3>
@@ -1449,7 +1471,7 @@ successful returns only that patient&#39;s unique identifier.   </p>
 <tr>
 <td>_lastUpdated</td>
 <td>query</td>
-<td>The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm]</td>
+<td>The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm] . Note that the + character must be URL encoded. (i.e. <code>%2B</code>)</td>
 <td>No</td>
 <td>dateTime</td>
 <td><em>12.8</em></td>
@@ -2121,6 +2143,14 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 </pre>
 
 <p>&nbsp; </p>
+<h3 id='remarks'>Remarks</h3>
+<ul>
+<li>The generalPractitioner field will not be returned if the provider is not listed in the Practitioner resource. A provider is not returned as a Practitioner unless their Contacts module record has the Linked User setting configured.
+
+<ul>
+<li>Prior to version 14.1, Practitioners could be returned more than once if multiple users are assigned to use the same provider in their Contacts module User properties. This would cause patients to be duplicated if their generalPractitioner is returned multiple times in the Practitioner resource.</li>
+</ul></li>
+</ul>
 <h2 id='allergy-intolerance'>Allergy Intolerance</h2><h3 id='overview-2'>Overview</h3>
 <p>The allergy intolerance resource describes the risk of undesirable responses of exposure to a substance.</p>
 <h3 id='fields-2'>Fields</h3>
@@ -3166,7 +3196,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <tr>
 <td>documentreference</td>
 <td>body</td>
-<td>Represents the <code>DocumentReference</code> resource to create for the given patient</td>
+<td>Represents the <code>DocumentReference</code> resource to create for the given patient. The request length must not exceed 10 MB in size.</td>
 <td>Yes</td>
 <td><em>12.7</em></td>
 </tr>
@@ -4886,7 +4916,7 @@ GET https://select.nextech-api.com/api/patient-type/5
 <tr>
 <td>_lastUpdated</td>
 <td>query</td>
-<td>The date the appointment was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm]</td>
+<td>The date the appointment was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm] . Note that the + character must be URL encoded. (i.e. <code>%2B</code>)</td>
 <td>No</td>
 <td><em>12.8</em></td>
 </tr>
@@ -5337,6 +5367,15 @@ POST https://select.nextech-api.com/api/Appointment/
 </pre>
 
 <p>&nbsp;</p>
+<h3 id='remarks'>Remarks</h3>
+<ul>
+<li>If an appointment is returned without a practitioner in the participants section, please check the following:
+
+<ul>
+<li>Make sure the appointment&#39;s resource is linked to a provider in the Scheduler module&#39;s Resource Editor screen.</li>
+<li>Make sure the provider that the appointment resource is linked to is listed in the Practitioner API resource. A provider is not returned as a Practitioner unless their Contacts module record has the Linked User setting configured.</li>
+</ul></li>
+</ul>
 <h1 id='slot'>Slot</h1><h2 id='slot-2'>Slot</h2><h3 id='overview'>Overview</h3>
 <p>The slot resource contains information about available appointment slots. </p>
 <h3 id='fields'>Fields</h3>
@@ -5535,6 +5574,14 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 </pre>
 
 <p>&nbsp;</p>
+<h3 id='remarks'>Remarks</h3>
+<ul>
+<li>Slots will not be returned for appointment resources without a provider configured. In addition, slots will not be returned if the linked provider is not listed in the Practitioner API resource. A provider is not returned as a Practitioner unless their Contacts module record has the Linked User setting configured.</li>
+<li>Slots will not return for an appointment-type that has a default slot duration of 0 minutes, unless a slot-length &gt; 0 is specified.</li>
+<li>This endpoint is to be used during the act of scheduling an appointment.</li>
+<li>This call is used to find available appointment times for one patient appointment, based on the desired appointment type, purpose, and provider.</li>
+<li>This endpoint should <strong>not</strong> be used to generically find all open times on the schedule for display purposes, or data syncing.</li>
+</ul>
 <h1 id='appointment-type'>Appointment-Type</h1><h2 id='appointment-type-2'>Appointment-Type</h2><h3 id='overview'>Overview</h3>
 <p>The appointment type resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
 <h3 id='fields'>Fields</h3>
@@ -5771,6 +5818,18 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 <td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
 <td><em>14.2</em></td>
 </tr>
+<tr>
+<td>extension:recall-deleted</td>
+<td>Indicates if the recall has been deleted</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">string</a></td>
+<td><em>14.4</em></td>
+</tr>
+<tr>
+<td>extension:recall-last-updated</td>
+<td>The last time the recall was updated</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#datetime">string</a></td>
+<td><em>14.4</em></td>
+</tr>
 </tbody></table>
 <h3 id='sample'>Sample</h3>
 <pre class="center-column">
@@ -5825,6 +5884,14 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
         {
             "url" : "https://select.nextech-api.com/api/structuredefinition/recall-step-name",      
             "valueString" : "2 year follow-up"        
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/recall-deleted",
+            "valueBoolean": false
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/recall-last-updated",
+            "valueDateTime": "2019-02-22T16:38:23.057Z"
         }
         ]
         }
@@ -5898,6 +5965,27 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 <td>No</td>
 <td><em>14.2</em></td>
 </tr>
+<tr>
+<td>deleted</td>
+<td>query</td>
+<td>The recall&#39;s deleted status</td>
+<td>No</td>
+<td><em>14.4</em></td>
+</tr>
+<tr>
+<td>deleted</td>
+<td>query</td>
+<td>The recall&#39;s deleted status</td>
+<td>No</td>
+<td><em>14.4</em></td>
+</tr>
+<tr>
+<td>last-updated</td>
+<td>query</td>
+<td>The last time the recall was updated <strong>Note: You must url encode the + in the UTC date (%2B)</strong></td>
+<td>No</td>
+<td><em>14.4</em></td>
+</tr>
 </tbody></table>
 <h4 id='multiple-search-values'>Multiple Search Values</h4>
 <p>Multiple search values are supported for all fields except dates.  To use multiple values, a comma should be placed in between the values you would like to search for.  This search results in the values being ORed together.   </p>
@@ -5949,8 +6037,14 @@ GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
 </pre>
 
 <p>&nbsp;</p>
+<h4 id='example-get-all-non-deleted-recalls-last-updated-after-07-27-2018'>Example: Get all non deleted recalls last updated after 07/27/2018</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00&deleted=false
+</pre>
+
+<p>&nbsp;</p>
 <h1 id='location'>Location</h1><h2 id='location-2'>Location</h2><h3 id='overview'>Overview</h3>
-<p>A physical location where services are provided. These locations specifically include managed locations configured in the Nextech software.</p>
+<p>A physical location where services are provided. This may or may not be under the practice&#39;s management.</p>
 <h3 id='fields'>Fields</h3>
 <table><thead>
 <tr>
@@ -5971,6 +6065,12 @@ GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
 <td>The status of the location (ie. active, inactive)</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#code">code</a></td>
 <td><em>12.8</em></td>
+</tr>
+<tr>
+<td>managed</td>
+<td>True if this location is under practice management, for example the practice&#39;s primary office location. False if this location is not under practice management, but where services are provided, for example a hospital or clinic.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
+<td><em>14.4</em></td>
 </tr>
 <tr>
 <td>name</td>
@@ -5996,12 +6096,19 @@ GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
 {
     "resourceType": "Location",
     "id": "2",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/managed",
+            "valueBoolean": true
+        }
+    ],
     "identifier": [
         {
             "use": "official",
             "value": "2"
         }
     ],
+    "status": "active",
     "name": "South Dermatology",
     "telecom": [
         {
@@ -6063,6 +6170,13 @@ GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
 <td><em>12.8</em></td>
 </tr>
 <tr>
+<td>managed</td>
+<td>query</td>
+<td>Searches for locations based on whether they categorized as &#39;managed&#39; in Practice</td>
+<td>No</td>
+<td><em>14.4</em></td>
+</tr>
+<tr>
 <td>name</td>
 <td>query</td>
 <td>The name of the location</td>
@@ -6108,6 +6222,12 @@ GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
 <h4 id='example-get-all-active-locations'>Example: Get all active locations</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Location?status=active
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-managed-locations'>Example: Get all managed locations</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/Location?managed=true
 </pre>
 
 <p>&nbsp;</p>
@@ -6361,6 +6481,14 @@ GET https://select.nextech-api.com/api/Practitioner/12
 </pre>
 
 <p>&nbsp;</p>
+<h3 id='remarks'>Remarks</h3>
+<ul>
+<li>Providers will not show up as Practitioners unless their Contacts module record has the Linked User setting configured.
+
+<ul>
+<li>Prior to version 14.1, Practitioners could be returned more than once if multiple users are assigned to use the same provider in their Contacts module User properties.</li>
+</ul></li>
+</ul>
 <h1 id='account'>Account</h1><h2 id='account-2'>Account</h2><h3 id='overview'>Overview</h3>
 <p>A financial tool for tracking value accrued for a particular purpose. In Nextech, it&#39;s used to track the patient&#39;s responsibility.</p>
 <h3 id='fields'>Fields</h3>
@@ -7107,7 +7235,7 @@ GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-
 <tr>
 <td>_lastUpdated</td>
 <td>query</td>
-<td>The date the claim was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm]</td>
+<td>The date the claim was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm] . Note that the + character must be URL encoded. (i.e. <code>%2B</code>)</td>
 <td>No</td>
 <td><em>14.3</em></td>
 </tr>
@@ -7487,7 +7615,7 @@ GET https://select.nextech-api.com/api/Claim/12
 <tr>
 <td>_lastUpdated</td>
 <td>query</td>
-<td>The date the payment was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm]</td>
+<td>The date the payment was last modified formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss[Z&#124;(+&#124;-)hh:mm] . Note that the + character must be URL encoded. (i.e. <code>%2B</code>)</td>
 <td>No</td>
 <td><em>14.3</em></td>
 </tr>
