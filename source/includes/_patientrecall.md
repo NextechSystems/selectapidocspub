@@ -20,7 +20,7 @@ The patient-recall resource contains information about when a patient is expecte
 | extension:recall-appointment-date | The start time of the appointment that fulfills this recall, if exists | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _14.2_ |
 | extension:recall-template-name | The name of the recall template this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
 | extension:recall-step-name | The name of the recall step this recall is for |  [string](https://www.hl7.org/fhir/datatypes.html#string)  | _14.2_ |
-| extension:recall-deleted | Indicates if the recall has been deleted |  [string](https://www.hl7.org/fhir/datatypes.html#boolean)  | _14.4_ |
+| extension:recall-deleted | Indicates if the recall has been deleted |  [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _14.4_ |
 | extension:recall-last-updated | The last time the recall was updated |  [string](https://www.hl7.org/fhir/datatypes.html#datetime)  | _14.4_ |
 
 ### Sample
@@ -95,7 +95,7 @@ The patient-recall resource contains information about when a patient is expecte
 &nbsp;
 
 ### *Search*
-Searches for all recalls matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
+Searches for all recalls matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria. By default non-deleted recalls are returned. See deleted search parameter for details
 
 #### HTTP Request 
 `GET /patient-recall?{parameters}`
@@ -110,8 +110,7 @@ Searches for all recalls matching the given search criteria. See [https://www.hl
 | practitioner | query | The recall's practitioner reference | No | _14.2_ |
 | recall-status-name | query | The status name of the recall.  Currently supported values are: Need to Schedule, Past Due, Scheduled, Complete, and Discontinued | No | _14.2_ |
 | recall-date | query | The recall date | No | _14.2_ |
-| deleted | query | The recall's deleted status | No | _14.4_ |
-| deleted | query | The recall's deleted status | No | _14.4_ |
+| deleted | query | The recall's deleted status. __Note:__ If parameter excluded `deleted=false` behavior is used. | No | _14.4_ |
 | last-updated | query | The last time the recall was updated __Note: You must url encode the + in the UTC date (%2B)__ | No | _14.4_ |
 
 #### Multiple Search Values
@@ -125,49 +124,49 @@ GET https://select.nextech-api.com/api/patient-recall/55
 &nbsp;
 
 
-#### Example: Get all recalls for a patient
+#### Example: Get recalls for a patient
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?subject=Patient/5AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A
 </pre>
 &nbsp;
 
-#### Example: Get all recalls between and including 1/1/2019 through 5/31/2019
+#### Example: Get recalls between and including 1/1/2019 through 5/31/2019
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?recall-date=ge2019-01-01&recall-date=lt2019-06-01
 </pre>
 &nbsp;
 
-#### Example: Get all recalls for Dr. Smith or Dr. Jones 
+#### Example: Get recalls for Dr. Smith or Dr. Jones 
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?practitioner=practitioner/9323,practitioner/7945
 </pre>
 &nbsp;
 
-#### Example: Get all recalls for a location by id
+#### Example: Get recalls for a location by id
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?location=location/1
 </pre>
 &nbsp;
 
-#### Example: Get all appointments for either of 2 locations
+#### Example: Get recalls for either of 2 locations
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?location=location/1,location/2
 </pre>
 &nbsp;
 
-#### Example: Get all completed recalls
+#### Example: Get completed recalls
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?recall-status-name=complete
 </pre>
 &nbsp;
 
-#### Example: Get all recalls  created on 7/27/2018
+#### Example: Get recalls  created on 7/27/2018
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
@@ -178,5 +177,26 @@ GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00&deleted=false
+or
+GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00
 </pre>
 &nbsp;
+
+#### Example: Get deleted recalls after 07/27/2018
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00&deleted=true
+</pre>
+&nbsp;
+
+#### Example: Get All recalls after 07/27/2018
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00&deleted=true,false
+</pre>
+&nbsp;
+
+
+### Remarks
+* Prior to 14.4 only non-deleted recalls are available.
+* By default non-deleted recalls are returned unless specified
