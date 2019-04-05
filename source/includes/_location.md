@@ -76,7 +76,7 @@ Searches for all locations based on the given search criteria.
 | ---- | ---------- | ----------- | -------- | --------------- |
 | identifier | query or uri | The unique value assigned to each location which discerns it from all others |  No | _12.8_ |
 | status | query | Searches for locations with a specific kind of status. See [LocationStatus](https://www.hl7.org/fhir/valueset-location-status.html) | No | _12.8_ |
-| managed | query | Searches for locations based on whether they categorized as 'managed' in Practice | No | _14.4_ |
+| includeAll | query | By default, or if includeAll is false, then only managed locations are returned, for example the practice's primary office location. If includeAll is true, then all locations will be returned, whether they are under under practice management or not, but where services are provided, such as a hospital or a clinic. | No | _14.4_ |
 | name | query | The name of the location | No | _12.8_ |
 | address | query | A (part of the) address of the location | No | _12.8_ |
 | address-city | query | A city specified in an address | No | _12.8_ |
@@ -91,10 +91,10 @@ GET https://select.nextech-api.com/api/Location?status=active
 </pre>
 &nbsp;
 
-#### Example: Get all managed locations
+#### Example: Get all locations, including managed and non-managed locations
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Location?managed=true
+GET https://select.nextech-api.com/api/Location?includeAll=true
 </pre>
 &nbsp;
 
