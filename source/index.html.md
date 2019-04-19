@@ -22,6 +22,7 @@ includes:
   - coverage
   - claim
   - paymentreconciliation
+  - expiredcredentials
 
 search: false
 ---
