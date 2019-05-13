@@ -395,6 +395,17 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#frequently-asked-questions" class="toc-h1 toc-link" data-title="Frequently Asked Questions">Frequently Asked Questions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#resetting-expired-credentials" class="toc-h2 toc-link" data-title="Frequently Asked Questions">Resetting Expired Credentials</a>
+                  </li>
+                  <li>
+                    <a href="#missing-practitioners" class="toc-h2 toc-link" data-title="Frequently Asked Questions">Missing Practitioners</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='http://hl7.org/fhir/'>FHIR Documentation</a></li>
@@ -428,7 +439,9 @@
 <h1 id='getting-started'>Getting Started</h1>
 <p>All API requests are performed over HTTPS. Although the <a href="https://www.hl7.org/fhir/index.html">FHIR® standard</a> supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request&#39;s <code>Accept</code> header will be ignored.</p>
 
-<p>Before you can access the Nextech API you must have the proper credentials to authenticate. These credentials will be provided to you by your Nextech representative.  </p>
+<p>Before you can access the Nextech API you must have the proper credentials to authenticate. These credentials will be provided to you by your Nextech representative. </p>
+
+<p><strong>These credentials will expire on your first login and must be reset through Microsoft <a href="http://portal.azure.com/">here</a>.</strong></p>
 
 <p><strong>API Limitations</strong><br>
 - Users of the Nextech API are restricted to a limit of 5,000 API calls per day combined across all applications for a single client<br>
@@ -5821,7 +5834,7 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 <tr>
 <td>extension:recall-deleted</td>
 <td>Indicates if the recall has been deleted</td>
-<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">string</a></td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#boolean">boolean</a></td>
 <td><em>14.4</em></td>
 </tr>
 <tr>
@@ -5903,7 +5916,7 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 
 <p>&nbsp;</p>
 <h3 id='em-search-em'><em>Search</em></h3>
-<p>Searches for all recalls matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
+<p>Searches for all recalls matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria. By default non-deleted recalls are returned. See deleted search parameter for details</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /patient-recall?{parameters}</code></p>
 <h4 id='parameters'>Parameters</h4>
@@ -5968,14 +5981,7 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 <tr>
 <td>deleted</td>
 <td>query</td>
-<td>The recall&#39;s deleted status</td>
-<td>No</td>
-<td><em>14.4</em></td>
-</tr>
-<tr>
-<td>deleted</td>
-<td>query</td>
-<td>The recall&#39;s deleted status</td>
+<td>The recall&#39;s deleted status. <strong>Note:</strong> If parameter excluded <code>deleted=false</code> behavior is used.</td>
 <td>No</td>
 <td><em>14.4</em></td>
 </tr>
@@ -5995,43 +6001,43 @@ GET https://select.nextech-api.com/api/patient-recall/55
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-recalls-for-a-patient'>Example: Get all recalls for a patient</h4>
+<h4 id='example-get-recalls-for-a-patient'>Example: Get recalls for a patient</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?subject=Patient/5AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-recalls-between-and-including-1-1-2019-through-5-31-2019'>Example: Get all recalls between and including 1/1/2019 through 5/31/2019</h4>
+<h4 id='example-get-recalls-between-and-including-1-1-2019-through-5-31-2019'>Example: Get recalls between and including 1/1/2019 through 5/31/2019</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?recall-date=ge2019-01-01&recall-date=lt2019-06-01
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-recalls-for-dr-smith-or-dr-jones'>Example: Get all recalls for Dr. Smith or Dr. Jones</h4>
+<h4 id='example-get-recalls-for-dr-smith-or-dr-jones'>Example: Get recalls for Dr. Smith or Dr. Jones</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?practitioner=practitioner/9323,practitioner/7945
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-recalls-for-a-location-by-id'>Example: Get all recalls for a location by id</h4>
+<h4 id='example-get-recalls-for-a-location-by-id'>Example: Get recalls for a location by id</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?location=location/1
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-appointments-for-either-of-2-locations'>Example: Get all appointments for either of 2 locations</h4>
+<h4 id='example-get-recalls-for-either-of-2-locations'>Example: Get recalls for either of 2 locations</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?location=location/1,location/2
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-completed-recalls'>Example: Get all completed recalls</h4>
+<h4 id='example-get-completed-recalls'>Example: Get completed recalls</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?recall-status-name=complete
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-recalls-created-on-7-27-2018'>Example: Get all recalls  created on 7/27/2018</h4>
+<h4 id='example-get-recalls-created-on-7-27-2018'>Example: Get recalls  created on 7/27/2018</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
 </pre>
@@ -6040,9 +6046,28 @@ GET https://select.nextech-api.com/api/patient-recall?created=eq2018-07-27
 <h4 id='example-get-all-non-deleted-recalls-last-updated-after-07-27-2018'>Example: Get all non deleted recalls last updated after 07/27/2018</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00&deleted=false
+or
+GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00
 </pre>
 
 <p>&nbsp;</p>
+<h4 id='example-get-deleted-recalls-after-07-27-2018'>Example: Get deleted recalls after 07/27/2018</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00&deleted=true
+</pre>
+
+<p>&nbsp;</p>
+<h4 id='example-get-all-recalls-after-07-27-2018'>Example: Get All recalls after 07/27/2018</h4>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T00:00:00.000%2B00:00&deleted=true,false
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='remarks'>Remarks</h3>
+<ul>
+<li>Prior to 14.4 only non-deleted recalls are available.</li>
+<li>By default non-deleted recalls are returned unless specified</li>
+</ul>
 <h1 id='location'>Location</h1><h2 id='location-2'>Location</h2><h3 id='overview'>Overview</h3>
 <p>A physical location where services are provided. This may or may not be under the practice&#39;s management.</p>
 <h3 id='fields'>Fields</h3>
@@ -6170,9 +6195,9 @@ GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T
 <td><em>12.8</em></td>
 </tr>
 <tr>
-<td>managed</td>
+<td>includeAll</td>
 <td>query</td>
-<td>Searches for locations based on whether they categorized as &#39;managed&#39; in Practice</td>
+<td>By default, or if includeAll is false, then only managed locations are returned, for example the practice&#39;s primary office location. If includeAll is true, then all locations will be returned, whether they are under under practice management or not, but where services are provided, such as a hospital or a clinic.</td>
 <td>No</td>
 <td><em>14.4</em></td>
 </tr>
@@ -6225,9 +6250,9 @@ GET https://select.nextech-api.com/api/Location?status=active
 </pre>
 
 <p>&nbsp;</p>
-<h4 id='example-get-all-managed-locations'>Example: Get all managed locations</h4>
+<h4 id='example-get-all-locations-including-managed-and-non-managed-locations'>Example: Get all locations, including managed and non-managed locations</h4>
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Location?managed=true
+GET https://select.nextech-api.com/api/Location?includeAll=true
 </pre>
 
 <p>&nbsp;</p>
@@ -7711,6 +7736,26 @@ GET https://select.nextech-api.com/api/PaymentReconciliation/12
 </pre>
 
 <p>&nbsp;</p>
+<h1 id='frequently-asked-questions'>Frequently Asked Questions</h1><h3 id='resetting-expired-credentials'>Resetting Expired Credentials</h3>
+<p>If your credentials expire you will have to reset them by:</p>
+
+<ol>
+<li>Going to Azure Active Directory by <a href="http://portal.azure.com/">clicking here</a>.</li>
+<li>Enter your expired credentials.</li>
+<li>Follow the prompts it gives you.</li>
+<li>Your password is now reset.</li>
+</ol>
+<h3 id='missing-practitioners'>Missing Practitioners</h3>
+<p>If the practitioners endpoint is not showing all of the expected practitioners check this before opening a support case.</p>
+
+<ol>
+<li>Inside the Nextech application go to the Contacts module, select the provider that is not showing up.</li>
+<li>Confirm that the practitioner is not marked Inactive on the checkbox on the right hand side.</li>
+<li>Find the &quot;Linked User&quot; section and confirm that it is mapped to a unique account that is just for that practitioner.</li>
+</ol>
+
+<p>Practitoners need their own user account to work with the practitoners endpoint.
+Additional documentation can be provided on request.</p>
 
       </div>
       <div class="dark-box">
