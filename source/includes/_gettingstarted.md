@@ -2,7 +2,9 @@
 
 All API requests are performed over HTTPS. Although the [FHIR® standard](https://www.hl7.org/fhir/index.html) supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request's `Accept` header will be ignored.
 
-Before you can access the Nextech API you must have the proper credentials to authenticate. These credentials will be provided to you by your Nextech representative.  
+Before you can access the Nextech API you must have the proper credentials to authenticate. These credentials will be provided to you by your Nextech representative. 
+
+**These credentials will expire on your first login and must be reset through Microsoft [here] (http://portal.azure.com/).**
 
 **API Limitations**  
 - Users of the Nextech API are restricted to a limit of 5,000 API calls per day combined across all applications for a single client  
