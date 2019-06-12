@@ -222,6 +222,40 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 &nbsp;
 
+### *Request Appointment Cancellation*
+Request a scheduled appointment to be cancelled.
+
+#### HTTP Request 
+`PUT /Appointment/{identifier}` 
+
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| identifier | path | The unique identifier of the appointment to be updated | Yes | _14.6_ |
+| appointment | body | The appointment object representing the appointment that is being requested to be cancelled | Yes | _14.6_ |
+
+The commit parameter should be in the form of an Appointment status field of `cancelled` with a custom extension url of `https://select.nextech-api.com/api/structuredefinition/request-type` and value of `queued`. See [https://www.hl7.org/fhir/http.html#update](https://www.hl7.org/fhir/http.html#update) for details on formatting PUT requests in RESTful API’s.
+
+#### Example: Request appointment 5453 to be cancelled
+
+<pre class="center-column">
+PUT https://select.nextech-api.com/api/Appointment/5453
+</pre>
+<pre class="center-column">
+{
+	"resourceType": "Appointment",
+	"status": "cancelled",
+	"extension": [
+          {
+				"url": "https://select.nextech-api.com/api/structuredefinition/request-type",
+				"valueString": "queue"
+          }
+    ]
+}
+</pre>
+&nbsp;
+
 ### *Book Appointment*
 Create a scheduled appointment.
 
