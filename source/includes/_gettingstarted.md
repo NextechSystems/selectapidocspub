@@ -7,8 +7,7 @@ Before you can access the Nextech API you must have the proper credentials to au
 **These credentials will expire on your first login and must be reset through Microsoft [here] (http://portal.azure.com/).**
 
 **API Limitations**  
-- Users of the Nextech API are restricted to a limit of 5,000 API calls per day combined across all applications for a single client  
-- Users of the Nextech API are restricted to a rate limit of 20 requests per second per endpoint
+- Users of the Nextech API are restricted to a rate limit of 20 requests per second per endpoint  
 - Nextech is not responsible for the development or maintenance of any third-party application
 
 **API Endpoint**  
