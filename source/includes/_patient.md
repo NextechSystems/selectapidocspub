@@ -189,24 +189,29 @@ The patient resource contains information about the demographics of a patient.
         }
     ],
     "telecom": [
-        {
-            "system": "email",
-            "value": "abcde@test.com"
-        },
-        {
-            "system": "phone",
-            "value": "(411)941-0786",
-            "use": "mobile",
-            "rank": 1
-        },
-        {
-            "system": "other",
-            "value": "(555)234-1233"
-        },
-        {
-            "system": "fax",
-            "value": "(111)332-1232"
-        },
+		{
+			"system": "email",
+			"value": "test@abc.com"
+		},
+		{
+			"system": "phone",
+			"value": "(813) 555-5555",
+			"use": "home",
+			"rank": 1
+		},
+		{
+			"system": "phone",
+			"value": "(813) 555-5555",
+			"use": "work"
+		},
+		{
+			"system": "other",
+			"value": "(813) 555-5555"
+		},
+		{
+			"system": "fax",
+			"value": "(813) 555-5555"
+		},
         {
             "extension": [
                 {
@@ -353,6 +358,15 @@ The patient resource contains information about the demographics of a patient.
 </pre>
 &nbsp;
 
+### Contact Information and Privacy
+The telecom section contains the contact information for the patient. The example above shows the complete response based on what information is on file and which privacy settings
+are set. If the Privacy setting is checked then the checked fields will not be sent over the API even though the contact information is on file.
+
+i.e The patient's **work** number is on file, but marked private then the telecom section will not contain the **work** field.
+
+
+The preferred contact is also available from the API. If a preferred contact is set then it will contain a "rank":1 member in the telecom object indicating it is the preferred method.
+In the above example this is the **home** contact.
 ### *Search*
 Searches for all patients matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
 
@@ -398,7 +412,7 @@ GET https://select.nextech-api.com/api/Patient?birthdate=ge1981-01-01&birthdate=
 Attempts to find a single patient that matches the given search criteria and if
 successful returns only that patient's unique identifier.   
 
-_At least one of query parameters is required to perform a search._
+_At least one query parameter is required to perform a search._
 
 ### HTTP Request 
 `GET /Patient/ID?{parameters}` 
