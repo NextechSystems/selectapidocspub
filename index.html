@@ -444,8 +444,7 @@
 <p><strong>These credentials will expire on your first login and must be reset through Microsoft <a href="http://portal.azure.com/">here</a>.</strong></p>
 
 <p><strong>API Limitations</strong><br>
-- Users of the Nextech API are restricted to a limit of 5,000 API calls per day combined across all applications for a single client<br>
-- Users of the Nextech API are restricted to a rate limit of 20 requests per second per endpoint
+- Users of the Nextech API are restricted to a rate limit of 20 requests per second per endpoint<br>
 - Nextech is not responsible for the development or maintenance of any third-party application</p>
 
 <p><strong>API Endpoint</strong><br>
@@ -1187,21 +1186,26 @@ Search results are limited to 50 matches per page.
     "telecom": [
         {
             "system": "email",
-            "value": "abcde@test.com"
+            "value": "test@abc.com"
         },
         {
             "system": "phone",
-            "value": "(411)941-0786",
-            "use": "mobile",
+            "value": "(813) 555-5555",
+            "use": "home",
             "rank": 1
         },
         {
+            "system": "phone",
+            "value": "(813) 555-5555",
+            "use": "work"
+        },
+        {
             "system": "other",
-            "value": "(555)234-1233"
+            "value": "(813) 555-5555"
         },
         {
             "system": "fax",
-            "value": "(111)332-1232"
+            "value": "(813) 555-5555"
         },
         {
             "extension": [
@@ -1349,6 +1353,14 @@ Search results are limited to 50 matches per page.
 </pre>
 
 <p>&nbsp;</p>
+<h3 id='contact-information-and-privacy'>Contact Information and Privacy</h3>
+<p>The telecom section contains the contact information for the patient. The example above shows the complete response based on what information is on file and which privacy settings
+are set. If the Privacy setting is checked then the checked fields will not be sent over the API even though the contact information is on file.</p>
+
+<p>i.e The patient&#39;s <strong>work</strong> number is on file, but marked private then the telecom section will not contain the <strong>work</strong> field.</p>
+
+<p>The preferred contact is also available from the API. If a preferred contact is set then it will contain a &quot;rank&quot;:1 member in the telecom object indicating it is the preferred method.
+In the above example this is the <strong>home</strong> contact.</p>
 <h3 id='em-search-em'><em>Search</em></h3>
 <p>Searches for all patients matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
@@ -1467,7 +1479,7 @@ GET https://select.nextech-api.com/api/Patient?birthdate=ge1981-01-01&birthdate=
 <p>Attempts to find a single patient that matches the given search criteria and if
 successful returns only that patient&#39;s unique identifier.   </p>
 
-<p><em>At least one of query parameters is required to perform a search.</em></p>
+<p><em>At least one query parameter is required to perform a search.</em></p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /Patient/ID?{parameters}</code> </p>
 <h3 id='parameters-2'>Parameters</h3>
@@ -5085,11 +5097,61 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 
 <p>&nbsp;</p>
+<h3 id='em-request-appointment-cancellation-em'><em>Request Appointment Cancellation</em></h3>
+<p>Request a scheduled appointment to be cancelled.</p>
+<h4 id='http-request-3'>HTTP Request</h4>
+<p><code>PUT /Appointment/{identifier}</code> </p>
+<h4 id='parameters-3'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>path</td>
+<td>The unique identifier of the appointment to be updated</td>
+<td>Yes</td>
+<td><em>14.6</em></td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>body</td>
+<td>The appointment object representing the appointment that is being requested to be cancelled</td>
+<td>Yes</td>
+<td><em>14.6</em></td>
+</tr>
+</tbody></table>
+
+<p>The commit parameter should be in the form of an Appointment status field of <code>cancelled</code> with a custom extension url of <code>https://select.nextech-api.com/api/structuredefinition/request-type</code> and value of <code>queue</code>. See <a href="https://www.hl7.org/fhir/http.html#update">https://www.hl7.org/fhir/http.html#update</a> for details on formatting PUT requests in RESTful API’s.</p>
+<h4 id='example-request-appointment-5453-to-be-cancelled'>Example: Request appointment 5453 to be cancelled</h4>
+<pre class="center-column">
+PUT https://select.nextech-api.com/api/Appointment/5453
+</pre>
+
+<pre class="center-column">
+{
+    "resourceType": "Appointment",
+    "status": "cancelled",
+    "extension": [
+          {
+                "url": "https://select.nextech-api.com/api/structuredefinition/request-type",
+                "valueString": "queue"
+          }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
 <h3 id='em-book-appointment-em'><em>Book Appointment</em></h3>
 <p>Create a scheduled appointment.</p>
-<h4 id='http-request-3'>HTTP Request</h4>
+<h4 id='http-request-4'>HTTP Request</h4>
 <p><code>POST /Appointment/</code> </p>
-<h4 id='parameters-3'>Parameters</h4>
+<h4 id='parameters-4'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
