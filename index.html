@@ -477,12 +477,12 @@
 
 <p>If your API user exceeds the rate limit, you will receive a HTTP 429 response code. We advise to design to handle these requests with <a href="https://en.wikipedia.org/wiki/Exponential_backoff">Exponential backoff</a>.</p>
 
-<p><strong>Best practices to avoid Rate Limiting</strong>
+<p><strong>Best practices to avoid Rate Limiting</strong><br>
 - The API is intended for on-demand requests for user interaction in real-time, try to avoid synchronizing data.<br>
-- Requests should be staggered as much as possible to avoid bursts of high traffic volume. 
-- Cache your own data when you need to store specialized values or rapidly review very large data sets.
-- Query with _lastUpdated search parameters to avoid re-querying unmodified data.
-- If you need to synchronize data, it is best to do so during non-peak business hours.</p>
+- Requests should be staggered as much as possible to avoid bursts of high traffic volume.<br>
+- Cache your own data when you need to store specialized values or rapidly review very large data sets.<br>
+- Query with _lastUpdated search parameters to avoid re-querying unmodified data.<br>
+- If you need to synchronize data, it is best to do so during non-peak business hours. Which vary on a per practice basis.  </p>
 <h2 id='authentication'>Authentication</h2>
 <p>Nextech&#39;s implementation of the FHIR® standard is protected by the <a href="https://oauth.net/2/">OAuth 2.0 standard</a> for authenticating requests.  All API requests are authenticated by passing a Bearer token in the Authorization Header.</p>
 
