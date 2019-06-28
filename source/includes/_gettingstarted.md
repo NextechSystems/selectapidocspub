@@ -28,12 +28,12 @@ Rate limiting of the API is primarily on a per-user, per-endpoint basis. The def
 
 If your API user exceeds the rate limit, you will receive a HTTP 429 response code. We advise to design to handle these requests with [Exponential backoff](https://en.wikipedia.org/wiki/Exponential_backoff).
 
-**Best practices to avoid Rate Limiting**
+**Best practices to avoid Rate Limiting**  
 - The API is intended for on-demand requests for user interaction in real-time, try to avoid synchronizing data.  
-- Requests should be staggered as much as possible to avoid bursts of high traffic volume. 
-- Cache your own data when you need to store specialized values or rapidly review very large data sets.
-- Query with _lastUpdated search parameters to avoid re-querying unmodified data.
-- If you need to synchronize data, it is best to do so during non-peak business hours.
+- Requests should be staggered as much as possible to avoid bursts of high traffic volume.  
+- Cache your own data when you need to store specialized values or rapidly review very large data sets.  
+- Query with _lastUpdated search parameters to avoid re-querying unmodified data.  
+- If you need to synchronize data, it is best to do so during non-peak business hours. Which vary on a per practice basis.  
 
 ## Authentication ##
 
