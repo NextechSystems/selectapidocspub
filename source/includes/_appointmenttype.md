@@ -13,6 +13,7 @@ The appointment type resource contains information about a planned meeting betwe
 | resourcetype | The declaration of the type of resource this is. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | id | The unique value assigned to each appointment type which discerns it from all others | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | extension | The appointment type values as a packaged extension. Contains definition url and value | [extension](https://www.hl7.org/fhir/extensibility.html) | _12.8_ |
+| extension | The default duration in minutes for an appointment type packaged as an extension | [extension](https://www.hl7.org/fhir/extensibility.html) | _14.8_ |
 
 
 ### Sample
@@ -24,6 +25,10 @@ The appointment type resource contains information about a planned meeting betwe
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type#name",
             "valueString": "Surgery Cosmetic"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type#defaultDuration",
+            "valueInteger": 0
         }
     ]
 }
