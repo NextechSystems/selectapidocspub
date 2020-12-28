@@ -222,6 +222,43 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 &nbsp;
 
+### *Update Appointment Status*
+Updates the status of a given appointment
+
+#### HTTP Request 
+`PUT /Appointment/{identifier}` 
+
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| identifier | path | The unique identifier of the appointment to be updated | Yes | _12.6_ |
+| appointment | body | The appointment object representing the changes to be made | Yes | _12.6_ |
+| appointment.status | body | The status to update the appointment to. As of 15.8 we'll now support "Booked", "Arrived", "Fulfilled" and "Pending" | Yes | _15.8_ |
+
+The below FHIR statuses will be mapped to the below system level statuses in Select
+
+<pre class="center-column">
+"Pending" -> "Pending"
+"Arrived" -> "In"
+"Fulfilled" -> "Out"
+</pre>
+
+The commit parameter should be in the form of an Appointment status field. See [https://www.hl7.org/fhir/http.html#update](https://www.hl7.org/fhir/http.html#update) for details on formatting PUT requests in RESTful API’s.
+
+#### Example: Mark appointment 5453 as arrived
+
+<pre class="center-column">
+PUT https://select.nextech-api.com/api/Appointment/5453
+</pre>
+<pre class="center-column">
+{
+	"resourceType": "Appointment",
+	"status": "arrived"
+}
+</pre>
+&nbsp;
+
 ### *Request Appointment Cancellation*
 Request a scheduled appointment to be cancelled.
 
