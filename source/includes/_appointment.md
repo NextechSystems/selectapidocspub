@@ -11,14 +11,14 @@ The appointment resource contains information about a planned meeting between a 
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each appointment which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| status | Indicates whether the appointment is proposed (held), cancelled, booked (confirmed), pending, arrived, fulfilled or no show | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | _12.6_ |
+| status | Indicates whether the appointment is proposed (held), cancelled, booked (confirmed), pending, arrived, fulfilled or no show (this field is omitted if the appointment is in a status that doesn't correspond to any of the listed statuses) | [AppointmentStatus](https://www.hl7.org/fhir/valueset-appointmentstatus.html) | _12.6_ |
 | description | The appointment summary that includes the type and a list of purposes and resources | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
 | start | The date and time the appointment begins | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6_ |
 | end | The date and time the appointment ends | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _12.6_ |
 | comment | The appointment notes | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
 | participant | The collection of appointment participants which includes patient, provider and location.  As of version 14.1, the patient reference will not be included for non-patient appointments | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
 | created | The date that this appointment was initially created | [dateTime](https://www.hl7.org/fhir/datatypes.html#datetime) | _12.8_ |
-| Extension | This is an extension of the class to provide more indepth objects like for appointment types(_12.8_) and appointment purposes (_12.9_)|  [extension](https://www.hl7.org/fhir/extensibility.html)  | _12.9_ |
+| Extension | This is an extension of the class to provide more indepth objects like for appointment types(_12.8_), appointment purposes (_12.9_), and Select appointment status (_15.9_) |  [extension](https://www.hl7.org/fhir/extensibility.html)  | _12.9_ |
 | meta.lastUpdated | The last time the appointment was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 
 ### Sample
@@ -67,22 +67,29 @@ The appointment resource contains information about a planned meeting between a 
             ]
           }
         ],
-    "extension": [
-      {
-        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
-        "valueReference": {
-            "reference": "appointment-type/9",
-            "display": "Surgery Cosmetic"
-        }
-      },
-      {
-        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
-        "valueReference": {
-          "reference": "appointment-purpose/161",
-          "display": "Chemical Peel/Skin Treatments"
-        }
-      }
-    ],
+        "extension": [
+	      {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status",
+            "valueReference": {
+              "reference": "appointment-status/0",
+              "display": "Pending"
+            }
+          },
+          {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/9",
+              "display": "Surgery Cosmetic"
+            }
+          },
+          {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
+            "valueReference": {
+              "reference": "appointment-purpose/161",
+              "display": "Chemical Peel/Skin Treatments"
+            }
+          }
+        ],
         "identifier": [
           {
             "use": "official",
