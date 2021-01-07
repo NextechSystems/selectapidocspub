@@ -244,6 +244,10 @@ The below FHIR statuses will be mapped to the below system level statuses in Sel
 "Fulfilled" -> "Out"
 </pre>
 
+### Remarks
+In a normal workflow an appointment would go from -> Pending -> Arrived -> Fulfilled. Once an appointment is moved from the Arrived status to any other status, you can no 
+longer set the status back to arrived from the API. You'll need to manually set the status from within Select.
+
 The commit parameter should be in the form of an Appointment status field. See [https://www.hl7.org/fhir/http.html#update](https://www.hl7.org/fhir/http.html#update) for details on formatting PUT requests in RESTful API’s.
 
 #### Example: Mark appointment 5453 as arrived
