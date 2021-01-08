@@ -342,6 +342,7 @@ PUT https://select.nextech-api.com/api/Appointment/5453
     * The appointment is not tied to a patient (HTTP Status Code: 422)
     * The appointment is linked to other appointments (HTTP Status Code: 422)
     * The appointment is associated with a tracking ladder event (HTTP Status Code: 422)
+    * The practice has their `Require a cancellation reason` preference set to "Yes" (HTTP Status Code: 422)
 &nbsp;
 
 ### *Book Appointment*
