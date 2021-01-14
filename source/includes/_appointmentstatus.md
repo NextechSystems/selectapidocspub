@@ -43,7 +43,62 @@ Searches for all appointment statuses matching the given search criteria. See [h
 | name | query | The name of the appointment status | N | _15.9_ |
 
 
-### Appointment-Status ID Search
-Attempts to find a single appointment status that matches based on the identifier given
+### Example: Get a specific appointment status based on identifier
 
-`GET /appointment-status/{identifier}`
+<pre class="center-column">
+GET https://select.nextech-api.com/api/appointment-status/6
+</pre>
+#### Reponse
+<pre class="center-column">
+{
+    "resourceType": "appointment-status",
+    "id": "6",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status#name",
+            "valueString": "Online Book"
+        }
+    ]
+}
+</pre>
+
+### Example: Get all statuses whose name contains 'Online'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/appointment-status?name:contains=Online
+</pre>
+#### Response
+<pre class="center-column">
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 2,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "appointment-status",
+                "id": "6",
+                "extension": [
+                    {
+                        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status#name",
+                        "valueString": "Online Book"
+                    }
+                ]
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "appointment-status",
+                "id": "7",
+                "extension": [
+                    {
+                        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status#name",
+                        "valueString": "Online Hold"
+                    }
+                ]
+            }
+        }
+    ]
+}
+</pre>
+
