@@ -266,6 +266,40 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 &nbsp;
 
+### *Update Appointment With a Custom Status*
+Updates the status of a given appointment with one of the custom statuses defined in Select
+
+#### HTTP Request 
+`PUT /Appointment/{identifier}` 
+
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| identifier | path | The unique identifier of the appointment to be updated | Yes | _12.6_ |
+| appointment | body | The appointment object representing the changes to be made | Yes | _12.6_ |
+| extension | body | An extension with the status (as defined in Select) to set the appointment to | Yes | _15.9_ |
+
+#### Example: Mark appointment 5453 as arrived
+
+<pre class="center-column">
+PUT https://select.nextech-api.com/api/Appointment/5453
+</pre>
+<pre class="center-column">
+{
+    "resourceType": "Appointment",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status",
+            "valueReference": {
+                "reference": "appointment-status/8"
+            }
+        }
+    ]
+}
+</pre>
+&nbsp;
+
 ### *Request Appointment Cancellation*
 Request a scheduled appointment to be cancelled.
 
