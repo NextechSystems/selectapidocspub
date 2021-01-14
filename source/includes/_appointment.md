@@ -328,7 +328,7 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 
 ### Remarks
-* An appointment cancellation can fail for a number of reasons:
+* An appointment cancellation will fail for a number of reasons:
 	* The appointment does not exist (HTTP Status Code: 404)
     * The appointment has already been cancelled (HTTP Status Code: 422)
     * A request to cancel the appointment has already been placed (HTTP Status Code: 422)
