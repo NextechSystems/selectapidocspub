@@ -267,7 +267,7 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 &nbsp;
 
 ### *Update Appointment With a Custom Status*
-Updates the status of a given appointment with one of the custom statuses defined in Select
+Updates the status of a given appointment with a custom status
 
 #### HTTP Request 
 `PUT /Appointment/{identifier}` 
@@ -280,7 +280,7 @@ Updates the status of a given appointment with one of the custom statuses define
 | appointment | body | The appointment object representing the changes to be made | Yes | _12.6_ |
 | extension | body | An extension with the status (as defined in Select) to set the appointment to | Yes | _15.9_ |
 
-#### Example: Mark appointment 5453 as arrived
+#### Example: Set status of appointment 5453 to the status with ID 8
 
 <pre class="center-column">
 PUT https://select.nextech-api.com/api/Appointment/5453
