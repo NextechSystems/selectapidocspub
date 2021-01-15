@@ -300,6 +300,51 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 &nbsp;
 
+### *Cancel Appointment*
+Cancels a scheduled appointment.
+
+#### HTTP Request 
+`PUT /Appointment/{identifier}` 
+
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| identifier | path | The unique identifier of the appointment to be cancelled | Yes | _15.9_ |
+| appointment | body | The appointment object representing the appointment to cancel | Yes | _15.9_ |
+
+The commit parameter should be in the form of an Appointment status field of `cancelled` with **no custom extensions**. See [https://www.hl7.org/fhir/http.html#update](https://www.hl7.org/fhir/http.html#update) for details on formatting PUT requests in RESTful API’s.
+
+#### Example: Cancel appointment 5453
+
+<pre class="center-column">
+PUT https://select.nextech-api.com/api/Appointment/5453
+</pre>
+<pre class="center-column">
+{
+	"resourceType": "Appointment",
+	"status": "cancelled"
+}
+</pre>
+
+### Remarks
+* An appointment cancellation will fail for a number of reasons:
+	* The appointment does not exist (HTTP Status Code: 404)
+    * The appointment has already been cancelled (HTTP Status Code: 422)
+    * A request to cancel the appointment has already been placed (HTTP Status Code: 422)
+    * The appointment is tied to a room (HTTP Status Code: 422)
+    * The appointment is tied to a patient photo (HTTP Status Code: 422)
+    * The appointment is tied to a superbill (HTTP Status Code: 422)
+    * The appointment is tied to an inventory allocation (HTTP Status Code: 422)
+    * The appointment is linked to an order (HTTP Status Code: 422)
+    * The appointment is tied to a case history (HTTP Status Code: 422)
+    * The appointment is tied to a tracking procedure (HTTP Status Code: 422)
+    * The appointment is not tied to a patient (HTTP Status Code: 422)
+    * The appointment is linked to other appointments (HTTP Status Code: 422)
+    * The appointment is associated with a tracking ladder event (HTTP Status Code: 422)
+    * The practice has their `Require a cancellation reason` preference set to "Yes" (HTTP Status Code: 422)
+&nbsp;
+
 ### *Book Appointment*
 Create a scheduled appointment.
 
