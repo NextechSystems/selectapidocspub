@@ -81,9 +81,6 @@ parse_args() {
 
   #append commit hash to the end of message by default
   append_hash=${GIT_DEPLOY_APPEND_HASH:-true}
-
-  #include optional command headers for the git push operation
-  push_command_headers=${GIT_PUSH_COMMAND_HEADERS:-}
 }
 
 main() {
@@ -169,7 +166,8 @@ commit+push() {
 
   disable_expanded_output
   #--quiet is important here to avoid outputting the repo URL, which may contain a secret token
-  git -c user.name="$default_username" push --quiet $repo $deploy_branch
+  #Nextech - to work around the 'terminal prompts disabled' error, set the user.name on the command line
+  git -c user.name="deploy.sh" push --quiet $repo $deploy_branch
   enable_expanded_output
 }
 
