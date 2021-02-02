@@ -81,6 +81,9 @@ parse_args() {
 
   #append commit hash to the end of message by default
   append_hash=${GIT_DEPLOY_APPEND_HASH:-true}
+
+  #include optional command headers for the git push operation
+  push_command_headers=${GIT_PUSH_COMMAND_HEADERS:-}
 }
 
 main() {
@@ -166,7 +169,7 @@ commit+push() {
 
   disable_expanded_output
   #--quiet is important here to avoid outputting the repo URL, which may contain a secret token
-  git push --quiet $repo $deploy_branch
+  git push --quiet $push_command_headers $repo $deploy_branch
   enable_expanded_output
 }
 
