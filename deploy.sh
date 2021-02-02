@@ -111,7 +111,7 @@ main() {
     return 1
   fi
 
-  # must use short form of flag in ls for compatibility with OS X and BSD
+  # must use short form of flag in ls for compatibility with macOS and BSD
   if [[ -z `ls -A "$deploy_directory" 2> /dev/null` && -z $allow_empty ]]; then
     echo "Deploy directory '$deploy_directory' is empty. Aborting. If you're sure you want to deploy an empty tree, use the --allow-empty / -e flag." >&2
     return 1
@@ -154,7 +154,7 @@ incremental_deploy() {
     0) echo No changes to files in $deploy_directory. Skipping commit.;;
     1) commit+push;;
     *)
-      echo git diff exited with code $diff. Aborting. Staying on branch $deploy_branch so you can debug. To switch back to master, use: git symbolic-ref HEAD refs/heads/master && git reset --mixed >&2
+      echo git diff exited with code $diff. Aborting. Staying on branch $deploy_branch so you can debug. To switch back to main, use: git symbolic-ref HEAD refs/heads/main && git reset --mixed >&2
       return $diff
       ;;
   esac
@@ -214,4 +214,13 @@ sanitize() {
   "$@" 2> >(filter 1>&2) | filter
 }
 
-[[ $1 = --source-only ]] || main "$@"
+parse_args "$@"
+
+if [[ ${source_only} ]]; then
+  run_build
+elif [[ ${push_only} ]]; then
+  main "$@"
+else
+  run_build
+  main "$@"
+fi
