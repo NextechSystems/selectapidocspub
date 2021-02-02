@@ -169,7 +169,7 @@ commit+push() {
 
   disable_expanded_output
   #--quiet is important here to avoid outputting the repo URL, which may contain a secret token
-  git $push_command_headers push --quiet $repo $deploy_branch
+  git -c user.name="$default_username" push --quiet $repo $deploy_branch
   enable_expanded_output
 }
 
