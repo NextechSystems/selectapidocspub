@@ -42,7 +42,7 @@
 .highlight .cs {
   color: #75715e;
 }
-.highlight .c, .highlight .cd {
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
   color: #75715e;
 }
 .highlight .err {
@@ -126,7 +126,7 @@
 .highlight .s1 {
   color: #e6db74;
 }
-.highlight .s {
+.highlight .s, .highlight .sa, .highlight .dl {
   color: #e6db74;
 }
 .highlight .na {
@@ -141,41 +141,52 @@
 .highlight .ne {
   color: #a6e22e;
 }
-.highlight .nf {
+.highlight .nf, .highlight .fm {
   color: #a6e22e;
 }
 .highlight .vc {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nn {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nl {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .ni {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .bp {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vg {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vi {
   color: #ffffff;
+  background-color: #272822;
 }
-.highlight .nv {
+.highlight .nv, .highlight .vm {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .w {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .ow {
   color: #f92672;
@@ -205,11 +216,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar.png" alt="" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo.png" class="logo" alt="Logo" />
+      <img src="images/logo.png" class="logo" alt="" />
       <div id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
@@ -1361,7 +1372,7 @@ are set. If the Privacy setting is checked then the checked fields will not be s
 
 <p>The preferred contact is also available from the API. If a preferred contact is set then it will contain a &quot;rank&quot;:1 member in the telecom object indicating it is the preferred method.
 In the above example this is the <strong>home</strong> contact.</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all patients matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Patient?{parameters}</code></p>
@@ -1580,7 +1591,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-create-patient-em'><em>Create Patient</em></h3>
+<h3 id='create-patient'><em>Create Patient</em></h3>
 <p>Create a patient.</p>
 <h4 id='http-request-3'>HTTP Request</h4>
 <p><code>POST /Patient/</code> </p>
@@ -2114,7 +2125,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 </pre>
 
 <p>&nbsp; </p>
-<h3 id='em-update-patient-em'><em>Update Patient</em></h3>
+<h3 id='update-patient'><em>Update Patient</em></h3>
 <p>Update a patient.</p>
 <h4 id='http-request-4'>HTTP Request</h4>
 <p><code>PUT /Patient/</code> </p>
@@ -2251,7 +2262,7 @@ GET https://select.nextech-api.com/api/Patient/ID?family=Smith&given=John&birthd
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-2'><em>Search</em></h3>
+<h3 id='search-2'><em>Search</em></h3>
 <p>Searches for allergy intolerances for a single patient</p>
 <h4 id='http-request-5'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/AllergyIntolerance?{parameters}</code></p>
@@ -2310,7 +2321,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 <td><em>12.6</em></td>
 </tr>
 </tbody></table>
-<h3 id='em-generate-ccda-em'><em>Generate CCDA</em></h3>
+<h3 id='generate-ccda'><em>Generate CCDA</em></h3>
 <p>Generates a CCDA for a single patient</p>
 <h4 id='http-request-6'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Binary/$autogen-ccd-if?{parameters}</code> </p>
@@ -2424,7 +2435,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-3'><em>Search</em></h3>
+<h3 id='search-3'><em>Search</em></h3>
 <p>Searches for care plans for a single patient</p>
 <h4 id='http-request-7'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/CarePlan?{parameters}</code></p>
@@ -2522,7 +2533,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-4'><em>Search</em></h3>
+<h3 id='search-4'><em>Search</em></h3>
 <p>Searches for clinical impressions for a patient</p>
 <h4 id='http-request-8'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/ClinicalImpression?{parameters}</code> </p>
@@ -2688,7 +2699,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-create-em'><em>Create</em></h3>
+<h3 id='create'><em>Create</em></h3>
 <p>Creates a non-clinical note for a patient that is visible in the patient&#39;s Notes tab in the Nextech software.  </p>
 <h4 id='http-request-9'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/Composition</code> </p>
@@ -2895,7 +2906,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-5'><em>Search</em></h3>
+<h3 id='search-5'><em>Search</em></h3>
 <p>Searches for conditions for a single patient</p>
 <h4 id='http-request-10'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Condition?{parameters}</code> </p>
@@ -3053,7 +3064,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-6'><em>Search</em></h3>
+<h3 id='search-6'><em>Search</em></h3>
 <p>Searches for devices for a single patient</p>
 <h4 id='http-request-11'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Device?{parameters}</code> </p>
@@ -3197,7 +3208,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-create-em-2'><em>Create</em></h3>
+<h3 id='create-2'><em>Create</em></h3>
 <p>Creates the document in the content.attachment for a patient and attaches it to the patient&#39;s history tab in the Nextech software.</p>
 <h4 id='http-request-12'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/DocumentReference</code> </p>
@@ -3500,7 +3511,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-7'><em>Search</em></h3>
+<h3 id='search-7'><em>Search</em></h3>
 <p>Searches for encounters for a single patient</p>
 <h4 id='http-request-13'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Encounter?{parameters}</code></p>
@@ -3613,7 +3624,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-8'><em>Search</em></h3>
+<h3 id='search-8'><em>Search</em></h3>
 <p>Searches for goals for a single patient</p>
 <h4 id='http-request-14'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Goal?{parameters}</code> </p>
@@ -3728,7 +3739,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-9'><em>Search</em></h3>
+<h3 id='search-9'><em>Search</em></h3>
 <p>Searches for immunizations for a single patient</p>
 <h4 id='http-request-15'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Immunization?{parameters}</code> </p>
@@ -3836,7 +3847,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-10'><em>Search</em></h3>
+<h3 id='search-10'><em>Search</em></h3>
 <p>Searches for medication dispensements for a single patient</p>
 <h4 id='http-request-16'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/MedicationDispense?{parameters}</code> </p>
@@ -3951,7 +3962,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-11'><em>Search</em></h3>
+<h3 id='search-11'><em>Search</em></h3>
 <p>Searches for current medications for a single patient</p>
 <h4 id='http-request-17'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/MedicationStatement?{parameters}</code></p>
@@ -4105,7 +4116,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre> 
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-12'><em>Search</em></h3>
+<h3 id='search-12'><em>Search</em></h3>
 <p>Searches for observations for a single patient</p>
 <h4 id='http-request-18'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Observation?{parameters}</code> </p>
@@ -4311,7 +4322,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-create-em-3'><em>Create</em></h3>
+<h3 id='create-3'><em>Create</em></h3>
 <p>Creates a payment for an existing patient.</p>
 <h4 id='http-request-19'>HTTP Request</h4>
 <p><code>POST /Patient/{patientUid}/PaymentReconciliation</code> </p>
@@ -4578,7 +4589,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em-13'><em>Search</em></h3>
+<h3 id='search-13'><em>Search</em></h3>
 <p>Searches for procedures for a single patient</p>
 <h4 id='http-request-20'>HTTP Request</h4>
 <p><code>GET /Patient/{patientUid}/Procedure?{parameters}</code> </p>
@@ -4691,7 +4702,7 @@ GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109f
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all patient types matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /patient-type?{parameters}</code></p>
@@ -4770,7 +4781,7 @@ GET https://select.nextech-api.com/api/patient-type/5
 </tr>
 <tr>
 <td>status</td>
-<td>Indicates whether the appointment is proposed (held), cancelled, booked (confirmed), pending, arrived, fulfilled or no show</td>
+<td>Indicates whether the appointment is proposed (held), cancelled, booked (confirmed), pending, arrived, fulfilled or no show (this field is omitted if the appointment is in a status that doesn&#39;t correspond to any of the listed statuses)</td>
 <td><a href="https://www.hl7.org/fhir/valueset-appointmentstatus.html">AppointmentStatus</a></td>
 <td><em>12.6</em></td>
 </tr>
@@ -4812,7 +4823,7 @@ GET https://select.nextech-api.com/api/patient-type/5
 </tr>
 <tr>
 <td>Extension</td>
-<td>This is an extension of the class to provide more indepth objects like for appointment types(<em>12.8</em>) and appointment purposes (<em>12.9</em>)</td>
+<td>This is an extension of the class to provide more indepth objects like for appointment types(<em>12.8</em>), appointment purposes (<em>12.9</em>), and Select appointment status (<em>15.9</em>)</td>
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
 <td><em>12.9</em></td>
 </tr>
@@ -4869,22 +4880,29 @@ GET https://select.nextech-api.com/api/patient-type/5
             ]
           }
         ],
-    "extension": [
-      {
-        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
-        "valueReference": {
-            "reference": "appointment-type/9",
-            "display": "Surgery Cosmetic"
-        }
-      },
-      {
-        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
-        "valueReference": {
-          "reference": "appointment-purpose/161",
-          "display": "Chemical Peel/Skin Treatments"
-        }
-      }
-    ],
+        "extension": [
+          {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status",
+            "valueReference": {
+              "reference": "appointment-status/0",
+              "display": "Pending"
+            }
+          },
+          {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type",
+            "valueReference": {
+              "reference": "appointment-type/9",
+              "display": "Surgery Cosmetic"
+            }
+          },
+          {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-purpose",
+            "valueReference": {
+              "reference": "appointment-purpose/161",
+              "display": "Chemical Peel/Skin Treatments"
+            }
+          }
+        ],
         "identifier": [
           {
             "use": "official",
@@ -4924,7 +4942,7 @@ GET https://select.nextech-api.com/api/patient-type/5
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all appointments matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Appointment?{parameters}</code></p>
@@ -5053,7 +5071,7 @@ GET https://select.nextech-api.com/api/Appointment?created=2017-07-27
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-confirm-appointment-em'><em>Confirm Appointment</em></h3>
+<h3 id='confirm-appointment'><em>Confirm Appointment</em></h3>
 <p>Confirm a scheduled appointment.</p>
 <h4 id='http-request-2'>HTTP Request</h4>
 <p><code>PUT /Appointment/{identifier}</code> </p>
@@ -5097,11 +5115,129 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-request-appointment-cancellation-em'><em>Request Appointment Cancellation</em></h3>
-<p>Request a scheduled appointment to be cancelled.</p>
+<h3 id='update-appointment-status'><em>Update Appointment Status</em></h3>
+<p>Updates the status of a given appointment</p>
 <h4 id='http-request-3'>HTTP Request</h4>
 <p><code>PUT /Appointment/{identifier}</code> </p>
 <h4 id='parameters-3'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>path</td>
+<td>The unique identifier of the appointment to be updated</td>
+<td>Yes</td>
+<td><em>12.6</em></td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>body</td>
+<td>The appointment object representing the changes to be made</td>
+<td>Yes</td>
+<td><em>12.6</em></td>
+</tr>
+<tr>
+<td>appointment.status</td>
+<td>body</td>
+<td>The status to update the appointment to. As of 15.8 we&#39;ll now support &quot;Booked&quot;, &quot;Arrived&quot;, &quot;Fulfilled&quot; and &quot;Pending&quot;</td>
+<td>Yes</td>
+<td><em>15.8</em></td>
+</tr>
+</tbody></table>
+
+<p>The below FHIR statuses will be mapped to the below system level statuses in Select</p>
+
+<pre class="center-column">
+"Pending" -> "Pending"
+"Arrived" -> "In"
+"Fulfilled" -> "Out"
+</pre>
+<h3 id='remarks'>Remarks</h3>
+<p>In a normal workflow an appointment would go from -&gt; Pending -&gt; Arrived -&gt; Fulfilled. Once an appointment is moved from the Arrived status to any other status, you can no 
+longer set the status back to arrived from the API. You&#39;ll need to manually set the status from within Select.</p>
+
+<p>The commit parameter should be in the form of an Appointment status field. See <a href="https://www.hl7.org/fhir/http.html#update">https://www.hl7.org/fhir/http.html#update</a> for details on formatting PUT requests in RESTful API’s.</p>
+<h4 id='example-mark-appointment-5453-as-arrived'>Example: Mark appointment 5453 as arrived</h4>
+<pre class="center-column">
+PUT https://select.nextech-api.com/api/Appointment/5453
+</pre>
+
+<pre class="center-column">
+{
+    "resourceType": "Appointment",
+    "status": "arrived"
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='update-appointment-with-a-custom-status'><em>Update Appointment With a Custom Status</em></h3>
+<p>Updates the status of a given appointment with a custom status</p>
+<h4 id='http-request-4'>HTTP Request</h4>
+<p><code>PUT /Appointment/{identifier}</code> </p>
+<h4 id='parameters-4'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>path</td>
+<td>The unique identifier of the appointment to be updated</td>
+<td>Yes</td>
+<td><em>12.6</em></td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>body</td>
+<td>The appointment object representing the changes to be made</td>
+<td>Yes</td>
+<td><em>12.6</em></td>
+</tr>
+<tr>
+<td>extension</td>
+<td>body</td>
+<td>An extension with the status (as defined in Select) to set the appointment to</td>
+<td>Yes</td>
+<td><em>15.9</em></td>
+</tr>
+</tbody></table>
+<h4 id='example-set-status-of-appointment-5453-to-the-status-with-id-8'>Example: Set status of appointment 5453 to the status with ID 8</h4>
+<pre class="center-column">
+PUT https://select.nextech-api.com/api/Appointment/5453
+</pre>
+
+<pre class="center-column">
+{
+    "resourceType": "Appointment",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status",
+            "valueReference": {
+                "reference": "appointment-status/8"
+            }
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='request-appointment-cancellation'><em>Request Appointment Cancellation</em></h3>
+<p>Request a scheduled appointment to be cancelled.</p>
+<h4 id='http-request-5'>HTTP Request</h4>
+<p><code>PUT /Appointment/{identifier}</code> </p>
+<h4 id='parameters-5'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -5147,11 +5283,75 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-book-appointment-em'><em>Book Appointment</em></h3>
+<h3 id='cancel-appointment'><em>Cancel Appointment</em></h3>
+<p>Cancels a scheduled appointment.</p>
+<h4 id='http-request-6'>HTTP Request</h4>
+<p><code>PUT /Appointment/{identifier}</code> </p>
+<h4 id='parameters-6'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>path</td>
+<td>The unique identifier of the appointment to be cancelled</td>
+<td>Yes</td>
+<td><em>15.9</em></td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>body</td>
+<td>The appointment object representing the appointment to cancel</td>
+<td>Yes</td>
+<td><em>15.9</em></td>
+</tr>
+</tbody></table>
+
+<p>The commit parameter should be in the form of an Appointment status field of <code>cancelled</code> with <strong>no custom extensions</strong>. See <a href="https://www.hl7.org/fhir/http.html#update">https://www.hl7.org/fhir/http.html#update</a> for details on formatting PUT requests in RESTful API’s.</p>
+<h4 id='example-cancel-appointment-5453'>Example: Cancel appointment 5453</h4>
+<pre class="center-column">
+PUT https://select.nextech-api.com/api/Appointment/5453
+</pre>
+
+<pre class="center-column">
+{
+    "resourceType": "Appointment",
+    "status": "cancelled"
+}
+</pre>
+<h3 id='remarks-2'>Remarks</h3>
+<ul>
+<li>An appointment cancellation will fail for a number of reasons:
+
+<ul>
+<li>The appointment does not exist (HTTP Status Code: 404)</li>
+<li>The appointment has already been cancelled (HTTP Status Code: 422)</li>
+<li>A request to cancel the appointment has already been placed (HTTP Status Code: 422)</li>
+<li>The appointment is tied to a room (HTTP Status Code: 422)</li>
+<li>The appointment is tied to a patient photo (HTTP Status Code: 422)</li>
+<li>The appointment is tied to a superbill (HTTP Status Code: 422)</li>
+<li>The appointment is tied to an inventory allocation (HTTP Status Code: 422)</li>
+<li>The appointment is linked to an order (HTTP Status Code: 422)</li>
+<li>The appointment is tied to a case history (HTTP Status Code: 422)</li>
+<li>The appointment is tied to a tracking procedure (HTTP Status Code: 422)</li>
+<li>The appointment is not tied to a patient (HTTP Status Code: 422)</li>
+<li>The appointment is linked to other appointments (HTTP Status Code: 422)</li>
+<li>The appointment is associated with a tracking ladder event (HTTP Status Code: 422)</li>
+<li>The practice has their <code>Require a cancellation reason</code> preference set to &quot;Yes&quot; (HTTP Status Code: 422)
+&nbsp;</li>
+</ul></li>
+</ul>
+<h3 id='book-appointment'><em>Book Appointment</em></h3>
 <p>Create a scheduled appointment.</p>
-<h4 id='http-request-4'>HTTP Request</h4>
+<h4 id='http-request-7'>HTTP Request</h4>
 <p><code>POST /Appointment/</code> </p>
-<h4 id='parameters-4'>Parameters</h4>
+<h4 id='parameters-7'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -5442,7 +5642,7 @@ POST https://select.nextech-api.com/api/Appointment/
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='remarks'>Remarks</h3>
+<h3 id='remarks-3'>Remarks</h3>
 <ul>
 <li>If an appointment is returned without a practitioner in the participants section, please check the following:
 
@@ -5575,7 +5775,7 @@ POST https://select.nextech-api.com/api/Appointment/
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all slots matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.  Only free slots are currently returned from the search.  A slot is returned for each practitioner/location combination.  </p>
 
 <p>The number of days searched is determined by the start date parameters passed it.  If no less than operators are passed in, the search will default to 45 days.  The maximum number of days in the search criteria cannot exceed 60 days.</p>
@@ -5686,6 +5886,12 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
 <td><em>12.8</em></td>
 </tr>
+<tr>
+<td>extension</td>
+<td>The default duration in minutes for an appointment type packaged as an extension</td>
+<td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
+<td><em>14.8</em></td>
+</tr>
 </tbody></table>
 <h3 id='sample'>Sample</h3>
 <pre class="center-column">
@@ -5696,13 +5902,17 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type#name",
             "valueString": "Surgery Cosmetic"
+        },
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-type#defaultDuration",
+            "valueInteger": 0
         }
     ]
 }
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all appointment types matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /appointment-type?{parameters}</code></p>
@@ -5789,7 +5999,7 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all appointment purposes matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /appointment-purpose?{parameters}</code></p>
@@ -5977,7 +6187,7 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all recalls matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria. By default non-deleted recalls are returned. See deleted search parameter for details</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /patient-recall?{parameters}</code></p>
@@ -6228,7 +6438,7 @@ GET https://select.nextech-api.com/api/patient-recall?last-updated=ge2018-07-27T
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all locations based on the given search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Location?{parameters}</code></p>
@@ -6446,7 +6656,7 @@ GET https://select.nextech-api.com/api/Location/12
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all  based on the given search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Practitioner?{parameters}</code></p>
@@ -6684,7 +6894,7 @@ GET https://select.nextech-api.com/api/Practitioner/12
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all  based on the given search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Account?{parameters}</code></p>
@@ -6999,7 +7209,7 @@ GET https://select.nextech-api.com/api/Account/12
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all <em>active</em> coverages (insured parties) based on the given search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Coverage?{parameters}</code></p>
@@ -7305,7 +7515,7 @@ GET https://select.nextech-api.com/api/Coverage?patient=ce2a5ae0-3514-4f63-8609-
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all  based on the given search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /Claim?{parameters}</code></p>
@@ -7685,7 +7895,7 @@ GET https://select.nextech-api.com/api/Claim/12
 </pre>
 
 <p>&nbsp;</p>
-<h3 id='em-search-em'><em>Search</em></h3>
+<h3 id='search'><em>Search</em></h3>
 <p>Searches for all  based on the given search criteria.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /PaymentReconciliation?{parameters}</code></p>
