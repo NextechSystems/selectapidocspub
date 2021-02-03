@@ -36,9 +36,15 @@ For assistance or additional instructions please visit the official Slate readme
 
 You can publish the contents of this repository to https://nextechsystems.github.io/selectapidocspub by doing the following:
 
-1. Cloning https://github.com/NextechSystems/selectapidocspub to a Mac OS machine
-2. Open a new Terminal or Command Shell window 
-3. Browse into the path of your cloned repository on your local machine
-4. Type in `./deploy.sh`
+EITHER run it automatically:
 
-It takes a few minutes for the changes to go live.
+1. Run the Azure Devops Pipeline: https://dev.azure.com/nextech-systems/select-partnerapi/_build?definitionId=333&_a=summary
+
+OR run it manually:
+
+1. Clone this repository to a Mac OS machine
+1. Open a new Terminal or Command Shell window to the path of your checkout
+1. If you haven't done so before (see setup above), type in `bundle install`
+1. Type in `./deploy.sh`
+
+The changes will appear immediately in the `gh-pages` branch of this repository, but it takes a few minutes to go live on github pages.
