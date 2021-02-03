@@ -70,7 +70,7 @@ parse_args() {
 
   # Source directory & target branch.
   deploy_directory=build
-  deploy_branch=noid_experimentalbuild1
+  deploy_branch=gh-pages
 
   #if no user identity is already set in the current git environment, use this:
   default_username=${GIT_DEPLOY_USERNAME:-deploy.sh}
