@@ -15,6 +15,7 @@ includes:
   - slot
   - appointmenttype
   - appointmentpurpose
+  - appointmentstatus
   - patientrecall
   - location
   - practitioner
