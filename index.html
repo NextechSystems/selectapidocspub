@@ -351,6 +351,14 @@
               </ul>
           </li>
           <li>
+            <a href="#appointment-status" class="toc-h1 toc-link" data-title="Appointment-Status">Appointment-Status</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#appointment-status-2" class="toc-h2 toc-link" data-title="Appointment-Status">Appointment-Status</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#patient-recall" class="toc-h1 toc-link" data-title="Patient-Recall">Patient-Recall</a>
               <ul class="toc-list-h2">
                   <li>
@@ -6032,6 +6040,135 @@ GET https://select.nextech-api.com/api/slot?start=ge2018-01-01&start=lt2019-01-0
 <p>Attempts to find a single appointment purpose that matches based on the identifier given</p>
 
 <p><code>GET /appointment-purpose/{identifier}</code></p>
+<h1 id='appointment-status'>Appointment-Status</h1><h2 id='appointment-status-2'>Appointment-Status</h2><h3 id='overview'>Overview</h3>
+<p>The appointment status resource contains information about a planned meeting between a patient and medical provider. Examples include new patient encounters, scheduled surgeries and and follow-up visits.</p>
+<h3 id='fields'>Fields</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>resourcetype</td>
+<td>The declaration of the type of resource this is.</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>15.9</em></td>
+</tr>
+<tr>
+<td>id</td>
+<td>The unique value assigned to each appointment status which discerns it from all others</td>
+<td><a href="https://www.hl7.org/fhir/datatypes.html#string">string</a></td>
+<td><em>15.9</em></td>
+</tr>
+<tr>
+<td>extension</td>
+<td>The appointment status values as a packaged extension. Contains definition url and value</td>
+<td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
+<td><em>15.9</em></td>
+</tr>
+</tbody></table>
+<h3 id='sample'>Sample</h3>
+<pre class="center-column">
+{
+    "resourceType": "appointment-status",
+    "id": "10",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status#name",
+            "valueString": "Online Book"
+        }
+    ]
+}
+</pre>
+
+<p>&nbsp;</p>
+<h3 id='search'><em>Search</em></h3>
+<p>Searches for all appointment statuses matching the given search criteria. See <a href="https://www.hl7.org/fhir/search.html">https://www.hl7.org/fhir/search.html</a> for instructions on formatting search criteria.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /appointment-status?{parameters}</code></p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Initial Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifier</td>
+<td>query</td>
+<td>The unique identifier for a single appointment status</td>
+<td>N</td>
+<td><em>15.9</em></td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td>The name of the appointment status</td>
+<td>N</td>
+<td><em>15.9</em></td>
+</tr>
+</tbody></table>
+<h3 id='example-get-a-specific-appointment-status-based-on-identifier'>Example: Get a specific appointment status based on identifier</h3>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/appointment-status/6
+</pre>
+<h4 id='reponse'>Reponse</h4>
+<pre class="center-column">
+{
+    "resourceType": "appointment-status",
+    "id": "6",
+    "extension": [
+        {
+            "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status#name",
+            "valueString": "Online Book"
+        }
+    ]
+}
+</pre>
+<h3 id='example-get-all-statuses-whose-name-contains-39-online-39'>Example: Get all statuses whose name contains &#39;Online&#39;</h3>
+<pre class="center-column">
+GET https://select.nextech-api.com/api/appointment-status?name:contains=Online
+</pre>
+<h4 id='response'>Response</h4>
+<pre class="center-column">
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 2,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "appointment-status",
+                "id": "6",
+                "extension": [
+                    {
+                        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status#name",
+                        "valueString": "Online Book"
+                    }
+                ]
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "appointment-status",
+                "id": "7",
+                "extension": [
+                    {
+                        "url": "https://select.nextech-api.com/api/structuredefinition/appointment-status#name",
+                        "valueString": "Online Hold"
+                    }
+                ]
+            }
+        }
+    ]
+}
+</pre>
 <h1 id='patient-recall'>Patient-Recall</h1><h2 id='patient-recall-2'>Patient-Recall</h2><h3 id='overview'>Overview</h3>
 <p>The patient-recall resource contains information about when a patient is expected to return for an appointment with their provider.</p>
 <h3 id='fields'>Fields</h3>
