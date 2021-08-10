@@ -397,7 +397,7 @@ Create a scheduled appointment.
 | start | The start time of the appointment ie.`2017-04-13T09:10:00-04:00` | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | Yes | _12.9.10_ |
 | end | The end time of the appointment ie. `2017-04-13T09:40:00-04:00` | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | Yes | _12.9.10_ |
 | Participant | Includes the patient reference (if existing patient), location for the appointment, and practitioner for the appointment  | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html)  | Location and practitioner are required, patient is required unless a contained section is included | _12.9.10_ |
-| Extension | Contains the appointment type and appointment purposes for this appointment |  [extension](https://www.hl7.org/fhir/extensibility.html) | No | _12.9.10_ |
+| Extension | Contains the appointment type and appointment purposes for this appointment |  [extension](https://www.hl7.org/fhir/extensibility.html) | Yes, for version 16.2 and below, preference-based for 16.3+ (see * below) | _12.9.10_ |
 | Contained | Contains a patient resource if the patient does not already exist in Nextech | [Patient Resource](https://www.hl7.org/fhir/patient.html)   | Yes, unless a patient reference is included in the participant section | _12.9.10_ |
 
 When posting an appointment, there are multiple options to be considered:
@@ -415,6 +415,8 @@ The second set of options to choose from is whether the patient is existing, or 
 Additional fields that can be sent and are recommended, but are not required are:   
    1. Birth Date
    2. Zip Code
+
+*Prior to version 16.3, the `appointment-purpose` and `appointment-type` extension values are required in appointment creation requests. As of version 16.3, whether appointment types or appointment purposes are required is defined by the preferences in Nextech at `Tools->Preferences->Scheduler Module->Appts. 1->Appointments must have Purposes` and `Tools->Preferences->Scheduler Module->Appts. 1->Appointments must have Types`.
 
 If the appointment creation succeeds, the appointment resource will be returned with a return status of Created (201).
 
