@@ -2220,9 +2220,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
   "extension": [
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/payment-date",
-      "valueDate": {
-        "value": "2018-01-02"
-      }
+      "valueDate": "2018-01-02"
     },
     {
       "url": "http://hl7.org/fhir/StructureDefinition/location",
@@ -2232,39 +2230,27 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/effective-date",
-      "valueDate": {
-        "value": "2018-02-02"
-      }
+      "valueDate": "2018-02-02"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/deposited-date",
-      "valueDate": {
-        "value": "2018-02-02"
-      }
+      "valueDate": "2018-02-02"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/payment-method",
-      "valueString": {
-        "value": "Check"
-      }
+      "valueString": "Check"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/check-number",
-      "valueString": {
-        "value": "6751007623"
-      }
+      "valueString": "6751007623"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/payment-category",
-      "valueString": {
-        "value": "PP - Patient Payment"
-      }
+      "valueString": "PP - Patient Payment"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/apply-payment",
-      "valueBoolean": {
-        "value": "true"
-      }
+      "valueBoolean": true
     }
   ],
   "requestProvider": {
