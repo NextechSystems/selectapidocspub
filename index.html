@@ -4456,9 +4456,7 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
   "extension": [
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/payment-date",
-      "valueDate": {
-        "value": "2018-01-02"
-      }
+      "valueDate": "2018-01-02"
     },
     {
       "url": "http://hl7.org/fhir/StructureDefinition/location",
@@ -4468,39 +4466,27 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/effective-date",
-      "valueDate": {
-        "value": "2018-02-02"
-      }
+      "valueDate": "2018-02-02"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/deposited-date",
-      "valueDate": {
-        "value": "2018-02-02"
-      }
+      "valueDate": "2018-02-02"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/payment-method",
-      "valueString": {
-        "value": "Check"
-      }
+      "valueString": "Check"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/check-number",
-      "valueString": {
-        "value": "6751007623"
-      }
+      "valueString": "6751007623"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/payment-category",
-      "valueString": {
-        "value": "PP - Patient Payment"
-      }
+      "valueString": "PP - Patient Payment"
     },
     {
       "url": "https://select.nextech-api.com/api/structuredefinition/apply-payment",
-      "valueBoolean": {
-        "value": "true"
-      }
+      "valueBoolean": true
     }
   ],
   "requestProvider": {
@@ -5401,7 +5387,7 @@ PUT https://select.nextech-api.com/api/Appointment/5453
 <td>Extension</td>
 <td>Contains the appointment type and appointment purposes for this appointment</td>
 <td><a href="https://www.hl7.org/fhir/extensibility.html">extension</a></td>
-<td>No</td>
+<td>Yes, for version 16.2 and below, preference-based for 16.3+ (see * below)</td>
 <td><em>12.9.10</em></td>
 </tr>
 <tr>
@@ -5428,6 +5414,8 @@ The first set of options is whether this appointment should be booked or held.  
 <p>Additional fields that can be sent and are recommended, but are not required are:<br>
    1. Birth Date
    2. Zip Code</p>
+
+<p>*Prior to version 16.3, the <code>appointment-purpose</code> and <code>appointment-type</code> extension values are required in appointment creation requests. As of version 16.3, whether appointment types or appointment purposes are required is defined by the preferences in Nextech at <code>Tools-&gt;Preferences-&gt;Scheduler Module-&gt;Appts. 1-&gt;Appointments must have Purposes</code> and <code>Tools-&gt;Preferences-&gt;Scheduler Module-&gt;Appts. 1-&gt;Appointments must have Types</code>.</p>
 
 <p>If the appointment creation succeeds, the appointment resource will be returned with a return status of Created (201).</p>
 
