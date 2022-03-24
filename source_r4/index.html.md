@@ -9,6 +9,7 @@ toc_footers:
 includes:
   - introduction
   - gettingstarted
+  - metadata
   - patient
   - location
   - practitioner
