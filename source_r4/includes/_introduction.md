@@ -4,6 +4,7 @@ The Nextech Select APIs provide secure access to patient data through a RESTful 
 
 Available API functionality:  
 
+* [Metadata](#metadata)
 * [Patient demographics](#patient-2)  
 * [Patient clinical information](#allergy-intolerance)  
 * [Create patient](#patient-2)  
