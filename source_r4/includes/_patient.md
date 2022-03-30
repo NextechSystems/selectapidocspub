@@ -884,61 +884,144 @@ The allergy intolerance resource describes the risk of undesirable responses of 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
+| id | The logical id of the resource, as used in the URL for the resource. | [string](http://hl7.org/fhir/R4/datatypes.html#string) |  |
 | identifier | The unique value assigned to each allergy intolerance record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| clinicalStatus | Describes whether the allergy or intolerance is active, inactive or resolved | [AllergyIntoleranceStatus](https://www.hl7.org/fhir/valueset-allergy-clinical-status.html) | _12.6_ |
+| clinicalStatus | Describes whether the allergy or intolerance is active, inactive or resolved | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |  |
+| verificationStatus | Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified substance (including pharmaceutical product). | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |  |
 | code | The clinical code that identifies the allergy or intolerance | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.6_ |
-| patient | The patient who the allergy or intolerance is for | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| assertedDate | The date the record was believed to be accurate | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| patient | The patient who the allergy or intolerance is for | [Reference](http://hl7.org/fhir/R4/references.html#Reference) [(USCorePatientProfile)](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html) | _12.6_ |
+| reaction | Details about each adverse reaction event linked to exposure to the identified substance. | [BackboneElement](http://hl7.org/fhir/R4/datatypes.html#BackboneElement) | |
+| reaction.manifestation | Clinical symptoms and/or signs that are observed or associated with the adverse reaction event. |  [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | |
 
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "AllergyIntolerance",
-        "id": "438",
-		"identifier": [
-		{
-		  "use": "official",
-		  "value": "438"
-		}
-	  ],
-        "clinicalStatus": "active",
-        "code": {
-          "coding": [
-            {
-              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-              "code": "1191",
-              "display": "Aspirin"
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 1,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "AllergyIntolerance",
+                "id": "21",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "21"
+                    }
+                ],
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+                            "code": "active"
+                        }
+                    ]
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+                            "code": "unconfirmed"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "852519",
+                            "display": "house dust"
+                        }
+                    ],
+                    "text": "house dust"
+                },
+                "patient": {
+                    "reference": "Patient/b664fd37-ff5f-4022-9d71-2e476d42f316",
+                    "display": "Smith, John Jacob"
+                },
+                "reaction": [
+                    {
+                        "manifestation": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://snomed.info/sct",
+                                        "code": "25064002",
+                                        "display": "Headache"
+                                    }
+                                ],
+                                "text": "Headache"
+                            }
+                        ]
+                    }
+                ]
             }
-          ],
-          "text": "Aspirin"
         }
-      }
-    }
-  ]
+    ]
 }
 </pre>
 &nbsp;
 ### *Search*
 Searches for allergy intolerances for a single patient
 
-#### HTTP Request
-`GET /Patient/{patientUid}/AllergyIntolerance?{parameters}`
+#### HTTP Requests
+- `GET /r4/Patient/{patientUid}/AllergyIntolerance?[date=(filter)YYYY-MM-DD]`
+
+- `GET /r4/AllergyIntolerance?patient={patientUid}&[date=(filter)YYYY-MM-DD]`
+
+- `GET /r4/AllergyIntolerance?patient=Patient/{patientUid}&[date=(filter)YYYY-MM-DD]`
+
+- `POST /r4/Patient/AllergyIntolerance/_search`
+*payload:* `patient={patientUid}`
+
+
+
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
-| date | query | The date the record was believed accurate in the form YYYY-MM-DD | No | _12.6_ |
+| patientUid | path, query or payload | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| date | query | The date the record was believed accurate in the form YYYY-MM-DD  | No | _12.6_ |
 
-#### Example: Get all allergies for a single patient that were believed to be accurate as of 1/1/2017
+> **_Note:_**  The possible filter values for date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+&nbsp;
+#### Examples: 
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/AllergyIntolerance?date=ge2017-01-01
+GET https://nxpartnerapi-dev.azurewebsites.net/api/r4/Patient/b664fd37-ff5f-4022-9d71-2e476d42f316/AllergyIntolerance?date=ge2022-01-01
 </pre>
+<pre class="center-column">
+GET https://nxpartnerapi-dev.azurewebsites.net/api/r4/AllergyIntolerance?patient=b664fd37-ff5f-4022-9d71-2e476d42f316
+</pre>
+<pre class="center-column">
+GET https://nxpartnerapi-dev.azurewebsites.net/api/r4/AllergyIntolerance?patient=Patient/b664fd37-ff5f-4022-9d71-2e476d42f316
+</pre>
+<pre class="center-column">
+POST https://nxpartnerapi-dev.azurewebsites.net/api/r4/AllergyIntolerance/_search
+<i><small>payload:</small></i> patient=b664fd37-ff5f-4022-9d71-2e476d42f316
+</pre>
+&nbsp;
+
+### *Get*
+Returns single Allergy result based on the Allergy ID.
+
+#### HTTP Request
+
+- `GET /r4/AllergyIntolerance/{allergyID}`
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| allergyID | path | The allergy unique identifier | Yes |  |
+
+&nbsp;
+#### Example: 
+<pre class="center-column">
+GET https://nxpartnerapi-dev.azurewebsites.net/api/r4/AllergyIntolerance/21
+</pre>
+
 &nbsp;
 
 ## Care Plan
