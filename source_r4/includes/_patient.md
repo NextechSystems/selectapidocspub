@@ -1600,11 +1600,14 @@ The immunization resource describes an administered vaccine.
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each immunization which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| status | Either completed or entered in error | [Immunization status Code](https://www.hl7.org/fhir/valueset-immunization-status.html) | _12.6_ |
-| vaccineCode | Vaccine product adminstered | [Vaccine administered value set](https://www.hl7.org/fhir/valueset-vaccine-code.html) | _12.6_ |
-| patient | The immunized patient | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| date | The vaccination administration date in the form YYYY-MM-DD | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| id | The logical id of the resource, as used in the URL for the resource. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
+| identifier | The unique value assigned to each immunization which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _16.7_ |
+| status | Either `completed` or `entered-in-error` or `not-done` | [code](https://hl7.org/fhir/R4/datatypes.html#code) with [immunization status value set](https://hl7.org/fhir/R4/valueset-immunization-status.html) | _16.7_ |
+| statusReason | Reason that an immunization event was not performed, if any | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [immunization status reason value set](https://www.hl7.org/fhir/R4/valueset-immunization-status-reason.htmll) | _16.7_ |
+| vaccineCode | Vaccine product administered | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [vaccine administered value set](https://www.hl7.org/fhir/R4/valueset-vaccine-code.html) | _16.7_ |
+| patient | The immunized patient | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCorePatientProfile](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html)) | _16.7_ |
+| occurrenceDateTime | The vaccination administration date in the form YYYY-MM-DD | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.7_ |
+| primarySource | Whether or not the information is from the person who administered the vaccine | [boolean](https://www.hl7.org/fhir/R4/datatypes.html#boolean) | _16.7_ |
 
 ### Example
 <pre class="center-column">
@@ -1614,11 +1617,11 @@ The immunization resource describes an administered vaccine.
     {
       "resource": {
         "resourceType": "Immunization",
-        "id": "immunization-1",
+        "id": "123",
         "identifier": [
           {
             "use": "official",
-            "value": "immunization-1"
+            "value": "123"
           }
         ],
         "status": "completed",
@@ -1636,7 +1639,8 @@ The immunization resource describes an administered vaccine.
           "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
           "display": "Tinsley, Carol F"
         },
-        "date": "2013-08-17"
+        "occurrenceDateTime": "2013-08-17",
+        "primarySource" : false
       }
     }
   ]
@@ -1644,22 +1648,21 @@ The immunization resource describes an administered vaccine.
 </pre>
 &nbsp;
 
-### *Search*
-Searches for immunizations for a single patient
+### *Get*
+Returns a single Immunization result based on the Immunization ID.
 
 #### HTTP Request 
-`GET /Patient/{patientUid}/Immunization?{parameters}` 
+`GET /r4/Immunization/{immunizationID}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
-| date | query | The immunization administration date in the form YYYY-MM-DD | No | _12.6_ |
+| immunizationID | path | The immunization unique identifier | Yes | _16.7_ |
 
-#### Example: Get all immunizations for a single patient as of 1/1/2017
+#### Example: Get an immunization with an ID of '123'
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Immunization?date=ge2017-01-01
+GET https://select.nextech-api.com/api/r4/Immunization/123
 </pre>
 &nbsp;
 
