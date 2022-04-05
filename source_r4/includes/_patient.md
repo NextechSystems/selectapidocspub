@@ -1604,10 +1604,10 @@ The immunization resource describes an administered vaccine.
 | identifier | The unique value assigned to each immunization which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _16.7_ |
 | status | Either `completed` or `entered-in-error` or `not-done` | [code](https://hl7.org/fhir/R4/datatypes.html#code) with [immunization status value set](https://hl7.org/fhir/R4/valueset-immunization-status.html) | _16.7_ |
 | statusReason | Reason that an immunization event was not performed, if any | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [immunization status reason value set](https://www.hl7.org/fhir/R4/valueset-immunization-status-reason.htmll) | _16.7_ |
-| vaccineCode | Vaccine product adminstered | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [vaccine administered value set](https://www.hl7.org/fhir/R4/valueset-vaccine-code.html) | _16.7_ |
+| vaccineCode | Vaccine product administered | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [vaccine administered value set](https://www.hl7.org/fhir/R4/valueset-vaccine-code.html) | _16.7_ |
 | patient | The immunized patient | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCorePatientProfile](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html)) | _16.7_ |
 | occurrenceDateTime | The vaccination administration date in the form YYYY-MM-DD | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.7_ |
-| primarySource | Whether or not the information is from the person who administed the vaccine | [boolean](https://www.hl7.org/fhir/R4/datatypes.html#boolean) | _16.7_ |
+| primarySource | Whether or not the information is from the person who administered the vaccine | [boolean](https://www.hl7.org/fhir/R4/datatypes.html#boolean) | _16.7_ |
 
 ### Example
 <pre class="center-column">
