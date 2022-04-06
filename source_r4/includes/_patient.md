@@ -1671,7 +1671,7 @@ Returns immunizations based on the provided search parameters.
 
 HTTP Requests
 - `GET /r4/Immunization?{parameters}`
-- `POST /r4/Immunization/_search?{parameters}`
+- `POST /r4/Immunization/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 > **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
@@ -1680,7 +1680,7 @@ HTTP Requests
 | ---- | ---------- | ----------- | -------- | --------------- |
 | patient | query or payload | The official patient identifier acquired from a patient search | No | _16.7_ |
 | date | query or payload | The date the immunization was administered in the form YYYY-MM-DD  | No | _16.7_ |
-| identifier | query or payload | The immunization unique business identifier | No | _16.7_ |
+| identifier | query or payload | The immunization unique identifier | No | _16.7_ |
 | _id | query or payload | The immunization unique identifier | No | _16.7_ |
 
 > **_Note:_**  The possible filter values for date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
@@ -1701,7 +1701,7 @@ GET https://select.nextech-api.com/api/r4/Immunization?patient=9D0B7ADE-4B5B-41D
 </pre>
 
 <pre class="center-column">
-POST https://select.nextech-api.com/api/r4/Immunization/_search?patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+POST https://select.nextech-api.com/api/r4/Immunization/_search
 <i><small>payload:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
 </pre>
 
@@ -1712,7 +1712,7 @@ GET https://select.nextech-api.com/api/r4/Immunization?patient=patient/9D0B7ADE-
 </pre>
 
 <pre class="center-column">
-POST https://select.nextech-api.com/api/r4/Immunization/_search?patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+POST https://select.nextech-api.com/api/r4/Immunization/_search
 <i><small>payload:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
 </pre>
 
@@ -1723,7 +1723,7 @@ GET https://select.nextech-api.com/api/r4/Immunization?identifier=123
 </pre>
 
 <pre class="center-column">
-POST https://select.nextech-api.com/api/r4/Immunization/_search?identifier=123
+POST https://select.nextech-api.com/api/r4/Immunization/_search
 <i><small>payload:</small></i> identifier=123
 </pre>
 
@@ -1732,7 +1732,7 @@ GET https://select.nextech-api.com/api/r4/Immunization?_id=123
 </pre>
 
 <pre class="center-column">
-POST https://select.nextech-api.com/api/r4/Immunization/_search?_id=123
+POST https://select.nextech-api.com/api/r4/Immunization/_search
 <i><small>payload:</small></i> _id=123
 </pre>
 
