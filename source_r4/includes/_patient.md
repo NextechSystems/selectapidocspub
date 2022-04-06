@@ -1666,6 +1666,85 @@ GET https://select.nextech-api.com/api/r4/Immunization/123
 </pre>
 &nbsp;
 
+### *Search*
+Returns immunizations based on the provided search parameters.
+
+HTTP Requests
+- `GET /r4/Immunization`
+- `GET /r4/Immunization?identifier=123`
+- `GET /r4/Immunization?_id=123`
+- `GET /r4/Immunization?patient={patientUid}&[date=(filter)YYYY-MM-DD]`
+- `GET /r4/Immunization?patient=patient/{patientUid}&[date=(filter)YYYY-MM-DD]`
+- `POST /r4/Immunization/_search?patient={patientUid}&[date=(filter)YYYY-MM-DD]`
+*payload:* `patient={patientUid}&[date=(filter)YYYY-MM-DD]`
+- `POST /r4/Immunization/_search?identifier=123`
+*payload:* `identifier=123`
+- `POST /r4/Immunization/_search?_id=123`
+*payload:* `_id=123`
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patient | path, query or payload | The official patient identifier acquired from a patient search | No | _12.6_ |
+| date | query | The date the immunization was administered in the form YYYY-MM-DD  | No | _12.6_ |
+| identifier | path, query or payload | The immunization unique identifier | No | _12.6_ |
+| _id | query | The immunization unique identifier | No | _12.6_ |
+
+> **_Note:_**  The possible filter values for date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+&nbsp;
+#### Examples: 
+
+#### Get all immunizations
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Immunization
+</pre>
+
+#### Search for immunizations under the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Immunization?patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Immunization/_search?patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+<i><small>payload:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+#### Search for immunizations under the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' administered between the date range '2022-01-01 - 2022-11-14'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Immunization?patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Immunization/_search?patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+<i><small>payload:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+</pre>
+
+#### Search for an immunization with the id '123'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Immunization?identifier=123
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Immunization/_search?identifier=123
+<i><small>payload:</small></i> identifier=123
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Immunization?_id=123
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Immunization/_search?_id=123
+<i><small>payload:</small></i> _id=123
+</pre>
+
+&nbsp;
+
 ## Observation
 
 ### Overview
