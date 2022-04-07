@@ -42,7 +42,7 @@ Information about supported server functionality and server's SMART on FHIR conf
     "kind": "instance",
     "implementation": {
         "description": "PartnerAPI provides secure access to patient data through a RESTful implementation based on the R4 version of the FHIR standard.",
-        "url": "https://nxpartnerapi-dev.azurewebsites.net/"
+        "url": "https://select.nextech-api.com/"
     },
     "fhirVersion": "4.0.1",
     "format": [
@@ -886,7 +886,7 @@ Retrieves the Capability Statement which holds information about supported serve
 ##### Example: Get Capability Statement
 
 <pre class="center-column">
-GET https://nxpartnerapi-dev.azurewebsites.net/api/r4/metadata
+GET https://select.nextech-api.com/api/r4/metadata
 </pre>
 &nbsp;
 
@@ -935,6 +935,6 @@ Retrieves server's SMART on FHIR configuration
 ##### Example: Get SMART on FHIR configuration
 
 <pre class="center-column">
-GET https://nxpartnerapi-dev.azurewebsites.net/api/r4/.well-known/smart-configuration
+GET https://select.nextech-api.com/api/r4/.well-known/smart-configuration
 </pre>
 &nbsp;
