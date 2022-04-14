@@ -237,12 +237,12 @@ POST https://select.nextech-api.com/api/r4/Patient/_search
 #### Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/Patient?birthdate=ge1981-01-01&birthdate=lt1981-06-01
+GET https://select.nextech-api.com/api/r4/Patient?birthdate=ge1981-01-01&birthdate=lt1981-05-31
 </pre>
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Patient/_search
-<i><small>payload:</small></i> birthdate=ge1981-01-01&birthdate=lt1981-06-01
+<i><small>payload:</small></i> birthdate=ge1981-01-01&birthdate=lt1981-05-31
 </pre>
 
 
