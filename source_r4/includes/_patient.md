@@ -938,6 +938,7 @@ The immunization resource describes an administered vaccine.
 | patient | The immunized patient | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCorePatientProfile](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html)) | _16.7_ |
 | occurrenceDateTime | The vaccination administration date in the form YYYY-MM-DD | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.7_ |
 | primarySource | Whether or not the information is from the person who administered the vaccine | [boolean](https://www.hl7.org/fhir/R4/datatypes.html#boolean) | _16.7_ |
+| meta.lastUpdated | The last time the immunization was updated | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) |  _16.7_ |
 
 ### Example
 <pre class="center-column">
@@ -948,6 +949,10 @@ The immunization resource describes an administered vaccine.
       "resource": {
         "resourceType": "Immunization",
         "id": "123",
+        "meta": 
+        {
+           "lastUpdated": "2022-04-02T14:04:35.9+00:00"
+         },
         "identifier": [
           {
             "use": "official",
@@ -1008,12 +1013,13 @@ HTTP Requests
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
+| _lastUpdated | query or payload | The date the patient was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.7_ |
 | patient | query or payload | The official patient identifier acquired from a patient search | No | _16.7_ |
 | date | query or payload | The date the immunization was administered in the form YYYY-MM-DD  | No | _16.7_ |
 | identifier | query or payload | The immunization unique identifier | No | _16.7_ |
 | _id | query or payload | The immunization unique identifier | No | _16.7_ |
 
-> **_Note:_**  The possible filter values for date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
 #### Examples: 
