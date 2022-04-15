@@ -509,55 +509,46 @@ The device resource identifies an instance or type of manufactured item used in 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | Unique device serial number | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| meta | Contains the last updated date of the record | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
-| udi | Unique device barcode string | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| udiCarrier | Unique Device Identifier (UDI) Barcode string | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| distinctIdentifier | The distinct identification string | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
 | lotNumber | Lot number of manufacturer | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
-| manufacturer | Manufacturer name | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
-| manufactureDate | Device manufacture date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
-| expirationDate | Device expiration date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
-| version | Version number | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
+| serialNumber | Serial number assigned by the manufacturer | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
+| manufactureDate | Date when the device was made | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| expirationDate | Date and time of expiry of this device | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| type | The kind or type of device | [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) | _12.6_ |
 | patient | The patient pertaining to the device | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
 
 ### Example
 <pre class="center-column">
 {
   "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 1,
   "entry": [
     {
       "resource": {
         "resourceType": "Device",
-        "id": "2",
-        "meta": {
-          "lastUpdated": "2017-05-15T10:28:00+00:00"
-        },
-        "identifier": [
+        "udiCarrier": [
           {
-            "type": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/identifier-type",
-                  "code": "SNO",
-                  "display": "Serial Number"
-                }
-              ],
-              "text": "Serial Number"
-            },
-            "value": "000025"
+            "deviceIdentifier": "43069338026389",
+            "carrierHRF": "(01)43069338026389(11)000302(17)250317(10)1134(21)842026117977"
           }
         ],
-        "udi": {
-          "deviceIdentifier": "W4146EB0010T0475",
-          "name": "Trabexus® EB"
-        },
-        "type": {
-          "text": "Cadaveric-donor/synthetic mineral bone graft"
-        },
+        "distinctIdentifier": "43069338026389",
         "lotNumber": "000000000000XYZ123",
-        "manufacturer": "Vivorte, Inc",
+        "serialNumber": "842026117977"
         "manufactureDate": "2013-02-01T00:00:00Z",
         "expirationDate": "2014-02-01T00:00:00Z",
-        "version": "10 cc",
+         "type": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "714549006",
+              "display": "Synthetic bone graft (physical object)"
+            }
+          ],
+          "text": "Synthetic bone graft (physical object)"
+        },
         "patient": {
           "reference": "Patient/ad2085b5-b974-401d-bfcb-3b865109fd35",
           "display": "Smith, John"
@@ -573,18 +564,18 @@ The device resource identifies an instance or type of manufactured item used in 
 Searches for devices for a single patient
 
 #### HTTP Request 
-`GET /Patient/{patientUid}/Device?{parameters}` 
+`GET /r4/Device?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| patient | query | The official patient identifier acquired from a patient search | Yes | _12.6_ |
 | date | query | The device last update date in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all devices for a single patient that were recorded as of 1/1/2017
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Device?date=ge2017-01-01
+GET https://select.nextech-api.com/api/r4/Device?patient=ad2085b5-b974-401d-bfcb-3b865109fd35&date=ge2017-01-01
 </pre>
 &nbsp;
 
