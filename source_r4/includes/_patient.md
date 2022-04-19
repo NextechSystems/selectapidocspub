@@ -972,8 +972,8 @@ The immunization resource describes an administered vaccine.
 | ---- | ----------- | ---- | --------------- |
 | id | The logical id of the resource, as used in the URL for the resource. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
 | identifier | The unique value assigned to each immunization which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _16.7_ |
-| status | Either `completed` or `entered-in-error` or `not-done` | [code](https://hl7.org/fhir/R4/datatypes.html#code) with [immunization status value set](https://hl7.org/fhir/R4/valueset-immunization-status.html) | _16.7_ |
-| statusReason | Reason that an immunization event was not performed, if any | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [immunization status reason value set](https://www.hl7.org/fhir/R4/valueset-immunization-status-reason.htmll) | _16.7_ |
+| status | Either `completed` or `not-done` | [code](https://hl7.org/fhir/R4/datatypes.html#code) with [immunization status value set](https://hl7.org/fhir/R4/valueset-immunization-status.html) | _16.7_ |
+| statusReason | Reason that an immunization event was not performed, if any | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [ActReason value set](https://hl7.org/fhir/R4/v3/ActReason/cs.html) | _16.7_ |
 | vaccineCode | Vaccine product administered | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [vaccine administered value set](https://www.hl7.org/fhir/R4/valueset-vaccine-code.html) | _16.7_ |
 | patient | The immunized patient | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCorePatientProfile](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html)) | _16.7_ |
 | occurrenceDateTime | The vaccination administration date in the form YYYY-MM-DD | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.7_ |
@@ -1010,7 +1010,7 @@ The immunization resource describes an administered vaccine.
           "display": "Tinsley, Carol F"
         },
         "occurrenceDateTime": "2013-08-17",
-        "primarySource" : false
+        "primarySource" : true
       }
     }
   ]
