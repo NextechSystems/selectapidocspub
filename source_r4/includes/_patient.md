@@ -167,7 +167,10 @@ The preferred contact is also available from the API. If a preferred contact is 
 Searches for all patients matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
 
 #### HTTP Request 
-`GET /r4/Patient?{parameters}`
+- `GET /r4/Patient?{parameters}`
+- `POST /r4/Patient/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Type | Initial Version |
@@ -182,6 +185,8 @@ Searches for all patients matching the given search criteria. See [https://www.h
 | address-state | query | The state of the patient's address | No | string | _12.6_ |
 | address-postalcode | query | The postal (zip) code of the patient's address | No | string | _12.6_ |
 | identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
+| _id | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
+| gender | query | The gender of the patient | No | string | _12.6_ |
 | name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | string |  |
 
 #### Example: Get the patient of a specific chart number
@@ -191,19 +196,54 @@ GET https://select.nextech-api.com/api/r4/Patient/12345
 </pre>
 &nbsp;
 
-#### Example: Get all patients who live within a specific zip code
+#### Example: Get all patients
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Patient
+</pre>
+&nbsp;
+
+#### Example: Get all patients with identifier '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Patient?identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Patient/_search
+<i><small>payload:</small></i> identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Patient?_id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Patient/_search
+<i><small>payload:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+#### Example: Get all patients who live within '12345' zip code
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Patient?address-postalcode=12345
 </pre>
-&nbsp;
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Patient/_search
+<i><small>payload:</small></i> address-postalcode=12345
+</pre>
 
 #### Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/Patient?birthdate=ge1981-01-01&birthdate=lt1981-06-01
+GET https://select.nextech-api.com/api/r4/Patient?birthdate=ge1981-01-01&birthdate=lt1981-05-31
 </pre>
-&nbsp;
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Patient/_search
+<i><small>payload:</small></i> birthdate=ge1981-01-01&birthdate=lt1981-05-31
+</pre>
 
 
 ## Allergy Intolerance
