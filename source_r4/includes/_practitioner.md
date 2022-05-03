@@ -13,7 +13,7 @@ A individual who is engaged in the healthcare process and healthcare-services. I
 | name |The name(s) associated with the practitioner | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) | _12.8_ |
 | telecom | Contact detail(s) for the practitioner (that apply to all roles) | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | Address(es) of the practitioner that are not role specific | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
-| gender | Gender of the practitioner that are not role specific | [Code](https://www.hl7.org/fhir/valueset-administrative-gender.html) | _12.8_ |
+| gender | Gender of the practitioner | [Code](https://www.hl7.org/fhir/valueset-administrative-gender.html) | _12.8_ |
 | birthDate | The date of birth of the practitioner | [date](https://www.hl7.org/fhir/datatypes.html#date) | _12.8_ |
 
 
@@ -24,12 +24,11 @@ A individual who is engaged in the healthcare process and healthcare-services. I
     "identifier": [
         {
             "use": "official",
+            "system": "https://select.nextech-api.com/api/structuredefinition/practitioner-id"
             "value": "9219"
-        }
-    ],
-	 "identifier": [
+        },
         {
-            "use": "http://hl7.org/fhir/sid/us-npi",
+            "system": "http://hl7.org/fhir/sid/us-npi",
             "value": "1245319599"
         }
     ],
@@ -73,11 +72,29 @@ A individual who is engaged in the healthcare process and healthcare-services. I
 </pre>
 &nbsp;
 
+### *Get*
+Returns a single Practitioner result based on the Practitioner ID.
+
+#### HTTP Request 
+`GET /r4/Practitioner/{practitionerID}`
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| practitionerID | path | The unique identifier for the practitioner | Yes | _12.8_ |
+
+#### Example: Get a specific Practitioner based on identifier
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Practitioner/12
+</pre>
+&nbsp;
+
 ### *Search*
 Searches for all  based on the given search criteria.
 
 #### HTTP Request 
-`GET /Practitioner?{parameters}`
+`GET /r4/Practitioner?{parameters}`
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -93,42 +110,58 @@ Searches for all  based on the given search criteria.
 | address-postalcode | query | A postal code specified in an address | No | _12.8_ |
 | phone | query | Searches for Practitioners based on phone numbers | No | _12.8_ |
 | email | query | Searches for Practitioner based on email address | No | _12.8_ |
+| gender | query | Searches for Practitioner based on gender | No | _12.8_ |
+
+#### Example: Get all Practitioners
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Practitioner
+</pre>
+&nbsp;
 
 #### Example: Get all active Practitioners
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Practitioner?active=true
-</pre>
-&nbsp;
-
-#### Example: Get all active Practitioners whose city starts with 'Tampa'
-
-<pre class="center-column">
-GET https://select.nextech-api.com/api/Practitioner?address-city=Tampa
-</pre>
-&nbsp;
-
-#### Example: Get a specific Practitioner(s) based on gender
-
-<pre class="center-column">
-GET https://select.nextech-api.com/api/Practitioner?gender=male
-</pre>
-&nbsp;
-
-#### Example: Get all Practitioners whose name contains 'smith'
-
-<pre class="center-column">
-GET https://select.nextech-api.com/api/Practitioner?name:contains=smith
+GET https://select.nextech-api.com/api/r4/Practitioner?active=true
 </pre>
 &nbsp;
 
 #### Example: Get a specific Practitioner based on identifier
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Practitioner/12
+GET https://select.nextech-api.com/api/r4/Practitioner?identifier=12
+</pre>
+&nbsp;
+
+#### Example: Get a specific Practitioner based on National Provider Identifier (NPI)
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|1245319599
+</pre>
+&nbsp;
+
+#### Example: Get all active Practitioners whose city starts with 'Tampa'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Practitioner?address-city=Tampa
+</pre>
+&nbsp;
+
+#### Example: Get a specific Practitioner(s) based on gender
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Practitioner?gender=male
+</pre>
+&nbsp;
+
+#### Example: Get all Practitioners whose name contains 'smith'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Practitioner?name:contains=smith
 </pre>
 &nbsp;
 
 ### Remarks
+* To get a specific Practitioner by the National Provider Identifier (NPI), the system (http://hl7.org/fhir/sid/us-npi) must be included in the query.
 * Providers will not show up as Practitioners unless their Contacts module record has the Linked User setting configured.
     * Prior to version 14.1, Practitioners could be returned more than once if multiple users are assigned to use the same provider in their Contacts module User properties.
