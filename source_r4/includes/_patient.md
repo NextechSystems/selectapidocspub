@@ -1035,7 +1035,7 @@ GET https://select.nextech-api.com/api/r4/Immunization/123
 ### *Search*
 Returns immunizations based on the provided search parameters.
 
-HTTP Requests
+#### HTTP Requests
 - `GET /r4/Immunization?{parameters}`
 - `POST /r4/Immunization/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
@@ -1061,7 +1061,7 @@ HTTP Requests
 GET https://select.nextech-api.com/api/r4/Immunization
 </pre>
 
-#### Search for immunizations under the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192'
+#### Search for immunizations for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192'
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Immunization?patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
@@ -1072,7 +1072,7 @@ POST https://select.nextech-api.com/api/r4/Immunization/_search
 <i><small>payload:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
 </pre>
 
-#### Search for immunizations under the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' administered between and including 1/1/2022 through 11/14/2022
+#### Search for immunizations for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' administered between and including 1/1/2022 through 11/14/2022
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Immunization?patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
@@ -1226,10 +1226,11 @@ A procedure resource describes an activity performed with or on a patient as par
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| code | Identification of the procedure | [Procedure Codes (SNOMED CT)](https://www.hl7.org/fhir/valueset-procedure-code.html) | _12.6_ |
-| subject | Who the procedure was performed on | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| performed | Date/Period the procedure was performed | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| id | The logical id of the resource, as used in the URL for the resource. | [String](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
+| identifier | The unique value assigned to each procedure which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _16.7_ |
+| status | The status of the procedure | [EventStatus](http://hl7.org/fhir/R4/valueset-event-status.html) | _16.7_ |
+| subject | Who the procedure was performed on | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCorePatientProfile](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html)) | _16.7_ |
+| performedDateTime | Date the procedure was performed | [DateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.7_ |
 
 ### Example
 <pre class="center-column">
@@ -1246,11 +1247,13 @@ A procedure resource describes an activity performed with or on a patient as par
             "value": "2053"
           }
         ],
+	"status": "completed",
         "code": {
           "coding": [
             {
               "system": "CPT4",
-              "code": "54601"
+              "code": "54601",
+	      "display": "Microdermabrasion"
             }
           ],
           "text": "Microdermabrasion"
@@ -1258,7 +1261,8 @@ A procedure resource describes an activity performed with or on a patient as par
         "subject": {
           "reference": "Patient/5F37E582-FD96-48C5-9EE3-02E26D96CB72",
           "display": "Smith, John"
-        }
+        },
+	"performedDateTime": "2011-10-05"
       }
     }
   ]
@@ -1266,21 +1270,83 @@ A procedure resource describes an activity performed with or on a patient as par
 </pre>
 &nbsp;
 
-### *Search*
-Searches for procedures for a single patient
+### *Get*
+Returns a single Procedure result based on the Procedure ID.
 
 #### HTTP Request 
-`GET /Patient/{patientUid}/Procedure?{parameters}` 
+`GET /r4/Procedure/{procedureID}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
-| date | query | The date the procedure was performed in the form YYYY-MM-DD | No | _12.6_ |
+| procedureID | path | The procedure unique identifier | Yes | _16.7_ |
 
-#### Example: Get all procedures for a single patient performed as of 5/1/2017
+#### Example: Get an procedure with an ID of '123'
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Procedure?date=ge2017-05-01
+GET https://select.nextech-api.com/api/r4/Procedure/123
 </pre>
+&nbsp;
+
+### *Search*
+Returns procedures based on the provided search parameters.
+
+#### HTTP Requests
+- `GET /r4/Procedure?{parameters}`
+- `POST /r4/Procedure/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| _lastUpdated | query or payload | The date the procedure was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.7_ |
+| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.7_ |
+| date | query or payload | The date the procedure was performed in the form YYYY-MM-DD  | No | _16.7_ |
+| _id | query or payload | The procedure unique identifier | No | _16.7_ |
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+&nbsp;
+#### Examples: 
+
+#### Get all procedures
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Procedure
+</pre>
+
+#### Search for procedures for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Procedure?patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Procedure/_search
+<i><small>payload:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+#### Search for procedures for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' performed between and including 1/1/2022 through 11/14/2022
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Procedure?patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Procedure/_search
+<i><small>payload:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+</pre>
+
+#### Search for an procedure with the id '123'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Procedure?_id=123
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Procedure/_search
+<i><small>payload:</small></i> _id=123
+</pre>
+
 &nbsp;
