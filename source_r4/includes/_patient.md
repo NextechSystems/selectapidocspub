@@ -574,7 +574,7 @@ The device resource identifies an instance or type of manufactured item used in 
             "carrierHRF": "(01)43069338026389(11)000302(17)250317(10)1134(21)842026117977"
           }
         ],
-        "distinctIdentifier": "43069338026389",
+        "distinctIdentifier": "A9971312345600",
         "lotNumber": "000000000000XYZ123",
         "serialNumber": "842026117977"
         "manufactureDate": "2013-02-01T00:00:00Z",
@@ -600,11 +600,33 @@ The device resource identifies an instance or type of manufactured item used in 
 </pre>
 &nbsp;
 
+### *Get*
+Returns a single Device result based on the Device ID.
+
+#### HTTP Request 
+`GET /r4/Device/{deviceId}` 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| deviceId | path | The unique identifier for the device | Yes | _12.6_ |
+
+#### Example: Get the device with an ID of '123'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Device/123
+</pre>
+&nbsp;
+
+
 ### *Search*
 Searches for devices for a single patient
 
 #### HTTP Request 
-`GET /r4/Device?{parameters}` 
+- `GET /r4/Device?{parameters}`
+- `POST /r4/Device/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -612,10 +634,39 @@ Searches for devices for a single patient
 | patient | query | The official patient identifier acquired from a patient search | Yes | _12.6_ |
 | date | query | The device last update date in the form YYYY-MM-DD | No | _12.6_ |
 
-#### Example: Get all devices for a single patient that were recorded as of 1/1/2017
+#### Example: Get all devices for a single patient with id 'ad2085b5-b974-401d-bfcb-3b865109fd35'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Device?patient=ad2085b5-b974-401d-bfcb-3b865109fd35
+</pre>
+&nbsp;
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Device?patient=Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
+</pre>
+&nbsp;
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Device/_search
+<i><small>payload:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35
+</pre>
+&nbsp;
+
+#### Example: Get all devices for a single patient with id 'ad2085b5-b974-401d-bfcb-3b865109fd35' that were recorded as of 1/1/2017
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Device?patient=ad2085b5-b974-401d-bfcb-3b865109fd35&date=ge2017-01-01
+</pre>
+&nbsp;
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Device?patient=Patient/ad2085b5-b974-401d-bfcb-3b865109fd35&date=ge2017-01-01
+</pre>
+&nbsp;
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Device/_search
+<i><small>payload:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35&date=ge2017-01-01
 </pre>
 &nbsp;
 
