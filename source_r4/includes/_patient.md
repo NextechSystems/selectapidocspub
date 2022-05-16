@@ -549,6 +549,7 @@ The device resource identifies an instance or type of manufactured item used in 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
+| id | The unique identifier for the device | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
 | udiCarrier | Unique Device Identifier (UDI) Barcode string | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
 | distinctIdentifier | The distinct identification string | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
 | lotNumber | Lot number of manufacturer | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
@@ -568,6 +569,7 @@ The device resource identifies an instance or type of manufactured item used in 
     {
       "resource": {
         "resourceType": "Device",
+        "id": "123",
         "udiCarrier": [
           {
             "deviceIdentifier": "43069338026389",
@@ -631,20 +633,23 @@ Searches for devices for a single patient
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patient | query | The official patient identifier acquired from a patient search | Yes | _12.6_ |
-| date | query | The device last update date in the form YYYY-MM-DD | No | _12.6_ |
+| _lastUpdated | query or payload | The date the device was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _12.6_ |
+| patient | query or payload | The official patient identifier acquired from a patient search | No | _12.6_ |
+| date | query or payload | The device last update date in the form YYYY-MM-DD | No | _12.6_ |
+| identifier | query or payload | The unique identifier for the device | No | _12.6_ |
+| _id | query or payload | The unique identifier for the device | No | _12.6_ |
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get all devices for a single patient with id 'ad2085b5-b974-401d-bfcb-3b865109fd35'
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Device?patient=ad2085b5-b974-401d-bfcb-3b865109fd35
 </pre>
-&nbsp;
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Device?patient=Patient/ad2085b5-b974-401d-bfcb-3b865109fd35
 </pre>
-&nbsp;
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Device/_search
@@ -657,16 +662,44 @@ POST https://select.nextech-api.com/api/r4/Device/_search
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Device?patient=ad2085b5-b974-401d-bfcb-3b865109fd35&date=ge2017-01-01
 </pre>
-&nbsp;
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Device?patient=Patient/ad2085b5-b974-401d-bfcb-3b865109fd35&date=ge2017-01-01
 </pre>
-&nbsp;
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Device/_search
 <i><small>payload:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35&date=ge2017-01-01
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Device?patient=ad2085b5-b974-401d-bfcb-3b865109fd35&_lastUpdated=ge2017-01-01
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Device/_search
+<i><small>payload:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35&_lastUpdated=ge2017-01-01
+</pre>
+&nbsp;
+
+#### Search for a device with the id '123'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Device?identifier=123
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Device/_search
+<i><small>payload:</small></i> identifier=123
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Device?_id=123
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Device/_search
+<i><small>payload:</small></i> _id=123
 </pre>
 &nbsp;
 
