@@ -55,7 +55,7 @@ Url: https://select.nextech-api.com/api/structuredefinition/document-publish-por
 valueBoolean: true or false
 #### Example: Attach a new document for a patient
 <pre class="center-column">
-POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/DocumentReference
+POST https://select.nextech-api.com/api/r4/DocumentReference
 </pre>
 &nbsp;
 
@@ -74,13 +74,13 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
         "text": "Discharge Summary"
     },
     "subject": {
-        "reference": "[base]/Patient/eso2MXsmcJloTEUEls5DzbA3"
+        "reference": "[base]/Patient/9CFE7258-8F50-45E8-9732-6433976CC164"
     },
     "content": [{"attachment": {
         "contentType": "text/plain",
         "data": "Tm8gYWN0aXZpdHkgcmVzdHJpY3Rpb24sIHJlZ3VsYXIgZGlldCwgZm9sbG93IHVwIGluIHR3byB0byB0aHJlZSB3ZWVrcyB3aXRoIHByaW1hcnkgY2FyZSBwcm92aWRlci4="
     } }],
-    "context": {"encounter": {"reference": "[base]/Encounter/eIOY6XJQw0hvmvCqTtkg6vQ3"} },
+    "context": {"encounter": {"reference": "[base]/Encounter/1"} },
     "extension": [
             {
                 "url": "https://select.nextech-api.com/api/structuredefinition/note-category",
