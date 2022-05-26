@@ -187,7 +187,8 @@ Searches for all patients matching the given search criteria. See [https://www.h
 | identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
 | _id | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
 | gender | query | The gender of the patient | No | string | _12.6_ |
-| name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | string |  |
+| name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | string | 
+| group-id | query | The letter writing group of the patient | No | string | 16.8 |
 
 #### Example: Get the patient of a specific chart number
 
