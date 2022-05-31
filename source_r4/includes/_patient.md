@@ -404,10 +404,12 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
 | ---- | ----------- | ---- | --------------- |
 | id | The unique value assigned to each care plan which discerns them from all others. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | subject | The patient pertaining to the care plan. | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.8_ |
-| text | A human-readable narrative that contains a summary of the resource. | [Narative](http://hl7.org/fhir/R4/datatypes.html#Narrative) | _12.8_ |
+| text | A human-readable narrative that contains a summary of the resource. | [Narrative](http://hl7.org/fhir/R4/datatypes.html#Narrative) | _12.8_ |
 | text.div | The actual narrative content of the patient care plan. | [xhtml](http://hl7.org/fhir/R4/narrative.html#xhtml) | _12.8_ |
 | text.status | The text status for the resource narrative. | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _12.8_ |
 | category | The type of the care plan. | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.8_ |
+| status | Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record. | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.8_ |
+| intent | Indicates the level of intentionality associated with the care plan (proposal, plan, order, option). | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.8_ |
 
 ### Example
 <pre class="center-column">
