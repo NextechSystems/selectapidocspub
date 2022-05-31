@@ -402,48 +402,63 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each care plan which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| subject | The patient pertaining to the care plan | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| activity | The collection of coded care plan actions | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| id | The unique value assigned to each care plan which discerns them from all others. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
+| subject | The patient pertaining to the care plan. | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.8_ |
+| text | A human-readable narrative that contains a summary of the resource. | [Narrative](http://hl7.org/fhir/R4/datatypes.html#Narrative) | _12.8_ |
+| text.div | The actual narrative content of the patient care plan. | [xhtml](http://hl7.org/fhir/R4/narrative.html#xhtml) | _12.8_ |
+| text.status | The text status for the resource narrative. | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _12.8_ |
+| category | The type of the care plan. | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.8_ |
+| status | Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record. | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.8_ |
+| intent | Indicates the level of intentionality associated with the care plan (proposal, plan, order, option). | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.8_ |
 
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "CarePlan",
-        "id": "3099",
-        "identifier": [
-          {
-            "use": "official",
-            "value": "3099"
-          }
-        ],
-        "subject": {
-          "reference": "Patient/ad2085b5-b974-401d-bfcb-3b865109fd35"
-        },
-        "activity": [
-          {
-            "id": "pocinsemn-3099code-745799",
-            "detail": {
-              "code": {
-                "coding": [
-                  {
-                    "system": "2.16.840.1.113883.10.20.22.4.20",
-                    "code": "225323000"
-                  }
-                ],
-                "text": "Smoking cessation education"
-              },
-              "description": "Patient to read literature on lung tissue damage"
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 4,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "CarePlan",
+                "id": "621",
+                "subject": {
+                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+                    "display": "Newman, Alice Jones"
+                }
             }
-          }
-        ]
-      }
-    }
-  ]
+        },
+        {
+            "resource": {
+                "resourceType": "CarePlan",
+                "id": "623",
+                "subject": {
+                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+                    "display": "Newman, Alice Jones"
+                }
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "CarePlan",
+                "id": "627",
+                "subject": {
+                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+                    "display": "Newman, Alice Jones"
+                }
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "CarePlan",
+                "id": "625",
+                "subject": {
+                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+                    "display": "Newman, Alice Jones"
+                }
+            }
+        }
+    ]
 }
 </pre>
 &nbsp;
@@ -451,19 +466,23 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
 ### *Search*
 Searches for care plans for a single patient
 
-#### HTTP Request 
-`GET /Patient/{patientUid}/CarePlan?{parameters}`
+#### HTTP Requests
+
+- `GET /r4/CarePlan?patient={patientUid}&[date=(filter)YYYY-MM-DD]`
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
-| date | query | The encounter visit date filter in the form YYYY-MM-DD | No | _12.6_ |
+| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.8_ |
+| date | query | The collection of visit date filters where each string is in the form OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _12.8_ |
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
 
 #### Example: Get all care plans for a single patient charted on a visit on 5/1/2017
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/CarePlan?date=eq2017-05-01
+GET https://select.nextech-api.com/api/r4/CarePlan?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&date=eq2017-05-01
 </pre>
 &nbsp;
 
