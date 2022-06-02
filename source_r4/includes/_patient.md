@@ -256,22 +256,12 @@ successful, returns those patients' unique identifiers.
 ### Parameters
 | Name | Located in | Description | Required | Type | Initial Version |
 | ---- | ---------- | ----------- | -------- | ---- | --------------- |
-| _lastUpdated | query | The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | dateTime | _12.8_ |
-| family | query | The family (last) name of the patient | No | string | _12.6_ |
-| given | query | The given (first) name of the patient | No | string | _12.6_ |
-| birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime | _12.6_ |
-| phone | query | The patient's phone number which will be matched against any phone number (home, cell, etc.) | No | string | _12.6_ |
-| email | query | The patient's email address | No | string | _12.6_ |
-| address-city | query | The city of the patient's address | No | string | _12.6_ |
-| address-state | query | The state of the patient's address | No | string | _12.6_ |
-| address-postalcode | query | The postal (zip) code of the patient's address | No | string | _12.6_ |
-| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
 | group-id | query | The letter writing group of the patient | No | string | 16.8 |
 
-#### Example: Get the unique identifier of a patient given first name, last name, and birthdate
+#### Example: Get the unique identifiers of all patients that are in a letter writing group with an ID of 20
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/Patient/ID?family=Smith&given=John&birthdate=eq1972-04-21
+GET https://select.nextech-api.com/api/r4/Patient/ID?group-id=20
 </pre>
 &nbsp;
 
