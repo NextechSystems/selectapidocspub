@@ -204,7 +204,7 @@ POST https://select.nextech-api.com/api/r4/DocumentReference/$docref
 </pre>
 &nbsp;
 
-
+#### Body
 <pre class="center-column">
  {
       "resourceType": "Parameters",
@@ -228,11 +228,11 @@ Note: the response body will be the same as the GET example below
 
 #### *Note: This will result in creating a new document attached to the patient's chart every request despite being a GET*
 
-### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via GET
+#### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via GET
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/DocumentReference/$docref?patient=C21AB936-3A2A-4C5A-81B8-76B120194053
 </pre>
-
+#### Response
 <pre class="center-column">
 {
     "resourceType": "Bundle",
