@@ -421,7 +421,22 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
         {
             "resource": {
                 "resourceType": "CarePlan",
-                "id": "621",
+                "id": "601",
+                "text": {
+                    "status": "additional",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Get an EKG done on 6/23/2015.</div>"
+                },
+                "status": "active",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+                                "code": "assess-plan"
+                            }
+                        ]
+                    }
+                ],
                 "subject": {
                     "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
                     "display": "Newman, Alice Jones"
@@ -431,7 +446,22 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
         {
             "resource": {
                 "resourceType": "CarePlan",
-                "id": "623",
+                "id": "603",
+                "text": {
+                    "status": "additional",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Get a Chest X-ray done on 6/23/2015 showing the Lower Respiratory Tract Structure.</div>"
+                },
+                "status": "active",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+                                "code": "assess-plan"
+                            }
+                        ]
+                    }
+                ],
                 "subject": {
                     "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
                     "display": "Newman, Alice Jones"
@@ -441,7 +471,22 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
         {
             "resource": {
                 "resourceType": "CarePlan",
-                "id": "627",
+                "id": "607",
+                "text": {
+                    "status": "additional",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Take Clindamycin 300mg three times a day as needed if pain does not subside/</div>"
+                },
+                "status": "active",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+                                "code": "assess-plan"
+                            }
+                        ]
+                    }
+                ],
                 "subject": {
                     "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
                     "display": "Newman, Alice Jones"
@@ -451,7 +496,22 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
         {
             "resource": {
                 "resourceType": "CarePlan",
-                "id": "625",
+                "id": "605",
+                "text": {
+                    "status": "additional",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Schedule follow on visit with Neighborhood Physicians Practice on 7/1/2015.</div>"
+                },
+                "status": "active",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+                                "code": "assess-plan"
+                            }
+                        ]
+                    }
+                ],
                 "subject": {
                     "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
                     "display": "Newman, Alice Jones"
