@@ -26,7 +26,7 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 Finds a single document based on the ID
 
 #### HTTP Request 
-`GET /DocumentReference/{docutmentType-id}` 
+`GET /DocumentReference/{documentType-id}` 
 
 #### Parameters
 | Name | Description | Required | Initial Version |
@@ -195,7 +195,7 @@ This generates a CCDA for the given patient and attaches it to their patient his
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
 | resourceType | Must be `Parameters` | Yes |
-| parameter | This is an array of parameters which must include one patient parameter | Yes |
+| parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes |
 | parameter.patient | The patient the document is for | Yes |
 
 #### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via POST
