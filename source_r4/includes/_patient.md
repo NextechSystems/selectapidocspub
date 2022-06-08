@@ -187,7 +187,8 @@ Searches for all patients matching the given search criteria. See [https://www.h
 | identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
 | _id | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
 | gender | query | The gender of the patient | No | string | _12.6_ |
-| name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | string |  |
+| name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | string | 
+| group-id | query | The letter writing group of the patient | No | string | 16.8 |
 
 #### Example: Get the patient of a specific chart number
 
@@ -244,6 +245,25 @@ GET https://select.nextech-api.com/api/r4/Patient?birthdate=ge1981-01-01&birthda
 POST https://select.nextech-api.com/api/r4/Patient/_search
 <i><small>payload:</small></i> birthdate=ge1981-01-01&birthdate=lt1981-05-31
 </pre>
+
+### Patient ID Search
+Attempts to find patient IDs that match the given search criteria and, if
+successful, returns those patients' unique identifiers.   
+
+### HTTP Request 
+`GET /r4/Patient/ID?{parameters}` 
+
+### Parameters
+| Name | Located in | Description | Required | Type | Initial Version |
+| ---- | ---------- | ----------- | -------- | ---- | --------------- |
+| group-id | query | The letter writing group of the patient | No | string | 16.8 |
+
+#### Example: Get the unique identifiers of all patients that are in a letter writing group with an ID of 20
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Patient/ID?group-id=20
+</pre>
+&nbsp;
 
 
 ## Allergy Intolerance
