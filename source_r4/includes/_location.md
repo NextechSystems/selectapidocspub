@@ -14,6 +14,7 @@ A physical location where services are provided. This may or may not be under th
 | name | The name of the location | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
+| managingOrganization | The identifier of the location | [ManagingOrginization](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-location-definitions.html#Location.managingOrganization) | _12.8_ |
 
 ### Example
 <pre class="center-column">
@@ -60,7 +61,13 @@ A physical location where services are provided. This may or may not be under th
         "city": "St. Petersburg",
         "state": "FL",
         "postalCode": "11598"
-    }
+    },
+	 "managingOrganization": {
+		"identifier": {
+			"use": "official",
+			"value": "1"
+		}
+	}
 }
 </pre>
 &nbsp;
