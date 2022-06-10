@@ -22,6 +22,45 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 | custodian | Identifies the organization or group who is responsible for ongoing maintenance of and access to the document. | [Reference(USCoreOrganizationProfile)](https://www.hl7.org/fhir/references.html) | _16.8_ |
 
 
+### *Search*
+Finds a bundle documents based on the search parameters
+
+#### HTTP Request 
+`GET /DocumentReference?{parameters}` 
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8
+
+#### Supported Document Types
+The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
+
+#### Example: Get the history document with ID 7741
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?_id=history-7741
+</pre>
+&nbsp;
+
+#### Search By POST Request
+Finds a bundle of documents based on the search parameters supplied in the POST body
+
+#### HTTP Request
+`POST /DocumentReference/_search`
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8
+
+#### Example
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference/history-2262
+<i><small>payload:</small></i> _id=history-1
+</pre>
+
+
 ### *Get By ID*
 Finds a single document based on the ID
 
@@ -38,7 +77,7 @@ The supported types are history, emn and labs. history and labs share identifier
 
 #### Example: Get the history document with ID 2262 which is a text file with a content of "Hello!"
 <pre class="center-column">
-GET https://select.nextech-api.com/api/DocumentReference/history-2262
+GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
 </pre>
 &nbsp;
 
