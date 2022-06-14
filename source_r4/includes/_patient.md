@@ -1070,9 +1070,12 @@ The goal resource describes a desired state of health for a patient.
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
+| _id | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
 | subject | The patient pertaining to the goal | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
 | target | The target outcome of the goal | [CodeableConcept](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
 | note | Comments about the goal | [Annotation](https://www.hl7.org/fhir/datatypes.html#Annotation) | _12.6_ |
+| date | The date or date range of the goal or goals | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _12.6_ |
+| lastUpdated | The date a goal was last modified | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -1120,21 +1123,76 @@ The goal resource describes a desired state of health for a patient.
 Searches for goals for a single patient
 
 #### HTTP Request 
-`GET /Patient/{patientUid}/Goal?{parameters}` 
+`GET r4/Goal?patient={patientUid}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| identifier | query | The goal identifier | No | _12.6_ |
+| _id | query | The goal identifier | No | _12.6_ |
+| patient | query | The official patient identifier acquired from a patient search | No | _12.6_ |
 | date | query | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _12.6_ |
 
-#### Example: Get all goals for a single patient charted on a visit on 5/1/2017
+#### Example: Get all goals for a single patient
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Goal?date=eq2017-05-01
+GET https://select.nextech-api.com/api/r4/Goal?patient=29D5AA40-6E3E-4683-B17F-2FBFECACF9BC
 </pre>
 &nbsp;
 
+#### Example: Get all goals for a single patient, alternate version
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Goal?patient=Patient/29D5AA40-6E3E-4683-B17F-2FBFECACF9BC
+</pre>
+&nbsp;
+
+#### Example: Get all goals for a patient on a date
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Goal?patient=29D5AA40-6E3E-4683-B17F-2FBFECACF9BC&date=2017-01-01
+</pre>
+&nbsp;
+
+### *Search*
+Search for a goal by its identifier
+
+#### HTTP Request 
+`GET r4/Goal/{GoalID}`
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| GoalID | path | The official goal identifier acquired from a goal search | YES | _12.6_ |
+
+
+#### Example: Get a goal by GoalID
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Goal/{GoalID}
+</pre>
+&nbsp;
+
+### *Search Goal*
+Returns a goal found in search request
+
+#### HTTP Request 
+`POST r4/Goal/_search`  
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| identifier | query | The goal identifier | No | _12.6_ |
+| _id | query | The goal identifier | No | _12.6_ |
+| patient | query | The official patient identifier acquired from a patient search | No | _12.6_ |
+| date | query | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _12.6_ |
+
+#### Example: Get all goals for a patient on a date
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Goal/_search?patient=29D5AA40-6E3E-4683-B17F-2FBFECACF9BC&date=2017-01-01
+</pre>
+&nbsp;
 
 ## Immunization
 
