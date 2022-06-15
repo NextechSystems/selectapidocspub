@@ -1182,10 +1182,10 @@ Returns a goal found in search request
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query | The goal identifier | No | _12.6_ |
-| _id | query | The goal identifier | No | _12.6_ |
-| patient | query | The official patient identifier acquired from a patient search | No | _12.6_ |
-| date | query | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _12.6_ |
+| identifier | query or body | The goal identifier | No | _12.6_ |
+| _id | query or body  | The goal identifier | No | _12.6_ |
+| patient | query or body  | The official patient identifier acquired from a patient search | No | _12.6_ |
+| date | query or body  | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all goals for a patient on a date
 
