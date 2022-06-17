@@ -422,14 +422,14 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| id | The unique value assigned to each care plan which discerns them from all others. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| subject | The patient pertaining to the care plan. | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.8_ |
-| text | A human-readable narrative that contains a summary of the resource. | [Narrative](http://hl7.org/fhir/R4/datatypes.html#Narrative) | _12.8_ |
-| text.div | The actual narrative content of the patient care plan. | [xhtml](http://hl7.org/fhir/R4/narrative.html#xhtml) | _12.8_ |
-| text.status | The text status for the resource narrative. | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _12.8_ |
-| category | The type of the care plan. | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.8_ |
-| status | Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record. | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.8_ |
-| intent | Indicates the level of intentionality associated with the care plan (proposal, plan, order, option). | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.8_ |
+| id | The unique value assigned to each care plan which discerns them from all others. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
+| subject | The patient pertaining to the care plan. | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| text | A human-readable narrative that contains a summary of the resource. | [Narrative](http://hl7.org/fhir/R4/datatypes.html#Narrative) | _12.6_ |
+| text.div | The actual narrative content of the patient care plan. | [xhtml](http://hl7.org/fhir/R4/narrative.html#xhtml) | _12.6_ |
+| text.status | The text status for the resource narrative. | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _12.6_ |
+| category | The type of the care plan. | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.6_ |
+| status | Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record. | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.6_ |
+| intent | Indicates the level of intentionality associated with the care plan (proposal, plan, order, option). | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.6_ |
 
 ### Example
 <pre class="center-column">
@@ -441,12 +441,13 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
         {
             "resource": {
                 "resourceType": "CarePlan",
-                "id": "601",
+                "id": "672",
                 "text": {
                     "status": "additional",
                     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Get an EKG done on 6/23/2015.</div>"
                 },
                 "status": "active",
+                "intent": "order",
                 "category": [
                     {
                         "coding": [
@@ -466,12 +467,13 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
         {
             "resource": {
                 "resourceType": "CarePlan",
-                "id": "603",
+                "id": "674",
                 "text": {
                     "status": "additional",
                     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Get a Chest X-ray done on 6/23/2015 showing the Lower Respiratory Tract Structure.</div>"
                 },
                 "status": "active",
+                "intent": "plan",
                 "category": [
                     {
                         "coding": [
@@ -491,12 +493,13 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
         {
             "resource": {
                 "resourceType": "CarePlan",
-                "id": "607",
+                "id": "678",
                 "text": {
                     "status": "additional",
                     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Take Clindamycin 300mg three times a day as needed if pain does not subside/</div>"
                 },
                 "status": "active",
+                "intent": "proposal",
                 "category": [
                     {
                         "coding": [
@@ -516,12 +519,13 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
         {
             "resource": {
                 "resourceType": "CarePlan",
-                "id": "605",
+                "id": "676",
                 "text": {
                     "status": "additional",
                     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Schedule follow on visit with Neighborhood Physicians Practice on 7/1/2015.</div>"
                 },
                 "status": "active",
+                "intent": "plan",
                 "category": [
                     {
                         "coding": [
@@ -543,26 +547,82 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
 </pre>
 &nbsp;
 
+### *Get*
+Returns a single Care Plan result based on the Care Plan ID.
+
+#### HTTP Request 
+`GET /r4/CarePlan/{carePlanId}` 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| carePlanId | path | The unique identifier for the care plan | Yes | _12.6_ |
+
+#### Example: Get the care plan with an ID of '676'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CarePlan/676
+</pre>
+&nbsp;
+
 ### *Search*
 Searches for care plans for a single patient
 
 #### HTTP Requests
 
-- `GET /r4/CarePlan?patient={patientUid}&[date=(filter)YYYY-MM-DD]`
+- `GET /r4/CarePlan?{parameters}`
+- `POST /r4/CarePlan/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.8_ |
-| date | query | The collection of visit date filters where each string is in the form OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _12.8_ |
+| patient | query or payload | The official patient identifier acquired from a patient search | No | _12.6_ |
+| _id | query or payload | The unique identifier for the care plan | No | _12.6_ |
+| identifier | query or payload | The unique identifier for the care plan | No | _12.6_ |
+| category | query or payload | The type of the care plan. Ex.: 'assess-plan' | No | _12.6_ |
+| _lastUpdated | query or payload | The date the care plan was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _12.6_ |
 
 > **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 
-#### Example: Get all care plans for a single patient charted on a visit on 5/1/2017
+#### Example: Get all care plans for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and category 'assess-plan'
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/CarePlan?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&date=eq2017-05-01
+GET https://select.nextech-api.com/api/r4/CarePlan?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&category=assess-plan
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CarePlan?patient=Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&category=assess-plan
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CarePlan?patient=Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&category=http://hl7.org/fhir/us/core/CodeSystem/careplan-category|assess-plan
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/CarePlan/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&category=assess-plan
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/CarePlan/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&category=http://hl7.org/fhir/us/core/CodeSystem/careplan-category|assess-plan
+</pre>
+&nbsp;
+
+#### Example: Get all care plans for a single patient that were modified as of 5/5/2022
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CarePlan?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_lastUpdated=ge2022-05-05
+</pre>
+&nbsp;
+
+#### Example: Get all care plans that were modified by 5/5/2022
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CarePlan?_lastUpdated=le2022-05-05
 </pre>
 &nbsp;
 
