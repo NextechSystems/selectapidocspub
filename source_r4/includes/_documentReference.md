@@ -70,7 +70,7 @@ Finds a single document based on the ID
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| identifier | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
+| DocumentReferenceID | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
 
 #### Supported Document Types
 The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
