@@ -22,6 +22,135 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 | custodian | Identifies the organization or group who is responsible for ongoing maintenance of and access to the document. | [Reference(USCoreOrganizationProfile)](https://www.hl7.org/fhir/references.html) | _16.8_ |
 
 
+### *Search*
+Finds a bundle documents based on the search parameters
+
+#### HTTP Request 
+`GET /DocumentReference?{parameters}` 
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8
+
+#### Supported Document Types
+The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
+
+#### Example: Get the history document with ID 7741
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?_id=history-7741
+</pre>
+&nbsp;
+
+#### Search By POST Request
+Finds a bundle of documents based on the search parameters supplied in the POST body
+
+#### HTTP Request
+`POST /DocumentReference/_search`
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8
+
+#### Example
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference/history-2262
+<i><small>payload:</small></i> _id=history-1
+</pre>
+
+
+### *Get By ID*
+Finds a single document based on the ID
+
+#### HTTP Request 
+`GET /DocumentReference/{documentType-id}` 
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| DocumentReferenceID | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
+
+#### Supported Document Types
+The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
+
+#### Example: Get the history document with ID 2262 which is a text file with a content of "Hello!"
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
+</pre>
+&nbsp;
+
+<pre class="center-column">
+{
+    "resourceType": "DocumentReference",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "history-2262"
+        }
+    ],
+    "status": "current",
+    "type": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                "code": "UNK"
+            }
+        ],
+        "text": "unknown"
+    },
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+                    "code": "Miscellaneous",
+                    "display": "Miscellaneous"
+                }
+            ],
+            "text": "Miscellaneous"
+        }
+    ],
+    "subject": {
+        "reference": "Patient/c21ab936-3a2a-4c5a-81b8-76b120194053",
+        "display": "White, Nicole Francis"
+    },
+    "date": "2022-06-02T17:11:23.943+00:00",
+    "author": [
+        {
+            "reference": "Organization/22",
+            "display": "Clinic One"
+        }
+    ],
+    "custodian": {
+        "reference": "Organization/22",
+        "display": "Clinic One"
+    },
+    "content": [
+        {
+            "attachment": {
+                "contentType": "text/plain",
+                "data": "U0dWc2JHOGg=",
+                "title": "small text doc.txt"
+            },
+            "format": {
+                "system": "urn:oid:1.3.6.1.4.1.19376.1.2.3",
+                "code": "urn:ihe:iti:xds:2017:mimeTypeSufficient",
+                "display": "mimeType Sufficient"
+            }
+        }
+    ],
+    "context": {
+        "period": {
+            "start": "2022-06-02T17:11:23.943+00:00",
+            "end": "2022-06-02T17:11:23.943+00:00"
+        }
+    }
+}
+</pre>
+&nbsp;
+
 ### *Create*
 Creates the document in the content.attachment for a patient and attaches it to the patient's history tab in the Nextech software.
 
@@ -93,6 +222,139 @@ POST https://select.nextech-api.com/api/r4/DocumentReference
     ],
 }
 </pre>
+&nbsp;
+
+### *Create CCDA*
+This generates a CCDA for the given patient and attaches it to their patient history
+
+#### HTTP Request
+`POST /DocumentReference/$docref`
+
+#### Body Fields
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| resourceType | Must be `Parameters` | Yes |
+| parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes |
+| parameter.patient | The patient the document is for | Yes |
+
+#### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via POST
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference/$docref
+</pre>
+&nbsp;
+
+#### Body
+<pre class="center-column">
+ {
+      "resourceType": "Parameters",
+      "parameter": [
+        {
+          "name": "patient",
+          "valueId" : "C21AB936-3A2A-4C5A-81B8-76B120194053"
+        }
+      ]
+    }
+</pre>
+Note: the response body will be the same as the GET example below
+
+#### HTTP Request 
+`GET /DocumentReference/$docref?{patient}`
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| patient | Must be in the form `patient={patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.8
+
+#### *Note: This will result in creating a new document attached to the patient's chart every request despite being a GET*
+
+#### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via GET
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference/$docref?patient=C21AB936-3A2A-4C5A-81B8-76B120194053
+</pre>
+#### Response
+<pre class="center-column">
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 1,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "DocumentReference",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "history-2263"
+                    }
+                ],
+                "status": "current",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "34133-9"
+                        }
+                    ],
+                    "text": "Summarization of Episode Note"
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+                                "code": "clinical-note",
+                                "display": "clinical-note"
+                            }
+                        ],
+                        "text": "clinical-note"
+                    }
+                ],
+                "subject": {
+                    "reference": "Patient/c21ab936-3a2a-4c5a-81b8-76b120194053",
+                    "display": "White, Nicole Francis"
+                },
+                "date": "2022-06-02T13:26:26.2198865-04:00",
+                "author": [
+                    {
+                        "reference": "Organization/1",
+                        "display": "Pawtucket Plastic Surgeons"
+                    }
+                ],
+                "custodian": {
+                    "reference": "Organization/1",
+                    "display": "Pawtucket Plastic Surgeons"
+                },
+                "content": [
+                    {
+                        "attachment": {
+                            "contentType": "application/xml",
+                            "data": ""
+                        },
+                        "format": {
+                            "system": "urn:oid:1.3.6.1.4.1.19376.1.2.3",
+                            "code": "urn:hl7-org:sdwg:ccda-structuredBody:2.1",
+                            "display": "Documents following C-CDA constraints using a structured body"
+                        }
+                    }
+                ],
+                "context": {
+                    "encounter": [
+                        {
+                            "reference": "Encounter/8109"
+                        }
+                    ],
+                    "period": {
+                        "start": "2022-06-02T13:26:26.2198865-04:00",
+                        "end": "2022-06-02T13:26:26.2198865-04:00"
+                    }
+                }
+            }
+        }
+    ]
+}
+</pre>
+
+
 &nbsp;
 
 ### Allowed Mimetypes
