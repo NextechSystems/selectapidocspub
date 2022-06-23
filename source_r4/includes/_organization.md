@@ -4,6 +4,8 @@
 
 ### Overview
 A physical location where services are provided. This may or may not be under the practice's management.
+An organization is effectively the same logical entity as a location. There is only a slight delta between 
+a fhir organization and fhir location. 
 
 ### Fields
 | Name | Description | Type | Initial Version |
@@ -95,6 +97,7 @@ Searches for all organizations based on the given search criteria.
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
 | identifier | query or payload | The unique value assigned to each organization which discerns it from all others |  No | _12.8_ |
+| status | query or payload | Searches for organizations with a specific kind of status. See [OrganizationStatus](https://www.hl7.org/fhir/valueset-location-status.html) | No | _12.8_ |
 | includeAll | query or payload | By default, or if includeAll is false, then only managed organizations are returned, for example the practice's primary office location. If includeAll is true, then all organizations will be returned, whether they are under under practice management or not, but where services are provided, such as a hospital or a clinic. | No | _14.4_ |
 | name | query or payload | The name of the organization | No | _12.8_ |
 | address | query or payload | A (part of the) address of the organization | No | _12.8_ |
@@ -170,6 +173,5 @@ GET https://select.nextech-api.com/api/r4/Organization?name:contains=dermatology
 #### Example: Get a specific organization based on identifier
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/Organization?identifier=123
 </pre>
 &nbsp;
