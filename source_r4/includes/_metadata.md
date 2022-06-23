@@ -20,6 +20,7 @@ Information about supported server functionality and server's SMART on FHIR conf
 | fhirVersion | The version of the FHIR specification that this CapabilityStatement describes. | [code](https://www.hl7.org/fhir/datatypes.html#code) | |
 | format | A list of the formats supported by this implementation using their content types. | [code](https://www.hl7.org/fhir/datatypes.html#code) | |
 | implementationGuide | A list of implementation guides that the server does (or should) support in their entirety. | [canonical](https://www.hl7.org/fhir/datatypes.html#canonical)([Implementation Guide](https://www.hl7.org/fhir/implementationguide.html)) ||
+| instantiates | Reference to a canonical URL of another CapabilityStatement that this software implements. | [canonical](https://www.hl7.org/fhir/datatypes.html#canonical)([Capabiliy Statement](https://www.hl7.org/fhir/capabilitystatement.html)) | |
 | rest.mode | Identifies whether this portion of the statement is describing the ability to initiate or receive restful operations. | [code](https://www.hl7.org/fhir/datatypes.html#code) | |
 | rest.security.extension | The oauth uris for this server ('authorize' and 'token' endpoints). | [Extension](https://build.fhir.org/extensibility.html#Extension) | |
 | rest.security.service | Types of security services that are supported by the system. | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | |
@@ -29,6 +30,7 @@ Information about supported server functionality and server's SMART on FHIR conf
 | rest.resource.searchRevInclude | A list of _revinclude (reverse include) values supported by the server. | [string](https://www.hl7.org/fhir/datatypes.html#string) ||
 | rest.resource.searchParam.name | The name of the search parameter used in the interface. | [string](https://www.hl7.org/fhir/datatypes.html#string) | |
 | rest.resource.searchParam.type | The type of value a search parameter refers to, and how the content is interpreted. | [code](https://www.hl7.org/fhir/datatypes.html#code) | |
+| rest.resource.operation.name | The name of the operation or query. | [string](https://www.hl7.org/fhir/datatypes.html#string) | |
 
 &nbsp;
 
@@ -37,12 +39,12 @@ Information about supported server functionality and server's SMART on FHIR conf
 {
     "resourceType": "CapabilityStatement",
     "status": "active",
-    "date": "2022-03-22",
+    "date": "2022-06-23",
     "publisher": "Nextech Systems, LLC",
     "kind": "instance",
     "implementation": {
         "description": "PartnerAPI provides secure access to patient data through a RESTful implementation based on the R4 version of the FHIR standard.",
-        "url": "https://select.nextech-api.com/"
+        "url": "https://nxpartnerapi-dev.azurewebsites.net/"
     },
     "fhirVersion": "4.0.1",
     "format": [
@@ -51,6 +53,9 @@ Information about supported server functionality and server's SMART on FHIR conf
     ],
     "implementationGuide": [
         "http://hl7.org/fhir/r4/implementationguide.html"
+    ],
+    "instantiates": [
+        "http://hl7.org/fhir/uv/bulkdata/CapabilityStatement/bulk-data"
     ],
     "rest": [
         {
@@ -95,12 +100,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -108,12 +107,12 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "searchParam": [
                         {
-                            "name": "clinical-status",
-                            "type": "token"
-                        },
-                        {
                             "name": "patient",
                             "type": "reference"
+                        },
+                        {
+                            "name": "date",
+                            "type": "date"
                         }
                     ]
                 },
@@ -128,12 +127,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -141,20 +134,24 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "searchParam": [
                         {
-                            "name": "category",
+                            "name": "_id",
                             "type": "token"
                         },
                         {
-                            "name": "date",
-                            "type": "date"
+                            "name": "identifier",
+                            "type": "token"
+                        },
+                        {
+                            "name": "category",
+                            "type": "token"
                         },
                         {
                             "name": "patient",
                             "type": "reference"
                         },
                         {
-                            "name": "status",
-                            "type": "token"
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -169,12 +166,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -188,6 +179,10 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "status",
                             "type": "token"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -202,12 +197,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -215,24 +204,12 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "searchParam": [
                         {
-                            "name": "category",
-                            "type": "token"
-                        },
-                        {
-                            "name": "clinical-status",
-                            "type": "token"
-                        },
-                        {
                             "name": "patient",
                             "type": "reference"
                         },
                         {
-                            "name": "onset-date",
+                            "name": "_lastUpdated",
                             "type": "date"
-                        },
-                        {
-                            "name": "code",
-                            "type": "token"
                         }
                     ]
                 },
@@ -247,12 +224,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -260,12 +231,24 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "searchParam": [
                         {
+                            "name": "_id",
+                            "type": "token"
+                        },
+                        {
+                            "name": "identifier",
+                            "type": "token"
+                        },
+                        {
                             "name": "patient",
                             "type": "reference"
                         },
                         {
-                            "name": "type",
-                            "type": "token"
+                            "name": "date",
+                            "type": "date"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -284,12 +267,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -297,7 +274,11 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "searchParam": [
                         {
-                            "name": "status",
+                            "name": "_id",
+                            "type": "token"
+                        },
+                        {
+                            "name": "identifier",
                             "type": "token"
                         },
                         {
@@ -314,6 +295,10 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "name": "date",
+                            "type": "date"
+                        },
+                        {
+                            "name": "_lastUpdated",
                             "type": "date"
                         }
                     ]
@@ -332,12 +317,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -346,10 +325,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                     "searchParam": [
                         {
                             "name": "_id",
-                            "type": "token"
-                        },
-                        {
-                            "name": "status",
                             "type": "token"
                         },
                         {
@@ -367,10 +342,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "date",
                             "type": "date"
-                        },
-                        {
-                            "name": "period",
-                            "type": "date"
                         }
                     ]
                 },
@@ -385,12 +356,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -402,28 +367,12 @@ Information about supported server functionality and server's SMART on FHIR conf
                             "type": "token"
                         },
                         {
-                            "name": "class",
-                            "type": "token"
-                        },
-                        {
                             "name": "date",
                             "type": "date"
                         },
                         {
-                            "name": "identifier",
-                            "type": "token"
-                        },
-                        {
                             "name": "patient",
                             "type": "reference"
-                        },
-                        {
-                            "name": "status",
-                            "type": "token"
-                        },
-                        {
-                            "name": "type",
-                            "type": "token"
                         }
                     ]
                 },
@@ -438,12 +387,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -451,16 +394,33 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "searchParam": [
                         {
-                            "name": "lifecycle-status",
-                            "type": "token"
-                        },
-                        {
                             "name": "patient",
                             "type": "reference"
                         },
                         {
-                            "name": "target-date",
+                            "name": "_id",
+                            "type": "token"
+                        },
+                        {
+                            "name": "identifier",
+                            "type": "token"
+                        },
+                        {
+                            "name": "date",
                             "type": "date"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
+                        }
+                    ]
+                },
+                {
+                    "type": "Group",
+                    "operation": [
+                        {
+                            "name": "export",
+                            "definition": "http://hl7.org/fhir/uv/bulkdata/OperationDefinition/group-export"
                         }
                     ]
                 },
@@ -475,12 +435,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -492,11 +446,19 @@ Information about supported server functionality and server's SMART on FHIR conf
                             "type": "reference"
                         },
                         {
-                            "name": "status",
+                            "name": "_id",
+                            "type": "token"
+                        },
+                        {
+                            "name": "identifier",
                             "type": "token"
                         },
                         {
                             "name": "date",
+                            "type": "date"
+                        },
+                        {
+                            "name": "_lastUpdated",
                             "type": "date"
                         }
                     ]
@@ -512,21 +474,31 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchParam": [
+                        {
+                            "name": "_id",
+                            "type": "token"
+                        },
+                        {
+                            "name": "identifier",
+                            "type": "token"
+                        },
                         {
                             "name": "name",
                             "type": "string"
                         },
                         {
                             "name": "address",
+                            "type": "string"
+                        },
+                        {
+                            "name": "status",
+                            "type": "string"
+                        },
+                        {
+                            "name": "includeall",
                             "type": "string"
                         },
                         {
@@ -540,6 +512,10 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "address-postalcode",
                             "type": "string"
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string"
                         }
                     ]
                 },
@@ -551,12 +527,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                     "interaction": [
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ]
                 },
@@ -571,16 +541,7 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
-                    ],
-                    "searchInclude": [
-                        "MedicationRequest:medication"
                     ],
                     "searchRevInclude": [
                         "Provenance:target"
@@ -597,14 +558,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "patient",
                             "type": "reference"
-                        },
-                        {
-                            "name": "encounter",
-                            "type": "reference"
-                        },
-                        {
-                            "name": "authoredon",
-                            "type": "date"
                         }
                     ]
                 },
@@ -631,22 +584,12 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
                         "Provenance:target"
                     ],
                     "searchParam": [
-                        {
-                            "name": "status",
-                            "type": "token"
-                        },
                         {
                             "name": "category",
                             "type": "token"
@@ -676,12 +619,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchParam": [
@@ -706,12 +643,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -727,16 +658,8 @@ Information about supported server functionality and server's SMART on FHIR conf
                             "type": "date"
                         },
                         {
-                            "name": "family",
-                            "type": "string"
-                        },
-                        {
                             "name": "gender",
                             "type": "token"
-                        },
-                        {
-                            "name": "given",
-                            "type": "string"
                         },
                         {
                             "name": "identifier",
@@ -745,6 +668,46 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "name",
                             "type": "string"
+                        },
+                        {
+                            "name": "family",
+                            "type": "string"
+                        },
+                        {
+                            "name": "given",
+                            "type": "string"
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string"
+                        },
+                        {
+                            "name": "address",
+                            "type": "string"
+                        },
+                        {
+                            "name": "address-city",
+                            "type": "string"
+                        },
+                        {
+                            "name": "address-state",
+                            "type": "string"
+                        },
+                        {
+                            "name": "address-postalcode",
+                            "type": "string"
+                        },
+                        {
+                            "name": "email",
+                            "type": "string"
+                        },
+                        {
+                            "name": "group-id",
+                            "type": "number"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -759,12 +722,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchParam": [
@@ -775,40 +732,50 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "identifier",
                             "type": "token"
-                        }
-                    ]
-                },
-                {
-                    "type": "PractitionerRole",
-                    "supportedProfile": [
-                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
-                    ],
-                    "interaction": [
-                        {
-                            "code": "search-type"
                         },
                         {
-                            "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
-                        }
-                    ],
-                    "searchInclude": [
-                        "PractitionerRole:endpoint",
-                        "PractitionerRole:practitioner"
-                    ],
-                    "searchParam": [
-                        {
-                            "name": "specialty",
+                            "name": "gender",
                             "type": "token"
                         },
                         {
-                            "name": "practitioner",
-                            "type": "reference"
+                            "name": "active",
+                            "type": "string"
+                        },
+                        {
+                            "name": "family",
+                            "type": "string"
+                        },
+                        {
+                            "name": "given",
+                            "type": "string"
+                        },
+                        {
+                            "name": "phone",
+                            "type": "string"
+                        },
+                        {
+                            "name": "address",
+                            "type": "string"
+                        },
+                        {
+                            "name": "address-city",
+                            "type": "string"
+                        },
+                        {
+                            "name": "address-state",
+                            "type": "string"
+                        },
+                        {
+                            "name": "address-postalcode",
+                            "type": "string"
+                        },
+                        {
+                            "name": "email",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -823,12 +790,6 @@ Information about supported server functionality and server's SMART on FHIR conf
                         },
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ],
                     "searchRevInclude": [
@@ -836,20 +797,24 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "searchParam": [
                         {
-                            "name": "status",
+                            "name": "patient",
+                            "type": "reference"
+                        },
+                        {
+                            "name": "_id",
                             "type": "token"
                         },
                         {
-                            "name": "patient",
-                            "type": "reference"
+                            "name": "identifier",
+                            "type": "token"
                         },
                         {
                             "name": "date",
                             "type": "date"
                         },
                         {
-                            "name": "code",
-                            "type": "token"
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -861,14 +826,20 @@ Information about supported server functionality and server's SMART on FHIR conf
                     "interaction": [
                         {
                             "code": "read"
-                        },
-                        {
-                            "code": "vread"
-                        },
-                        {
-                            "code": "history-instance"
                         }
                     ]
+                }
+            ],
+            "operation": [
+                {
+                    "extension": [
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                            "valueCode": "SHOULD"
+                        }
+                    ],
+                    "name": "export",
+                    "definition": "http://hl7.org/fhir/uv/bulkdata/OperationDefinition/export"
                 }
             ]
         }
@@ -899,6 +870,8 @@ GET https://select.nextech-api.com/api/r4/metadata
 | capabilities | Array of strings representing SMART capabilities | [string](https://www.hl7.org/fhir/datatypes.html#string) | |
 | authorization_endpoint | URL to the OAuth2 authorization endpoint | [url](https://www.hl7.org/fhir/datatypes.html#url) | |
 | token_endpoint | URL to the OAuth2 token endpoint | [url](https://www.hl7.org/fhir/datatypes.html#url) | |
+| token_endpoint_auth_methods_supported | Array of client authentication methods supported by the token endpoint | [string](https://www.hl7.org/fhir/datatypes.html#string) | |
+| token_endpoint_auth_signing_alg_values_supported | Array containing a list of the JWS signing algorithms supported by the token endpoint. | [string](https://www.hl7.org/fhir/datatypes.html#string) | |
 
 #### Example
 <pre class="center-column">
@@ -920,7 +893,14 @@ GET https://select.nextech-api.com/api/r4/metadata
         "permission-user"
     ],
     "authorization_endpoint": "https://mypatientvisit-sts-dev.azurewebsites.net",
-    "token_endpoint": "https://mypatientvisit-sts-dev.azurewebsites.net"
+    "token_endpoint": "https://mypatientvisit-sts-dev.azurewebsites.net",
+    "token_endpoint_auth_methods_supported": [
+        "private_key_jwt"
+    ],
+    "token_endpoint_auth_signing_alg_values_supported": [
+        "RS384",
+        "ES384"
+    ]
 }
 </pre>
 &nbsp;
