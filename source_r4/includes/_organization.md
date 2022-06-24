@@ -4,16 +4,17 @@
 
 ### Overview
 A physical location where services are provided. This may or may not be under the practice's management.
-An organization is effectively the same logical entity as a location. There is only a slight delta between 
-a fhir organization and fhir location. 
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) [(USCoreOrganizationProfile)](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization-definitions.html#Organization.identifier:NPI) | _12.8_ |
+| identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.8_ |
+| identifier | Identifier for the organization that is used to identify the organization across multiple disparate systems |  [(USCoreOrganizationProfile)](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization-definitions.html#Organization.identifier:NPI) | _16.9_ |
 | name | The name of the location | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
+| address.country | The country of the location address | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.9_ |
+| active | Whether the organization's record is still in active use | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) | _16.9_ |
 
 ### Example
 <pre class="center-column">
@@ -26,11 +27,11 @@ a fhir organization and fhir location.
             "value": "2"
         },
         {
-            "use": "official",
             "system": "http://hl7.org/fhir/sid/us-npi",
             "value": "ABCDE1234"
         }
     ],
+    "active": true,
     "name": "South Dermatology",
     "telecom": [
         {
@@ -173,5 +174,6 @@ GET https://select.nextech-api.com/api/r4/Organization?name:contains=dermatology
 #### Example: Get a specific organization based on identifier
 
 <pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Organization?identifier=123
 </pre>
 &nbsp;
