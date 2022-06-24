@@ -14,7 +14,7 @@ A physical location where services are provided. This may or may not be under th
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
 | address.country | The country of the location address | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.9_ |
-| active | Whether the organization's record is still in active use | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) | _16.9_ |
+| active | Whether the organization's record is still in active use | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) | _12.8_ |
 
 ### Example
 <pre class="center-column">
