@@ -626,6 +626,196 @@ GET https://select.nextech-api.com/api/r4/CarePlan?_lastUpdated=le2022-05-05
 </pre>
 &nbsp;
 
+
+## Care Team
+
+### Oveview
+The CareTeam resource includes all the people and organizations who plan to participate in the coordination and delivery of care for a patient.
+
+### Fields
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| id | The unique value assigned to each care team which discerns them from all others. | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _16.9_ |
+| status | Indicates the current state of the care team. | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _16.9_ |
+| subject | Identifies the patient or group whose intended care is handled by the team. | [Reference](http://hl7.org/fhir/R4/references.html#Reference)[(USCorePatientProfile)](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) | _16.9_ |
+| participant.role | Indicates specific responsibility of an individual within the care team, such as "Primary care physician", "Caregiver", etc. | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
+| participant.member | The specific person or organization who is participating/expected to participate in the care team. |	[Reference](http://hl7.org/fhir/R4/references.html#Reference) ([USCorePatientProfile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) `|` [USCorePractitionerProfile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html) `|` [USCoreOrganizationProfile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html))| _16.9_ |
+
+
+### Example
+<pre class="center-column">
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 1,
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A"
+        },
+        {
+            "relation": "previous",
+            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A&_getpagesoffset=0&_count=10"
+        },
+        {
+            "relation": "next",
+            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A&_getpagesoffset=0&_count=10"
+        },
+        {
+            "relation": "first",
+            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A&_getpagesoffset=0&_count=10"
+        },
+        {
+            "relation": "last",
+            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A&_getpagesoffset=0&_count=10"
+        }
+    ],
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "CareTeam",
+                "id": "3",
+                "status": "active",
+                "subject": {
+                    "reference": "Patient/3",
+                    "display": "Newman,  Alice Jones"
+                },
+                "participant": [
+                    {
+                        "role": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://nucc.org/provider-taxonomy",
+                                        "code": "2086S0122X"
+                                    }
+                                ]
+                            }
+                        ],
+                        "member": {
+                            "reference": "Practitioner/5",
+                            "display": "Davis, Albert"
+                        }
+                    },
+                    {
+                        "role": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                                        "code": "unknown"
+                                    }
+                                ]
+                            }
+                        ],
+                        "member": {
+                            "reference": "Practitioner/77",
+                            "display": "Davis, Tracy"
+                        }
+                    },
+                    {
+                        "role": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://snomed.info/sct",
+                                        "code": "116154003"
+                                    }
+                                ]
+                            }
+                        ],
+                        "member": {
+                            "reference": "Patient/3",
+                            "display": "Newman,  Alice Jones"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+</pre>
+&nbsp;
+
+### *Get*
+Returns a single Care Team result based on the Care Team ID.
+
+#### HTTP Request 
+`GET /r4/CareTeam/{careTeamId}` 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| careTeamId | path | The unique identifier for the care team | Yes | _16.9_ |
+
+#### Example: Get the care team with an ID of '3'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CareTeam/3
+</pre>
+&nbsp;
+
+### *Search*
+Searches for care teams for a single patient
+
+#### HTTP Requests
+
+- `GET /r4/CareTeam?{parameters}`
+- `POST /r4/CareTeam/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.9_ |
+| _id | query or payload | The unique identifier for the care team | No | _16.9_ |
+| identifier | query or payload | The unique identifier for the care team | No | _16.9_ |
+| status | query or payload | Indicates the current state of the care team. Ex.: 'active' | No | _16.9_ |
+| _lastUpdated | query or payload | The date the care team was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+
+#### Example: Get all care teams for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and status 'active'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CareTeam?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&status=active
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CareTeam?patient=Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&status=active
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CareTeam?patient=Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&status=http://hl7.org/fhir/ValueSet/care-team-status|active
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/CareTeam/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&status=active
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/CareTeam/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&status=http://hl7.org/fhir/ValueSet/care-team-status|active
+</pre>
+&nbsp;
+
+#### Example: Get all care teams for a single patient that were modified as of 5/5/2022
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CareTeam?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_lastUpdated=ge2022-05-05
+</pre>
+&nbsp;
+
+#### Example: Get all care teams that were modified by 5/5/2022
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CareTeam?_lastUpdated=le2022-05-05
+</pre>
+&nbsp;
+
 ## Condition
 
 ### Overview
