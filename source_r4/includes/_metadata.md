@@ -39,7 +39,7 @@ Information about supported server functionality and server's SMART on FHIR conf
 {
     "resourceType": "CapabilityStatement",
     "status": "active",
-    "date": "2022-06-23",
+    "date": "2022-06-30",
     "publisher": "Nextech Systems, LLC",
     "kind": "instance",
     "implementation": {
@@ -111,7 +111,7 @@ Information about supported server functionality and server's SMART on FHIR conf
                             "type": "reference"
                         },
                         {
-                            "name": "date",
+                            "name": "_lastUpdated",
                             "type": "date"
                         }
                     ]
@@ -173,6 +173,14 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "searchParam": [
                         {
+                            "name": "_id",
+                            "type": "token"
+                        },
+                        {
+                            "name": "identifier",
+                            "type": "token"
+                        },
+                        {
                             "name": "patient",
                             "type": "reference"
                         },
@@ -203,6 +211,14 @@ Information about supported server functionality and server's SMART on FHIR conf
                         "Provenance:target"
                     ],
                     "searchParam": [
+                        {
+                            "name": "_id",
+                            "type": "token"
+                        },
+                        {
+                            "name": "identifier",
+                            "type": "token"
+                        },
                         {
                             "name": "patient",
                             "type": "reference"
@@ -342,6 +358,10 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "date",
                             "type": "date"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -373,6 +393,10 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "patient",
                             "type": "reference"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -516,6 +540,10 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "phone",
                             "type": "string"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -526,7 +554,16 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "interaction": [
                         {
+                            "code": "search-type"
+                        },
+                        {
                             "code": "read"
+                        }
+                    ],
+                    "searchParam": [
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -558,6 +595,10 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "patient",
                             "type": "reference"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -605,6 +646,10 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "patient",
                             "type": "reference"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -629,6 +674,10 @@ Information about supported server functionality and server's SMART on FHIR conf
                         {
                             "name": "address",
                             "type": "string"
+                        },
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 },
@@ -825,7 +874,16 @@ Information about supported server functionality and server's SMART on FHIR conf
                     ],
                     "interaction": [
                         {
+                            "code": "search-type"
+                        },
+                        {
                             "code": "read"
+                        }
+                    ],
+                    "searchParam": [
+                        {
+                            "name": "_lastUpdated",
+                            "type": "date"
                         }
                     ]
                 }
