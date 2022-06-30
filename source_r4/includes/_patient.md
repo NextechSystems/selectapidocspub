@@ -373,7 +373,8 @@ Searches for allergy intolerances for a single patient
 | ---- | ---------- | ----------- | -------- | --------------- |
 | patientUid | path, query or payload | The official patient identifier acquired from a patient search | Yes | _12.6_ |
 | date | query | The date the record was believed accurate in the form YYYY-MM-DD  | No | _12.6_ |
-**_Note:_**  The possible filter values for date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+> **_Note:_**  The possible filter values for date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
 #### Examples: 
@@ -582,7 +583,8 @@ Searches for care plans for a single patient
 | identifier | query or payload | The unique identifier for the care plan | No | _12.6_ |
 | category | query or payload | The type of the care plan. Ex.: 'assess-plan' | No | _12.6_ |
 | _lastUpdated | query or payload | The date the care plan was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _12.6_ |
-**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 
 #### Example: Get all care plans for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and category 'assess-plan'
@@ -771,7 +773,8 @@ Searches for care teams for a single patient
 | identifier | query or payload | The unique identifier for the care team | No | _16.9_ |
 | status | query or payload | Indicates the current state of the care team. Ex.: 'active' | No | _16.9_ |
 | _lastUpdated | query or payload | The date the care team was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
-**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 
 #### Example: Get all care teams for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and status 'active'
@@ -984,7 +987,8 @@ Searches for devices for a single patient
 | date | query or payload | The device last update date in the form YYYY-MM-DD | No | _12.6_ |
 | identifier | query or payload | The unique identifier for the device | No | _12.6_ |
 | _id | query or payload | The unique identifier for the device | No | _12.6_ |
-**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get all devices for a single patient with id 'ad2085b5-b974-401d-bfcb-3b865109fd35'
 
@@ -1536,7 +1540,8 @@ Returns immunizations based on the provided search parameters.
 | date | query or payload | The date the immunization was administered in the form YYYY-MM-DD  | No | _16.7_ |
 | identifier | query or payload | The immunization unique identifier | No | _16.7_ |
 | _id | query or payload | The immunization unique identifier | No | _16.7_ |
-**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
 #### Examples: 
@@ -1810,7 +1815,8 @@ Returns procedures based on the provided search parameters.
 | patient | query or payload | The official patient identifier acquired from a patient search | No | _16.7_ |
 | date | query or payload | The date the procedure was performed in the form YYYY-MM-DD  | No | _16.7_ |
 | _id | query or payload | The procedure unique identifier | No | _16.7_ |
-**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
 #### Examples: 
