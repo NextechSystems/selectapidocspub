@@ -9,6 +9,7 @@ A physical location where services are provided. This may or may not be under th
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.8_ |
+| meta.lastUpdated | The last time the organization was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _16.9_ |
 | identifier | Identifier for the organization that is used to identify the organization across multiple disparate systems |  [(USCoreOrganizationProfile)](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization-definitions.html#Organization.identifier:NPI) | _16.9_ |
 | name | The name of the location | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
@@ -21,6 +22,10 @@ A physical location where services are provided. This may or may not be under th
 {
     "resourceType": "Organization",
     "id": "2",
+    "meta": 
+    {
+   	    "lastUpdated": "2022-04-02T14:04:35.9+00:00"
+    },
     "identifier": [
         {
             "use": "official",
@@ -107,6 +112,7 @@ Searches for all organizations based on the given search criteria.
 | address-postalcode | query or payload | A postal code specified in an address | No | _12.8_ |
 | phone | query or payload | Searches for locations based on phone numbers and fax numbers | No | _12.8_ |
 | _id | query or payload | The organization unique identifier | No | _16.9_ |
+| _lastUpdated | query or payload | No | _16.9_ |
 
 #### Example: Get all active organizations
 
