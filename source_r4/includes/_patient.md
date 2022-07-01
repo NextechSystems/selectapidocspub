@@ -1676,36 +1676,56 @@ An observation resource describes a measurement or an assertion made about a pat
 &nbsp;
 
 ### *Search*
-Searches for observations for a single patient
+Returns observations based on the provided search parameters
 
 #### HTTP Request 
-`GET /Patient/{patientUid}/Observation?{parameters}` 
+- `GET /r4/Observation?{parameters}` 
+- `POST /r4/Observation/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both.
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
-| category | query | The category of observation to load | Yes | _12.6_ |
-| date | query | The observation date in the form YYYY-MM-DD | No | _12.6_ |
+| identifier | query or body or path | The observation identifier | No | _12.6_ |
+| _id | query or body or path | The observation identifier | No | _12.6_ |
+| patientUid | query or body | The official patient identifier acquired from a patient search | No | _12.6_ |
+| category | query or body | The category of observation by code ie. category=laboratory or by token ie. category=http://terminology.hl7.org/CodeSystem/observation-category&vert;laboratory | No | _12.6_ |
+| date | query or body | The observation date in the form YYYY-MM-DD | No | _12.6_ |
+| code | query or body | The loinc code of observation by code ie. code=49765-1 or token ie. code=http://loinc.org&vert;49765-1 | No | _12.6_ |
+| _lastUpdated | query or body | The date the observation was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _12.6_ |
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`.
 
-#### Example: Get all laboratory requisitions and results for a single patient as of 5/1/2017
+#### Example: Get all laboratory requisitions and lab results 5/1/2017
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=laboratory&date=ge2017-05-01
+GET https://select.nextech-api.com/api/r4/Observation?category=laboratory&date=ge2017-05-01
+</pre>
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Observation/_search
+<i><small>payload:</small></i> category=laboratory&date=ge2017-05-01
 </pre>
 &nbsp;
 
-#### Example: Get the social history of a single patient charted in encounters as of 5/1/2017
+#### Example: Get the social histories charted in encounters as of 5/1/2017
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=social-history&date=ge2017-05-01
+GET https://select.nextech-api.com/api/r4/Observation?category=social-history&date=ge2017-05-01
+</pre>
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Observation/_search
+<i><small>payload:</small></i> category=social-history&date=ge2017-05-01
 </pre>
 &nbsp;
 
-#### Example: Get the vital signs of a single patient charted in encounters as of 5/1/2017
+#### Example: Get the vital signs charted in encounters as of 5/1/2017
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Observation?category=vital-signs&date=ge2017-05-01
+GET https://select.nextech-api.com/api/r4/Observation?category=vital-signs&date=ge2017-05-01
+</pre>
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Observation/_search
+<i><small>payload:</small></i> category=vital-signs&date=ge2017-05-01
 </pre>
 &nbsp;
 
