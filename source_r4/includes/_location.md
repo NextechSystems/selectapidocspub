@@ -15,6 +15,7 @@ A physical location where services are provided. This may or may not be under th
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
 | managingOrganization | The identifier of the location | [Reference](http://hl7.org/fhir/R4/references.html#Reference) [(USCoreOrganizationProfile)](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html)  | _16.9_ |
+| meta.lastUpdated | The last time the location was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 
 ### Example
 <pre class="center-column">
@@ -65,7 +66,11 @@ A physical location where services are provided. This may or may not be under th
 	"managingOrganization": {
 		"reference": "Organization/1",
 		"display": "Tampa Dermatology"
-	}
+	},
+    "meta": 
+    {
+   	    "lastUpdated": "2022-04-02T14:04:35.9+00:00"
+    }
 }
 </pre>
 &nbsp;

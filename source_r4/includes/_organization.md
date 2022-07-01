@@ -15,6 +15,7 @@ A physical location where services are provided. This may or may not be under th
 | address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
 | address.country | The country of the location address | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.9_ |
 | active | Whether the organization's record is still in active use | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) | _12.8_ |
+| meta.lastUpdated | The last time the organization was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 
 ### Example
 <pre class="center-column">
@@ -60,7 +61,11 @@ A physical location where services are provided. This may or may not be under th
         "state": "FL",
         "postalCode": "11598", 
         "country": "US"
-    }]
+    }],
+    "meta": 
+    {
+   	    "lastUpdated": "2022-04-02T14:04:35.9+00:00"
+    }
 }
 </pre>
 &nbsp;
