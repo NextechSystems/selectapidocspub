@@ -117,7 +117,7 @@ Searches for all locations based on the given search criteria.
 | address-postalcode | query or payload | A postal code specified in an address | No | _12.8_ |
 | phone | query or payload | Searches for locations based on phone numbers and fax numbers | No | _12.8_ |
 | _id | query or payload | The location unique identifier | No | _16.9_ |
-| _lastUpdated | query or payload | No | _16.9_ |
+| _lastUpdated | query or payload | The last time the location was modified | No | _16.9_ |
 
 #### Example: Get all active locations
 
