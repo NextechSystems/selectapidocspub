@@ -62,10 +62,15 @@ A physical location where services are provided. This may or may not be under th
         "state": "FL",
         "postalCode": "11598"
     },
-	"managingOrganization": {
-		"reference": "Organization/1",
-		"display": "Tampa Dermatology"
-	}
+    "managingOrganization":
+    {
+	"reference": "Organization/1",
+	"display": "Tampa Dermatology"
+    }
+    "meta": 
+    {
+   	"lastUpdated": "2022-04-02T14:04:35.9+00:00"
+    },
 }
 </pre>
 &nbsp;
