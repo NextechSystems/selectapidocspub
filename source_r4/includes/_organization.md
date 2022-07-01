@@ -61,6 +61,10 @@ A physical location where services are provided. This may or may not be under th
         "postalCode": "11598", 
         "country": "US"
     }]
+    "meta": 
+    {
+   	    "lastUpdated": "2022-04-02T14:04:35.9+00:00"
+    },
 }
 </pre>
 &nbsp;
