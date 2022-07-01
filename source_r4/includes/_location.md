@@ -9,19 +9,23 @@ A physical location where services are provided. This may or may not be under th
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.8_ |
+| meta.lastUpdated | The last time the location was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 | status | The status of the location (ie. active, inactive) | [code](https://www.hl7.org/fhir/datatypes.html#code) | _12.8_ |
 | managed | True if this location is under practice management, for example the practice's primary office location. False if this location is not under practice management, but where services are provided, for example a hospital or clinic. | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | _14.4_ |
 | name | The name of the location | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
 | managingOrganization | The identifier of the location | [Reference](http://hl7.org/fhir/R4/references.html#Reference) [(USCoreOrganizationProfile)](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html)  | _16.9_ |
-| meta.lastUpdated | The last time the location was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 
 ### Example
 <pre class="center-column">
 {
     "resourceType": "Location",
     "id": "2",
+    "meta": 
+    {
+   	    "lastUpdated": "2022-04-02T14:04:35.9+00:00"
+    },
     "extension": [
         {
             "url": "https://select.nextech-api.com/api/structuredefinition/managed",
@@ -66,11 +70,7 @@ A physical location where services are provided. This may or may not be under th
 	"managingOrganization": {
 		"reference": "Organization/1",
 		"display": "Tampa Dermatology"
-	},
-    "meta": 
-    {
-   	    "lastUpdated": "2022-04-02T14:04:35.9+00:00"
-    }
+	}
 }
 </pre>
 &nbsp;

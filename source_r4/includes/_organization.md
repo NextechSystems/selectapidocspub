@@ -9,19 +9,23 @@ A physical location where services are provided. This may or may not be under th
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.8_ |
+| meta.lastUpdated | The last time the organization was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 | identifier | Identifier for the organization that is used to identify the organization across multiple disparate systems |  [(USCoreOrganizationProfile)](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization-definitions.html#Organization.identifier:NPI) | _16.9_ |
 | name | The name of the location | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
 | address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
 | address.country | The country of the location address | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.9_ |
 | active | Whether the organization's record is still in active use | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) | _12.8_ |
-| meta.lastUpdated | The last time the organization was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _14.3_ |
 
 ### Example
 <pre class="center-column">
 {
     "resourceType": "Organization",
     "id": "2",
+    "meta": 
+    {
+   	    "lastUpdated": "2022-04-02T14:04:35.9+00:00"
+    },
     "identifier": [
         {
             "use": "official",
@@ -61,11 +65,7 @@ A physical location where services are provided. This may or may not be under th
         "state": "FL",
         "postalCode": "11598", 
         "country": "US"
-    }],
-    "meta": 
-    {
-   	    "lastUpdated": "2022-04-02T14:04:35.9+00:00"
-    }
+    }]
 }
 </pre>
 &nbsp;
