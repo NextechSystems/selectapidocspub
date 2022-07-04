@@ -356,14 +356,14 @@ The allergy intolerance resource describes the risk of undesirable responses of 
 Searches for allergy intolerances for a single patient
 
 #### HTTP Requests
-- `GET /r4/Patient/{patientUid}/AllergyIntolerance?[date=(filter)YYYY-MM-DD]`
+- `GET /r4/Patient/{patientUid}/AllergyIntolerance?[_lastUpdated=(filter)YYYY-MM-DD]`
 
-- `GET /r4/AllergyIntolerance?patient={patientUid}&[date=(filter)YYYY-MM-DD]`
+- `GET /r4/AllergyIntolerance?patient={patientUid}&[_lastUpdated=(filter)YYYY-MM-DD]`
 
-- `GET /r4/AllergyIntolerance?patient=Patient/{patientUid}&[date=(filter)YYYY-MM-DD]`
+- `GET /r4/AllergyIntolerance?patient=Patient/{patientUid}&[_lastUpdated=(filter)YYYY-MM-DD]`
 
 - `POST /r4/Patient/AllergyIntolerance/_search`
-*payload:* `patient={patientUid}`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 
 
@@ -372,15 +372,15 @@ Searches for allergy intolerances for a single patient
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
 | patientUid | path, query or payload | The official patient identifier acquired from a patient search | Yes | _12.6_ |
-| date | query | The date the record was believed accurate in the form YYYY-MM-DD  | No | _12.6_ |
+| _lastUpdated | query or payload | The date the allergy intolerance was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD  | No | _12.6_ |
 
-> **_Note:_**  The possible filter values for date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+> **_Note:_**  The possible filter values for _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
 #### Examples: 
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/Patient/b664fd37-ff5f-4022-9d71-2e476d42f316/AllergyIntolerance?date=ge2022-01-01
+GET https://select.nextech-api.com/api/r4/Patient/b664fd37-ff5f-4022-9d71-2e476d42f316/AllergyIntolerance?_lastUpdated=ge2022-01-01
 </pre>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/AllergyIntolerance?patient=b664fd37-ff5f-4022-9d71-2e476d42f316
