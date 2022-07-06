@@ -224,8 +224,11 @@ POST https://select.nextech-api.com/api/r4/DocumentReference
 </pre>
 &nbsp;
 
-### *Create CCDA*
-This generates a CCDA for the given patient and attaches it to their patient history
+### *$docref*
+This generates a CCDA for the given patient and attaches it to their patient history if no Summary of Care has been generated for the affected EMNs.
+Otherwise, this returns the most recent CCDA document generated for each EMN.
+If only patient is specified, then it will return one (1) record for the latest EMN.
+If patient and a date range is specified (start, end, start+end), then it will return one document reference for each EMN that falls within that range.
 
 #### HTTP Request
 `POST /DocumentReference/$docref`
@@ -236,6 +239,8 @@ This generates a CCDA for the given patient and attaches it to their patient his
 | resourceType | Must be `Parameters` | Yes |
 | parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes |
 | parameter.patient | The patient the document is for | Yes |
+| parameter.start | The start date for EMN encounters | Yes |
+| parameter.end | the end date for EMN encounters | Yes |
 
 #### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via POST
 <pre class="center-column">
@@ -251,6 +256,14 @@ POST https://select.nextech-api.com/api/r4/DocumentReference/$docref
         {
           "name": "patient",
           "valueId" : "C21AB936-3A2A-4C5A-81B8-76B120194053"
+        },
+        {
+            "name": "start",
+            "valueDateTime": "2022-02-23T08:00:00"
+        },
+        {
+            "name": "end",
+            "valueDateTime": "2022-02-24T08:00:00"
         }
       ]
     }
@@ -258,14 +271,16 @@ POST https://select.nextech-api.com/api/r4/DocumentReference/$docref
 Note: the response body will be the same as the GET example below
 
 #### HTTP Request 
-`GET /DocumentReference/$docref?{patient}`
+`GET /DocumentReference/$docref?{patient}[&{start}][&{end}]`
 
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| patient | Must be in the form `patient={patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.8
+| patient | Must be in the form `patient={patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.9 |
+| start | Must be in the form `start=2022-02-23T08:00:00` | No | 16.9 |
+| end | Must be in the form `end=2022-02-23T08:00:00` | No | 16.9 |
 
-#### *Note: This will result in creating a new document attached to the patient's chart every request despite being a GET*
+#### *Note: This will result in creating a new document attached to the patient's chart every request despite being a GET if one does not exist for relevant EMNs*
 
 #### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via GET
 <pre class="center-column">
