@@ -224,8 +224,11 @@ POST https://select.nextech-api.com/api/r4/DocumentReference
 </pre>
 &nbsp;
 
-### *Create CCDA*
-This generates a CCDA for the given patient and attaches it to their patient history
+### *$docref*
+This generates a CCDA for the given patient and attaches it to their patient history if no Summary of Care has been previously generated for the relevant encounters.
+Otherwise, this returns the most recent CCDA Summary of Care document generated for each encounter.
+If only patient is specified, then it will return one (1) Summary of Care document reference record for the latest encounter.
+If patient and a date range is specified (start, end, start+end), then it will return one document reference for each encounter that falls within that range.
 
 #### HTTP Request
 `POST /DocumentReference/$docref`
@@ -233,9 +236,11 @@ This generates a CCDA for the given patient and attaches it to their patient his
 #### Body Fields
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| resourceType | Must be `Parameters` | Yes |
-| parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes |
-| parameter.patient | The patient the document is for | Yes |
+| resourceType | Must be `Parameters` | Yes | 16.9 |
+| parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | 16.9 |
+| parameter.patient | The patient the document is for | Yes | 16.9 |
+| parameter.start | The start date for EMN encounters | No | 16.9 |
+| parameter.end | the end date for EMN encounters | No | 16.9 |
 
 #### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via POST
 <pre class="center-column">
@@ -251,21 +256,32 @@ POST https://select.nextech-api.com/api/r4/DocumentReference/$docref
         {
           "name": "patient",
           "valueId" : "C21AB936-3A2A-4C5A-81B8-76B120194053"
+        },
+        {
+            "name": "start",
+            "valueDateTime": "2022-02-23T08:00:00"
+        },
+        {
+            "name": "end",
+            "valueDateTime": "2022-02-24T08:00:00"
         }
       ]
     }
 </pre>
+Note: The `start` and `end` parameters can be either of type `valueDateTime` as above, or simply `valueDate` and passing only values such as `2022-02-23`
 Note: the response body will be the same as the GET example below
 
 #### HTTP Request 
-`GET /DocumentReference/$docref?{patient}`
+`GET /DocumentReference/$docref?{patient}[&{start}][&{end}]`
 
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| patient | Must be in the form `patient={patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.8
+| patient | Must be in the form `{patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.9 |
+| start | Must be in the form of either  `2022-02-23T08:00:00` or `2022-02-23` | No | 16.9 |
+| end | Must be in the form of either `2022-02-24T08:00:00` or `2022-02-24` | No | 16.9 |
 
-#### *Note: This will result in creating a new document attached to the patient's chart every request despite being a GET*
+#### *Note: Despite being a GET request, if an encounter that falls within the date range (if supplied) or the most recent encounter does not have a CCDA Summary of Care document previously generated, this request will cause one to be created and attached to the patient's document history*
 
 #### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via GET
 <pre class="center-column">
@@ -301,12 +317,10 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/$docref?patient=C21A
                     {
                         "coding": [
                             {
-                                "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
-                                "code": "clinical-note",
-                                "display": "clinical-note"
+                                "system": "https://select.nextech-api.com/api/structuredefinition/note-category",
+                                "code": "10"
                             }
                         ],
-                        "text": "clinical-note"
                     }
                 ],
                 "subject": {
