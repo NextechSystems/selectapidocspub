@@ -824,47 +824,147 @@ The condition resource describes a certain state of health of a patient.
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each allergy intolerance record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| clinicalStatus | The condition status | [Condition Clinical Status Code](https://www.hl7.org/fhir/valueset-condition-clinical.html) | _12.6_ |
-| verificationStatus | The condition verification status | [ConditionVerificationstatus](https://www.hl7.org/fhir/valueset-condition-ver-status.html) | _12.6_ |
-| code | Identification of the condition, problem or diagnosis | [Condition/Problem/Diagnosis Code](https://www.hl7.org/fhir/valueset-condition-code.html) | _12.6_ |
-| subject | The patient pertaining to the condition | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| onsetDate | Estimated or actual date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
-| abatementDate | Resolution or remission date | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
+| identifier | The unique value assigned to each condition record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.8_ |
+| clinicalStatus | The condition status | [Condition Clinical Status Code](https://www.hl7.org/fhir/valueset-condition-clinical.html) | _16.8_ |
+| verificationStatus | The condition verification status | [ConditionVerificationstatus](https://www.hl7.org/fhir/valueset-condition-ver-status.html) | _16.8_ |
+| category | A category assigned to the condition | [Condition Category Code](http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category) | _16.8_ |
+| code | Identification of the condition, problem or diagnosis | [Condition/Problem/Diagnosis Code](https://www.hl7.org/fhir/valueset-condition-code.html) | _16.8_ |
+| subject | The patient pertaining to the condition | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _16.8_ |
 
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Condition",
-        "id": "54",
-        "identifier": [
-          {
-            "use": "official",
-            "value": "54"
-          }
-        ],
-        "clinicalStatus": "active",
-        "verificationStatus": "confirmed",
-        "code": {
-          "coding": [
-            {
-              "system": "SNOMED",
-              "code": "11381005"
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 2,
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a"
+        },
+        {
+            "relation": "previous",
+            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_getpagesoffset=0&_count=10"
+        },
+        {
+            "relation": "next",
+            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_getpagesoffset=0&_count=10"
+        },
+        {
+            "relation": "first",
+            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_getpagesoffset=0&_count=10"
+        },
+        {
+            "relation": "last",
+            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_getpagesoffset=0&_count=10"
+        }
+    ],
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "Condition",
+                "id": "prb-12",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/ValueSet/condition-clinical",
+                            "code": "resolved",
+                            "display": "Resolved"
+                        }
+                    ],
+                    "text": "Resolved"
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/ValueSet/condition-ver-status",
+                            "code": "confirmed",
+                            "display": "Confirmed"
+                        }
+                    ],
+                    "text": "Confirmed"
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category",
+                                "code": "problem-list-item",
+                                "display": "Problem List Item"
+                            }
+                        ],
+                        "text": "Problem List Item"
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "238131007",
+                            "display": "Overweight"
+                        }
+                    ],
+                    "text": "Overweight"
+                },
+                "subject": {
+                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+                    "display": "Newman, Alice Jones"
+                }
             }
-          ],
-          "text": "Acne"
         },
-        "subject": {
-          "reference": "Patient/ad2085b5-b974-401d-bfcb-3b865109fd35"
-        },
-        "onsetDate": "2015-06-05"
-      }
-    }
-  ]
+        {
+            "resource": {
+                "resourceType": "Condition",
+                "id": "prb-10",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/ValueSet/condition-clinical",
+                            "code": "active",
+                            "display": "Active"
+                        }
+                    ],
+                    "text": "Active"
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/ValueSet/condition-ver-status",
+                            "code": "confirmed",
+                            "display": "Confirmed"
+                        }
+                    ],
+                    "text": "Confirmed"
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category",
+                                "code": "problem-list-item",
+                                "display": "Problem List Item"
+                            }
+                        ],
+                        "text": "Problem List Item"
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "83986005",
+                            "display": "Severe hypothyroidism"
+                        }
+                    ],
+                    "text": "Severe hypothyroidism"
+                },
+                "subject": {
+                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+                    "display": "Newman, Alice Jones"
+                }
+            }
+        }
+    ]
 }
 </pre>
 &nbsp;
@@ -873,22 +973,42 @@ The condition resource describes a certain state of health of a patient.
 Searches for conditions for a single patient
 
 #### HTTP Request 
-`GET /Patient/{patientUid}/Condition?{parameters}` 
+`GET /r4/Condition?{parameters}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
-| onset-date | query | The onset date in the form YYYY-MM-DD | No | _12.6_ |
-| abatement-date | query | The abatement date in the form YYYY-MM-DD | No | _12.6_ |
+| patient | query or payload | The official patient identifier acquired from a patient search | Yes | _16.8_ |
+| _id | query or payload | The unique identifier for the condition | No | _16.8_ |
+| identifier | query or payload | The unique identifier for the condition | No | _16.8_ |   
+| _lastUpdated | query or payload | The date the condition was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.8_ |
 
-#### Example: Get all conditions for a single patient with an onset date as of 1/1/2017
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+#### Example: Get all conditions for a single patient 
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Condition?onset-date=ge2017-01-01
+GET https://select.nextech-api.com/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
 </pre>
 &nbsp;
 
+#### Example: Get the condition problem with id of 12
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Condition?_id=prb-12
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Condition?identifier=prb-12
+</pre>
+&nbsp;
+
+#### Example: Get all conditions for a single patient that were modified as of 5/5/2022
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_lastUpdated=ge2022-05-05
+</pre>
+&nbsp;
 
 ## Device
 
