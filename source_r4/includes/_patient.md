@@ -1,3 +1,4 @@
+
 # Patient
 
 ## Patient
@@ -1716,10 +1717,133 @@ POST https://select.nextech-api.com/api/r4/Immunization/_search
 
 &nbsp;
 
+## Diagnostic Report
+
+### Overview
+A diagnostic report resource describes the findings and interpretation of diagnostic tests performed on patients and/or specimens derived from these. There are two types of diagnostic reports that can be returned:
+
+* Diagnostic reports for laboratory specimens
+* Diagnostic reports containing result documents for laboratory specimens
+
+These types of laboratory reports are denoted by their category. Diagnostic reports for laboratory specimens will always have a category of "LAB", while reports containing result documents will have a the document's assigned LOINC code as their category. For example, "LP29684-5" would be the category for a radiology document report.
+
+### Fields
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| id | The logical id of the resource, as used in the URL for the resource. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.9_ |
+| identifier | The unique value assigned to each diagnostic report which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _16.9_ |
+| status | The status of the diagnostic report | [code](https://hl7.org/fhir/R4/datatypes.html#code) with [DiagnosticReportStatus](http://hl7.org/fhir/R4/valueset-diagnostic-report-status.html) | _16.9_ |
+| category | Classification of type of diagnostic report | [Category](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) using [Diagnostic Service Section Codes](http://hl7.org/fhir/R4/valueset-diagnostic-service-sections.html) | _16.9_ |
+| code | A code that describes the diagnostic report | [LOINC Diagnostic Report Codes](http://hl7.org/fhir/R4/valueset-report-codes.html) | _16.9_ |
+| subject | The patient pertaining to the diagnostic report | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCorePatientProfile](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html)) | _16.9_ |
+| effectiveTime | The date and time of specimen collection | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _16.9_ |
+| issued | The date and time that this version of the report was made available to providers | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _16.9_ |
+| performer | The provider who is responsible for issuing the report | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ( [Practitioner](http://hl7.org/fhir/R4/practitioner.html) ) | _16.9_ |
+| encounter | The healthcare event which this diagnostic report is about | [Reference](http://hl7.org/fhir/R4/references.html#Reference)( [Encounter](http://hl7.org/fhir/R4/encounter.html) ) | _16.9_ |
+| result | A reference to the related lab result observations | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ( [Observation](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-observation-lab.html) ) | _16.9_ |
+| presentedForm | A document attachment containing lab result data for the report | [Attachment](http://hl7.org/fhir/R4/datatypes.html#Attachment) | _16.9_ |
+| meta.lastUpdated | The last time the diagnostic report was updated | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) |  _16.9_ |
+
+### Example
+<pre class="center-column">
+{
+   "resourceType":"Bundle",
+   "entry":[
+      {
+         "resource":{
+            "resourceType":"DiagnosticReport",
+            "id":"244",
+            "identifier":[
+               {
+                  "use":"official",
+                  "value":"244"
+               },
+               {
+                  "use":"usual",
+                  "value":"XY202200011 - A"
+               }
+            ],
+            "status":"registered",
+            "category":[
+               {
+                  "coding":[
+                     {
+                        "system":"http://terminology.hl7.org/CodeSystem/v2-0074",
+                        "code":"LAB"
+                     }
+                  ]
+               }
+            ],
+            "code":{
+               "coding":[
+                  {
+                     "system":"http://loinc.org",
+                     "code":"11268-0",
+                     "display":"S pyog Throat Ql Cult"
+                  }
+               ],
+               "text":"S pyog Throat Ql Cult"
+            },
+            "subject":{
+               "reference":"Patient/C56936DF-FED7-4EFA-8998-2A9848C99631"
+            },
+            "effectiveDateTime":"2022-06-24T00:00:00-04:00",
+            "issued":"2022-06-24T00:00:00-04:00",
+            "performer":[
+               {
+                  "reference":"Practitioner/9149",
+                  "display":"Smith, Susan"
+               }
+            ],
+            "result":[
+               {
+                  "reference":"Observation/442",
+                  "display":""
+               }
+            ]
+         }
+      }
+   ]
+}
+</pre> 
+&nbsp;
+
+### *Search*
+Returns diagnostic reports based on the provided search parameters
+
+#### HTTP Request 
+- `GET /r4/DiagnosticReport?{parameters}` 
+- `POST /r4/DiagnosticReport/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both.
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| identifier | query or body or path | The diagnostic report identifier | No | _16.9_ |
+| _id | query or body or path | The diagnostic report identifier | No | _16.9_ |
+| patientUid | query or body | The official patient identifier acquired from a patient search | No | _16.9_ |
+| category | query or body | The category of the diagnostic report by either "LAB" or code ie. category=LP29684-5 or by token ie. category=http://terminology.hl7.org/CodeSystem/v2-0074&vert;LP29684-5 | No | _16.9_ |
+| date | query or body | The diagnostic report date in the form YYYY-MM-DD | No | _16.9_ |
+| code | query or body | The loinc code of the diagnostic report by code ie. code=49765-1 or token ie. code=http://loinc.org&vert;49765-1 | No | _16.9_ |
+| _lastUpdated | query or body | The date the observation was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`.
+
+#### Example: Get all lab-type diagnostic reports on or after 5/1/2017
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DiagnosticReport?category=LAB&date=ge2017-05-01
+</pre>
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DiagnosticReport/_search
+<i><small>payload:</small></i> category=LAB&date=ge2017-05-01
+</pre>
+&nbsp;
+
 ## Observation
 
 ### Overview
-An observation resource describes a measurement or an assertion made about a patient. This request requires a category code to search on. The following category codes are supported:
+An observation resource describes a measurement or an assertion made about a patient. The following category codes are supported:
 
 * laboratory
 * social-history
@@ -1728,13 +1852,13 @@ An observation resource describes a measurement or an assertion made about a pat
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each observation which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| subject | The patient pertaining to the observation | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| status | The observation status | [ObservationStatus](https://www.hl7.org/fhir/valueset-observation-status.html) | _12.6_ |
-| category | Classification of type of observation | [Category](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.6_ |
-| code | Type of observation | [LOINC Code](https://www.hl7.org/fhir/valueset-observation-codes.html) | _12.6_ |
-| effective | Clinically relevant time/time-period for observation | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
-| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.6_ |
+| identifier | The unique value assigned to each observation which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.8_ |
+| subject | The patient pertaining to the observation | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _16.8_ |
+| status | The observation status | [ObservationStatus](https://www.hl7.org/fhir/valueset-observation-status.html) | _16.8_ |
+| category | Classification of type of observation | [Category](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.8_ |
+| code | Type of observation | [LOINC Code](https://www.hl7.org/fhir/valueset-observation-codes.html) | _16.8_ |
+| effective | Clinically relevant time/time-period for observation | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _16.8_ |
+| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.8_ |
 
 ### Example
 <pre class="center-column">
