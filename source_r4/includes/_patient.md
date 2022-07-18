@@ -837,7 +837,7 @@ The condition resource describes a certain state of health of a patient.
 {
     "resourceType": "Bundle",
     "type": "searchset",
-    "total": 2,
+    "total": 3,
     "link": [
         {
             "relation": "self",
@@ -964,17 +964,92 @@ The condition resource describes a certain state of health of a patient.
                     "display": "Newman, Alice Jones"
                 }
             }
+        },
+        {
+            "resource": {
+                "resourceType": "Condition",
+                "id": "hc-616",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active",
+                            "display": "Active"
+                        }
+                    ],
+                    "text": "Active"
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                            "code": "confirmed",
+                            "display": "Confirmed"
+                        }
+                    ],
+                    "text": "Confirmed"
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/us/core/CodeSystem/condition-category",
+                                "code": "health-concern",
+                                "display": "Health Concern"
+                            }
+                        ],
+                        "text": "Health Concern"
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "236578006",
+                            "display": "Chronic rejection of renal transplant"
+                        }
+                    ],
+                    "text": "Chronic rejection of renal transplant"
+                },
+                "subject": {
+                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+                    "display": "Newman, Alice Jones"
+                }
+            }
         }
     ]
 }
 </pre>
 &nbsp;
 
+### *Get*
+Returns a single Condition result based on the Condition ID.
+
+#### HTTP Request 
+`GET /r4/Condition/{conditionId}` 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| conditionId | path | The unique identifier for the condition | Yes | _16.8_ |
+
+#### Example: Get the condition problem with an ID of 'prb-12'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Condition/prb-12
+</pre>
+&nbsp;
+
+
 ### *Search*
 Searches for conditions for a single patient
 
-#### HTTP Request 
-`GET /r4/Condition?{parameters}` 
+#### HTTP Requests
+
+- `GET /r4/Condition?{parameters}`
+- `POST /r4/Condition/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -991,9 +1066,14 @@ Searches for conditions for a single patient
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
 </pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Condition/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
+</pre>
 &nbsp;
 
-#### Example: Get the condition problem with id of 12
+#### Example: Get the condition problem with id of 'prb-12'
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Condition?_id=prb-12
@@ -1002,12 +1082,27 @@ GET https://select.nextech-api.com/api/r4/Condition?_id=prb-12
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Condition?identifier=prb-12
 </pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Condition/_search
+<i><small>payload:</small></i> _id=prb-12
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Condition/_search
+<i><small>payload:</small></i> identifier=prb-12
+</pre>
 &nbsp;
 
 #### Example: Get all conditions for a single patient that were modified as of 5/5/2022
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_lastUpdated=ge2022-05-05
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Condition/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_lastUpdated=ge2022-05-05
 </pre>
 &nbsp;
 
