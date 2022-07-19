@@ -1947,69 +1947,72 @@ An observation resource describes a measurement or an assertion made about a pat
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each observation which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.8_ |
-| subject | The patient pertaining to the observation | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _16.8_ |
-| status | The observation status | [ObservationStatus](https://www.hl7.org/fhir/valueset-observation-status.html) | _16.8_ |
-| category | Classification of type of observation | [Category](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.8_ |
-| code | Type of observation | [LOINC Code](https://www.hl7.org/fhir/valueset-observation-codes.html) | _16.8_ |
-| effective | Clinically relevant time/time-period for observation | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _16.8_ |
-| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.8_ |
+| identifier | The unique value assigned to each observation which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.9_ |
+| subject | The patient pertaining to the observation | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _16.9_ |
+| status | The observation status | [ObservationStatus](https://www.hl7.org/fhir/valueset-observation-status.html) | _16.9_ |
+| category | Classification of type of observation | [Category](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
+| code | Type of observation | [LOINC Code](https://www.hl7.org/fhir/valueset-observation-codes.html) | _16.9_ |
+| effectiveDate | Clinically relevant time/time-period for observation | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _16.9_ |
+| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
+| issued | The date and time this version of the observation was made available to providers | [instant](http://hl7.org/fhir/R4/datatypes.html#instant) | _16.9_ |
+| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
+| bodySite | Indicates the site on the subject's body where the observation was made (i.e. the target site) | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
+| method | Indicates the mechanism used to perform the observation | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
+| hasMember | Used when reporting vital signs panel components | [Reference](http://hl7.org/fhir/R4/references.html#Reference)([Observation](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-observation-lab.html)) |  _16.9_ |
+| component | Used when reporting systolic and diastolic blood pressure | [BackboneElement](http://hl7.org/fhir/R4/backboneelement.html#BackboneElement) |  _16.9_ |
+| meta.lastUpdated | The last time the observation was updated | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) |  _16.9_ |
 
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Observation",
-        "id": "smokestatemn-3093code-745770",
-        "identifier": [
-          {
-            "use": "official",
-            "value": "smokestatemn-3093code-745770"
-          }
-        ],
-        "status": "final",
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "observation-category",
-                "code": "social-history"
-              }
-            ],
-            "text": "Social History"
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "72166-2"
-            }
-          ]
-        },
-        "subject": {
-          "reference": "Patient/F15FB185-5E63-485E-B025-D113103DCEC3",
-          "display": "Morgan, Stanley"
-        },
-        "effectivePeriod": {
-          "start": "2009-03-02",
-          "end": "2013-08-17"
-        },
-        "valueCodeableConcept": {
-          "coding": [
-            {
-              "system": "2.16.840.1.113883.6.96",
-              "code": "8517006"
-            }
-          ],
-          "text": "Ex-smoker"
-        }
+  "resource":{
+    "resourceType":"Observation",
+    "id":"lab-452",
+    "identifier":[
+      {
+        "use":"official",
+        "value":"lab-452"
+      },
+      {
+        "use":"usual",
+        "value":"XY202200016 - A"
       }
+    ],
+    "status":"registered",
+    "category":[
+      {
+        "coding":[
+          {
+            "system":"http://terminology.hl7.org/CodeSystem/observation-category",
+            "code":"laboratory",
+            "display":"laboratory"
+          }
+        ],
+        "text":"Laboratory"
+      }
+    ],
+    "code":{
+      "coding":[
+        {
+          "system":"http://loinc.org",
+          "code":"11065-0"
+        }
+      ],
+      "text":"HPV Cervix"
+    },
+    "subject":{
+      "reference":"Patient/4CC272B3-0842-4D9E-A4AD-9535FA1AD01E",
+      "display":"Underwood, Jane"
+    },
+    "effectiveDate":"2022-06-30",
+    "issued":"2022-06-01T11:39:12+47:11",
+    "bodySite":{
+      "text":"right anterior 1st finger"
+    },
+    "method":{
+      "text":"Excision"
     }
-  ]
+  }
 }
 </pre> 
 &nbsp;
@@ -2027,12 +2030,12 @@ Returns observations based on the provided search parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
 | identifier | query or body or path | The observation identifier | No | _12.6_ |
-| _id | query or body or path | The observation identifier | No | _12.6_ |
-| patientUid | query or body | The official patient identifier acquired from a patient search | No | _12.6_ |
-| category | query or body | The category of observation by code ie. category=laboratory or by token ie. category=http://terminology.hl7.org/CodeSystem/observation-category&vert;laboratory | No | _12.6_ |
-| date | query or body | The observation date in the form YYYY-MM-DD | No | _12.6_ |
-| code | query or body | The loinc code of observation by code ie. code=49765-1 or token ie. code=http://loinc.org&vert;49765-1 | No | _12.6_ |
-| _lastUpdated | query or body | The date the observation was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _12.6_ |
+| _id | query or body or path | The observation identifier | No | _16.9_ |
+| patientUid | query or body | The official patient identifier acquired from a patient search | No | _16.9_ |
+| category | query or body | The category of observation by code ie. category=laboratory or by token ie. category=http://terminology.hl7.org/CodeSystem/observation-category&vert;laboratory | No | _16.9_ |
+| date | query or body | The observation date in the form YYYY-MM-DD | No | _16.9__ |
+| code | query or body | The loinc code of observation by code ie. code=49765-1 or token ie. code=http://loinc.org&vert;49765-1 | No | _16.9_ |
+| _lastUpdated | query or body | The date the observation was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) (**_Note:_** Currently this search parameter will not filter the results for laboratory type observations) | No | _16.9_ |
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`.
 
 #### Example: Get all laboratory requisitions and lab results 5/1/2017
