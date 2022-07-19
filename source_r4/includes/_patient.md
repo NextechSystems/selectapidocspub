@@ -1837,7 +1837,6 @@ These types of laboratory reports are denoted by their category. Diagnostic repo
 | encounter | The healthcare event which this diagnostic report is about | [Reference](http://hl7.org/fhir/R4/references.html#Reference)( [Encounter](http://hl7.org/fhir/R4/encounter.html) ) | _16.9_ |
 | result | A reference to the related lab result observations | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ( [Observation](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-observation-lab.html) ) | _16.9_ |
 | presentedForm | A document attachment containing lab result data for the report | [Attachment](http://hl7.org/fhir/R4/datatypes.html#Attachment) | _16.9_ |
-| meta.lastUpdated | The last time the diagnostic report was updated | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) |  _16.9_ |
 
 ### Example
 <pre class="center-column">
@@ -1921,7 +1920,7 @@ Returns diagnostic reports based on the provided search parameters
 | category | query or body | The category of the diagnostic report by either "LAB" or code ie. category=LP29684-5 or by token ie. category=http://terminology.hl7.org/CodeSystem/v2-0074&vert;LP29684-5 | No | _16.9_ |
 | date | query or body | The diagnostic report date in the form YYYY-MM-DD | No | _16.9_ |
 | code | query or body | The loinc code of the diagnostic report by code ie. code=49765-1 or token ie. code=http://loinc.org&vert;49765-1 | No | _16.9_ |
-| _lastUpdated | query or body | The date the observation was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
+| _lastUpdated | query or body | The date the report was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) (**_Note:_** Currently this search parameter will not filter the results) | No | _16.9_ |
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`.
 
 #### Example: Get all lab-type diagnostic reports on or after 5/1/2017
