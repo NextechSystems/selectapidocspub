@@ -1427,104 +1427,278 @@ The following mimetypes are currently supported:
 ## Encounter
 
 ### Overview
-The encounter resource describes an interaction between a patient and healthcare provider.
+The Encounter resource describes an interaction between a patient and healthcare provider.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each encounter which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| subject | The patient pertaining to the encounter | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| participant | The medical professionals involved in the encounter | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
-| period | The start and end date of the encounter in the form YYYY-MM-DD | [period](https://www.hl7.org/fhir/datatypes.html#Period) | _12.6_ |
+| identifier | The unique value assigned to each encounter which discerns them from all others | [Identifier](https://www.hl7.org/fhir/r4/datatypes.html#Identifier) | _16.9_ |
+| status | The current state of the encounter (either `in-progress`, `finished`, or `unknown`) | [code](https://hl7.org/fhir/R4/datatypes.html#code) with [encounter status value set](http://hl7.org/fhir/R4/valueset-encounter-status.html) | _16.9_ |
+| class | The classification of the encounter | [Coding](http://hl7.org/fhir/R4/datatypes.html#Coding) | _16.9_ |
+| type | The specific type of the encounter | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
+| subject | The patient pertaining to the encounter | [Reference(Patient)](https://www.hl7.org/fhir/r4/references.html) | _16.9_ |
+| participant | The medical professionals involved in the encounter | [BackboneElement](https://www.hl7.org/fhir/r4/backboneelement.html) | _16.9_ |
+| period | The start and end date of the encounter in the form YYYY-MM-DD | [period](https://www.hl7.org/fhir/datatypes.html#Period) | _16.9_ |
+| reasonCode | The coded reason the encounter took place | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
+| hospitalization.dischargeDisposition | Category or kind of location after discharge | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
+| location.location | Location the encounter took place at | [Reference(Location)](https://www.hl7.org/fhir/r4/references.html) | _16.9_ |
+| meta.lastUpdated | The last time the encounter was updated | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) | _16.9_ |
 
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Encounter",
-        "id": "1294",
-        "contained": [
-          {
-            "resourceType": "Practitioner",
-            "id": "9938",
-            "identifier": [
-              {
-                "use": "usual",
-                "system": "http://hl7.org/fhir/sid/us-npi",
-                "value": "11192383741"
-              }
-            ],
-            "name": [
-              {
-                "text": "Davison, Darren",
-                "family": "Davison",
-                "given": [
-                  "Darren",
-                  "L"
-                ]
-              }
-            ]
-          }
-        ],
-        "identifier": [
-          {
+    "resourceType": "Encounter",
+    "id": "19632",
+    "meta": {
+        "lastUpdated": "2022-07-20T09:41:50.82-04:00"
+    },
+    "identifier": [
+        {
             "use": "official",
-            "value": "1294"
-          }
-        ],
-        "subject": {
-          "reference": "Patient/45822",
-          "display": "Smith, John"
-        },
-        "participant": [
-          {
-            "type": [
-              {
-                "coding": [
-                  {
-                    "system": "http://hl7.org/fhir/v3/ParticipationType",
-                    "code": "PRF"
-                  }
-                ]
-              }
-            ],
-            "individual": {
-              "reference": "Practitioner/9938"
-            }
-          }
-        ],
-        "period": {
-          "start": "2015-05-03",
-          "end": "2015-05-03"
+            "system": "https://select.nextech-api.com/api/structuredefinition/encounter-id",
+            "value": "19632"
         }
-      }
-    }
-  ]
+    ],
+    "status": "in-progress",
+    "class": {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+        "code": "AMB",
+        "display": "ambulatory"
+    },
+    "type": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                    "code": "unknown",
+                    "display": "Unknown"
+                }
+            ],
+            "text": "Unknown"
+        }
+    ],
+    "subject": {
+        "reference": "Patient/2ab530e0-9606-4f7a-8b67-e2de253ba80b",
+        "display": "Smith, John"
+    },
+    "participant": [
+        {
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                            "code": "PRF",
+                            "display": "performer"
+                        }
+                    ],
+                    "text": "performer"
+                }
+            ],
+            "period": {
+                "start": "2022-04-22",
+                "end": "2022-04-22"
+            },
+            "individual": {
+                "reference": "Practitioner/123",
+                "display": "1, Doctor"
+            }
+        },
+        {
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                            "code": "PRF",
+                            "display": "performer"
+                        }
+                    ],
+                    "text": "performer"
+                }
+            ],
+            "period": {
+                "start": "2022-04-22",
+                "end": "2022-04-22"
+            },
+            "individual": {
+                "reference": "Practitioner/124",
+                "display": "2, Doctor"
+            }
+        },
+        {
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                            "code": "PRF",
+                            "display": "performer"
+                        }
+                    ],
+                    "text": "performer"
+                }
+            ],
+            "period": {
+                "start": "2022-04-22",
+                "end": "2022-04-22"
+            },
+            "individual": {
+                "reference": "Practitioner/125",
+                "display": "3, Doctor"
+            }
+        },
+        {
+            "type": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                            "code": "PRF",
+                            "display": "performer"
+                        }
+                    ],
+                    "text": "performer"
+                }
+            ],
+            "period": {
+                "start": "2022-04-22",
+                "end": "2022-04-22"
+            },
+            "individual": {
+                "reference": "Practitioner/126",
+                "display": "4, Doctor"
+            }
+        }
+    ],
+    "period": {
+        "start": "2022-04-22",
+        "end": "2022-04-22"
+    },
+    "reasonCode": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                    "code": "unknown",
+                    "display": "Unknown"
+                }
+            ],
+            "text": "Unknown"
+        }
+    ],
+    "hospitalization": {
+        "dischargeDisposition": {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                    "code": "unknown",
+                    "display": "Unknown"
+                }
+            ],
+            "text": "Unknown"
+        }
+    },
+    "location": [
+        {
+            "location": {
+                "reference": "Location/1",
+                "display": "Pawtucket Plastic Surgeons"
+            }
+        }
+    ]
 }
 </pre>
 &nbsp;
 
-### *Search*
-Searches for encounters for a single patient
+### *Get*
+Returns a single Encounter result based on the Encounter ID.
 
 #### HTTP Request 
-`GET /Patient/{patientUid}/Encounter?{parameters}`
+`GET /r4/Encounter/{encounterID}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.6_ |
-| date | query | The date of the encounter in the form YYYY-MM-DD | No | _12.6_ |
+| encounterID | path | The encounter unique identifier | Yes | _16.9_ |
 
-#### Example: Get all encounters for a single patient as of 1/1/2017
+#### Example: Get an encounter with an ID of '123'
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Encounter?date=ge2017-01-01
+GET https://select.nextech-api.com/api/r4/Encounter/123
 </pre>
 &nbsp;
+
+### *Search*
+Returns encounters based on the provided search parameters.
+
+#### HTTP Requests
+- `GET /r4/Encounter?{parameters}`
+- `POST /r4/Encounter/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| _lastUpdated | query or payload | The date the encounter was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.9_ |
+| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.9_ |
+| date | query or payload | The date the encounter took place in the form YYYY-MM-DD  | No | _16.9_ |
+| identifier | query or payload | The encounter unique identifier | No | _16.9_ |
+| _id | query or payload | The encounter unique identifier | No | _16.9_ |
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+&nbsp;
+#### Examples: 
+
+#### Get all encounters
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Encounter
+</pre>
+
+#### Search for encounters for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Encounter?patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Encounter/_search
+<i><small>payload:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+#### Search for encounters for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' that took place between and including 1/1/2022 through 11/14/2022
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Encounter?patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Encounter/_search
+<i><small>payload:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+</pre>
+
+#### Search for an Encounter with the id '123'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Encounter?identifier=123
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Encounter/_search
+<i><small>payload:</small></i> identifier=123
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Encounter?_id=123
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Encounter/_search
+<i><small>payload:</small></i> _id=123
+</pre>
 
 
 ## Goal
