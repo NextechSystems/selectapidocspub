@@ -34,7 +34,7 @@ Finds a bundle documents based on the search parameters
 | _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8
 
 #### Supported Document Types
-The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
+The supported types are history and EMN.
 
 #### Example: Get the history document with ID 7741
 <pre class="center-column">
@@ -73,7 +73,7 @@ Finds a single document based on the ID
 | DocumentReferenceID | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
 
 #### Supported Document Types
-The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
+The supported types are history and EMN.
 
 #### Example: Get the history document with ID 2262 which is a text file with a content of "Hello!"
 <pre class="center-column">
