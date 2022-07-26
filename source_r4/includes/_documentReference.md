@@ -31,14 +31,18 @@ Finds a bundle documents based on the search parameters
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8
+| _id | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
+| patient | The patient associated with the document | No | 16.9
+| category | The type of the document | No | 16.9
+| date | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
+| type | The type of the document | No | 16.9
 
 #### Supported Document Types
 The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
 
 #### Example: Get the history document with ID 7741
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/DocumentReference?_id=history-7741
+GET https://select.nextech-api.com/api/r4/DocumentReference?_id=emn-557&type=11488-4&category=Unknown&date=2022-06-03&patient=26376357
 </pre>
 &nbsp;
 
@@ -51,13 +55,22 @@ Finds a bundle of documents based on the search parameters supplied in the POST 
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8
+| _id | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
+| patient | The patient associated with the document | No | 16.9
+| category | The type of the document | No | 16.9
+| date | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
+| type | The type of the document | No | 16.9
 
 #### Example
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/DocumentReference/history-2262
-<i><small>payload:</small></i> _id=history-1
+<i><small>payload:</small></i> 
+_id:history-2262
+type:11488-4
+category:Clinical
+date:2022-06-03
+patient:26376357
 </pre>
 
 
