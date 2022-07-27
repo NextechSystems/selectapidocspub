@@ -29,13 +29,13 @@ Finds a bundle documents based on the search parameters
 `GET /DocumentReference?{parameters}` 
 
 #### Parameters
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| _id | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
-| patient | The patient associated with the document | No | 16.9
-| category | The type of the document | No | 16.9
-| date | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
-| type | The type of the document | No | 16.9
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| _id | query | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
+| patient | query | The ID of the patient associated with the document, can use either the chart number or Patient GUID | No | 16.9
+| category | query | The category of the document | No | 16.9
+| date | query | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
+| type | query | The type of the document | No | 16.9
 
 #### Supported Document Types
 The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
@@ -53,13 +53,13 @@ Finds a bundle of documents based on the search parameters supplied in the POST 
 `POST /DocumentReference/_search`
 
 #### Parameters
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| _id | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
-| patient | The patient associated with the document | No | 16.9
-| category | The type of the document | No | 16.9
-| date | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
-| type | The type of the document | No | 16.9
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| _id | query or body | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
+| patient | query or body | The patient associated with the document | No | 16.9
+| category | query or body |The type of the document | No | 16.9
+| date | query or body | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
+| type | query or body | The type of the document | No | 16.9
 
 #### Example
 
@@ -81,9 +81,9 @@ Finds a single document based on the ID
 `GET /DocumentReference/{documentType-id}` 
 
 #### Parameters
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| DocumentReferenceID | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| DocumentReferenceID | URI | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
 
 #### Supported Document Types
 The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
@@ -247,13 +247,13 @@ If patient and a date range is specified (start, end, start+end), then it will r
 `POST /DocumentReference/$docref`
 
 #### Body Fields
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| resourceType | Must be `Parameters` | Yes | 16.9 |
-| parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | 16.9 |
-| parameter.patient | The patient the document is for | Yes | 16.9 |
-| parameter.start | The start date for EMN encounters | No | 16.9 |
-| parameter.end | the end date for EMN encounters | No | 16.9 |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| resourceType | body or query | Must be `Parameters` | Yes | 16.9 |
+| parameter | body or query |This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | 16.9 |
+| parameter.patient | body or query | The patient the document is for | Yes | 16.9 |
+| parameter.start | body or query | The start date for EMN encounters | No | 16.9 |
+| parameter.end | body or query | the end date for EMN encounters | No | 16.9 |
 
 #### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via POST
 <pre class="center-column">
@@ -288,11 +288,11 @@ Note: the response body will be the same as the GET example below
 `GET /DocumentReference/$docref?{patient}[&{start}][&{end}]`
 
 #### Parameters
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| patient | Must be in the form `{patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.9 |
-| start | Must be in the form of either  `2022-02-23T08:00:00` or `2022-02-23` | No | 16.9 |
-| end | Must be in the form of either `2022-02-24T08:00:00` or `2022-02-24` | No | 16.9 |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patient | query | Must be in the form `{patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.9 |
+| start | query | Must be in the form of either  `2022-02-23T08:00:00` or `2022-02-23` | No | 16.9 |
+| end | query | Must be in the form of either `2022-02-24T08:00:00` or `2022-02-24` | No | 16.9 |
 
 #### *Note: Despite being a GET request, if an encounter that falls within the date range (if supplied) or the most recent encounter does not have a CCDA Summary of Care document previously generated, this request will cause one to be created and attached to the patient's document history*
 
