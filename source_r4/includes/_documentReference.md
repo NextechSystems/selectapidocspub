@@ -46,13 +46,13 @@ GET https://select.nextech-api.com/api/r4/DocumentReference?_id=history-7741
 </pre>
 &nbsp;
 
-#### Example: Search with all supported fields besides _id
+#### Example: Searching for all documents that have a type of 11488-4, category of Unknown, created on 2022-06-03 for the specific patient
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/DocumentReference?type=11488-4&category=Unknown&date=2022-06-03&patient=26376357
+GET https://select.nextech-api.com/api/r4/DocumentReference?type=11488-4&category=Unknown&date=2022-06-03&patient=c21ab936-3a2a-4c5a-81b8-76b120194053
 </pre>
 &nbsp;
 
-#### Example: Search with date ranges
+#### Example: Search for all documents that were created between 2020-06-03 and 2022-06-01
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/DocumentReference?date=gt2020-06-03&date=lt2022-06-01
 </pre>
@@ -81,7 +81,7 @@ POST https://select.nextech-api.com/api/r4/DocumentReference
 _id:history-2262
 </pre>
 
-#### Example Search by all other supported parameters
+#### Example Searching for all documents that have a type of 11488-4, category of Clinical, created before 2022-06-03 for the specific patient
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/DocumentReference
@@ -102,7 +102,7 @@ Finds a single document based on the ID
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| DocumentReferenceID | URI | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
+| DocumentReferenceID | path | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
 
 #### Supported Document Types
 The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
@@ -268,11 +268,11 @@ If patient and a date range is specified (start, end, start+end), then it will r
 #### Body Fields
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| resourceType | body or query | Must be `Parameters` | Yes | 16.9 |
-| parameter | body or query |This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | 16.9 |
-| parameter.patient | body or query | The patient the document is for | Yes | 16.9 |
-| parameter.start | body or query | The start date for EMN encounters | No | 16.9 |
-| parameter.end | body or query | the end date for EMN encounters | No | 16.9 |
+| resourceType | body | Must be `Parameters` | Yes | 16.9 |
+| parameter | body |This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | 16.9 |
+| parameter.patient | body | The patient the document is for | Yes | 16.9 |
+| parameter.start | body | The start date for EMN encounters | No | 16.9 |
+| parameter.end | body | the end date for EMN encounters | No | 16.9 |
 
 #### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via POST
 <pre class="center-column">
