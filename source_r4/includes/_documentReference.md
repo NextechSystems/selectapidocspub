@@ -32,7 +32,7 @@ Finds a bundle documents based on the search parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
 | _id | query | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
-| patient | query | The ID of the patient associated with the document, can use either the chart number or Patient GUID | No | 16.9
+| patient | query | The ID of the patient associated with the document | No | 16.9
 | category | query | The category of the document | No | 16.9
 | date | query | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
 | type | query | The type of the document | No | 16.9
@@ -42,7 +42,19 @@ The supported types are history, emn and labs. history and labs share identifier
 
 #### Example: Get the history document with ID 7741
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/DocumentReference?_id=emn-557&type=11488-4&category=Unknown&date=2022-06-03&patient=26376357
+GET https://select.nextech-api.com/api/r4/DocumentReference?_id=history-7741
+</pre>
+&nbsp;
+
+#### Example: Search with all supported fields besides _id
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?type=11488-4&category=Unknown&date=2022-06-03&patient=26376357
+</pre>
+&nbsp;
+
+#### Example: Search with date ranges
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?date=gt2020-06-03&date=lt2022-06-01
 </pre>
 &nbsp;
 
@@ -61,16 +73,23 @@ Finds a bundle of documents based on the search parameters supplied in the POST 
 | date | query or body | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
 | type | query or body | The type of the document | No | 16.9
 
-#### Example
+#### Example Search by _id in POST Body
 
 <pre class="center-column">
-POST https://select.nextech-api.com/api/r4/DocumentReference/history-2262
+POST https://select.nextech-api.com/api/r4/DocumentReference
 <i><small>payload:</small></i> 
 _id:history-2262
+</pre>
+
+#### Example Search by all other supported parameters
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference
+<i><small>payload:</small></i> 
 type:11488-4
 category:Clinical
-date:2022-06-03
-patient:26376357
+date:lt2022-06-03
+patient:c21ab936-3a2a-4c5a-81b8-76b120194053
 </pre>
 
 
