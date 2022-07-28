@@ -27,6 +27,9 @@ Finds a bundle documents based on the search parameters
 
 #### HTTP Request 
 `GET /DocumentReference?{parameters}` 
+`POST /DocumentReference/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -57,22 +60,6 @@ GET https://select.nextech-api.com/api/r4/DocumentReference?type=11488-4&categor
 GET https://select.nextech-api.com/api/r4/DocumentReference?date=gt2020-06-03&date=lt2022-06-01
 </pre>
 &nbsp;
-
-#### Search By POST Request
-Finds a bundle of documents based on the search parameters supplied in the POST body
-
-#### HTTP Request
-`POST /DocumentReference/_search`
-
-#### Parameters
-| Name | Located in | Description | Required | Initial Version |
-| ---- | ---------- | ----------- | -------- | --------------- |
-| _id | query or body | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
-| patient | query or body | The patient associated with the document | No | 16.9
-| category | query or body |The category of the document | No | 16.9
-| date | query or body | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
-| type | query or body | The type of the document | No | 16.9
-
 #### Example Search by _id in POST Body
 
 <pre class="center-column">
@@ -350,9 +337,11 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/$docref?patient=C21A
                         "coding": [
                             {
                                 "system": "https://select.nextech-api.com/api/structuredefinition/note-category",
-                                "code": "10"
+                                "code": "Clinical",
+                                "display": "Clinical"
                             }
                         ],
+                        "text": "Clinical"
                     }
                 ],
                 "subject": {
