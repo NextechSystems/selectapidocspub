@@ -69,7 +69,7 @@ Finds a bundle of documents based on the search parameters supplied in the POST 
 | ---- | ---------- | ----------- | -------- | --------------- |
 | _id | query or body | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
 | patient | query or body | The patient associated with the document | No | 16.9
-| category | query or body |The type of the document | No | 16.9
+| category | query or body |The category of the document | No | 16.9
 | date | query or body | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
 | type | query or body | The type of the document | No | 16.9
 
