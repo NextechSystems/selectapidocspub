@@ -34,11 +34,12 @@ Finds a bundle documents based on the search parameters
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _id | query | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
-| patient | query | The ID of the patient associated with the document | No | 16.9
-| category | query | The category of the document | No | 16.9
-| date | query | This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
-| type | query | The type of the document | No | 16.9
+| _id | query or payload | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
+| patient | query or payload | The ID of the patient associated with the document | No | 16.9
+| category | query or payload | The category of the document | No | 16.9
+| date | query or payload| This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
+| type | query or payload| The type of the document | No | 16.9
+> **_Note:_**  The possible filter values for the date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Supported Document Types
 The supported types are history, emn and labs. history and labs share identifiers so history-5 and lab-5 will refer to the same document.
