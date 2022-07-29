@@ -22,7 +22,8 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 Finds a bundle documents based on the search parameters
 
 #### HTTP Request 
-`GET /DocumentReference?{parameters}` 
+`GET /DocumentReference?{parameters}`
+
 `POST /DocumentReference/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 > **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
