@@ -23,11 +23,19 @@ Finds a bundle documents based on the search parameters
 
 #### HTTP Request 
 `GET /DocumentReference?{parameters}` 
+`POST /DocumentReference/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| _id | query or payload | Must be in the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | No | 16.8
+| patient | query or payload | The ID of the patient associated with the document | No | 16.9
+| category | query or payload | The category of the document | No | 16.9
+| date | query or payload| This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9
+| type | query or payload| The type of the document | No | 16.9
+> **_Note:_**  The possible filter values for the date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Supported Document Types
 The supported types are history and EMN.
@@ -38,22 +46,34 @@ GET https://select.nextech-api.com/api/r4/DocumentReference?_id=history-7741
 </pre>
 &nbsp;
 
-#### Search By POST Request
-Finds a bundle of documents based on the search parameters supplied in the POST body
+#### Example: Searching for all documents that have a type of 11488-4, category of Unknown, created on 2022-06-03 for the specific patient
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?type=11488-4&category=Unknown&date=2022-06-03&patient=c21ab936-3a2a-4c5a-81b8-76b120194053
+</pre>
+&nbsp;
 
-#### HTTP Request
-`POST /DocumentReference/_search`
-
-#### Parameters
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8
-
-#### Example
+#### Example: Search for all documents that were created between 2020-06-03 and 2022-06-01
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?date=gt2020-06-03&date=lt2022-06-01
+</pre>
+&nbsp;
+#### Example Search by _id in POST Body
 
 <pre class="center-column">
-POST https://select.nextech-api.com/api/r4/DocumentReference/history-2262
-<i><small>payload:</small></i> _id=history-1
+POST https://select.nextech-api.com/api/r4/DocumentReference
+<i><small>payload:</small></i> 
+_id:history-2262
+</pre>
+
+#### Example Searching for all documents that have a type of 11488-4, category of Clinical, created before 2022-06-03 for the specific patient
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference
+<i><small>payload:</small></i> 
+type:11488-4
+category:Clinical
+date:lt2022-06-03
+patient:c21ab936-3a2a-4c5a-81b8-76b120194053
 </pre>
 
 
@@ -64,9 +84,9 @@ Finds a single document based on the ID
 `GET /DocumentReference/{documentType-id}` 
 
 #### Parameters
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| DocumentReferenceID | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| DocumentReferenceID | path | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
 
 #### Supported Document Types
 The supported types are history and EMN.
@@ -214,13 +234,13 @@ If patient and a date range is specified (start, end, start+end), then it will r
 `POST /DocumentReference/$docref`
 
 #### Body Fields
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| resourceType | Must be `Parameters` | Yes | 16.9 |
-| parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | 16.9 |
-| parameter.patient | The patient the document is for | Yes | 16.9 |
-| parameter.start | The start date for EMN encounters | No | 16.9 |
-| parameter.end | the end date for EMN encounters | No | 16.9 |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| resourceType | body | Must be `Parameters` | Yes | 16.9 |
+| parameter | body |This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | 16.9 |
+| parameter.patient | body | The patient the document is for | Yes | 16.9 |
+| parameter.start | body | The start date for EMN encounters | No | 16.9 |
+| parameter.end | body | the end date for EMN encounters | No | 16.9 |
 
 #### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via POST
 <pre class="center-column">
@@ -255,11 +275,11 @@ Note: the response body will be the same as the GET example below
 `GET /DocumentReference/$docref?{patient}[&{start}][&{end}]`
 
 #### Parameters
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| patient | Must be in the form `{patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.9 |
-| start | Must be in the form of either  `2022-02-23T08:00:00` or `2022-02-23` | No | 16.9 |
-| end | Must be in the form of either `2022-02-24T08:00:00` or `2022-02-24` | No | 16.9 |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patient | query | Must be in the form `{patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.9 |
+| start | query | Must be in the form of either  `2022-02-23T08:00:00` or `2022-02-23` | No | 16.9 |
+| end | query | Must be in the form of either `2022-02-24T08:00:00` or `2022-02-24` | No | 16.9 |
 
 #### *Note: Despite being a GET request, if an encounter that falls within the date range (if supplied) or the most recent encounter does not have a CCDA Summary of Care document previously generated, this request will cause one to be created and attached to the patient's document history*
 
