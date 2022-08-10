@@ -2211,7 +2211,7 @@ Searches for medication requests for a single patient
 | identifier | query or payload | The unique identifier for the medication request | No | _17.0_ |
 | intent | query or payload | The intent of the medication request. Ex.: 'original-order' | No | _17.0_ |
 | status | query or payload | The status of the medication request. Ex.: 'active' | No | _17.0_ |
-| _lastUpdated | query or payload | The date the care plan was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _17.0_ |
+| _lastUpdated | query or payload | The date the medication request was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _17.0_ |
 
 > **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
