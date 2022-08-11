@@ -2108,6 +2108,206 @@ POST https://select.nextech-api.com/api/r4/DiagnosticReport/_search
 </pre>
 &nbsp;
 
+## Medication Request
+
+### Overview
+The Medication Request resource can be used to record a patient’s medication prescription or order.
+
+### Fields
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| id | The logical id of the resource, as used in the URL for the resource | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _17.0_ |
+| status | A code specifying the current state of the medication request | [MedicationRequestStatus](http://hl7.org/fhir/ValueSet/medicationrequest-status) | _17.0_ |
+| intent | Whether the request is a proposal, plan, or an original order | [MedicationRequestIntent](http://hl7.org/fhir/ValueSet/medicationrequest-intent) | _17.0_ |
+| reported | Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) | _17.0_ |
+| medication | The supplied medication | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _17.0_ |
+| authoredOn | The date and time when the prescription was initially written or authored on | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _17.0_ |
+| subject | The patient pertaining to the medication request | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([USCorePatientProfile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _17.0_ |
+| requester | The individual, organization, or device that initiated the request and has responsibility for its activation | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([USCorePractitionerProfile](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html)) | _17.0_ |
+| encounter | The Encounter during which the medication request was created or to which the creation of this record is tightly associated | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([Encounter](http://hl7.org/fhir/R4/encounter.html)) | _17.0_ |
+| dosageInstruction | Indicates how the medication is to be used by the patient | [Dosage](http://hl7.org/fhir/R4/dosage.html#Dosage) | _17.0_ |
+
+### Example
+<pre class="center-column">
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 1,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "id": "1",
+                "status": "active",
+                "intent": "original-order",
+                "reportedBoolean": false,
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "310964",
+                            "display": "ibuprofen"
+                        }
+                    ],
+                    "text": "ibuprofen"
+                },
+                "subject": {
+                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+                    "display": "Newman, Alice Jones"
+                },
+                "encounter": {
+                    "reference": "Encounter/1"
+                },
+                "authoredOn": "2022-07-06T18:20:39+02:00",
+                "requester": {
+                    "reference": "Practitioner/84",
+                    "display": "Davis, Albert"
+                },
+                "dosageInstruction": [
+                    {
+                        "text": "1 capsule by mouth twice a day"
+                    }
+                ]
+            }
+        }
+    ]
+}
+</pre>
+&nbsp;
+
+### *Get*
+Returns a single Medication Request result based on the Medication Request ID.
+
+#### HTTP Request 
+`GET /r4/MedicationRequest/{medicationRequestId}` 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| medicationRequestId | path | The unique identifier for the medication request | Yes | _17.0_ |
+
+#### Example: Get the medication request with an ID of '12'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest/12
+</pre>
+&nbsp;
+
+### *Search*
+Searches for medication requests for a single patient
+
+#### HTTP Requests
+
+- `GET /r4/MedicationRequest?{parameters}`
+- `POST /r4/MedicationRequest/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patient | query or payload | The official patient identifier acquired from a patient search | No | _17.0_ |
+| _id | query or payload | The unique identifier for the medication request | No | _17.0_ |
+| identifier | query or payload | The unique identifier for the medication request | No | _17.0_ |
+| intent | query or payload | The intent of the medication request. Ex.: 'original-order' | No | _17.0_ |
+| status | query or payload | The status of the medication request. Ex.: 'active' | No | _17.0_ |
+| _lastUpdated | query or payload | The date the medication request was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _17.0_ |
+
+> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+#### Example: Get the medication request with an ID of '12'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?identifier=12
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
+<i><small>payload:</small></i> identifier=12
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?_id=12
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
+<i><small>payload:</small></i> _id=12
+</pre>
+&nbsp;
+
+#### Example: Get all medication requests for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
+</pre>
+&nbsp;
+
+#### Example: Get all medication requests for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and intent 'original-order'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=http://hl7.org/fhir/CodeSystem/medicationrequest-intent|original-order
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=http://hl7.org/fhir/CodeSystem/medicationrequest-intent|original-order
+</pre>
+&nbsp;
+
+#### Example: Get all medication requests for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a', intent 'original-order' and status 'active'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order&status=active
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order&status=http://hl7.org/fhir/CodeSystem/medicationrequest-status|active
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order&status=active
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
+<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order&status=http://hl7.org/fhir/CodeSystem/medicationrequest-status|active
+</pre>
+&nbsp;
+
+#### Example: Get all medication requests for a single patient that were modified as of 5/5/2022
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_lastUpdated=ge2022-05-05
+</pre>
+&nbsp;
+
+#### Example: Get all medication requests that were modified by 5/5/2022
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?_lastUpdated=le2022-05-05
+</pre>
+&nbsp;
+
 ## Observation
 
 ### Overview
