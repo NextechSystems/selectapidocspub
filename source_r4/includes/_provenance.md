@@ -9,6 +9,7 @@ Provenance of a resource is a record that describes entities and processes invol
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | id | The unique value assigned to each provenance which discerns it from all others | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _17.0_ |
+| meta.lastUpdated | The last time the provenance was modified | [instant](https://hl7.org/fhir/R4/datatypes.html#instant) | _17.0_ |
 | target | The resource(s) the provenance supports | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([Resource](http://hl7.org/fhir/R4/resource.html)) | _17.0_ |
 | recorded | Timestamp of when the activity was recorded |  [instant](http://hl7.org/fhir/R4/datatypes.html#instant) | _17.0_ |
 | agent | Actor involved | [slice](http://hl7.org/fhir/R4/profiling.html#slicing) | _17.0_ |
@@ -21,6 +22,9 @@ Provenance of a resource is a record that describes entities and processes invol
 {
     "resourceType": "Provenance",
     "id": "4",
+    "meta": {
+        "lastUpdated": "2022-08-05T14:29:08.217-04:00"
+    },
     "target": [
         {
             "reference": "Immunization/145"
@@ -109,6 +113,7 @@ Searches for all provenance info based on the given search criteria.
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
 | _id | query or payload | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
+| _lastUpdated | query or payload | The last time the provenance was modified | No | _17.0_ |
 
 #### Example: Get all provenance info
 
