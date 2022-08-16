@@ -1515,6 +1515,10 @@ Creates the document in the content.attachment for a patient and attaches it to 
 ### Extension: note-category
 This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.
 
+Note: This custom extension should not be used, instead the FHIR Category is encouraged
+When Category is supplied, only the first coding will be used. Any others will be ignored.
+When both Category and the this extension are used, the NexTech extension will be used instead of the FHIR Category
+
 Url: https://select.nextech-api.com/api/structuredefinition/note-category
 valueString: Name of Nextech note category
 
