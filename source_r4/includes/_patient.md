@@ -1268,63 +1268,193 @@ POST https://select.nextech-api.com/api/r4/Device/_search
 </pre>
 &nbsp;
 
-## Document Reference
+## DocumentReference
 
 ### Overview
-The DocumentReference resource is used to describe a document that is made available to a healthcare system. A document is some sequence of bytes that is identifiable, establishes its own context (e.g., what subject, author, etc. can be displayed to the user), and has defined update management. The DocumentReference resource can be used with any document format that has a recognized mime type and that conforms to this definition.
+A reference to a document of any kind for any purpose. Provides metadata about the document so that the document can be discovered and managed. The scope of a document is any seralized object with a mime-type, so includes formal patient centric documents (CDA), clinical notes, scanned paper, and non-patient specific documents like policy text.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| masteridentifier | The unique identifier assigned to each documentreference | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.7_ |
-| subject | The patient pertaining to the documentreference | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.7_ |
-| created | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.7_ |
-| author | Identifies who is responsible for the information in the document reference | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) | _12.7_ |
-| description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
-| content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _12.7_ |
-| content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
-| extension: note-category | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| extension: document-publish-portal | Contains whether the document is published to myPatientVisit | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _12.9.20_ |
+| id | The unique id string assigned to each documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
+| identifier | The unique identifier assigned to each documentreference | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.7_ |
+| status | Specifies the status of the document reference | [Code](https://www.hl7.org/fhir/datatypes.html#code) | _16.7_ |
+| type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.8_ |
+| category | The categorization for the document reference | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.7_ |
+| subject | The patient pertaining to the documentreference | [Reference](https://www.hl7.org/fhir/R4/references.html) ( [Patient](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) ) | _16.7_ |
+| date | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _16.7_ |
+| author | Identifies who is responsible for the information in the document reference | [Reference](https://www.hl7.org/fhir/R4/references.html) ( [Practitioner](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html)) | _16.7_ |
+| description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
+| content.format | An identifier of the document encoding, structure, and template that the document conforms to | [Coding](http://hl7.org/fhir/R4/datatypes.html#Coding) | _16.7_ |
+| content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _16.7_ |
+| content.attachment.data | The base64 encoded data of the attachment. | [base64Binary](http://hl7.org/fhir/R4/datatypes.html#base64Binary) | _16.7_ |
+| content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
+| extension: note-category | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
+| extension: document-publish-portal | Contains whether the document is published to myPatientVisit | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _16.7_ | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) |
+| context.encounter | The clinical context in which the document was prepared. | [Reference](https://www.hl7.org/fhir/R4/references.html) ([US Core Encounter Profile](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-encounter.html)) | _16.8_ |
+| context.period | The time period over which the service that is described by the document was provided | [Period](http://hl7.org/fhir/R4/datatypes.html#Period) | _16.7_ |
+| custodian | Identifies the organization or group who is responsible for ongoing maintenance of and access to the document. | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCoreOrganizationProfile](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html)) | _16.8_ |
 
-### Example
+
+### *Search*
+Finds a bundle of documents based on the search parameters
+
+#### HTTP Request 
+`GET /r4/DocumentReference?{parameters}`
+
+`POST /r4/DocumentReference/_search`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| \_id | query or payload | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference?\_id=history-5  | Yes | _16.8_ |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
+| patient | query or payload | The ID of the patient associated with the document | No | _16.9_ |
+| category | query or payload | The category of the document | No | _16.9_ |
+| date | query or payload| This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | _16.9_ |
+| type | query or payload| The type of the document | No | _16.9_ |
+> **_Note:_**  The possible filter values for the date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+#### Supported Document Types
+The supported types are history and EMN.
+
+#### Retrieve Provenance with document references
+The `_revinclude` parameter allows support for including Provenance references that match the returned document references.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the document reference
+
+#### Example: Get the history document with ID 7741
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?_id=history-7741
+</pre>
+&nbsp;
+
+#### Example: Searching for all documents that have a type of 11488-4, category of Unknown, created on 2022-06-03 for the specific patient
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?type=11488-4&category=Unknown&date=2022-06-03&patient=c21ab936-3a2a-4c5a-81b8-76b120194053
+</pre>
+&nbsp;
+
+#### Example: Search for all documents that were created between 2020-06-03 and 2022-06-01
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?date=gt2020-06-03&date=lt2022-06-01
+</pre>
+&nbsp;
+
+#### Example Search by _id in POST Body
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference/_search
+<i><small>payload:</small></i> 
+_id:history-2262
+</pre>
+
+#### Example Searching for all documents that have a type of 11488-4, category of Clinical, created before 2022-06-03 for the specific patient
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference/_search
+<i><small>payload:</small></i> 
+type:11488-4
+category:Clinical
+date:lt2022-06-03
+patient:c21ab936-3a2a-4c5a-81b8-76b120194053
+</pre>
+
+
+### *Get By ID*
+Finds a single document based on the ID
+
+#### HTTP Request 
+`GET /r4/DocumentReference/{documentType-id}` 
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| DocumentType-id | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 16.8 |
+
+#### Supported Document Types
+The supported types are history and EMN.
+
+#### Example: Get the history document with ID 2262 which is a text file with a content of "Hello!"
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
+</pre>
+&nbsp;
+
 <pre class="center-column">
 {
     "resourceType": "DocumentReference",
-    "id": "8529",
-    "masterIdentifier": {
-        "use": "official",
-        "value": "8529"
-    },
-    "subject": {
-        "reference": "Patient/22b51855-0fe2-47a3-8000-4344b4e8e69d",
-        "display": "Dateline, Martha R"
-    },
-    "created": "2017-10-24T20:10:36Z",
-     "author": [
+    "identifier": [
         {
-            "reference": "",
-            "display": "nexweb"
+            "use": "official",
+            "value": "history-2262"
         }
     ],
-    "description": "Author: API user \r\n Note: A description of the document",
-	"extension": [
-		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
-			"valueString": "Past Medical History"
-		},
-		{
- 		    "url": "https://select.nextech-api.com/api/structuredefinition/document-publish-portal",
-		    "valueBoolean": true
-		}
+    "status": "current",
+    "type": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "18842-5",
+                "display": "Discharge Summary"
+            }
+        ],
+        "text": "Discharge Summary"
+    },
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "https://select.nextech-api.com/api/structuredefinition/note-category",
+                    "code": "Prescriptions",
+                    "display": "Prescriptions"
+                }
+            ],
+            "text": "Prescriptions"
+        }
     ],
+    "subject": {
+        "reference": "Patient/c21ab936-3a2a-4c5a-81b8-76b120194053",
+        "display": "White, Nicole Francis"
+    },
+    "date": "2022-06-02T17:11:23.943+00:00",
+    "author": [
+        {
+            "reference": "Organization/22",
+            "display": "Clinic One"
+        }
+    ],
+    "custodian": {
+        "reference": "Organization/22",
+        "display": "Clinic One"
+    },
     "content": [
         {
-            "attachment": {				
-                "contentType": "application/pdf",
-                "title": "Document Title.pdf"
+            "attachment": {
+                "contentType": "text/plain",
+                "data": "U0dWc2JHOGg=",
+                "title": "small text doc.txt"
+            },
+            "format": {
+                "system": "urn:oid:1.3.6.1.4.1.19376.1.2.3",
+                "code": "urn:ihe:iti:xds:2017:mimeTypeSufficient",
+                "display": "mimeType Sufficient"
             }
         }
-    ]
+    ],
+    "context": {
+        "encounter": [
+            {
+                "reference": "Encounter/6",
+                "display": "Encounter Name"
+            }
+        ],
+        "period": {
+            "start": "2022-06-02T17:11:23.943+00:00",
+            "end": "2022-06-02T17:11:23.943+00:00"
+        }
+    }
 }
 </pre>
 &nbsp;
@@ -1333,29 +1463,29 @@ The DocumentReference resource is used to describe a document that is made avail
 Creates the document in the content.attachment for a patient and attaches it to the patient's history tab in the Nextech software.
 
 #### HTTP Request 
-`POST /Patient/{patientUid}/DocumentReference` 
-
-#### Parameters
-| Name | Located in | Description | Required | Initial Version |
-| ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path | The official patient identifier acquired from a patient search | Yes | _12.7_ |
-| documentreference | body | Represents the `DocumentReference` resource to create for the given patient. The request length must not exceed 10 MB in size. | Yes | _12.7_ |
+`POST /r4/DocumentReference` 
 
 #### Body Fields
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
 | resourceType | Must be `DocumentReference` | Yes |
-| created | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No | _12.7_ |
-| author.display | The name of the author. This will be appended to the beginning of the description value. | No | _12.7_ |
-| description | A description of the document | No | _12.7_ |
-| content.attachment.contentType | The mimetype of the document. See Allowed Mimetypes below | Yes | _12.7_ |
-| content.attachment.data | The base64 data of the document | Yes | _12.7_ |
-| content.attachment.title | The title of the document, will be used as the filename| Yes | _12.7_ |
-| extension: note-category | Allows setting category of the document | No | _12.8_ |
-| extension: document-publish-portal | Allows setting whether or not to publish the document to myPatientVisit. Note: Must be licensed for myPatientVisit and have permission to publish EMNs to MPV to work | No | _12.9.20_ |
+| type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | Yes | _16.8_ |
+| category | Allows setting category of the document  | No | _16.8_ |
+| date | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No | _16.8_ |
+| author.display | The name of the author. This will be appended to the beginning of the description value. | No | _16.8_ |
+| description | A description of the document | No | _16.8_ |
+| content.attachment.contentType | The mimetype of the document. See Allowed Mimetypes below | Yes | _16.8_ |
+| content.attachment.data | The base64 data of the document | Yes | _16.8_ |
+| content.attachment.title | The title of the document, will be used as the filename| Yes | _16.8_ |
+| extension: note-category | Allows setting category of the document | No | _16.8_ |
+| extension: document-publish-portal | Allows setting whether or not to publish the document to myPatientVisit. Note: Must be licensed for myPatientVisit and have permission to publish EMNs to MPV to work | No | _16.8_ |
 
 ### Extension: note-category
 This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.
+
+Note: This custom extension should not be used, instead `category` is encouraged.
+When `category` is supplied, only the first coding will be used. Any others will be ignored.
+When both `category` and the this extension are used, the NexTech extension will be used instead of the `category`.
 
 Url: https://select.nextech-api.com/api/structuredefinition/note-category
 valueString: Name of Nextech note category
@@ -1365,45 +1495,212 @@ This is a custom extension to allow publishing of a document to myPatientVisit. 
 
 Url: https://select.nextech-api.com/api/structuredefinition/document-publish-portal
 valueBoolean: true or false
-
 #### Example: Attach a new document for a patient
 <pre class="center-column">
-POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/DocumentReference
+POST https://select.nextech-api.com/api/r4/DocumentReference
+</pre>
+&nbsp;
+
+#### Body
+* Note: The `note-category` NexTech extension should not be used, instead the FHIR Category is encouraged
+When Category is supplied, only the first coding will be used. Any others will be ignored.
+When both Category and the `note-category` NexTech extension are used, the NexTech extension will be used instead of the FHIR Category
+<pre class="center-column">
+{
+    "resourceType": "DocumentReference",
+    "type": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "18842-5",
+                "display": "Discharge Summary"
+            }
+        ],
+        "text": "Discharge Summary"
+    },
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "https://select.nextech-api.com/api/structuredefinition/note-category",
+                    "code": "Prescriptions",
+                    "display": "Prescriptions"
+                }
+            ],
+            "text": "Prescriptions"
+        }
+    ],
+    "subject": {
+        "reference": "Patient/9CFE7258-8F50-45E8-9732-6433976CC164"
+    },
+    "content": [{"attachment": {
+        "contentType": "text/plain",
+        "data": "Tm8gYWN0aXZpdHkgcmVzdHJpY3Rpb24sIHJlZ3VsYXIgZGlldCwgZm9sbG93IHVwIGluIHR3byB0byB0aHJlZSB3ZWVrcyB3aXRoIHByaW1hcnkgY2FyZSBwcm92aWRlci4="
+    } }],
+    "context": {"encounter": {"reference": "Encounter/1"} },
+    "extension": [
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/note-category",
+                "valueString": "Past Medical History"
+            },
+            {
+                "url": "https://select.nextech-api.com/api/structuredefinition/document-publish-portal",
+                "valueBoolean": "true"
+            }
+    ],
+}
+</pre>
+&nbsp;
+
+### *$docref*
+This generates a CCDA for the given patient and attaches it to their patient history if no Summary of Care has been previously generated for the relevant encounters.
+Otherwise, this returns the most recent CCDA Summary of Care document generated for each encounter.
+If only patient is specified, then it will return one (1) Summary of Care document reference record for the latest encounter.
+If patient and a date range is specified (start, end, start+end), then it will return one document reference for each encounter that falls within that range.
+
+#### HTTP Request
+`POST /r4/DocumentReference/$docref`
+
+#### Body Fields
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| resourceType | Must be `Parameters` | Yes | _16.9_ |
+| parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | _16.9_ |
+| parameter.patient | The patient the document is for | Yes | _16.9_ |
+| parameter.start | The start date for EMN encounters | No | _16.9_ |
+| parameter.end | the end date for EMN encounters | No | _16.9_ |
+
+#### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via POST
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference/$docref
 </pre>
 &nbsp;
 
 #### Body
 <pre class="center-column">
-{
-  "resourceType": "DocumentReference",  
-  "author": [
+ {
+      "resourceType": "Parameters",
+      "parameter": [
         {
-            "display": "API user"
+          "name": "patient",
+          "valueId" : "C21AB936-3A2A-4C5A-81B8-76B120194053"
+        },
+        {
+            "name": "start",
+            "valueDateTime": "2022-02-23T08:00:00"
+        },
+        {
+            "name": "end",
+            "valueDateTime": "2022-02-24T08:00:00"
         }
-  ],  
-  "created": "2017-10-16T20:32:28.9692476Z",
-  "description": "A description of the document",
-  "extension": [
-		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/note-category",
-			"valueString": "Past Medical History"
-		},
-		{
-			"url": "https://select.nextech-api.com/api/structuredefinition/document-publish-portal",
-			"valueBoolean": "true"
-		}
-  ],
-  "content": [
-    {
-      "attachment": {
-        "contentType": "text/plain",
-		"title": "Sample Document",
-        "data": "c2FtcGxlIGRvY3VtZW50"
-      }
+      ]
     }
-  ]
+</pre>
+Note: The `start` and `end` parameters can be either of type `valueDateTime` as above, or simply `valueDate` and passing only values such as `2022-02-23`
+Note: the response body will be the same as the GET example below
+
+#### HTTP Request 
+`GET /r4/DocumentReference/$docref?{patient}[&{start}][&{end}]`
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| patient | Must be in the form `{patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | _16.9_ |
+| start | Must be in the form of either  `2022-02-23T08:00:00` or `2022-02-23` | No | _16.9_ |
+| end | Must be in the form of either `2022-02-24T08:00:00` or `2022-02-24` | No | _16.9_ |
+
+#### *Note: Despite being a GET request, if an encounter that falls within the date range (if supplied) or the most recent encounter does not have a CCDA Summary of Care document previously generated, this request will cause one to be created and attached to the patient's document history*
+
+#### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via GET
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference/$docref?patient=C21AB936-3A2A-4C5A-81B8-76B120194053
+</pre>
+#### Response
+<pre class="center-column">
+{
+    "resourceType": "Bundle",
+    "type": "searchset",
+    "total": 1,
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "DocumentReference",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "value": "history-2263"
+                    }
+                ],
+                "status": "current",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "34133-9",
+                            "display": "Summarization of Episode Note"
+                        }
+                    ],
+                    "text": "Summarization of Episode Note"
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://select.nextech-api.com/api/structuredefinition/note-category",
+                                "code": "clinical",
+                                "display": "Clinical Note"
+                            }
+                        ],
+                        "text": "Clinical Note"
+                    }
+                ],
+                "subject": {
+                    "reference": "Patient/c21ab936-3a2a-4c5a-81b8-76b120194053",
+                    "display": "White, Nicole Francis"
+                },
+                "date": "2022-06-02T13:26:26.2198865-04:00",
+                "author": [
+                    {
+                        "reference": "Organization/1",
+                        "display": "Pawtucket Plastic Surgeons"
+                    }
+                ],
+                "custodian": {
+                    "reference": "Organization/1",
+                    "display": "Pawtucket Plastic Surgeons"
+                },
+                "content": [
+                    {
+                        "attachment": {
+                            "contentType": "application/xml",
+                            "data": "[base64 Encoded string]"
+                        },
+                        "format": {
+                            "system": "urn:oid:1.3.6.1.4.1.19376.1.2.3",
+                            "code": "urn:hl7-org:sdwg:ccda-structuredBody:2.1",
+                            "display": "Documents following C-CDA constraints using a structured body"
+                        }
+                    }
+                ],
+                "context": {
+                    "encounter": [
+                        {
+                            "reference": "Encounter/8109",
+                            "display": "MUS2"
+                        }
+                    ],
+                    "period": {
+                        "start": "2022-06-02T13:26:26.2198865-04:00",
+                        "end": "2022-06-02T13:26:26.2198865-04:00"
+                    }
+                }
+            }
+        }
+    ]
 }
 </pre>
+
+
 &nbsp;
 
 ### Allowed Mimetypes
@@ -1712,7 +2009,7 @@ The goal resource describes a desired state of health for a patient.
 | identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
 | _id | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
 | subject | The patient pertaining to the goal | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| target | The target outcome of the goal | [CodeableConcept](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| target | The target outcome of the goal | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.6_ |
 | note | Comments about the goal | [Annotation](https://www.hl7.org/fhir/datatypes.html#Annotation) | _12.6_ |
 | date | The date or date range of the goal or goals | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _12.6_ |
 | lastUpdated | The date a goal was last modified | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _12.6_ |
@@ -2111,7 +2408,7 @@ POST https://select.nextech-api.com/api/r4/DiagnosticReport/_search
 ## Medication Request
 
 ### Overview
-The Medication Request resource can be used to record a patient’s medication prescription or order.
+The Medication Request resource can be used to record a patient's medication prescription or order.
 
 ### Fields
 | Name | Description | Type | Initial Version |
