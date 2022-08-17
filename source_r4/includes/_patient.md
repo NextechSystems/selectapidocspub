@@ -1278,7 +1278,7 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 | ---- | ----------- | ---- | --------------- |
 | id | The unique id string assigned to each documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
 | identifier | The unique identifier assigned to each documentreference | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.7_ |
-| type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | [CodeableConcept](https://www.hl7.org/fhir/backboneelement.html) | _16.8_
+| type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.8_
 | subject | The patient pertaining to the documentreference | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.7_ |
 | date | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.7_ |
 | author | Identifies who is responsible for the information in the document reference | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) | _16.7_ |
@@ -1287,7 +1287,7 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 | content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
 | extension: note-category | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | extension: document-publish-portal | Contains whether the document is published to myPatientVisit | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _12.9.20_ |
-| context.encounter | The clinical context in which the document was prepared. | [Reference(US Core Encounter Profile)](https://www.hl7.org/fhir/references.html) | _16.8_ |
+| context.encounter | The clinical context in which the document was prepared. | [Reference](https://www.hl7.org/fhir/R4/references.html) ([US Core Encounter Profile])(http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-encounter.html) | _16.8_ |
 | custodian | Identifies the organization or group who is responsible for ongoing maintenance of and access to the document. | [Reference(USCoreOrganizationProfile)](https://www.hl7.org/fhir/references.html) | _16.8_ |
 
 
@@ -1303,7 +1303,7 @@ Finds a bundle of documents based on the search parameters
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
+| ---- | ---------- | ----------- | -------- | --------------- |
 | _id | query or payload | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference?_id=history-5  | Yes | 16.8 |
 | _revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | 17.0 |
 | patient | query or payload | The ID of the patient associated with the document | No | 16.9 |
@@ -1345,6 +1345,17 @@ POST https://select.nextech-api.com/api/r4/DocumentReference/_search
 _id:history-2262
 </pre>
 
+#### Example Searching for all documents that have a type of 11488-4, category of Clinical, created before 2022-06-03 for the specific patient
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference
+<i><small>payload:</small></i> 
+type:11488-4
+category:Clinical
+date:lt2022-06-03
+patient:c21ab936-3a2a-4c5a-81b8-76b120194053
+</pre>
+
 
 ### *Get By ID*
 Finds a single document based on the ID
@@ -1355,7 +1366,7 @@ Finds a single document based on the ID
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| DocumentReferenceID | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 16.8
+| DocumentType-id | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 16.8
 
 #### Supported Document Types
 The supported types are history and EMN.
@@ -1631,11 +1642,11 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/$docref?patient=C21A
                         "coding": [
                             {
                                 "system": "https://select.nextech-api.com/api/structuredefinition/note-category",
-                                "code": "Prescriptions",
-                                "display": "Prescriptions"
+                                "code": "clinical",
+                                "display": "Clinical Note"
                             }
                         ],
-                        "text": "Prescriptions"
+                        "text": "Clinical Note"
                     }
                 ],
                 "subject": {
@@ -1993,7 +2004,7 @@ The goal resource describes a desired state of health for a patient.
 | identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
 | _id | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
 | subject | The patient pertaining to the goal | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| target | The target outcome of the goal | [CodeableConcept](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
+| target | The target outcome of the goal | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.6_ |
 | note | Comments about the goal | [Annotation](https://www.hl7.org/fhir/datatypes.html#Annotation) | _12.6_ |
 | date | The date or date range of the goal or goals | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _12.6_ |
 | lastUpdated | The date a goal was last modified | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _12.6_ |
