@@ -1278,17 +1278,22 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 | ---- | ----------- | ---- | --------------- |
 | id | The unique id string assigned to each documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
 | identifier | The unique identifier assigned to each documentreference | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.7_ |
-| type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.8_
-| subject | The patient pertaining to the documentreference | [Reference](https://www.hl7.org/fhir/R4/references.html) ( [Patient])(http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) | _12.7_ |
-| date | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.7_ |
-| author | Identifies who is responsible for the information in the document reference | [Reference](https://www.hl7.org/fhir/R4/references.html) ( [Practitioner])(http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html) | _16.7_ |
-| description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
-| content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _12.7_ |
-| content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
-| extension: note-category | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| extension: document-publish-portal | Contains whether the document is published to myPatientVisit | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _12.9.20_ |
-| context.encounter | The clinical context in which the document was prepared. | [Reference](https://www.hl7.org/fhir/R4/references.html) ([US Core Encounter Profile])(http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-encounter.html) | _16.8_ |
-| custodian | Identifies the organization or group who is responsible for ongoing maintenance of and access to the document. | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCoreOrganizationProfile])(http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html) | _16.8_ |
+| status | Specifies the status of the document reference | [Code](https://www.hl7.org/fhir/datatypes.html#code) | _16.7_ |
+| type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.8_ |
+| category | The categorization for the document reference | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.7_ |
+| subject | The patient pertaining to the documentreference | [Reference](https://www.hl7.org/fhir/R4/references.html) ( [Patient](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) ) | _16.7_ |
+| date | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _16.7_ |
+| author | Identifies who is responsible for the information in the document reference | [Reference](https://www.hl7.org/fhir/R4/references.html) ( [Practitioner](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html)) | _16.7_ |
+| description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
+| content.format | An identifier of the document encoding, structure, and template that the document conforms to | [Coding](http://hl7.org/fhir/R4/datatypes.html#Coding) | _16.7_ |
+| content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _16.7_ |
+| content.attachment.data | The base64 encoded data of the attachment. | [base64Binary](http://hl7.org/fhir/R4/datatypes.html#base64Binary) | _16.7_ |
+| content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
+| extension: note-category | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
+| extension: document-publish-portal | Contains whether the document is published to myPatientVisit | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _16.7_ | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) |
+| context.encounter | The clinical context in which the document was prepared. | [Reference](https://www.hl7.org/fhir/R4/references.html) ([US Core Encounter Profile](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-encounter.html)) | _16.8_ |
+| context.period | The time period over which the service that is described by the document was provided | [Period](http://hl7.org/fhir/R4/datatypes.html#Period) | _16.7_ |
+| custodian | Identifies the organization or group who is responsible for ongoing maintenance of and access to the document. | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCoreOrganizationProfile](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html)) | _16.8_ |
 
 
 ### *Search*
@@ -1304,12 +1309,12 @@ Finds a bundle of documents based on the search parameters
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _id | query or payload | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference?_id=history-5  | Yes | 16.8 |
-| _revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | 17.0 |
-| patient | query or payload | The ID of the patient associated with the document | No | 16.9 |
-| category | query or payload | The category of the document | No | 16.9 |
-| date | query or payload| This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9 |
-| type | query or payload| The type of the document | No | 16.9 |
+| \_id | query or payload | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference?\_id=history-5  | Yes | _16.8_ |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
+| patient | query or payload | The ID of the patient associated with the document | No | _16.9_ |
+| category | query or payload | The category of the document | No | _16.9_ |
+| date | query or payload| This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | _16.9_ |
+| type | query or payload| The type of the document | No | _16.9_ |
 > **_Note:_**  The possible filter values for the date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Supported Document Types
