@@ -1278,7 +1278,7 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 | ---- | ----------- | ---- | --------------- |
 | id | The unique id string assigned to each documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
 | identifier | The unique identifier assigned to each documentreference | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.7_ |
-| type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | Yes | _16.8_
+| type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | [CodeableConcept](https://www.hl7.org/fhir/backboneelement.html) | _16.8_
 | subject | The patient pertaining to the documentreference | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.7_ |
 | date | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.7_ |
 | author | Identifies who is responsible for the information in the document reference | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) | _16.7_ |
@@ -1295,17 +1295,17 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 Finds a bundle of documents based on the search parameters
 
 #### HTTP Request 
-`GET /DocumentReference?{parameters}`
+`GET /r4/DocumentReference?{parameters}`
 
-`POST /DocumentReference/_search`
+`POST /r4/DocumentReference/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 > **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
-| Name | Description | Required | Initial Version |
+| Name | Located in | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| _id | Must be if the form `documenttype-id` i.e: GET /DocumentReference?_id=history-5  | Yes | 16.8 |
-| _revinclude | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | 17.0 |
+| _id | query or payload | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference?_id=history-5  | Yes | 16.8 |
+| _revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | 17.0 |
 | patient | query or payload | The ID of the patient associated with the document | No | 16.9 |
 | category | query or payload | The category of the document | No | 16.9 |
 | date | query or payload| This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | 16.9 |
@@ -1317,6 +1317,7 @@ The supported types are history and EMN.
 
 #### Retrieve Provenance with document references
 The `_revinclude` parameter allows support for including Provenance references that match the returned document references.
+This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the document reference
 
 #### Example: Get the history document with ID 7741
@@ -1339,7 +1340,7 @@ GET https://select.nextech-api.com/api/r4/DocumentReference?date=gt2020-06-03&da
 
 #### Example Search by _id in POST Body
 <pre class="center-column">
-POST https://select.nextech-api.com/api/r4/DocumentReference
+POST https://select.nextech-api.com/api/r4/DocumentReference/_search
 <i><small>payload:</small></i> 
 _id:history-2262
 </pre>
@@ -1349,12 +1350,12 @@ _id:history-2262
 Finds a single document based on the ID
 
 #### HTTP Request 
-`GET /DocumentReference/{documentType-id}` 
+`GET /r4/DocumentReference/{documentType-id}` 
 
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| DocumentReferenceID | Must be if the form `documenttype-id` i.e: GET /DocumentReference/history-5  | Yes | 16.8
+| DocumentReferenceID | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 16.8
 
 #### Supported Document Types
 The supported types are history and EMN.
@@ -1368,7 +1369,6 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
 <pre class="center-column">
 {
     "resourceType": "DocumentReference",
-    "id": "history-2263",
     "identifier": [
         {
             "use": "official",
@@ -1380,22 +1380,22 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
         "coding": [
             {
                 "system": "http://loinc.org",
-                "code": "34117-2",
-                "display": "History & Physical Note"
+                "code": "18842-5",
+                "display": "Discharge Summary"
             }
         ],
-        "text": "History & Physical Note"
+        "text": "Discharge Summary"
     },
     "category": [
         {
             "coding": [
                 {
-                    "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
-                    "code": "Miscellaneous",
-                    "display": "Miscellaneous"
+                    "system": "https://select.nextech-api.com/api/structuredefinition/note-category",
+                    "code": "Prescriptions",
+                    "display": "Prescriptions"
                 }
             ],
-            "text": "Miscellaneous"
+            "text": "Prescriptions"
         }
     ],
     "subject": {
@@ -1428,6 +1428,12 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
         }
     ],
     "context": {
+        "encounter": [
+            {
+                "reference": "Encounter/6",
+                "display": "Encounter Name"
+            }
+        ],
         "period": {
             "start": "2022-06-02T17:11:23.943+00:00",
             "end": "2022-06-02T17:11:23.943+00:00"
@@ -1441,13 +1447,14 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
 Creates the document in the content.attachment for a patient and attaches it to the patient's history tab in the Nextech software.
 
 #### HTTP Request 
-`POST /DocumentReference` 
+`POST /r4/DocumentReference` 
 
 #### Body Fields
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
 | resourceType | Must be `DocumentReference` | Yes |
 | type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | Yes | _16.8_ |
+| category | Allows setting category of the document  | No | _16.8 |
 | date | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No | _16.8_ |
 | author.display | The name of the author. This will be appended to the beginning of the description value. | No | _16.8_ |
 | description | A description of the document | No | _16.8_ |
@@ -1459,6 +1466,10 @@ Creates the document in the content.attachment for a patient and attaches it to 
 
 ### Extension: note-category
 This is a custom extension to allow the setting of the category on the document. This must match with an existing note category or is left blank.  There can be only one note-category extension.
+
+Note: This custom extension should not be used, instead `category` is encouraged.
+When `category` is supplied, only the first coding will be used. Any others will be ignored.
+When both `category` and the this extension are used, the NexTech extension will be used instead of the `category`.
 
 Url: https://select.nextech-api.com/api/structuredefinition/note-category
 valueString: Name of Nextech note category
@@ -1495,22 +1506,22 @@ When both Category and the `note-category` NexTech extension are used, the NexTe
         {
             "coding": [
                 {
-                    "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
-                    "code": "clinical-note",
-                    "display": "Clinical Note"
+                    "system": "https://select.nextech-api.com/api/structuredefinition/note-category",
+                    "code": "Prescriptions",
+                    "display": "Prescriptions"
                 }
             ],
-            "text": "Clinical Note"
+            "text": "Prescriptions"
         }
     ],
     "subject": {
-        "reference": "[base]/Patient/9CFE7258-8F50-45E8-9732-6433976CC164"
+        "reference": "Patient/9CFE7258-8F50-45E8-9732-6433976CC164"
     },
     "content": [{"attachment": {
         "contentType": "text/plain",
         "data": "Tm8gYWN0aXZpdHkgcmVzdHJpY3Rpb24sIHJlZ3VsYXIgZGlldCwgZm9sbG93IHVwIGluIHR3byB0byB0aHJlZSB3ZWVrcyB3aXRoIHByaW1hcnkgY2FyZSBwcm92aWRlci4="
     } }],
-    "context": {"encounter": {"reference": "[base]/Encounter/1"} },
+    "context": {"encounter": {"reference": "Encounter/1"} },
     "extension": [
             {
                 "url": "https://select.nextech-api.com/api/structuredefinition/note-category",
@@ -1532,7 +1543,7 @@ If only patient is specified, then it will return one (1) Summary of Care docume
 If patient and a date range is specified (start, end, start+end), then it will return one document reference for each encounter that falls within that range.
 
 #### HTTP Request
-`POST /DocumentReference/$docref`
+`POST /r4/DocumentReference/$docref`
 
 #### Body Fields
 | Name | Description | Required | Initial Version |
@@ -1573,7 +1584,7 @@ Note: The `start` and `end` parameters can be either of type `valueDateTime` as 
 Note: the response body will be the same as the GET example below
 
 #### HTTP Request 
-`GET /DocumentReference/$docref?{patient}[&{start}][&{end}]`
+`GET /r4/DocumentReference/$docref?{patient}[&{start}][&{end}]`
 
 #### Parameters
 | Name | Description | Required | Initial Version |
@@ -1620,10 +1631,11 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/$docref?patient=C21A
                         "coding": [
                             {
                                 "system": "https://select.nextech-api.com/api/structuredefinition/note-category",
-                                "code": "10"
+                                "code": "Prescriptions",
+                                "display": "Prescriptions"
                             }
                         ],
-                        "text": "Note"
+                        "text": "Prescriptions"
                     }
                 ],
                 "subject": {
@@ -2380,7 +2392,7 @@ POST https://select.nextech-api.com/api/r4/DiagnosticReport/_search
 ## Medication Request
 
 ### Overview
-The Medication Request resource can be used to record a patient�s medication prescription or order.
+The Medication Request resource can be used to record a patient's medication prescription or order.
 
 ### Fields
 | Name | Description | Type | Initial Version |
