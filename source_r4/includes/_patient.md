@@ -1279,16 +1279,16 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 | id | The unique id string assigned to each documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
 | identifier | The unique identifier assigned to each documentreference | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.7_ |
 | type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.8_
-| subject | The patient pertaining to the documentreference | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.7_ |
+| subject | The patient pertaining to the documentreference | [Reference](https://www.hl7.org/fhir/R4/references.html) ( [Patient])(http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) | _12.7_ |
 | date | document creation time (in UTC) | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.7_ |
-| author | Identifies who is responsible for the information in the document reference | [Reference(Practitioner)](https://www.hl7.org/fhir/references.html#Reference) | _16.7_ |
+| author | Identifies who is responsible for the information in the document reference | [Reference](https://www.hl7.org/fhir/R4/references.html) ( [Practitioner])(http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html) | _16.7_ |
 | description | The description of the documentreference | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
 | content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _12.7_ |
 | content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.7_ |
 | extension: note-category | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
 | extension: document-publish-portal | Contains whether the document is published to myPatientVisit | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _12.9.20_ |
 | context.encounter | The clinical context in which the document was prepared. | [Reference](https://www.hl7.org/fhir/R4/references.html) ([US Core Encounter Profile])(http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-encounter.html) | _16.8_ |
-| custodian | Identifies the organization or group who is responsible for ongoing maintenance of and access to the document. | [Reference(USCoreOrganizationProfile)](https://www.hl7.org/fhir/references.html) | _16.8_ |
+| custodian | Identifies the organization or group who is responsible for ongoing maintenance of and access to the document. | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCoreOrganizationProfile])(http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html) | _16.8_ |
 
 
 ### *Search*
@@ -1348,7 +1348,7 @@ _id:history-2262
 #### Example Searching for all documents that have a type of 11488-4, category of Clinical, created before 2022-06-03 for the specific patient
 
 <pre class="center-column">
-POST https://select.nextech-api.com/api/r4/DocumentReference
+POST https://select.nextech-api.com/api/r4/DocumentReference/_search
 <i><small>payload:</small></i> 
 type:11488-4
 category:Clinical
@@ -1366,7 +1366,7 @@ Finds a single document based on the ID
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| DocumentType-id | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 16.8
+| DocumentType-id | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 16.8 |
 
 #### Supported Document Types
 The supported types are history and EMN.
@@ -1465,7 +1465,7 @@ Creates the document in the content.attachment for a patient and attaches it to 
 | ---- | ----------- | -------- | --------------- |
 | resourceType | Must be `DocumentReference` | Yes |
 | type | Specifies the particular kind of document referenced (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced. LOINC Code if possible | Yes | _16.8_ |
-| category | Allows setting category of the document  | No | _16.8 |
+| category | Allows setting category of the document  | No | _16.8_ |
 | date | The date (in UTC) of the composition. ie. `2017-10-16T20:32:28.9692476Z` | No | _16.8_ |
 | author.display | The name of the author. This will be appended to the beginning of the description value. | No | _16.8_ |
 | description | A description of the document | No | _16.8_ |
@@ -1559,11 +1559,11 @@ If patient and a date range is specified (start, end, start+end), then it will r
 #### Body Fields
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| resourceType | Must be `Parameters` | Yes | 16.9 |
-| parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | 16.9 |
-| parameter.patient | The patient the document is for | Yes | 16.9 |
-| parameter.start | The start date for EMN encounters | No | 16.9 |
-| parameter.end | the end date for EMN encounters | No | 16.9 |
+| resourceType | Must be `Parameters` | Yes | _16.9_ |
+| parameter | This is an array of [parameters](https://www.hl7.org/fhir/parameters.html) which must include one patient parameter | Yes | _16.9_ |
+| parameter.patient | The patient the document is for | Yes | _16.9_ |
+| parameter.start | The start date for EMN encounters | No | _16.9_ |
+| parameter.end | the end date for EMN encounters | No | _16.9_ |
 
 #### Example: Generating a CCDA for patient with an ID of C21AB936-3A2A-4C5A-81B8-76B120194053 via POST
 <pre class="center-column">
@@ -1600,9 +1600,9 @@ Note: the response body will be the same as the GET example below
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| patient | Must be in the form `{patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | 16.9 |
-| start | Must be in the form of either  `2022-02-23T08:00:00` or `2022-02-23` | No | 16.9 |
-| end | Must be in the form of either `2022-02-24T08:00:00` or `2022-02-24` | No | 16.9 |
+| patient | Must be in the form `{patient GUID}` i.e: `patient=C21AB936-3A2A-4C5A-81B8-76B120194053` | Yes | _16.9_ |
+| start | Must be in the form of either  `2022-02-23T08:00:00` or `2022-02-23` | No | _16.9_ |
+| end | Must be in the form of either `2022-02-24T08:00:00` or `2022-02-24` | No | _16.9_ |
 
 #### *Note: Despite being a GET request, if an encounter that falls within the date range (if supplied) or the most recent encounter does not have a CCDA Summary of Care document previously generated, this request will cause one to be created and attached to the patient's document history*
 
