@@ -113,6 +113,7 @@ Searches for all provenance info based on the given search criteria.
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
 | _id | query or payload | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
+| identifier | query or payload | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
 | _lastUpdated | query or payload | The last time the provenance was modified | No | _17.0_ |
 
 #### Example: Get all provenance info
