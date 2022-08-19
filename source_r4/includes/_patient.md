@@ -1288,6 +1288,7 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 | content.format | An identifier of the document encoding, structure, and template that the document conforms to | [Coding](http://hl7.org/fhir/R4/datatypes.html#Coding) | _16.7_ |
 | content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _16.7_ |
 | content.attachment.data | The base64 encoded data of the attachment. | [base64Binary](http://hl7.org/fhir/R4/datatypes.html#base64Binary) | _16.7_ |
+| content.attachment.url | The url to retrieve the data from the binary endpoint | [string](http://hl7.org/fhir/R4/datatypes.html#base64Binary) | _17.0_ |
 | content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
 | extension: note-category | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
 | extension: document-publish-portal | Contains whether the document is published to myPatientVisit | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _16.7_ | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) |
@@ -2306,6 +2307,7 @@ These types of laboratory reports are denoted by their category. Diagnostic repo
 | issued | The date and time that this version of the report was made available to providers | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _16.9_ |
 | performer | The provider who is responsible for issuing the report | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ( [Practitioner](http://hl7.org/fhir/R4/practitioner.html) ) | _16.9_ |
 | encounter | The healthcare event which this diagnostic report is about | [Reference](http://hl7.org/fhir/R4/references.html#Reference)( [Encounter](http://hl7.org/fhir/R4/encounter.html) ) | _16.9_ |
+| url | The url to retrieve the data from the binary endpoint | [string](http://hl7.org/fhir/R4/datatypes.html#base64Binary) | _17.0_ |
 | result | A reference to the related lab result observations | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ( [Observation](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-observation-lab.html) ) | _16.9_ |
 | presentedForm | A document attachment containing lab result data for the report | [Attachment](http://hl7.org/fhir/R4/datatypes.html#Attachment) | _16.9_ |
 
