@@ -2905,10 +2905,10 @@ Gets the binary form of a document by ID
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| DocumentType-id | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 17.0 |
+| DocumentType-id | Must be if the form `documenttype-id` i.e: GET /r4/Binary/history-5  | Yes | 17.0 |
 
 #### Supported Document Types
-The supported types are History or EMN.
+The supported types are "history" or "emn".
 
 #### Example: Get the binary form of a history document with ID 2262 which is a text file with a content of "Hello!"
 <pre class="center-column">
