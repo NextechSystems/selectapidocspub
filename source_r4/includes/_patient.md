@@ -2873,3 +2873,44 @@ POST https://select.nextech-api.com/api/r4/Procedure/_search
 </pre>
 
 &nbsp;
+
+
+## Binary
+
+### Overview
+Returns the Binary data and content type of a Document Reference or a Diagnostic Report
+
+### Fields
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _16.7_ |
+| content.attachment.data | The base64 encoded data of the attachment. | [base64Binary](http://hl7.org/fhir/R4/datatypes.html#base64Binary) | _16.7_ |
+
+### *Get By ID*
+Finds a single document based on the ID
+
+#### HTTP Request 
+`GET /r4/DocumentReference/{documentType-id}` 
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| DocumentType-id | Must be if the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 16.8 |
+
+#### Supported Document Types
+The supported types are History, EMN, or Diagnostic.
+
+#### Example: Get the history document with ID 2262 which is a text file with a content of "Hello!"
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
+</pre>
+&nbsp;
+
+<pre class="center-column">
+{
+
+    "contentType": "text/plain",
+    "data": "U0dWc2JHOGg=",
+}
+</pre>
+&nbsp;
