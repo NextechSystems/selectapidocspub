@@ -1434,7 +1434,7 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
         {
             "attachment": {
                 "contentType": "text/plain",
-                "dataUrl": "Binary/history-125369",
+                "url": "Binary/history-125369",
                 "title": "small text doc.txt"
             },
             "format": {
@@ -1674,7 +1674,7 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/$docref?patient=C21A
                     {
                         "attachment": {
                             "contentType": "application/xml",
-                            "dataUrl": "Binary/history-125369"
+                            "url": "Binary/history-125369"
                         },
                         "format": {
                             "system": "urn:oid:1.3.6.1.4.1.19376.1.2.3",
