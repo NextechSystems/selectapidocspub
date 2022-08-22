@@ -1288,6 +1288,7 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 | content.format | An identifier of the document encoding, structure, and template that the document conforms to | [Coding](http://hl7.org/fhir/R4/datatypes.html#Coding) | _16.7_ |
 | content.attachment.contentType | The mimetype of the content.| [Code](https://www.hl7.org/fhir/datatypes.html#code) | _16.7_ |
 | content.attachment.data | The base64 encoded data of the attachment. | [base64Binary](http://hl7.org/fhir/R4/datatypes.html#base64Binary) | _16.7_ |
+| content.attachment.url | The url to retrieve the data from the binary endpoint | [url](http://hl7.org/fhir/R4/datatypes.html#url) | _17.0_ |
 | content.attachment.title | The title of the document| [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
 | extension: note-category | Contains the category of the document | [string](https://www.hl7.org/fhir/datatypes.html#string) | _16.7_ |
 | extension: document-publish-portal | Contains whether the document is published to myPatientVisit | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean)  | _16.7_ | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) |
@@ -1433,7 +1434,7 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/history-2262
         {
             "attachment": {
                 "contentType": "text/plain",
-                "data": "U0dWc2JHOGg=",
+                "url": "Binary/history-125369",
                 "title": "small text doc.txt"
             },
             "format": {
@@ -1673,7 +1674,7 @@ GET https://select.nextech-api.com/api/r4/DocumentReference/$docref?patient=C21A
                     {
                         "attachment": {
                             "contentType": "application/xml",
-                            "data": "[base64 Encoded string]"
+                            "url": "Binary/history-125369"
                         },
                         "format": {
                             "system": "urn:oid:1.3.6.1.4.1.19376.1.2.3",
@@ -2308,6 +2309,7 @@ These types of laboratory reports are denoted by their category. Diagnostic repo
 | encounter | The healthcare event which this diagnostic report is about | [Reference](http://hl7.org/fhir/R4/references.html#Reference)( [Encounter](http://hl7.org/fhir/R4/encounter.html) ) | _16.9_ |
 | result | A reference to the related lab result observations | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ( [Observation](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-observation-lab.html) ) | _16.9_ |
 | presentedForm | A document attachment containing lab result data for the report | [Attachment](http://hl7.org/fhir/R4/datatypes.html#Attachment) | _16.9_ |
+| presentedForm.url | The url to retrieve the data from the binary endpoint | [url](http://hl7.org/fhir/R4/datatypes.html#url) | _17.0_ |
 
 ### Example
 <pre class="center-column">
@@ -2873,3 +2875,46 @@ POST https://select.nextech-api.com/api/r4/Procedure/_search
 </pre>
 
 &nbsp;
+
+
+## Binary
+
+### Overview
+Returns the Binary data and content type of a Document Reference or a Diagnostic Report.
+
+### Fields
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| contentType | The mimetype of the content.| [Code](https://hl7.org/fhir/R4/datatypes.html#code) | _17.0_ |
+| data | The base64 encoded data of the attachment. | [base64Binary](http://hl7.org/fhir/R4/datatypes.html#base64Binary) | _17.0_ |
+
+#### Example
+<pre class="center-column">
+{
+    "resourceType": "Binary",
+    "contentType": "text/plain",
+    "data": "U0dWc2JHOGg=",
+}
+</pre>
+&nbsp;
+
+### *Get By ID*
+Gets the binary form of a document by ID
+
+#### HTTP Request 
+`GET /r4/Binary/{documentType-id}` 
+
+#### Parameters
+| Name | Description | Required | Initial Version |
+| ---- | ----------- | -------- | --------------- |
+| DocumentType-id | Must be if the form `documenttype-id` i.e: GET /r4/Binary/history-5  | Yes | 17.0 |
+
+#### Supported Document Types
+The supported types are "history" or "emn".
+
+#### Example: Get the binary form of a history document with ID 2262 which is a text file with a content of "Hello!"
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Binary/history-2262
+</pre>
+&nbsp;
+
