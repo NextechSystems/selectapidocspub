@@ -1944,9 +1944,15 @@ Returns encounters based on the provided search parameters.
 | date | query or payload | The date the encounter took place in the form YYYY-MM-DD  | No | _16.9_ |
 | identifier | query or payload | The encounter unique identifier | No | _16.9_ |
 | _id | query or payload | The encounter unique identifier | No | _16.9_ |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
 
 > **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
+&nbsp;
+#### Retrieve Provenance with encounters
+The `_revinclude` parameter allows support for including [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that match the returned encounters.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the encounter.
 &nbsp;
 #### Examples: 
 
