@@ -190,6 +190,12 @@ Searches for all patients matching the given search criteria. See [https://www.h
 | gender | query | The gender of the patient | No | string | _12.6_ |
 | name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | string | 
 | group-id | query | The letter writing group of the patient | No | string | 16.8 |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | string | _17.0_ |
+
+#### Retrieve Provenance with document references
+The `_revinclude` parameter allows support for including Provenance references that match the returned document references.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the document reference
 
 #### Example: Get the patient of a specific chart number
 
@@ -223,6 +229,26 @@ GET https://select.nextech-api.com/api/r4/Patient?_id=9D0B7ADE-4B5B-41DD-8AC4-88
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Patient/_search
 <i><small>payload:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+</pre>
+
+#### Example: Get all patients with identifier '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Patient?identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Patient/_search
+<i><small>payload:</small></i> identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Patient?_id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Patient/_search
+<i><small>payload:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
 </pre>
 
 #### Example: Get all patients who live within '12345' zip code
