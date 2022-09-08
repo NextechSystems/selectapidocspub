@@ -190,12 +190,12 @@ Searches for all patients matching the given search criteria. See [https://www.h
 | gender | query | The gender of the patient | No | string | _12.6_ |
 | name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | string | 
 | group-id | query | The letter writing group of the patient | No | string | 16.8 |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | string | _17.0_ |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each patient | No | string | _17.0_ |
 
-#### Retrieve Provenance with document references
-The `_revinclude` parameter allows support for including Provenance references that match the returned document references.
+#### Retrieve Provenance with patients
+The `_revinclude` parameter allows support for including Provenance references that match the returned patient.
 This value must be `Provenance:target`, otherwise the request will result in an error.
-These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the document reference
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the patient.
 
 #### Example: Get the patient of a specific chart number
 
