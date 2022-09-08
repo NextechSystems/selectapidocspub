@@ -449,14 +449,14 @@ A Care Plan contains patient diet, procedure, lab work and counseling and other 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| id | The unique value assigned to each care plan which discerns them from all others. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
-| subject | The patient pertaining to the care plan. | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| text | A human-readable narrative that contains a summary of the resource. | [Narrative](http://hl7.org/fhir/R4/datatypes.html#Narrative) | _12.6_ |
-| text.div | The actual narrative content of the patient care plan. | [xhtml](http://hl7.org/fhir/R4/narrative.html#xhtml) | _12.6_ |
-| text.status | The text status for the resource narrative. | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _12.6_ |
-| category | The type of the care plan. | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.6_ |
-| status | Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record. | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.6_ |
-| intent | Indicates the level of intentionality associated with the care plan (proposal, plan, order, option). | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _12.6_ |
+| id | The unique value assigned to each care plan which discerns them from all others. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.9_ |
+| subject | The patient pertaining to the care plan. | [Reference(Patient)](https://www.hl7.org/fhir/R4/references.html) | _16.9_ |
+| text | A human-readable narrative that contains a summary of the resource. | [Narrative](http://hl7.org/fhir/R4/datatypes.html#Narrative) | _16.9_ |
+| text.div | The actual narrative content of the patient care plan. | [xhtml](http://hl7.org/fhir/R4/narrative.html#xhtml) | _16.9_ |
+| text.status | The text status for the resource narrative. | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _16.9_ |
+| category | The type of the care plan. | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
+| status | Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record. | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _16.9_ |
+| intent | Indicates the level of intentionality associated with the care plan (proposal, plan, order, option). | [code](http://hl7.org/fhir/R4/datatypes.html#code)  | _16.9_ |
 
 ### Example
 <pre class="center-column">
@@ -583,7 +583,7 @@ Returns a single Care Plan result based on the Care Plan ID.
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| carePlanId | path | The unique identifier for the care plan | Yes | _12.6_ |
+| carePlanId | path | The unique identifier for the care plan | Yes | _16.9_ |
 
 #### Example: Get the care plan with an ID of '676'
 
@@ -605,14 +605,19 @@ Searches for care plans for a single patient
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _12.6_ |
-| _id | query or payload | The unique identifier for the care plan | No | _12.6_ |
-| identifier | query or payload | The unique identifier for the care plan | No | _12.6_ |
-| category | query or payload | The type of the care plan. Ex.: 'assess-plan' | No | _12.6_ |
-| _lastUpdated | query or payload | The date the care plan was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _12.6_ |
+| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.9_ |
+| _id | query or payload | The unique identifier for the care plan | No | _16.9_ |
+| identifier | query or payload | The unique identifier for the care plan | No | _16.9_ |
+| category | query or payload | The type of the care plan. Ex.: 'assess-plan' | No | _16.9_ |
+| _lastUpdated | query or payload | The date the care plan was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
+| _revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each care plan | No | _16.9_ |
 
 > **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
+#### Retrieve Provenance with care plans
+The `_revinclude` parameter allows support for including Provenance references that match the returned care plans.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the care plan.
 
 #### Example: Get all care plans for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and category 'assess-plan'
 
