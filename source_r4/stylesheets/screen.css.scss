@@ -545,6 +545,10 @@ html, body {
   }
 
   blockquote {
+    width: fit-content;
+    float: none;
+    margin: 0 28px;
+    clear:both;
     &>p {
       background-color: $code-annotation-bg;
       padding: $code-annotation-padding 2em;

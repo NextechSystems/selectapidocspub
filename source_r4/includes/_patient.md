@@ -400,7 +400,7 @@ Searches for allergy intolerances for a single patient
 | ---- | ---------- | ----------- | -------- | --------------- |
 | patientUid | path, query or payload | The official patient identifier acquired from a patient search | Yes | _12.6_ |
 | _lastUpdated | query or payload | The date the allergy intolerance was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD  | No | _12.6_ |
-
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
 > **_Note:_**  The possible filter values for _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
@@ -1234,7 +1234,7 @@ Searches for devices for a single patient
 | date | query or payload | The device last update date in the form YYYY-MM-DD | No | _12.6_ |
 | identifier | query or payload | The unique identifier for the device | No | _12.6_ |
 | _id | query or payload | The unique identifier for the device | No | _12.6_ |
-
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
 > **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get all devices for a single patient with id 'ad2085b5-b974-401d-bfcb-3b865109fd35'
@@ -2107,7 +2107,8 @@ Searches for goals for a single patient
 | _id | query | The goal identifier | No | _12.6_ |
 | patient | query | The official patient identifier acquired from a patient search | No | _12.6_ |
 | date | query | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _12.6_ |
-
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
+| _lastUpdated | The date a goal was last modified | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _16.9_ |
 #### Example: Get all goals for a single patient
 
 <pre class="center-column">
@@ -2548,6 +2549,7 @@ Searches for medication requests for a single patient
 | intent | query or payload | The intent of the medication request. Ex.: 'original-order' | No | _17.0_ |
 | status | query or payload | The status of the medication request. Ex.: 'active' | No | _17.0_ |
 | _lastUpdated | query or payload | The date the medication request was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _17.0_ |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
 
 > **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
@@ -2744,6 +2746,7 @@ Returns observations based on the provided search parameters
 | category | query or body | The category of observation by code ie. category=laboratory or by token ie. category=http://terminology.hl7.org/CodeSystem/observation-category&vert;laboratory | No | _16.9_ |
 | date | query or body | The observation date in the form YYYY-MM-DD | No | _16.9__ |
 | code | query or body | The loinc code of observation by code ie. code=49765-1 or token ie. code=http://loinc.org&vert;49765-1 | No | _16.9_ |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
 | _lastUpdated | query or body | The date the observation was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) (**_Note:_** Currently this search parameter will not filter the results for laboratory type observations) | No | _16.9_ |
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`.
 
