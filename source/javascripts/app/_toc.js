@@ -84,6 +84,20 @@
       }
     };
 
+    var makeVersion = function() {
+      let $version = $(".versions-wrapper select");      
+      let url = window.location.href;
+      url = url.split("#")[0];
+      if(url.indexOf('r4') > -1)
+      {
+        $version.val("r4.html");
+      }
+      $version.on("change", function()
+      {
+        window.location = url.replace(/(?<=\/)[^\/\?#]+(?=[^\/]*$)/,$version.val());
+      });
+    }
+
     var makeToc = function() {
       recacheHeights();
       refreshToc();
@@ -108,7 +122,7 @@
     };
 
     makeToc();
-
+    makeVersion();
     window.recacheHeights = recacheHeights;
     window.refreshToc = refreshToc;
   }

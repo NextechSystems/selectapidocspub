@@ -3,8 +3,9 @@
 This repository contains all content used to generate the official Nextech API documentation at https://nextechsystems.github.io/selectapidocspub
 
 ## Modifying the Documentation
+The Nextech API documentation is located in this repository under `source/includes` for `STU3` and `source/includes/r4` for `R4` in markdown files. 
 
-The Nextech API documentation is located in this repository under source/includes in markdown files. Each file corresponds to a root level topic in the official documentation's navigation pane on the left. You may modify them with any text or markdown editor.
+Each file corresponds to a root level topic in the official documentation's navigation pane on the left. You may modify them with any text or markdown editor.
 
 If you need to change the formatting, the style sheets are located in source/stylesheets. The primary style sheet is screen.css.scss.
 
