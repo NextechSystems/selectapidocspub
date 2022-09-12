@@ -88,7 +88,7 @@
       let $version = $(".versions-wrapper select");      
       let url = window.location.href;
       url = url.split("#")[0];
-      if(url.indexOf('r4') > -1)
+      if(url.indexOf('r4.html') > -1)
       {
         $version.val("r4.html");
       }
