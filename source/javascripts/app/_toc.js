@@ -94,7 +94,12 @@
       }
       $version.on("change", function()
       {
-        window.location = url.replace(/(?<=\/)[^\/\?#]+(?=[^\/]*$)/,$version.val());
+        url = url.replace(/(?<=\/)[^\/\?#]+(?=[^\/]*$)/,$version.val());
+        if(url.indexOf($version.val()) == -1)
+        {
+          url += $version.val();
+        }
+        window.location = url;
       });
     }
 
