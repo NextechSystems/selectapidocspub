@@ -46,6 +46,15 @@ html, body {
   width: 20px;
 }
 
+.versions-wrapper{
+  background: white;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  select{
+    margin-left:10px;
+  }
+}
+
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
 
@@ -545,6 +554,10 @@ html, body {
   }
 
   blockquote {
+    width: fit-content;
+    float: none;
+    margin: 0 28px;
+    clear:both;
     &>p {
       background-color: $code-annotation-bg;
       padding: $code-annotation-padding 2em;

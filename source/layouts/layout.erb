@@ -49,7 +49,7 @@ under the License.
         NAV
         <%= image_tag('navbar.png') %>
       </span>
-    </a>
+    </a>    
     <div class="toc-wrapper">
       <%= image_tag "logo.png", class: 'logo' %>
       <% if language_tabs.any? %>
@@ -62,13 +62,20 @@ under the License.
             <% end %>
           <% end %>
         </div>
-      <% end %>
+      <% end %>      
       <% if current_page.data.search %>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
       <% end %>
+      <div id="versions" class="versions-wrapper">
+        <label>Version: </label> 
+        <select>
+          <option value="index.html">STU3</option>
+          <option value="r4.html">R4</option>
+        </select>          
+      </div>
       <div id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <li>
