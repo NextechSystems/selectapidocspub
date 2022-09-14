@@ -1330,8 +1330,8 @@ Searches for conditions for a single patient
 | patientUid | path | The official patient identifier acquired from a patient search | Yes | _16.9_ |
 | onset-date | query | The onset date in the form YYYY-MM-DD | No | _16.9_ |
 | abatement-date | query | The abatement date in the form YYYY-MM-DD | No | _16.9_ |
-| _lastUpdated | query or payload | The date the care plan was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
-| _revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each care plan | No | _16.9_ |
+| _lastUpdated | query or payload | The date the condition was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
+| _revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each condition | No | _16.9_ |
 
 #### Retrieve Provenance with conditions
 The `_revinclude` parameter allows support for including Provenance references that match the returned conditions.
