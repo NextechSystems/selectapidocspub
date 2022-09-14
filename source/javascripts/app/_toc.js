@@ -94,7 +94,7 @@
       }
       $version.on("change", function()
       {
-        url = url.replace(/(?<=\/)[^\/\?#]+(?=[^\/]*$)/,$version.val());
+        url = url.replace(/[^\/\?#]+(?=[^\/]*$)/,$version.val());
         if(url.indexOf($version.val()) == -1)
         {
           url += $version.val();

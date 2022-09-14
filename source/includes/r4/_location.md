@@ -1,6 +1,8 @@
 # Location
 
-## Location[(USCoreOrganizationProfile)](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html)
+## Location
+
+[(USCoreOrganizationProfile)](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html)
 
 ### Overview
 A physical location where services are provided. This may or may not be under the practice's management.
