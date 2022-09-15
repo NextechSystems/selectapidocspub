@@ -85,14 +85,14 @@
     };
 
     var makeVersion = function() {
-      let $version = $(".versions-wrapper select");      
-      let url = window.location.href;
+      var ddlVersion = $(".versions-wrapper select");      
+      var url = window.location.href;
       url = url.split("#")[0];
       if(url.indexOf('r4.html') > -1)
       {
-        $version.val("r4.html");
+        ddlVersion.val("r4.html");
       }
-      $version.on("change", function()
+      ddlVersion.on("change", function()
       {
         url = url.replace(/[^\/\?#]+(?=[^\/]*$)/,$version.val());
         if(url.indexOf($version.val()) == -1)
