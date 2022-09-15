@@ -805,6 +805,7 @@ Searches for care teams for a single patient
 | identifier | query or payload | The unique identifier for the care team | No | _16.9_ |
 | status | query or payload | Indicates the current state of the care team. Ex.: 'active' | No | _16.9_ |
 | _lastUpdated | query or payload | The date the care team was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
+| _revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each care team | No | _17.0_ |
 
 > **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
