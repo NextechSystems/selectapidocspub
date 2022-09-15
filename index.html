@@ -218,9 +218,16 @@
         NAV
         <img src="images/navbar.png" alt="" />
       </span>
-    </a>
+    </a>    
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="" />
+      <div id="versions" class="versions-wrapper">
+        <label>Version: </label> 
+        <select>
+          <option value="index.html">STU3</option>
+          <option value="r4.html">R4</option>
+        </select>          
+      </div>
       <div id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
@@ -2838,43 +2845,43 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <td>identifier</td>
 <td>The unique value assigned to each allergy intolerance record which discerns them from all others.</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#Identifier">Identifier</a></td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
 </tr>
 <tr>
 <td>clinicalStatus</td>
 <td>The condition status</td>
 <td><a href="https://www.hl7.org/fhir/valueset-condition-clinical.html">Condition Clinical Status Code</a></td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
 </tr>
 <tr>
 <td>verificationStatus</td>
 <td>The condition verification status</td>
 <td><a href="https://www.hl7.org/fhir/valueset-condition-ver-status.html">ConditionVerificationstatus</a></td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
 </tr>
 <tr>
 <td>code</td>
 <td>Identification of the condition, problem or diagnosis</td>
 <td><a href="https://www.hl7.org/fhir/valueset-condition-code.html">Condition/Problem/Diagnosis Code</a></td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
 </tr>
 <tr>
 <td>subject</td>
 <td>The patient pertaining to the condition</td>
 <td><a href="https://www.hl7.org/fhir/references.html">Reference(Patient)</a></td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
 </tr>
 <tr>
 <td>onsetDate</td>
 <td>Estimated or actual date</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
 </tr>
 <tr>
 <td>abatementDate</td>
 <td>Resolution or remission date</td>
 <td><a href="https://www.hl7.org/fhir/datatypes.html#dateTime">dateTime</a></td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
 </tr>
 </tbody></table>
 <h3 id='example-6'>Example</h3>
@@ -2933,23 +2940,41 @@ POST https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109
 <td>path</td>
 <td>The official patient identifier acquired from a patient search</td>
 <td>Yes</td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
 </tr>
 <tr>
 <td>onset-date</td>
 <td>query</td>
 <td>The onset date in the form YYYY-MM-DD</td>
 <td>No</td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
 </tr>
 <tr>
 <td>abatement-date</td>
 <td>query</td>
 <td>The abatement date in the form YYYY-MM-DD</td>
 <td>No</td>
-<td><em>12.6</em></td>
+<td><em>16.9</em></td>
+</tr>
+<tr>
+<td>_lastUpdated</td>
+<td>query or payload</td>
+<td>The date the condition was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD.</td>
+<td>No</td>
+<td><em>16.9</em></td>
+</tr>
+<tr>
+<td>_revinclude</td>
+<td>query or payload</td>
+<td>Must be <code>Provenance:target</code>. This enables requesting additional <code>Provenance</code> resources that relate to each condition</td>
+<td>No</td>
+<td><em>16.9</em></td>
 </tr>
 </tbody></table>
+<h4 id='retrieve-provenance-with-conditions'>Retrieve Provenance with conditions</h4>
+<p>The <code>_revinclude</code> parameter allows support for including Provenance references that match the returned conditions.
+This value must be <code>Provenance:target</code>, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a <code>Provenance.Target</code> entry that identifies the relative link to the condition.</p>
 <h4 id='example-get-all-conditions-for-a-single-patient-with-an-onset-date-as-of-1-1-2017'>Example: Get all conditions for a single patient with an onset date as of 1/1/2017</h4>
 <pre class="center-column">
 GET https://select.nextech-api.com/api/Patient/ad2085b5-b974-401d-bfcb-3b865109fd35/Condition?onset-date=ge2017-01-01
