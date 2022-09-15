@@ -94,10 +94,10 @@
       }
       ddlVersion.on("change", function()
       {
-        url = url.replace(/[^\/\?#]+(?=[^\/]*$)/,$version.val());
-        if(url.indexOf($version.val()) == -1)
+        url = url.replace(/[^\/\?#]+(?=[^\/]*$)/,ddlVersion.val());
+        if(url.indexOf(ddlVersion.val()) == -1)
         {
-          url += $version.val();
+          url += ddlVersion.val();
         }
         window.location = url;
       });
