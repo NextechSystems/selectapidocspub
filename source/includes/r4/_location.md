@@ -103,7 +103,8 @@ Searches for all locations based on the given search criteria.
 - `POST /r4/Location/_search?{parameters}`
 - `POST /r4/Location/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 
 #### Parameters

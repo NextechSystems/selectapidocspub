@@ -171,7 +171,8 @@ Searches for all patients matching the given search criteria. See [https://www.h
 - `GET /r4/Patient?{parameters}`
 - `POST /r4/Patient/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Type | Initial Version |
@@ -401,7 +402,7 @@ Searches for allergy intolerances for a single patient
 | patientUid | path, query or payload | The official patient identifier acquired from a patient search | Yes | _12.6_ |
 | _lastUpdated | query or payload | The date the allergy intolerance was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD  | No | _12.6_ |
 | \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
-> **_Note:_**  The possible filter values for _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
 #### Examples: 
@@ -600,7 +601,8 @@ Searches for care plans for a single patient
 - `GET /r4/CarePlan?{parameters}`
 - `POST /r4/CarePlan/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -612,7 +614,7 @@ Searches for care plans for a single patient
 | _lastUpdated | query or payload | The date the care plan was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
 | _revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each care plan | No | _16.9_ |
 
-> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Retrieve Provenance with care plans
 The `_revinclude` parameter allows support for including Provenance references that match the returned care plans.
@@ -795,7 +797,8 @@ Searches for care teams for a single patient
 - `GET /r4/CareTeam?{parameters}`
 - `POST /r4/CareTeam/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -806,7 +809,7 @@ Searches for care teams for a single patient
 | status | query or payload | Indicates the current state of the care team. Ex.: 'active' | No | _16.9_ |
 | _lastUpdated | query or payload | The date the care team was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
 
-> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 
 #### Example: Get all care teams for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and status 'active'
@@ -1080,7 +1083,8 @@ Searches for conditions for a single patient
 - `GET /r4/Condition?{parameters}`
 - `POST /r4/Condition/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1090,7 +1094,7 @@ Searches for conditions for a single patient
 | identifier | query or payload | The unique identifier for the condition | No | _16.8_ |   
 | _lastUpdated | query or payload | The date the condition was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.8_ |
 
-> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get all conditions for a single patient 
 
@@ -1224,7 +1228,8 @@ Searches for devices for a single patient
 - `GET /r4/Device?{parameters}`
 - `POST /r4/Device/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1235,7 +1240,7 @@ Searches for devices for a single patient
 | identifier | query or payload | The unique identifier for the device | No | _12.6_ |
 | _id | query or payload | The unique identifier for the device | No | _12.6_ |
 | \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
-> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get all devices for a single patient with id 'ad2085b5-b974-401d-bfcb-3b865109fd35'
 
@@ -1332,11 +1337,11 @@ A reference to a document of any kind for any purpose. Provides metadata about t
 Finds a bundle of documents based on the search parameters
 
 #### HTTP Request 
-`GET /r4/DocumentReference?{parameters}`
-
-`POST /r4/DocumentReference/_search`
+- `GET /r4/DocumentReference?{parameters}`
+- `POST /r4/DocumentReference/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1347,7 +1352,7 @@ Finds a bundle of documents based on the search parameters
 | category | query or payload | The category of the document | No | _16.9_ |
 | date | query or payload| This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | _16.9_ |
 | type | query or payload| The type of the document | No | _16.9_ |
-> **_Note:_**  The possible filter values for the date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for the date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Supported Document Types
 The supported types are history and EMN.
@@ -1965,7 +1970,8 @@ Returns encounters based on the provided search parameters.
 - `GET /r4/Encounter?{parameters}`
 - `POST /r4/Encounter/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -1977,7 +1983,7 @@ Returns encounters based on the provided search parameters.
 | _id | query or payload | The encounter unique identifier | No | _16.9_ |
 | \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
 
-> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
 #### Retrieve Provenance with encounters
@@ -2256,7 +2262,8 @@ Returns immunizations based on the provided search parameters.
 - `GET /r4/Immunization?{parameters}`
 - `POST /r4/Immunization/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -2267,7 +2274,7 @@ Returns immunizations based on the provided search parameters.
 | identifier | query or payload | The immunization unique identifier | No | _16.7_ |
 | _id | query or payload | The immunization unique identifier | No | _16.7_ |
 
-> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
 #### Examples: 
@@ -2420,7 +2427,8 @@ Returns diagnostic reports based on the provided search parameters
 - `GET /r4/DiagnosticReport?{parameters}` 
 - `POST /r4/DiagnosticReport/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both.
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both.
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -2538,7 +2546,8 @@ Searches for medication requests for a single patient
 - `GET /r4/MedicationRequest?{parameters}`
 - `POST /r4/MedicationRequest/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -2551,7 +2560,7 @@ Searches for medication requests for a single patient
 | _lastUpdated | query or payload | The date the medication request was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _17.0_ |
 | \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
 
-> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get the medication request with an ID of '12'
 
@@ -2735,7 +2744,8 @@ Returns observations based on the provided search parameters
 - `GET /r4/Observation?{parameters}` 
 - `POST /r4/Observation/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both.
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both.
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -2860,7 +2870,8 @@ Returns procedures based on the provided search parameters.
 - `GET /r4/Procedure?{parameters}`
 - `POST /r4/Procedure/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -2870,7 +2881,7 @@ Returns procedures based on the provided search parameters.
 | date | query or payload | The date the procedure was performed in the form YYYY-MM-DD  | No | _16.7_ |
 | _id | query or payload | The procedure unique identifier | No | _16.7_ |
 
-> **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
 #### Examples: 

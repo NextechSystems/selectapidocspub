@@ -96,7 +96,8 @@ Searches for all organizations based on the given search criteria.
 - `POST /r4/Organization/_search?{parameters}`
 - `POST /r4/Organization/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 
 #### Parameters

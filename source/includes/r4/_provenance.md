@@ -104,9 +104,9 @@ Searches for all provenance info based on the given search criteria.
 #### HTTP Requests
 - `GET /r4/Provenance?{parameters}`
 - `POST /r4/Provenance/_search?{parameters}`
-- `POST /r4/Provenance/_search`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 
 #### Parameters
