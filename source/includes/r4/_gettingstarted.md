@@ -88,13 +88,13 @@ Refresh tokens are used to renew an expired access token without providing user 
 | refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
 
 ## Using Postman ##
-To help you get started, here's a collection of sample API requests in Postman. You can find more information on making API requests using Postman [here](https://www.getpostman.com/docs/postman/sending_api_requests/requests).
-
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/899edff2cda90cba5159)
-
-<aside class="notice">
-You must have been provided API credentials and Practice ID(s) to use these examples.
-</aside>
+You can use Postman to make a simple request to the [metadata](#metadata) endpoint:
+&nbsp;
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/metadata
+</pre>
+&nbsp;
+Each `rest.resource` member in the metadata response contains information about all FHIR resources that are supported, along with the supported interactions and search parameters for each resource.
 
 ### Authorization ###
 
