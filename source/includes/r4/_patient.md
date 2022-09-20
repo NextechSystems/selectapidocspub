@@ -851,17 +851,17 @@ GET https://select.nextech-api.com/api/r4/CareTeam?_lastUpdated=le2022-05-05
 ## Condition
 
 ### Overview
-The condition resource describes a certain state of health of a patient.
+The [condition](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-condition.html) resource describes a certain state of health of a patient.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each condition record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.8_ |
-| clinicalStatus | The condition status | [Condition Clinical Status Code](https://www.hl7.org/fhir/valueset-condition-clinical.html) | _16.8_ |
-| verificationStatus | The condition verification status | [ConditionVerificationstatus](https://www.hl7.org/fhir/valueset-condition-ver-status.html) | _16.8_ |
-| category | A category assigned to the condition | [Condition Category Code](http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category) | _16.8_ |
-| code | Identification of the condition, problem or diagnosis | [Condition/Problem/Diagnosis Code](https://www.hl7.org/fhir/valueset-condition-code.html) | _16.8_ |
-| subject | The patient pertaining to the condition | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _16.8_ |
+| id | The unique value assigned to each condition record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _16.8_ |
+| clinicalStatus | The condition status | [Condition Clinical Status Code](https://www.hl7.org/fhir/R4/valueset-condition-clinical.html) | _16.8_ |
+| verificationStatus | The condition verification status | [Condition Verification Status](https://www.hl7.org/fhir/R4/valueset-condition-ver-status.html) | _16.8_ |
+| category | A category assigned to the condition | [Condition Category Code](http://hl7.org/fhir/us/core/STU3.1.1/ValueSet/us-core-condition-category) | _16.8_ |
+| code | Identification of the condition, problem or diagnosis | [Condition/Problem/Diagnosis Code](https://www.hl7.org/fhir/R4/valueset-condition-code.html) | _16.8_ |
+| subject | The patient pertaining to the condition | [Reference](https://www.hl7.org/fhir/R4/references.html)([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _16.8_ |
 
 ### Example
 <pre class="center-column">
@@ -1078,7 +1078,7 @@ Searches for conditions for a single patient
 #### HTTP Requests
 
 - `GET /r4/Condition?{parameters}`
-- `POST /r4/Condition/_search`
+- `POST /r4/Condition/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
@@ -1090,8 +1090,14 @@ Searches for conditions for a single patient
 | _id | query or payload | The unique identifier for the condition | No | _16.8_ |
 | identifier | query or payload | The unique identifier for the condition | No | _16.8_ |   
 | _lastUpdated | query or payload | The date the condition was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.8_ |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each condition | No | string | _17.0_ |
 
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+#### Retrieve Provenance with conditions
+The `_revinclude` parameter allows support for including Provenance references that match the returned condition.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the condition.
 
 #### Example: Get all conditions for a single patient 
 
