@@ -168,28 +168,28 @@ Searches for all patients matching the given search criteria. See [https://www.h
 #### HTTP Request 
 - `GET /r4/Patient?{parameters}`
 - `POST /r4/Patient/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Type | Initial Version |
 | ---- | ---------- | ----------- | -------- | ---- | --------------- |
-| _lastUpdated | query | The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] | No | [dateTime](https://hl7.org/fhir/R4/datatypes.html#dateTime) | _12.8_ |
-| family | query | The family (last) name of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
-| given | query | The given (first) name of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
-| birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | [dateTime](https://hl7.org/fhir/R4/datatypes.html#dateTime) | _12.6_ |
-| phone | query | The patient's phone number which will be matched against any phone number (home, cell, etc.) | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
-| email | query | The patient's email address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
-| address-city | query | The city of the patient's address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
-| address-state | query | The state of the patient's address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
-| address-postalcode | query | The postal (zip) code of the patient's address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
-| name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | 12.6 |
-| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
-| _id | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
-| gender | query | The gender of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
-| group-id | query | The letter writing group of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | 16.8 |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _17.0_ |
+| _lastUpdated | query or body| The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] | No | [dateTime](https://hl7.org/fhir/R4/datatypes.html#dateTime) | _12.8_ |
+| family | query or body| The family (last) name of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| given | query or body| The given (first) name of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| birthdate | query or body| The patient's date of birth formatted as YYYY-MM-DD | No | [dateTime](https://hl7.org/fhir/R4/datatypes.html#dateTime) | _12.6_ |
+| phone | query or body| The patient's phone number which will be matched against any phone number (home, cell, etc.) | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| email | query or body| The patient's email address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| address-city | query or body| The city of the patient's address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| address-state | query or body| The state of the patient's address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| address-postalcode | query or body| The postal (zip) code of the patient's address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| name | query or body| The given(first) name, middle name, family(last) name, prefix or title of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | 12.6 |
+| identifier | query or body| The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| _id | query or body| The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
+| gender | query or body| The gender of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
+| group-id | query or body| The letter writing group of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | 16.8 |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _17.0_ |
 
 #### Retrieve Provenance with patients
 The `_revinclude` parameter allows support for including Provenance references that match the returned patient.
@@ -218,7 +218,7 @@ GET https://select.nextech-api.com/api/r4/Patient?identifier=9D0B7ADE-4B5B-41DD-
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Patient/_search
-<i><small>payload:</small></i> identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+<i><small>body:</small></i> identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
 </pre>
 
 <pre class="center-column">
@@ -227,7 +227,7 @@ GET https://select.nextech-api.com/api/r4/Patient?_id=9D0B7ADE-4B5B-41DD-8AC4-88
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Patient/_search
-<i><small>payload:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+<i><small>body:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
 </pre>
 
 #### Example: Get all patients with identifier '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' with provenance
@@ -238,7 +238,7 @@ GET https://select.nextech-api.com/api/r4/Patient?identifier=9D0B7ADE-4B5B-41DD-
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Patient/_search
-<i><small>payload:</small></i> identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
+<i><small>body:</small></i> identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
 </pre>
 
 <pre class="center-column">
@@ -247,7 +247,7 @@ GET https://select.nextech-api.com/api/r4/Patient?_id=9D0B7ADE-4B5B-41DD-8AC4-88
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Patient/_search
-<i><small>payload:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
+<i><small>body:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
 </pre>
 
 #### Example: Get all patients who live within '12345' zip code
@@ -258,7 +258,7 @@ GET https://select.nextech-api.com/api/r4/Patient?address-postalcode=12345
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Patient/_search
-<i><small>payload:</small></i> address-postalcode=12345
+<i><small>body:</small></i> address-postalcode=12345
 </pre>
 
 #### Example: Get all patients with birth dates between and including 1/1/1981 through 5/31/1981
@@ -269,7 +269,7 @@ GET https://select.nextech-api.com/api/r4/Patient?birthdate=ge1981-01-01&birthda
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Patient/_search
-<i><small>payload:</small></i> birthdate=ge1981-01-01&birthdate=lt1981-05-31
+<i><small>body:</small></i> birthdate=ge1981-01-01&birthdate=lt1981-05-31
 </pre>
 
 ### Patient ID Search
@@ -385,7 +385,7 @@ Searches for allergy intolerances for a single patient
 - `GET /r4/Patient/{patientUid}/AllergyIntolerance?{parameters}`
 - `GET /r4/AllergyIntolerance?{parameters}`
 - `POST /r4/Patient/AllergyIntolerance/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 
 
@@ -393,12 +393,12 @@ Searches for allergy intolerances for a single patient
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query or payload | The unique identifier of the allergy intolerance | No | 16.7 |
-| _id | query or payload | The unique identifier of the allergy intolerance | No | 16.7 |
+| identifier | query or body | The unique identifier of the allergy intolerance | No | 16.7 |
+| _id | query or body | The unique identifier of the allergy intolerance | No | 16.7 |
 | patientUid | path | The official patient identifier acquired from a patient search | No | _12.6_ |
-| patient | query or payload | The patient who the allergy or intolerance is for | No | 12.6
-| _lastUpdated | query or payload | The date the allergy intolerance was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD  | No | _12.6_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
+| patient | query or body | The patient who the allergy or intolerance is for | No | 12.6
+| _lastUpdated | query or body | The date the allergy intolerance was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD  | No | _12.6_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
 **_Note:_**  The possible filter values for _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 &nbsp;
@@ -415,7 +415,7 @@ GET https://select.nextech-api.com/api/r4/AllergyIntolerance?patient=Patient/b66
 </pre>
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/AllergyIntolerance/_search
-<i><small>payload:</small></i> patient=b664fd37-ff5f-4022-9d71-2e476d42f316
+<i><small>body:</small></i> patient=b664fd37-ff5f-4022-9d71-2e476d42f316
 </pre>
 &nbsp;
 
@@ -597,19 +597,19 @@ Searches for care plans for a single patient
 
 - `GET /r4/CarePlan?{parameters}`
 - `POST /r4/CarePlan/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.9_ |
-| _id | query or payload | The unique identifier for the care plan | No | _16.9_ |
-| identifier | query or payload | The unique identifier for the care plan | No | _16.9_ |
-| category | query or payload | The type of the care plan. Ex.: 'assess-plan' | No | _16.9_ |
-| _lastUpdated | query or payload | The date the care plan was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
-| _revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each care plan | No | _16.9_ |
+| patient | query or body | The official patient identifier acquired from a patient search | No | _16.9_ |
+| _id | query or body | The unique identifier for the care plan | No | _16.9_ |
+| identifier | query or body | The unique identifier for the care plan | No | _16.9_ |
+| category | query or body | The type of the care plan. Ex.: 'assess-plan' | No | _16.9_ |
+| _lastUpdated | query or body | The date the care plan was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
+| _revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each care plan | No | _16.9_ |
 
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
@@ -634,12 +634,12 @@ GET https://select.nextech-api.com/api/r4/CarePlan?patient=Patient/c27e5be0-4b44
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/CarePlan/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&category=assess-plan
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&category=assess-plan
 </pre>
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/CarePlan/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&category=http://hl7.org/fhir/us/core/CodeSystem/careplan-category|assess-plan
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&category=http://hl7.org/fhir/us/core/CodeSystem/careplan-category|assess-plan
 </pre>
 &nbsp;
 
@@ -793,18 +793,18 @@ Searches for care teams for a single patient
 
 - `GET /r4/CareTeam?{parameters}`
 - `POST /r4/CareTeam/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.9_ |
-| _id | query or payload | The unique identifier for the care team | No | _16.9_ |
-| identifier | query or payload | The unique identifier for the care team | No | _16.9_ |
-| status | query or payload | Indicates the current state of the care team. Ex.: 'active' | No | _16.9_ |
-| _lastUpdated | query or payload | The date the care team was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
+| patient | query or body | The official patient identifier acquired from a patient search | No | _16.9_ |
+| _id | query or body | The unique identifier for the care team | No | _16.9_ |
+| identifier | query or body | The unique identifier for the care team | No | _16.9_ |
+| status | query or body | Indicates the current state of the care team. Ex.: 'active' | No | _16.9_ |
+| _lastUpdated | query or body | The date the care team was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
 
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
@@ -825,12 +825,12 @@ GET https://select.nextech-api.com/api/r4/CareTeam?patient=Patient/c27e5be0-4b44
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/CareTeam/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&status=active
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&status=active
 </pre>
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/CareTeam/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&status=http://hl7.org/fhir/ValueSet/care-team-status|active
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&status=http://hl7.org/fhir/ValueSet/care-team-status|active
 </pre>
 &nbsp;
 
@@ -1079,18 +1079,18 @@ Searches for conditions for a single patient
 
 - `GET /r4/Condition?{parameters}`
 - `POST /r4/Condition/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patient | query or payload | The official patient identifier acquired from a patient search | Yes | _16.8_ |
-| _id | query or payload | The unique identifier for the condition | No | _16.8_ |
-| identifier | query or payload | The unique identifier for the condition | No | _16.8_ |   
-| _lastUpdated | query or payload | The date the condition was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.8_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each condition | No | string | _17.0_ |
+| patient | query or body | The official patient identifier acquired from a patient search | Yes | _16.8_ |
+| _id | query or body | The unique identifier for the condition | No | _16.8_ |
+| identifier | query or body | The unique identifier for the condition | No | _16.8_ |   
+| _lastUpdated | query or body | The date the condition was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.8_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each condition | No | string | _17.0_ |
 
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
@@ -1107,7 +1107,7 @@ GET https://select.nextech-api.com/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Condition/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
 </pre>
 &nbsp;
 
@@ -1123,12 +1123,12 @@ GET https://select.nextech-api.com/api/r4/Condition?identifier=prb-12
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Condition/_search
-<i><small>payload:</small></i> _id=prb-12
+<i><small>body:</small></i> _id=prb-12
 </pre>
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Condition/_search
-<i><small>payload:</small></i> identifier=prb-12
+<i><small>body:</small></i> identifier=prb-12
 </pre>
 &nbsp;
 
@@ -1140,7 +1140,7 @@ GET https://select.nextech-api.com/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Condition/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_lastUpdated=ge2022-05-05
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_lastUpdated=ge2022-05-05
 </pre>
 &nbsp;
 
@@ -1230,19 +1230,19 @@ Searches for devices for a single patient
 #### HTTP Request 
 - `GET /r4/Device?{parameters}`
 - `POST /r4/Device/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _lastUpdated | query or payload | The date the device was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.8_ |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.8_ |
-| date | query or payload | The device last update date in the form YYYY-MM-DD | No | _16.8_ |
-| identifier | query or payload | The unique identifier for the device | No | _16.8_ |
-| _id | query or payload | The unique identifier for the device | No | _16.8_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
+| _lastUpdated | query or body | The date the device was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.8_ |
+| patient | query or body | The official patient identifier acquired from a patient search | No | _16.8_ |
+| date | query or body | The device last update date in the form YYYY-MM-DD | No | _16.8_ |
+| identifier | query or body | The unique identifier for the device | No | _16.8_ |
+| _id | query or body | The unique identifier for the device | No | _16.8_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get all devices for a single patient with id 'ad2085b5-b974-401d-bfcb-3b865109fd35'
@@ -1257,7 +1257,7 @@ GET https://select.nextech-api.com/api/r4/Device?patient=Patient/ad2085b5-b974-4
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Device/_search
-<i><small>payload:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35
+<i><small>body:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35
 </pre>
 &nbsp;
 
@@ -1273,7 +1273,7 @@ GET https://select.nextech-api.com/api/r4/Device?patient=Patient/ad2085b5-b974-4
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Device/_search
-<i><small>payload:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35&date=ge2017-01-01
+<i><small>body:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35&date=ge2017-01-01
 </pre>
 
 <pre class="center-column">
@@ -1282,7 +1282,7 @@ GET https://select.nextech-api.com/api/r4/Device?patient=ad2085b5-b974-401d-bfcb
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Device/_search
-<i><small>payload:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35&_lastUpdated=ge2017-01-01
+<i><small>body:</small></i> patient=ad2085b5-b974-401d-bfcb-3b865109fd35&_lastUpdated=ge2017-01-01
 </pre>
 &nbsp;
 
@@ -1294,7 +1294,7 @@ GET https://select.nextech-api.com/api/r4/Device?identifier=123
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Device/_search
-<i><small>payload:</small></i> identifier=123
+<i><small>body:</small></i> identifier=123
 </pre>
 
 <pre class="center-column">
@@ -1303,7 +1303,7 @@ GET https://select.nextech-api.com/api/r4/Device?_id=123
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Device/_search
-<i><small>payload:</small></i> _id=123
+<i><small>body:</small></i> _id=123
 </pre>
 &nbsp;
 
@@ -1440,20 +1440,20 @@ Finds a bundle of documents based on the search parameters
 #### HTTP Request 
 - `GET /r4/DocumentReference?{parameters}`
 - `POST /r4/DocumentReference/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| \_id | query or payload | Unique ID of the document  | No | _16.8_ |
-| identifier | query or payload | Unique ID of the document  | No | _16.8_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
-| patient | query or payload | The ID of the patient associated with the document | No | _16.9_ |
-| category | query or payload | The category of the document | No | _16.9_ |
-| date | query or payload| This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | _16.9_ |
-| type | query or payload| The type of the document | No | _16.9_ |
+| \_id | query or body | Unique ID of the document  | No | _16.8_ |
+| identifier | query or body | Unique ID of the document  | No | _16.8_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
+| patient | query or body | The ID of the patient associated with the document | No | _16.9_ |
+| category | query or body | The category of the document | No | _16.9_ |
+| date | query or body| This searches based on the created date of the document, either a specific date or a range depending on search modifiers | No | _16.9_ |
+| type | query or body| The type of the document | No | _16.9_ |
 **_Note:_**  The possible filter values for the date parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Retrieve Provenance with document references
@@ -1482,7 +1482,7 @@ GET https://select.nextech-api.com/api/r4/DocumentReference?date=gt2020-06-03&da
 #### Example Search by _id in POST Body
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/DocumentReference/_search
-<i><small>payload:</small></i> 
+<i><small>body:</small></i> 
 _id:history-2262
 </pre>
 
@@ -1490,7 +1490,7 @@ _id:history-2262
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/DocumentReference/_search
-<i><small>payload:</small></i> 
+<i><small>body:</small></i> 
 type:11488-4
 category:Clinical
 date:lt2022-06-03
@@ -1971,19 +1971,19 @@ Returns encounters based on the provided search parameters.
 #### HTTP Requests
 - `GET /r4/Encounter?{parameters}`
 - `POST /r4/Encounter/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _lastUpdated | query or payload | The date the encounter was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.9_ |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.9_ |
-| date | query or payload | The date the encounter took place in the form YYYY-MM-DD  | No | _16.9_ |
-| identifier | query or payload | The encounter unique identifier | No | _16.9_ |
-| _id | query or payload | The encounter unique identifier | No | _16.9_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
+| _lastUpdated | query or body | The date the encounter was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.9_ |
+| patient | query or body | The official patient identifier acquired from a patient search | No | _16.9_ |
+| date | query or body | The date the encounter took place in the form YYYY-MM-DD  | No | _16.9_ |
+| identifier | query or body | The encounter unique identifier | No | _16.9_ |
+| _id | query or body | The encounter unique identifier | No | _16.9_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
 
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
@@ -2009,7 +2009,7 @@ GET https://select.nextech-api.com/api/r4/Encounter?patient=9D0B7ADE-4B5B-41DD-8
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Encounter/_search
-<i><small>payload:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+<i><small>body:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
 </pre>
 
 #### Search for encounters for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' that took place between and including 1/1/2022 through 11/14/2022
@@ -2020,7 +2020,7 @@ GET https://select.nextech-api.com/api/r4/Encounter?patient=patient/9D0B7ADE-4B5
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Encounter/_search
-<i><small>payload:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+<i><small>body:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
 </pre>
 
 #### Search for an Encounter with the id '123'
@@ -2031,7 +2031,7 @@ GET https://select.nextech-api.com/api/r4/Encounter?identifier=123
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Encounter/_search
-<i><small>payload:</small></i> identifier=123
+<i><small>body:</small></i> identifier=123
 </pre>
 
 <pre class="center-column">
@@ -2040,7 +2040,7 @@ GET https://select.nextech-api.com/api/r4/Encounter?_id=123
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Encounter/_search
-<i><small>payload:</small></i> _id=123
+<i><small>body:</small></i> _id=123
 </pre>
 
 
@@ -2129,19 +2129,19 @@ Searches for goals for a single patient
 #### HTTP Requests
 - `GET /r4/Goal?{parameters}`
 - `POST /r4/Goal/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query or payload | The goal identifier | No | _17.0_ |
-| _id | query or payload | The goal identifier | No | _17.0_ |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _17.0_ |
-| date | query or payload | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _17.0_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
-| _lastUpdated | query or payload | The date a goal was last modified | No | _17.0_ |
+| identifier | query or body | The goal identifier | No | _17.0_ |
+| _id | query or body | The goal identifier | No | _17.0_ |
+| patient | query or body | The official patient identifier acquired from a patient search | No | _17.0_ |
+| date | query or body | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _17.0_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
+| _lastUpdated | query or body | The date a goal was last modified | No | _17.0_ |
 #### Example: Get all goals for a single patient
 
 <pre class="center-column">
@@ -2256,18 +2256,18 @@ Returns immunizations based on the provided search parameters.
 #### HTTP Requests
 - `GET /r4/Immunization?{parameters}`
 - `POST /r4/Immunization/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _lastUpdated | query or payload | The date the patient was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.7_ |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.7_ |
-| date | query or payload | The date the immunization was administered in the form YYYY-MM-DD  | No | _16.7_ |
-| identifier | query or payload | The immunization unique identifier | No | _16.7_ |
-| _id | query or payload | The immunization unique identifier | No | _16.7_ |
+| _lastUpdated | query or body | The date the patient was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.7_ |
+| patient | query or body | The official patient identifier acquired from a patient search | No | _16.7_ |
+| date | query or body | The date the immunization was administered in the form YYYY-MM-DD  | No | _16.7_ |
+| identifier | query or body | The immunization unique identifier | No | _16.7_ |
+| _id | query or body | The immunization unique identifier | No | _16.7_ |
 
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
@@ -2288,7 +2288,7 @@ GET https://select.nextech-api.com/api/r4/Immunization?patient=9D0B7ADE-4B5B-41D
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Immunization/_search
-<i><small>payload:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+<i><small>body:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
 </pre>
 
 #### Search for immunizations for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' administered between and including 1/1/2022 through 11/14/2022
@@ -2299,7 +2299,7 @@ GET https://select.nextech-api.com/api/r4/Immunization?patient=patient/9D0B7ADE-
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Immunization/_search
-<i><small>payload:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+<i><small>body:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
 </pre>
 
 #### Search for an immunization with the id '123'
@@ -2310,7 +2310,7 @@ GET https://select.nextech-api.com/api/r4/Immunization?identifier=123
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Immunization/_search
-<i><small>payload:</small></i> identifier=123
+<i><small>body:</small></i> identifier=123
 </pre>
 
 <pre class="center-column">
@@ -2319,7 +2319,7 @@ GET https://select.nextech-api.com/api/r4/Immunization?_id=123
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Immunization/_search
-<i><small>payload:</small></i> _id=123
+<i><small>body:</small></i> _id=123
 </pre>
 
 &nbsp;
@@ -2439,7 +2439,7 @@ Returns diagnostic reports based on the provided search parameters
 #### HTTP Request 
 - `GET /r4/DiagnosticReport?{parameters}` 
 - `POST /r4/DiagnosticReport/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both.
 
@@ -2462,7 +2462,7 @@ GET https://select.nextech-api.com/api/r4/DiagnosticReport?category=LAB&date=ge2
 </pre>
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/DiagnosticReport/_search
-<i><small>payload:</small></i> category=LAB&date=ge2017-05-01
+<i><small>body:</small></i> category=LAB&date=ge2017-05-01
 </pre>
 &nbsp;
 
@@ -2558,20 +2558,20 @@ Searches for medication requests for a single patient
 
 - `GET /r4/MedicationRequest?{parameters}`
 - `POST /r4/MedicationRequest/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _17.0_ |
-| _id | query or payload | The unique identifier for the medication request | No | _17.0_ |
-| identifier | query or payload | The unique identifier for the medication request | No | _17.0_ |
-| intent | query or payload | The intent of the medication request. Ex.: 'original-order' | No | _17.0_ |
-| status | query or payload | The status of the medication request. Ex.: 'active' | No | _17.0_ |
-| _lastUpdated | query or payload | The date the medication request was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _17.0_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each medication request | No | _17.0_ |
+| patient | query or body | The official patient identifier acquired from a patient search | No | _17.0_ |
+| _id | query or body | The unique identifier for the medication request | No | _17.0_ |
+| identifier | query or body | The unique identifier for the medication request | No | _17.0_ |
+| intent | query or body | The intent of the medication request. Ex.: 'original-order' | No | _17.0_ |
+| status | query or body | The status of the medication request. Ex.: 'active' | No | _17.0_ |
+| _lastUpdated | query or body | The date the medication request was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _17.0_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each medication request | No | _17.0_ |
 
 **_Note:_**  The possible filter values for the _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
@@ -2589,7 +2589,7 @@ GET https://select.nextech-api.com/api/r4/MedicationRequest?identifier=12
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
-<i><small>payload:</small></i> identifier=12
+<i><small>body:</small></i> identifier=12
 </pre>
 
 <pre class="center-column">
@@ -2598,7 +2598,7 @@ GET https://select.nextech-api.com/api/r4/MedicationRequest?_id=12
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
-<i><small>payload:</small></i> _id=12
+<i><small>body:</small></i> _id=12
 </pre>
 &nbsp;
 
@@ -2614,7 +2614,7 @@ GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=Patient/c27e
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
 </pre>
 &nbsp;
 
@@ -2630,12 +2630,12 @@ GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=Patient/c27e
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order
 </pre>
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=http://hl7.org/fhir/CodeSystem/medicationrequest-intent|original-order
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=http://hl7.org/fhir/CodeSystem/medicationrequest-intent|original-order
 </pre>
 &nbsp;
 
@@ -2651,12 +2651,12 @@ GET https://select.nextech-api.com/api/r4/MedicationRequest?patient=Patient/c27e
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order&status=active
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order&status=active
 </pre>
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
-<i><small>payload:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order&status=http://hl7.org/fhir/CodeSystem/medicationrequest-status|active
+<i><small>body:</small></i> patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&intent=original-order&status=http://hl7.org/fhir/CodeSystem/medicationrequest-status|active
 </pre>
 &nbsp;
 
@@ -2780,7 +2780,7 @@ Returns observations based on the provided search parameters
 #### HTTP Request 
 - `GET /r4/Observation?{parameters}` 
 - `POST /r4/Observation/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both.
 
@@ -2793,7 +2793,7 @@ Returns observations based on the provided search parameters
 | category | query or body | The category of observation by code ie. category=laboratory or by token ie. category=http://terminology.hl7.org/CodeSystem/observation-category&vert;laboratory | No | _16.9_ |
 | date | query or body | The observation date in the form YYYY-MM-DD | No | _16.9_ |
 | code | query or body | The loinc code of observation by code ie. code=49765-1 or token ie. code=http://loinc.org&vert;49765-1 | No | _16.9_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each observation | No | _17.0_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each observation | No | _17.0_ |
 | _lastUpdated | query or body | The date the observation was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) (**_Note:_** Currently this search parameter will not filter the results for laboratory type observations) | No | _16.9_ |
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`.
 
@@ -2810,7 +2810,7 @@ GET https://select.nextech-api.com/api/r4/Observation?category=laboratory&date=g
 </pre>
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Observation/_search
-<i><small>payload:</small></i> category=laboratory&date=ge2017-05-01
+<i><small>body:</small></i> category=laboratory&date=ge2017-05-01
 </pre>
 &nbsp;
 
@@ -2821,7 +2821,7 @@ GET https://select.nextech-api.com/api/r4/Observation?category=social-history&da
 </pre>
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Observation/_search
-<i><small>payload:</small></i> category=social-history&date=ge2017-05-01
+<i><small>body:</small></i> category=social-history&date=ge2017-05-01
 </pre>
 &nbsp;
 
@@ -2832,7 +2832,7 @@ GET https://select.nextech-api.com/api/r4/Observation?category=vital-signs&date=
 </pre>
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Observation/_search
-<i><small>payload:</small></i> category=vital-signs&date=ge2017-05-01
+<i><small>body:</small></i> category=vital-signs&date=ge2017-05-01
 </pre>
 &nbsp;
 
@@ -2912,18 +2912,18 @@ Returns procedures based on the provided search parameters.
 #### HTTP Requests
 - `GET /r4/Procedure?{parameters}`
 - `POST /r4/Procedure/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _lastUpdated | query or payload | The date the procedure was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.7_ |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.7_ |
-| date | query or payload | The date the procedure was performed in the form YYYY-MM-DD  | No | _16.7_ |
-| _id | query or payload | The procedure unique identifier | No | _16.7_ |
-| identifier | query or payload | The procedure unique identifier | No | _16.7_ |
+| _lastUpdated | query or body | The date the procedure was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.7_ |
+| patient | query or body | The official patient identifier acquired from a patient search | No | _16.7_ |
+| date | query or body | The date the procedure was performed in the form YYYY-MM-DD  | No | _16.7_ |
+| _id | query or body | The procedure unique identifier | No | _16.7_ |
+| identifier | query or body | The procedure unique identifier | No | _16.7_ |
 
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
@@ -2944,7 +2944,7 @@ GET https://select.nextech-api.com/api/r4/Procedure?patient=9D0B7ADE-4B5B-41DD-8
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Procedure/_search
-<i><small>payload:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
+<i><small>body:</small></i> patient=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
 </pre>
 
 #### Search for procedures for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' performed between and including 1/1/2022 through 11/14/2022
@@ -2955,7 +2955,7 @@ GET https://select.nextech-api.com/api/r4/Procedure?patient=patient/9D0B7ADE-4B5
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Procedure/_search
-<i><small>payload:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
+<i><small>body:</small></i> patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
 </pre>
 
 #### Search for an procedure with the id '123'
@@ -2966,7 +2966,7 @@ GET https://select.nextech-api.com/api/r4/Procedure?_id=123
 
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Procedure/_search
-<i><small>payload:</small></i> _id=123
+<i><small>body:</small></i> _id=123
 </pre>
 
 &nbsp;

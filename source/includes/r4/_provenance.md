@@ -102,7 +102,7 @@ Searches for all provenance info based on the given search criteria.
 #### HTTP Requests
 - `GET /r4/Provenance?{parameters}`
 - `POST /r4/Provenance/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
@@ -110,9 +110,9 @@ Searches for all provenance info based on the given search criteria.
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _id | query or payload | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
-| identifier | query or payload | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
-| _lastUpdated | query or payload | The last time the provenance was modified | No | _17.0_ |
+| _id | query or body | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
+| identifier | query or body | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
+| _lastUpdated | query or body | The last time the provenance was modified | No | _17.0_ |
 
 **_Note:_**  The possible filter values for the _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 

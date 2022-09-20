@@ -98,7 +98,7 @@ Searches for all locations based on the given search criteria.
 #### HTTP Requests
 - `GET /r4/Location?{parameters}`
 - `POST /r4/Location/_search?{parameters}`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
+  - *application/x-www-form-urlencoded body:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
@@ -106,17 +106,17 @@ Searches for all locations based on the given search criteria.
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query or payload | The unique value assigned to each location which discerns it from all others |  No | _12.8_ |
-| status | query or payload | Searches for locations with a specific kind of status. See [LocationStatus](https://www.hl7.org/fhir/R4/valueset-location-status.html) | No | _12.8_ |
-| includeAll | query or payload | By default, or if includeAll is false, then only managed locations are returned, for example the practice's primary office location. If includeAll is true, then all locations will be returned, whether they are under under practice management or not, but where services are provided, such as a hospital or a clinic. | No | _14.4_ |
-| name | query or payload | The name of the location | No | _12.8_ |
-| address | query or payload | A (part of the) address of the location | No | _12.8_ |
-| address-city | query or payload | A city specified in an address | No | _12.8_ |
-| address-state | query or payload | A state specified in an address | No | _12.8_ |
-| address-postalcode | query or payload | A postal code specified in an address | No | _12.8_ |
-| phone | query or payload | Searches for locations based on phone numbers and fax numbers | No | _12.8_ |
-| _id | query or payload | The location unique identifier | No | _16.9_ |
-| _lastUpdated | query or payload | The last time the location was modified | No | _16.9_ |
+| identifier | query or body | The unique value assigned to each location which discerns it from all others |  No | _12.8_ |
+| status | query or body | Searches for locations with a specific kind of status. See [LocationStatus](https://www.hl7.org/fhir/R4/valueset-location-status.html) | No | _12.8_ |
+| includeAll | query or body | By default, or if includeAll is false, then only managed locations are returned, for example the practice's primary office location. If includeAll is true, then all locations will be returned, whether they are under under practice management or not, but where services are provided, such as a hospital or a clinic. | No | _14.4_ |
+| name | query or body | The name of the location | No | _12.8_ |
+| address | query or body | A (part of the) address of the location | No | _12.8_ |
+| address-city | query or body | A city specified in an address | No | _12.8_ |
+| address-state | query or body | A state specified in an address | No | _12.8_ |
+| address-postalcode | query or body | A postal code specified in an address | No | _12.8_ |
+| phone | query or body | Searches for locations based on phone numbers and fax numbers | No | _12.8_ |
+| _id | query or body | The location unique identifier | No | _16.9_ |
+| _lastUpdated | query or body | The last time the location was modified | No | _16.9_ |
 
 **_Note:_**  The possible filter values for the _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
