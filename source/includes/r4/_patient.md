@@ -2047,18 +2047,18 @@ POST https://select.nextech-api.com/api/r4/Encounter/_search
 ## Goal
 
 ### Overview
-The goal resource describes a desired state of health for a patient.
+The [goal](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-goal.html) resource describes a desired state of health for a patient.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| _id | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| subject | The patient pertaining to the goal | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
-| target | The target outcome of the goal | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.6_ |
-| note | Comments about the goal | [Annotation](https://www.hl7.org/fhir/datatypes.html#Annotation) | _12.6_ |
-| date | The date or date range of the goal or goals | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _12.6_ |
-| lastUpdated | The date a goal was last modified | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _12.6_ |
+| identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _17.0_ |
+| id | The unique value assigned to each goal which discerns them from all others. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _17.0_ |
+| subject | The patient pertaining to the goal | [Reference](https://www.hl7.org/fhir/R4/references.html)([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _17.0_ |
+| target | The target outcome of the goal | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _17.0_ |
+| note | Comments about the goal | [Annotation](https://www.hl7.org/fhir/R4/datatypes.html#Annotation) | _17.0_ |
+| date | The date or date range of the goal or goals | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _17.0_ |
+| meta.lastUpdated | The last time the goal was modified | [instant](https://hl7.org/fhir/R4/datatypes.html#instant) | _17.0_ |
 
 ### Example
 <pre class="center-column">
@@ -2069,6 +2069,9 @@ The goal resource describes a desired state of health for a patient.
       "resource": {
         "resourceType": "Goal",
         "id": "goalemn-2284code-559215",
+         "meta": {
+           "lastUpdated": "2022-08-05T14:29:08.217-04:00"
+         },
         "identifier": [
           {
             "use": "official",
@@ -2102,21 +2105,43 @@ The goal resource describes a desired state of health for a patient.
 </pre>
 &nbsp;
 
-### *Search*
-Searches for goals for a single patient
+### *Get*
+Returns a single Goal based on the goal's ID.
 
 #### HTTP Request 
-`GET r4/Goal?patient={patientUid}` 
+`GET r4/Goal/{GoalID}`
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query | The goal identifier | No | _12.6_ |
-| _id | query | The goal identifier | No | _12.6_ |
-| patient | query | The official patient identifier acquired from a patient search | No | _12.6_ |
-| date | query | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _12.6_ |
+| GoalID | path | The official goal identifier acquired from a goal search | Yes | _17.0_ |
+
+#### Example: Get a goal by GoalID
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Goal/{GoalID}
+</pre>
+&nbsp;
+
+### *Search*
+Searches for goals for a single patient
+
+#### HTTP Requests
+- `GET /r4/Goal?{parameters}`
+- `POST /r4/Goal/_search?{parameters}`
+  - *application/x-www-form-urlencoded payload:* `{parameters}`
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| identifier | query or payload | The goal identifier | No | _17.0_ |
+| _id | query or payload | The goal identifier | No | _17.0_ |
+| patient | query or payload | The official patient identifier acquired from a patient search | No | _17.0_ |
+| date | query or payload | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _17.0_ |
 | \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
-| _lastUpdated | The date a goal was last modified | [dateTime](https://build.fhir.org/datatypes.html#dateTime) | _16.9_ |
+| _lastUpdated | query or payload | The date a goal was last modified | No | _17.0_ |
 #### Example: Get all goals for a single patient
 
 <pre class="center-column">
@@ -2124,7 +2149,7 @@ GET https://select.nextech-api.com/api/r4/Goal?patient=29D5AA40-6E3E-4683-B17F-2
 </pre>
 &nbsp;
 
-#### Example: Get all goals for a single patient, alternate version
+#### Example: Get all goals for a single patient, using a `Patient/` reference prefix
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Goal?patient=Patient/29D5AA40-6E3E-4683-B17F-2FBFECACF9BC
@@ -2138,38 +2163,6 @@ GET https://select.nextech-api.com/api/r4/Goal?patient=29D5AA40-6E3E-4683-B17F-2
 </pre>
 &nbsp;
 
-### *Search*
-Search for a goal by its identifier
-
-#### HTTP Request 
-`GET r4/Goal/{GoalID}`
-
-#### Parameters
-| Name | Located in | Description | Required | Initial Version |
-| ---- | ---------- | ----------- | -------- | --------------- |
-| GoalID | path | The official goal identifier acquired from a goal search | YES | _12.6_ |
-
-
-#### Example: Get a goal by GoalID
-
-<pre class="center-column">
-GET https://select.nextech-api.com/api/r4/Goal/{GoalID}
-</pre>
-&nbsp;
-
-### *Search Goal*
-Returns a goal found in search request
-
-#### HTTP Request 
-`POST r4/Goal/_search`  
-
-#### Parameters
-| Name | Located in | Description | Required | Initial Version |
-| ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query or body | The goal identifier | No | _12.6_ |
-| _id | query or body  | The goal identifier | No | _12.6_ |
-| patient | query or body  | The official patient identifier acquired from a patient search | No | _12.6_ |
-| date | query or body  | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _12.6_ |
 
 #### Example: Get all goals for a patient on a date
 
