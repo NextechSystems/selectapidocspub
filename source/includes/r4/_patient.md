@@ -398,8 +398,13 @@ Searches for allergy intolerances for a single patient
 | patientUid | path | The official patient identifier acquired from a patient search | No | _12.6_ |
 | patient | query or body | The patient who the allergy or intolerance is for | No | 12.6
 | _lastUpdated | query or body | The date the allergy intolerance was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD  | No | _12.6_ |
-| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each allergy intolerance | No | _17.0_ |
 **_Note:_**  The possible filter values for _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+#### Retrieve Provenance with allergy intolerances
+The `_revinclude` parameter allows support for including Provenance references that match the returned allergy intolerance.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the allergy intolerance.
 
 &nbsp;
 #### Examples: 
@@ -1242,8 +1247,13 @@ Searches for devices for a single patient
 | date | query or body | The device last update date in the form YYYY-MM-DD | No | _16.8_ |
 | identifier | query or body | The unique identifier for the device | No | _16.8_ |
 | _id | query or body | The unique identifier for the device | No | _16.8_ |
-| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each device | No | _17.0_ |
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+#### Retrieve Provenance with devices
+The `_revinclude` parameter allows support for including Provenance references that match the returned device.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the device.
 
 #### Example: Get all devices for a single patient with id 'ad2085b5-b974-401d-bfcb-3b865109fd35'
 
@@ -2140,8 +2150,13 @@ Searches for goals for a single patient
 | _id | query or body | The goal identifier | No | _17.0_ |
 | patient | query or body | The official patient identifier acquired from a patient search | No | _17.0_ |
 | date | query or body | The date of the encounter containing the goal in the form YYYY-MM-DD | No | _17.0_ |
-| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
+| \_revinclude | query or body | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each goal | No | _17.0_ |
 | _lastUpdated | query or body | The date a goal was last modified | No | _17.0_ |
+
+#### Retrieve Provenance with goals
+The `_revinclude` parameter allows support for including Provenance references that match the returned goal.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the goal.
 #### Example: Get all goals for a single patient
 
 <pre class="center-column">
