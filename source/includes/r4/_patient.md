@@ -2839,15 +2839,15 @@ POST https://select.nextech-api.com/api/r4/Observation/_search
 ## Procedure
 
 ### Overview
-A procedure resource describes an activity performed with or on a patient as part of the provision of care.
+A [procedure](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-procedure.html) resource describes an activity performed with or on a patient as part of the provision of care.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| id | The logical id of the resource, as used in the URL for the resource. | [String](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
+| id | The logical id of the resource, as used in the URL for the resource. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
 | identifier | The unique value assigned to each procedure which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _16.7_ |
 | status | The status of the procedure | [EventStatus](http://hl7.org/fhir/R4/valueset-event-status.html) | _16.7_ |
-| subject | Who the procedure was performed on | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCorePatientProfile](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html)) | _16.7_ |
+| subject | Who the procedure was performed on | [Reference](https://www.hl7.org/fhir/R4/references.html) ([US Core Patient Profile](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _16.7_ |
 | performedDateTime | Date the procedure was performed | [DateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.7_ |
 
 ### Example
@@ -2911,7 +2911,7 @@ Returns procedures based on the provided search parameters.
 
 #### HTTP Requests
 - `GET /r4/Procedure?{parameters}`
-- `POST /r4/Procedure/_search`
+- `POST /r4/Procedure/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
@@ -2923,6 +2923,7 @@ Returns procedures based on the provided search parameters.
 | patient | query or payload | The official patient identifier acquired from a patient search | No | _16.7_ |
 | date | query or payload | The date the procedure was performed in the form YYYY-MM-DD  | No | _16.7_ |
 | _id | query or payload | The procedure unique identifier | No | _16.7_ |
+| identifier | query or payload | The procedure unique identifier | No | _16.7_ |
 
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
@@ -2974,7 +2975,7 @@ POST https://select.nextech-api.com/api/r4/Procedure/_search
 ## Binary
 
 ### Overview
-Returns the Binary data and content type of a Document Reference or a Diagnostic Report.
+Returns the [Binary](https://hl7.org/fhir/R4/binary.html) data and content type of a Document Reference or a Diagnostic Report.
 
 ### Fields
 | Name | Description | Type | Initial Version |
@@ -3001,10 +3002,10 @@ Gets the binary form of a document by ID
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| DocumentType-id | Must be if the form `documenttype-id` i.e: GET /r4/Binary/history-5  | Yes | 17.0 |
+| documentType-id | Must be in the form `documenttype-id` i.e: GET /r4/Binary/history-5  | Yes | 17.0 |
 
 #### Supported Document Types
-The supported types are "history" or "emn".
+The supported document type specifiers for IDs are `history-{id}` and `emn-{id}`.
 
 #### Example: Get the binary form of a history document with ID 2262 which is a text file with a content of "Hello!"
 <pre class="center-column">
