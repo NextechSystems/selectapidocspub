@@ -1,24 +1,22 @@
 
 # Patient
 
-## Patient
-
 ### Overview
-The patient resource contains information about the demographics of a patient.
+The [patient](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) resource contains information about the demographics of a patient.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | id | The unique identifier of the patient | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
 | identifier | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number. <br/><br/> As a convenience for some use cases, in version 14.1 and above, the patient's masked social security number (last four only) is also returned in this field if available. | [Identifier](http://hl7.org/fhir/R4/datatypes.html#Identifier) | _12.6_ |
-| extension:race | The race of the patient | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) ([USCoreRaceExtension](http://hl7.org/fhir/us/core/STU4/StructureDefinition-us-core-race.html)) | _12.6_ |
-| extension:ethnicity | The ethnicity of the patient | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) ([USCoreEthnicityExtension](http://hl7.org/fhir/us/core/STU4/StructureDefinition-us-core-ethnicity.html)) | _12.6_ |
-| extension:birthsex | The patient's sex assigned at birth | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) ([USCoreBirthSexExtension](http://hl7.org/fhir/us/core/STU4/StructureDefinition-us-core-birthsex.html)) | |
-| name | Names of the patient, additional information including prefix and nickname added in version 12.9.20 | [HumanName](http://hl7.org/fhir/R4/datatypes.html#HumanName) | _12.6_ |
+| extension:race | The race of the patient | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) ([US Core Race Extension](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-race.html)) | _12.6_ |
+| extension:ethnicity | The ethnicity of the patient | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) ([US Core Ethnicity Extension](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-ethnicity.html)) | _12.6_ |
+| extension:birthsex | The patient's sex assigned at birth | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) ([US Core Birth Sex Extension](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-birthsex.html)) | |
+| name | Names of the patient, additional information including prefix and nickname added in version 12.9.20. Other patient names are also returned here starting in 16.9 | [HumanName](http://hl7.org/fhir/R4/datatypes.html#HumanName) | _12.6_ |
 | telecom | Contact details for the patient, fax, preferred contact, and other phone added 12.9.20 | [ContactPoint](http://hl7.org/fhir/R4/datatypes.html#ContactPoint) | _12.6_ |
 | gender | The gender of the patient | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _12.6_ |
 | birthDate | The date of birth of the patient | [date](http://hl7.org/fhir/R4/datatypes.html#date) | _12.6_ |
-| address | Addresses associated with the patient | [Address](http://hl7.org/fhir/R4/datatypes.html#Address) | _12.6_ |
+| address | Addresses associated with the patient. Previous patient addresses are also returned here starting in 16.9 | [Address](http://hl7.org/fhir/R4/datatypes.html#Address) | _12.6_ |
 | communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](http://hl7.org/fhir/R4/datatypes.html#BackboneElement) | _12.6_ |
 
 
@@ -165,11 +163,11 @@ i.e The patient's **work** number is on file, but marked private then the teleco
 The preferred contact is also available from the API. If a preferred contact is set then it will contain a "rank":1 member in the telecom object indicating it is the preferred method.
 
 ### *Search*
-Searches for all patients matching the given search criteria. See [https://www.hl7.org/fhir/search.html](https://www.hl7.org/fhir/search.html) for instructions on formatting search criteria.
+Searches for all patients matching the given search criteria. See [https://www.hl7.org/fhir/R4/search.html](https://www.hl7.org/fhir/R4/search.html) for instructions on formatting search criteria.
 
 #### HTTP Request 
 - `GET /r4/Patient?{parameters}`
-- `POST /r4/Patient/_search`
+- `POST /r4/Patient/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
@@ -177,21 +175,21 @@ Searches for all patients matching the given search criteria. See [https://www.h
 #### Parameters
 | Name | Located in | Description | Required | Type | Initial Version |
 | ---- | ---------- | ----------- | -------- | ---- | --------------- |
-| _lastUpdated | query | The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] | No | dateTime | _12.8_ |
-| family | query | The family (last) name of the patient | No | string | _12.6_ |
-| given | query | The given (first) name of the patient | No | string | _12.6_ |
-| birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | dateTime | _12.6_ |
-| phone | query | The patient's phone number which will be matched against any phone number (home, cell, etc.) | No | string | _12.6_ |
-| email | query | The patient's email address | No | string | _12.6_ |
-| address-city | query | The city of the patient's address | No | string | _12.6_ |
-| address-state | query | The state of the patient's address | No | string | _12.6_ |
-| address-postalcode | query | The postal (zip) code of the patient's address | No | string | _12.6_ |
-| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
-| _id | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | string | _12.6_ |
-| gender | query | The gender of the patient | No | string | _12.6_ |
-| name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | string | 
-| group-id | query | The letter writing group of the patient | No | string | 16.8 |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each patient | No | string | _17.0_ |
+| _lastUpdated | query | The date the patient was last modified formatted as yyyy-MM-dd. As of version 14.3, we also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] | No | [dateTime](https://hl7.org/fhir/R4/datatypes.html#dateTime) | _12.8_ |
+| family | query | The family (last) name of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| given | query | The given (first) name of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| birthdate | query | The patient's date of birth formatted as YYYY-MM-DD | No | [dateTime](https://hl7.org/fhir/R4/datatypes.html#dateTime) | _12.6_ |
+| phone | query | The patient's phone number which will be matched against any phone number (home, cell, etc.) | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| email | query | The patient's email address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| address-city | query | The city of the patient's address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| address-state | query | The state of the patient's address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| address-postalcode | query | The postal (zip) code of the patient's address | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| name | query | The given(first) name, middle name, family(last) name, prefix or title of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | 12.6 |
+| identifier | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
+| _id | query | The unique value assigned to each patient which discerns them from all others. It can be the patient's unique identifier or the patient's Nextech chart number | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
+| gender | query | The gender of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _16.7_ |
+| group-id | query | The letter writing group of the patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | 16.8 |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each patient | No | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _17.0_ |
 
 #### Retrieve Provenance with patients
 The `_revinclude` parameter allows support for including Provenance references that match the returned patient.
