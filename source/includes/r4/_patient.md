@@ -2686,18 +2686,18 @@ An observation resource describes a measurement or an assertion made about a pat
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each observation which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _16.9_ |
-| subject | The patient pertaining to the observation | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _16.9_ |
-| status | The observation status | [ObservationStatus](https://www.hl7.org/fhir/valueset-observation-status.html) | _16.9_ |
-| category | Classification of type of observation | [Category](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
-| code | Type of observation | [LOINC Code](https://www.hl7.org/fhir/valueset-observation-codes.html) | _16.9_ |
-| effectiveDate | Clinically relevant time/time-period for observation | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _16.9_ |
-| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
+| identifier | The unique value assigned to each observation which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _16.9_ |
+| subject | The patient pertaining to the observation | [Reference](https://www.hl7.org/fhir/R4/references.html)([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _16.9_ |
+| status | The observation status | [Observation Status](https://www.hl7.org/fhir/R4/valueset-observation-status.html) | _16.9_ |
+| category | Classification of type of observation | [Category](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
+| code | Type of observation | [LOINC Code](https://www.hl7.org/fhir/R4/valueset-observation-codes.html) | _16.9_ |
+| effectiveDate | Clinically relevant time/time-period for observation | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.9_ |
+| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
 | issued | The date and time this version of the observation was made available to providers | [instant](http://hl7.org/fhir/R4/datatypes.html#instant) | _16.9_ |
-| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
-| bodySite | Indicates the site on the subject's body where the observation was made (i.e. the target site) | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
-| method | Indicates the mechanism used to perform the observation | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _16.9_ |
-| hasMember | Used when reporting vital signs panel components | [Reference](http://hl7.org/fhir/R4/references.html#Reference)([Observation](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-observation-lab.html)) |  _16.9_ |
+| value | Observation result | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
+| bodySite | Indicates the site on the subject's body where the observation was made (i.e. the target site) | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
+| method | Indicates the mechanism used to perform the observation | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
+| hasMember | Used when reporting vital signs panel components | [Reference](http://hl7.org/fhir/R4/references.html#Reference)([US Core Observation Lab Profile](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-observation-lab.html)) |  _16.9_ |
 | component | Used when reporting systolic and diastolic blood pressure | [BackboneElement](http://hl7.org/fhir/R4/backboneelement.html#BackboneElement) |  _16.9_ |
 | meta.lastUpdated | The last time the observation was updated | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) |  _16.9_ |
 
@@ -2756,12 +2756,30 @@ An observation resource describes a measurement or an assertion made about a pat
 </pre> 
 &nbsp;
 
+### *Get*
+Returns a single Observation result based on the Observation ID.
+
+#### HTTP Request 
+`GET /r4/Observation/{observationId}` 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| observationId | path | The unique identifier for the observation | Yes | _16.9_ |
+
+#### Example: Get a lab observation with an ID of '12'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Observation/lab-12
+</pre>
+&nbsp;
+
 ### *Search*
 Returns observations based on the provided search parameters
 
 #### HTTP Request 
 - `GET /r4/Observation?{parameters}` 
-- `POST /r4/Observation/_search`
+- `POST /r4/Observation/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both.
@@ -2769,15 +2787,21 @@ Returns observations based on the provided search parameters
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query or body or path | The observation identifier | No | _12.6_ |
-| _id | query or body or path | The observation identifier | No | _16.9_ |
-| patientUid | query or body | The official patient identifier acquired from a patient search | No | _16.9_ |
+| identifier | query or body | The observation identifier | No | _16.9_ |
+| _id | query or body | The observation identifier | No | _16.9_ |
+| patient | query or body | The official patient identifier acquired from a patient search | No | _16.9_ |
 | category | query or body | The category of observation by code ie. category=laboratory or by token ie. category=http://terminology.hl7.org/CodeSystem/observation-category&vert;laboratory | No | _16.9_ |
-| date | query or body | The observation date in the form YYYY-MM-DD | No | _16.9__ |
+| date | query or body | The observation date in the form YYYY-MM-DD | No | _16.9_ |
 | code | query or body | The loinc code of observation by code ie. code=49765-1 or token ie. code=http://loinc.org&vert;49765-1 | No | _16.9_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each observation | No | _17.0_ |
 | _lastUpdated | query or body | The date the observation was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) (**_Note:_** Currently this search parameter will not filter the results for laboratory type observations) | No | _16.9_ |
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`.
+
+#### Retrieve Provenance with observations
+The `_revinclude` parameter allows support for including [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that match the returned observations.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the observation.
+&nbsp;
 
 #### Example: Get all laboratory requisitions and lab results 5/1/2017
 
