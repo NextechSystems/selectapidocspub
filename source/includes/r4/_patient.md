@@ -295,19 +295,19 @@ GET https://select.nextech-api.com/api/r4/Patient/ID?group-id=20
 ## Allergy Intolerance
 
 ### Overview
-The allergy intolerance resource describes the risk of undesirable responses of exposure to a substance.
+The [allergy intolerance](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-allergyintolerance.html) resource describes the risk of undesirable responses of exposure to a substance.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| id | The logical id of the resource, as used in the URL for the resource. | [string](http://hl7.org/fhir/R4/datatypes.html#string) |  |
-| identifier | The unique value assigned to each allergy intolerance record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.6_ |
-| clinicalStatus | Describes whether the allergy or intolerance is active, inactive or resolved | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |  |
-| verificationStatus | Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified substance (including pharmaceutical product). | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) |  |
-| code | The clinical code that identifies the allergy or intolerance | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.6_ |
-| patient | The patient who the allergy or intolerance is for | [Reference](http://hl7.org/fhir/R4/references.html#Reference) [(USCorePatientProfile)](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html) | _12.6_ |
-| reaction | Details about each adverse reaction event linked to exposure to the identified substance. | [BackboneElement](http://hl7.org/fhir/R4/datatypes.html#BackboneElement) | |
-| reaction.manifestation | Clinical symptoms and/or signs that are observed or associated with the adverse reaction event. |  [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | |
+| id | The logical id of the resource, as used in the URL for the resource. | [string](http://hl7.org/fhir/R4/datatypes.html#string) | 12.6 |
+| identifier | The unique value assigned to each allergy intolerance record which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _12.6_ |
+| clinicalStatus | Describes whether the allergy or intolerance is active, inactive or resolved | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) |  12.6 |
+| verificationStatus | Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified substance (including pharmaceutical product). | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | 12.6 |
+| code | The clinical code that identifies the allergy or intolerance | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.6_ |
+| patient | The patient who the allergy or intolerance is for | [Reference](http://hl7.org/fhir/R4/references.html#Reference) [(US Core Patient Profile)](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) | _12.6_ |
+| reaction | Details about each adverse reaction event linked to exposure to the identified substance. | [BackboneElement](http://hl7.org/fhir/R4/datatypes.html#BackboneElement) | 12.6 |
+| reaction.manifestation | Clinical symptoms and/or signs that are observed or associated with the adverse reaction event. |  [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | 12.6 |
 
 ### Example
 <pre class="center-column">
@@ -382,13 +382,9 @@ The allergy intolerance resource describes the risk of undesirable responses of 
 Searches for allergy intolerances for a single patient
 
 #### HTTP Requests
-- `GET /r4/Patient/{patientUid}/AllergyIntolerance?[_lastUpdated=(filter)YYYY-MM-DD]`
-
-- `GET /r4/AllergyIntolerance?patient={patientUid}&[_lastUpdated=(filter)YYYY-MM-DD]`
-
-- `GET /r4/AllergyIntolerance?patient=Patient/{patientUid}&[_lastUpdated=(filter)YYYY-MM-DD]`
-
-- `POST /r4/Patient/AllergyIntolerance/_search`
+- `GET /r4/Patient/{patientUid}/AllergyIntolerance?{parameters}`
+- `GET /r4/AllergyIntolerance?{parameters}`
+- `POST /r4/Patient/AllergyIntolerance/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 
@@ -397,7 +393,10 @@ Searches for allergy intolerances for a single patient
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| patientUid | path, query or payload | The official patient identifier acquired from a patient search | Yes | _12.6_ |
+| identifier | query or payload | The unique identifier of the allergy intolerance | No | 16.7 |
+| _id | query or payload | The unique identifier of the allergy intolerance | No | 16.7 |
+| patientUid | path | The official patient identifier acquired from a patient search | No | _12.6_ |
+| patient | query or payload | The patient who the allergy or intolerance is for | No | 12.6
 | _lastUpdated | query or payload | The date the allergy intolerance was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD  | No | _12.6_ |
 | \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
 **_Note:_**  The possible filter values for _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
@@ -430,7 +429,7 @@ Returns single Allergy result based on the Allergy ID.
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| allergyID | path | The allergy unique identifier | Yes |  |
+| allergyID | path | The allergy unique identifier | Yes | 16.7 |
 
 &nbsp;
 #### Example: 
