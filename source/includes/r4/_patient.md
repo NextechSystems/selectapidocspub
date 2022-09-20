@@ -1147,20 +1147,20 @@ POST https://select.nextech-api.com/api/r4/Condition/_search
 ## Device
 
 ### Overview
-The device resource identifies an instance or type of manufactured item used in the provision of healthcare.
+The [implantable device](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-implantable-device.html) resource identifies an instance or type of manufactured item used in the provision of healthcare.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| id | The unique identifier for the device | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _12.6_ |
-| udiCarrier | Unique Device Identifier (UDI) Barcode string | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.6_ |
-| distinctIdentifier | The distinct identification string | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
-| lotNumber | Lot number of manufacturer | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
-| serialNumber | Serial number assigned by the manufacturer | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.6_ |
-| manufactureDate | Date when the device was made | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
-| expirationDate | Date and time of expiry of this device | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _12.6_ |
-| type | The kind or type of device | [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) | _12.6_ |
-| patient | The patient pertaining to the device | [Reference(Patient)](https://www.hl7.org/fhir/references.html) | _12.6_ |
+| id | The unique identifier for the device | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _16.8_ |
+| udiCarrier | Unique Device Identifier (UDI) Barcode string | [BackboneElement](https://www.hl7.org/fhir/R4/backboneelement.html) | _16.8_ |
+| distinctIdentifier | The distinct identification string | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.8_ |
+| lotNumber | Lot number of manufacturer | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.8_ |
+| serialNumber | Serial number assigned by the manufacturer | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.8_ |
+| manufactureDate | Date when the device was made | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.8_ |
+| expirationDate | Date and time of expiry of this device | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.8_ |
+| type | The kind or type of device | [CodeableConcept](https://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.8_ |
+| patient | The patient pertaining to the device | [Reference](https://www.hl7.org/fhir/R4/references.html)([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _16.8_ |
 
 ### Example
 <pre class="center-column">
@@ -1214,7 +1214,7 @@ Returns a single Device result based on the Device ID.
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| deviceId | path | The unique identifier for the device | Yes | _12.6_ |
+| deviceId | path | The unique identifier for the device | Yes | _16.8_ |
 
 #### Example: Get the device with an ID of '123'
 
@@ -1229,7 +1229,7 @@ Searches for devices for a single patient
 
 #### HTTP Request 
 - `GET /r4/Device?{parameters}`
-- `POST /r4/Device/_search`
+- `POST /r4/Device/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
@@ -1237,11 +1237,11 @@ Searches for devices for a single patient
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| _lastUpdated | query or payload | The date the device was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _12.6_ |
-| patient | query or payload | The official patient identifier acquired from a patient search | No | _12.6_ |
-| date | query or payload | The device last update date in the form YYYY-MM-DD | No | _12.6_ |
-| identifier | query or payload | The unique identifier for the device | No | _12.6_ |
-| _id | query or payload | The unique identifier for the device | No | _12.6_ |
+| _lastUpdated | query or payload | The date the device was last modified, formatted as yyyy-MM-dd. We also support the format yyyy-MM-ddThh:mm:ss\[Z&#124;(+&#124;-)hh:mm\] . Note that the + character must be URL encoded. (i.e. `%2B`) | No | _16.8_ |
+| patient | query or payload | The official patient identifier acquired from a patient search | No | _16.8_ |
+| date | query or payload | The device last update date in the form YYYY-MM-DD | No | _16.8_ |
+| identifier | query or payload | The unique identifier for the device | No | _16.8_ |
+| _id | query or payload | The unique identifier for the device | No | _16.8_ |
 | \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each document reference | No | _17.0_ |
 **_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
