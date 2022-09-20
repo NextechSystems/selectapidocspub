@@ -661,16 +661,16 @@ GET https://select.nextech-api.com/api/r4/CarePlan?_lastUpdated=le2022-05-05
 ## Care Team
 
 ### Oveview
-The CareTeam resource includes all the people and organizations who plan to participate in the coordination and delivery of care for a patient.
+The [CareTeam](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-careteam.html) resource includes all the people and organizations who plan to participate in the coordination and delivery of care for a patient.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | id | The unique value assigned to each care team which discerns them from all others. | [string](http://hl7.org/fhir/R4/datatypes.html#string) | _16.9_ |
 | status | Indicates the current state of the care team. | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _16.9_ |
-| subject | Identifies the patient or group whose intended care is handled by the team. | [Reference](http://hl7.org/fhir/R4/references.html#Reference)[(USCorePatientProfile)](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) | _16.9_ |
+| subject | Identifies the patient or group whose intended care is handled by the team. | [Reference](http://hl7.org/fhir/R4/references.html#Reference)[(US Core Patient Profile)](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) | _16.9_ |
 | participant.role | Indicates specific responsibility of an individual within the care team, such as "Primary care physician", "Caregiver", etc. | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
-| participant.member | The specific person or organization who is participating/expected to participate in the care team. |	[Reference](http://hl7.org/fhir/R4/references.html#Reference) ([USCorePatientProfile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) `|` [USCorePractitionerProfile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html) `|` [USCoreOrganizationProfile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html))| _16.9_ |
+| participant.member | The specific person or organization who is participating/expected to participate in the care team. |	[Reference](http://hl7.org/fhir/R4/references.html#Reference) ([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) or [US Core Practitioner Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html) or [US Core Organization Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html))| _16.9_ |
 
 
 ### Example
@@ -792,7 +792,7 @@ Searches for care teams for a single patient
 #### HTTP Requests
 
 - `GET /r4/CareTeam?{parameters}`
-- `POST /r4/CareTeam/_search`
+- `POST /r4/CareTeam/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
