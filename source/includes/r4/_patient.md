@@ -2174,7 +2174,7 @@ POST https://select.nextech-api.com/api/r4/Goal/_search?patient=29D5AA40-6E3E-46
 ## Immunization
 
 ### Overview
-The immunization resource describes an administered vaccine.
+The [Immunization](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-immunization.html) resource describes an administered vaccine.
 
 ### Fields
 | Name | Description | Type | Initial Version |
@@ -2184,7 +2184,7 @@ The immunization resource describes an administered vaccine.
 | status | Either `completed` or `not-done` | [code](https://hl7.org/fhir/R4/datatypes.html#code) with [immunization status value set](https://hl7.org/fhir/R4/valueset-immunization-status.html) | _16.7_ |
 | statusReason | Reason that an immunization event was not performed, if any | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [Substance Refusal Reason (NIP) value set](https://phinvads.cdc.gov/vads/ViewCodeSystem.action?id=2.16.840.1.114222.4.5.294) | _16.7_ |
 | vaccineCode | Vaccine product administered | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) using [vaccine administered value set](https://www.hl7.org/fhir/R4/valueset-vaccine-code.html) | _16.7_ |
-| patient | The immunized patient | [Reference](https://www.hl7.org/fhir/R4/references.html) ([USCorePatientProfile](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html)) | _16.7_ |
+| patient | The immunized patient | [Reference](https://www.hl7.org/fhir/R4/references.html) ([US Core Patient Profile](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _16.7_ |
 | occurrenceDateTime | The vaccination administration date in the form YYYY-MM-DD | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _16.7_ |
 | primarySource | Whether or not the information is from the person who administered the vaccine | [boolean](https://www.hl7.org/fhir/R4/datatypes.html#boolean) | _16.7_ |
 | meta.lastUpdated | The last time the immunization was updated | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) |  _16.7_ |
@@ -2255,7 +2255,7 @@ Returns immunizations based on the provided search parameters.
 
 #### HTTP Requests
 - `GET /r4/Immunization?{parameters}`
-- `POST /r4/Immunization/_search`
+- `POST /r4/Immunization/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
