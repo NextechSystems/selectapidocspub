@@ -331,69 +331,60 @@ The [allergy intolerance](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinit
 ### Example
 <pre class="center-column">
 {
-    "resourceType": "Bundle",
-    "type": "searchset",
-    "total": 1,
-    "entry": [
-        {
-            "resource": {
-                "resourceType": "AllergyIntolerance",
-                "id": "21",
-                "identifier": [
-                    {
-                        "use": "official",
-                        "value": "21"
-                    }
-                ],
-                "clinicalStatus": {
-                    "coding": [
-                        {
-                            "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
-                            "code": "active"
-                        }
-                    ]
-                },
-                "verificationStatus": {
-                    "coding": [
-                        {
-                            "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-                            "code": "unconfirmed"
-                        }
-                    ]
-                },
-                "code": {
-                    "coding": [
-                        {
-                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-                            "code": "852519",
-                            "display": "house dust"
-                        }
-                    ],
-                    "text": "house dust"
-                },
-                "patient": {
-                    "reference": "Patient/b664fd37-ff5f-4022-9d71-2e476d42f316",
-                    "display": "Smith, John Jacob"
-                },
-                "reaction": [
-                    {
-                        "manifestation": [
-                            {
-                                "coding": [
-                                    {
-                                        "system": "http://snomed.info/sct",
-                                        "code": "25064002",
-                                        "display": "Headache"
-                                    }
-                                ],
-                                "text": "Headache"
-                            }
-                        ]
-                    }
-                ]
-            }
-        }
-    ]
+	"resourceType": "AllergyIntolerance",
+	"id": "21",
+	"identifier": [
+		{
+			"use": "official",
+			"value": "21"
+		}
+	],
+	"clinicalStatus": {
+		"coding": [
+			{
+				"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+				"code": "active"
+			}
+		]
+	},
+	"verificationStatus": {
+		"coding": [
+			{
+				"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+				"code": "unconfirmed"
+			}
+		]
+	},
+	"code": {
+		"coding": [
+			{
+				"system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+				"code": "852519",
+				"display": "house dust"
+			}
+		],
+		"text": "house dust"
+	},
+	"patient": {
+		"reference": "Patient/b664fd37-ff5f-4022-9d71-2e476d42f316",
+		"display": "Smith, John Jacob"
+	},
+	"reaction": [
+		{
+			"manifestation": [
+				{
+					"coding": [
+						{
+							"system": "http://snomed.info/sct",
+							"code": "25064002",
+							"display": "Headache"
+						}
+					],
+					"text": "Headache"
+				}
+			]
+		}
+	  ]
 }
 </pre>
 &nbsp;
@@ -502,115 +493,28 @@ A [Care Plan](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
 ### Example
 <pre class="center-column">
 {
-    "resourceType": "Bundle",
-    "type": "searchset",
-    "total": 4,
-    "entry": [
-        {
-            "resource": {
-                "resourceType": "CarePlan",
-                "id": "672",
-                "text": {
-                    "status": "additional",
-                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Get an EKG done on 6/23/2015.</div>"
-                },
-                "status": "active",
-                "intent": "order",
-                "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
-                                "code": "assess-plan"
-                            }
-                        ]
-                    }
-                ],
-                "subject": {
-                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-                    "display": "Newman, Alice Jones"
-                }
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "CarePlan",
-                "id": "674",
-                "text": {
-                    "status": "additional",
-                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Get a Chest X-ray done on 6/23/2015 showing the Lower Respiratory Tract Structure.</div>"
-                },
-                "status": "active",
-                "intent": "plan",
-                "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
-                                "code": "assess-plan"
-                            }
-                        ]
-                    }
-                ],
-                "subject": {
-                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-                    "display": "Newman, Alice Jones"
-                }
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "CarePlan",
-                "id": "678",
-                "text": {
-                    "status": "additional",
-                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Take Clindamycin 300mg three times a day as needed if pain does not subside/</div>"
-                },
-                "status": "active",
-                "intent": "proposal",
-                "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
-                                "code": "assess-plan"
-                            }
-                        ]
-                    }
-                ],
-                "subject": {
-                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-                    "display": "Newman, Alice Jones"
-                }
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "CarePlan",
-                "id": "676",
-                "text": {
-                    "status": "additional",
-                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Schedule follow on visit with Neighborhood Physicians Practice on 7/1/2015.</div>"
-                },
-                "status": "active",
-                "intent": "plan",
-                "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
-                                "code": "assess-plan"
-                            }
-                        ]
-                    }
-                ],
-                "subject": {
-                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-                    "display": "Newman, Alice Jones"
-                }
-            }
-        }
-    ]
+	"resourceType": "CarePlan",
+	"id": "674",
+	"text": {
+		"status": "additional",
+		"div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Get a Chest X-ray done on 6/23/2015 showing the Lower Respiratory Tract Structure.</div>"
+	},
+	"status": "active",
+	"intent": "plan",
+	"category": [
+		{
+			"coding": [
+				{
+					"system": "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+					"code": "assess-plan"
+				}
+			]
+		}
+	],
+	"subject": {
+		"reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+		"display": "Newman, Alice Jones"
+	}
 }
 </pre>
 &nbsp;
@@ -719,94 +623,63 @@ The [CareTeam](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core
 ### Example
 <pre class="center-column">
 {
-    "resourceType": "Bundle",
-    "type": "searchset",
-    "total": 1,
-    "link": [
-        {
-            "relation": "self",
-            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A"
-        },
-        {
-            "relation": "previous",
-            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A&_getpagesoffset=0&_count=10"
-        },
-        {
-            "relation": "next",
-            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A&_getpagesoffset=0&_count=10"
-        },
-        {
-            "relation": "first",
-            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A&_getpagesoffset=0&_count=10"
-        },
-        {
-            "relation": "last",
-            "url": "https://localhost:44304/api/r4/CareTeam?patient=C27E5BE0-4B44-4EC5-A284-4308D6AC2B1A&_getpagesoffset=0&_count=10"
-        }
-    ],
-    "entry": [
-        {
-            "resource": {
-                "resourceType": "CareTeam",
-                "id": "3",
-                "status": "active",
-                "subject": {
-                    "reference": "Patient/3",
-                    "display": "Newman,  Alice Jones"
-                },
-                "participant": [
-                    {
-                        "role": [
-                            {
-                                "coding": [
-                                    {
-                                        "system": "http://nucc.org/provider-taxonomy",
-                                        "code": "2086S0122X"
-                                    }
-                                ]
-                            }
-                        ],
-                        "member": {
-                            "reference": "Practitioner/5",
-                            "display": "Davis, Albert"
-                        }
-                    },
-                    {
-                        "role": [
-                            {
-                                "coding": [
-                                    {
-                                        "system": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                                        "code": "unknown"
-                                    }
-                                ]
-                            }
-                        ],
-                        "member": {
-                            "reference": "Practitioner/77",
-                            "display": "Davis, Tracy"
-                        }
-                    },
-                    {
-                        "role": [
-                            {
-                                "coding": [
-                                    {
-                                        "system": "http://snomed.info/sct",
-                                        "code": "116154003"
-                                    }
-                                ]
-                            }
-                        ],
-                        "member": {
-                            "reference": "Patient/3",
-                            "display": "Newman,  Alice Jones"
-                        }
-                    }
-                ]
-            }
-        }
-    ]
+	"resourceType": "CareTeam",
+	"id": "3",
+	"status": "active",
+	"subject": {
+		"reference": "Patient/3",
+		"display": "Newman,  Alice Jones"
+	},
+	"participant": [
+		{
+			"role": [
+				{
+					"coding": [
+						{
+							"system": "http://nucc.org/provider-taxonomy",
+							"code": "2086S0122X"
+						}
+					]
+				}
+			],
+			"member": {
+				"reference": "Practitioner/5",
+				"display": "Davis, Albert"
+			}
+		},
+		{
+			"role": [
+				{
+					"coding": [
+						{
+							"system": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+							"code": "unknown"
+						}
+					]
+				}
+			],
+			"member": {
+				"reference": "Practitioner/77",
+				"display": "Davis, Tracy"
+			}
+		},
+		{
+			"role": [
+				{
+					"coding": [
+						{
+							"system": "http://snomed.info/sct",
+							"code": "116154003"
+						}
+					]
+				}
+			],
+			"member": {
+				"reference": "Patient/3",
+				"display": "Newman,  Alice Jones"
+			}
+		}
+	]
 }
 </pre>
 &nbsp;
@@ -908,190 +781,55 @@ The [condition](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-cor
 
 ### Example
 <pre class="center-column">
-{
-    "resourceType": "Bundle",
-    "type": "searchset",
-    "total": 3,
-    "link": [
-        {
-            "relation": "self",
-            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a"
-        },
-        {
-            "relation": "previous",
-            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_getpagesoffset=0&_count=10"
-        },
-        {
-            "relation": "next",
-            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_getpagesoffset=0&_count=10"
-        },
-        {
-            "relation": "first",
-            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_getpagesoffset=0&_count=10"
-        },
-        {
-            "relation": "last",
-            "url": "https://localhost:44304/api/r4/Condition?patient=c27e5be0-4b44-4ec5-a284-4308d6ac2b1a&_getpagesoffset=0&_count=10"
-        }
-    ],
-    "entry": [
-        {
-            "resource": {
-                "resourceType": "Condition",
-                "id": "prb-12",
-                "clinicalStatus": {
-                    "coding": [
-                        {
-                            "system": "http://hl7.org/fhir/ValueSet/condition-clinical",
-                            "code": "resolved",
-                            "display": "Resolved"
-                        }
-                    ],
-                    "text": "Resolved"
-                },
-                "verificationStatus": {
-                    "coding": [
-                        {
-                            "system": "http://hl7.org/fhir/ValueSet/condition-ver-status",
-                            "code": "confirmed",
-                            "display": "Confirmed"
-                        }
-                    ],
-                    "text": "Confirmed"
-                },
-                "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category",
-                                "code": "problem-list-item",
-                                "display": "Problem List Item"
-                            }
-                        ],
-                        "text": "Problem List Item"
-                    }
-                ],
-                "code": {
-                    "coding": [
-                        {
-                            "system": "http://snomed.info/sct",
-                            "code": "238131007",
-                            "display": "Overweight"
-                        }
-                    ],
-                    "text": "Overweight"
-                },
-                "subject": {
-                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-                    "display": "Newman, Alice Jones"
-                }
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "Condition",
-                "id": "prb-10",
-                "clinicalStatus": {
-                    "coding": [
-                        {
-                            "system": "http://hl7.org/fhir/ValueSet/condition-clinical",
-                            "code": "active",
-                            "display": "Active"
-                        }
-                    ],
-                    "text": "Active"
-                },
-                "verificationStatus": {
-                    "coding": [
-                        {
-                            "system": "http://hl7.org/fhir/ValueSet/condition-ver-status",
-                            "code": "confirmed",
-                            "display": "Confirmed"
-                        }
-                    ],
-                    "text": "Confirmed"
-                },
-                "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category",
-                                "code": "problem-list-item",
-                                "display": "Problem List Item"
-                            }
-                        ],
-                        "text": "Problem List Item"
-                    }
-                ],
-                "code": {
-                    "coding": [
-                        {
-                            "system": "http://snomed.info/sct",
-                            "code": "83986005",
-                            "display": "Severe hypothyroidism"
-                        }
-                    ],
-                    "text": "Severe hypothyroidism"
-                },
-                "subject": {
-                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-                    "display": "Newman, Alice Jones"
-                }
-            }
-        },
-        {
-            "resource": {
-                "resourceType": "Condition",
-                "id": "hc-616",
-                "clinicalStatus": {
-                    "coding": [
-                        {
-                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
-                            "code": "active",
-                            "display": "Active"
-                        }
-                    ],
-                    "text": "Active"
-                },
-                "verificationStatus": {
-                    "coding": [
-                        {
-                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-                            "code": "confirmed",
-                            "display": "Confirmed"
-                        }
-                    ],
-                    "text": "Confirmed"
-                },
-                "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/us/core/CodeSystem/condition-category",
-                                "code": "health-concern",
-                                "display": "Health Concern"
-                            }
-                        ],
-                        "text": "Health Concern"
-                    }
-                ],
-                "code": {
-                    "coding": [
-                        {
-                            "system": "http://snomed.info/sct",
-                            "code": "236578006",
-                            "display": "Chronic rejection of renal transplant"
-                        }
-                    ],
-                    "text": "Chronic rejection of renal transplant"
-                },
-                "subject": {
-                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-                    "display": "Newman, Alice Jones"
-                }
-            }
-        }
-    ]
+ {
+	"resourceType": "Condition",
+	"id": "prb-12",
+	"clinicalStatus": {
+		"coding": [
+			{
+				"system": "http://hl7.org/fhir/ValueSet/condition-clinical",
+				"code": "resolved",
+				"display": "Resolved"
+			}
+		],
+		"text": "Resolved"
+	},
+	"verificationStatus": {
+		"coding": [
+			{
+				"system": "http://hl7.org/fhir/ValueSet/condition-ver-status",
+				"code": "confirmed",
+				"display": "Confirmed"
+			}
+		],
+		"text": "Confirmed"
+	},
+	"category": [
+		{
+			"coding": [
+				{
+					"system": "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category",
+					"code": "problem-list-item",
+					"display": "Problem List Item"
+				}
+			],
+			"text": "Problem List Item"
+		}
+	],
+	"code": {
+		"coding": [
+			{
+				"system": "http://snomed.info/sct",
+				"code": "238131007",
+				"display": "Overweight"
+			}
+		],
+		"text": "Overweight"
+	},
+	"subject": {
+		"reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+		"display": "Newman, Alice Jones"
+	}
 }
 </pre>
 &nbsp;
@@ -1208,42 +946,33 @@ The [implantable device](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefiniti
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "type": "searchset",
-  "total": 1,
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Device",
-        "id": "123",
-        "udiCarrier": [
-          {
-            "deviceIdentifier": "43069338026389",
-            "carrierHRF": "(01)43069338026389(11)000302(17)250317(10)1134(21)842026117977"
-          }
-        ],
-        "distinctIdentifier": "A9971312345600",
-        "lotNumber": "000000000000XYZ123",
-        "serialNumber": "842026117977"
-        "manufactureDate": "2013-02-01T00:00:00Z",
-        "expirationDate": "2014-02-01T00:00:00Z",
-         "type": {
-          "coding": [
-            {
-              "system": "http://snomed.info/sct",
-              "code": "714549006",
-              "display": "Synthetic bone graft (physical object)"
-            }
-          ],
-          "text": "Synthetic bone graft (physical object)"
-        },
-        "patient": {
-          "reference": "Patient/ad2085b5-b974-401d-bfcb-3b865109fd35",
-          "display": "Smith, John"
-        }
-      }
-    }
-  ]
+	"resourceType": "Device",
+	"id": "123",
+	"udiCarrier": [
+	  {
+		"deviceIdentifier": "43069338026389",
+		"carrierHRF": "(01)43069338026389(11)000302(17)250317(10)1134(21)842026117977"
+	  }
+	],
+	"distinctIdentifier": "A9971312345600",
+	"lotNumber": "000000000000XYZ123",
+	"serialNumber": "842026117977"
+	"manufactureDate": "2013-02-01T00:00:00Z",
+	"expirationDate": "2014-02-01T00:00:00Z",
+	 "type": {
+	  "coding": [
+		{
+		  "system": "http://snomed.info/sct",
+		  "code": "714549006",
+		  "display": "Synthetic bone graft (physical object)"
+		}
+	  ],
+	  "text": "Synthetic bone graft (physical object)"
+	},
+	"patient": {
+	  "reference": "Patient/ad2085b5-b974-401d-bfcb-3b865109fd35",
+	  "display": "Smith, John"
+	}
 }
 </pre>
 &nbsp;
@@ -2111,44 +1840,37 @@ The [goal](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-goa
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Goal",
-        "id": "goalemn-2284code-559215",
-         "meta": {
-           "lastUpdated": "2022-08-05T14:29:08.217-04:00"
-         },
-        "identifier": [
-          {
-            "use": "official",
-            "value": "goalemn-2284code-559215"
-          }
-        ],
-        "subject": {
-          "reference": "Patient/F15FB185-5E63-485E-B025-D113103DCEC3",
-          "display": "Smith, Jane"
-        },
-        "target": {
-          "measure": {
-            "coding": [
-              {
-                "system": "http://loinc.org",
-                "code": "LA7435-6"
-              }
-            ],
-            "text": "Fever"
-          }
-        },
-        "note": [
-          {
-            "text": "Goal (Free Text): Take time off work, get bed rest"
-          }
-        ]
-      }
-    }
-  ]
+	"resourceType": "Goal",
+	"id": "goalemn-2284code-559215",
+	 "meta": {
+	   "lastUpdated": "2022-08-05T14:29:08.217-04:00"
+	 },
+	"identifier": [
+	  {
+		"use": "official",
+		"value": "goalemn-2284code-559215"
+	  }
+	],
+	"subject": {
+	  "reference": "Patient/F15FB185-5E63-485E-B025-D113103DCEC3",
+	  "display": "Smith, Jane"
+	},
+	"target": {
+	  "measure": {
+		"coding": [
+		  {
+			"system": "http://loinc.org",
+			"code": "LA7435-6"
+		  }
+		],
+		"text": "Fever"
+	  }
+	},
+	"note": [
+	  {
+		"text": "Goal (Free Text): Take time off work, get bed rest"
+	  }
+	]
 }
 </pre>
 &nbsp;
@@ -2247,42 +1969,35 @@ The [Immunization](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Immunization",
-        "id": "123",
-        "meta": 
-        {
-           "lastUpdated": "2022-04-02T14:04:35.9+00:00"
-         },
-        "identifier": [
-          {
-            "use": "official",
-            "value": "123"
-          }
-        ],
-        "status": "completed",
-        "vaccineCode": {
-          "coding": [
-            {
-              "system": "http://hl7.org/fhir/sid/cvx",
-              "code": "05",
-              "display": "measles virus vaccine"
-            }
-          ],
-          "text": "measles virus vaccine"
-        },
-        "patient": {
-          "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
-          "display": "Tinsley, Carol F"
-        },
-        "occurrenceDateTime": "2013-08-17",
-        "primarySource" : true
-      }
-    }
-  ]
+	"resourceType": "Immunization",
+	"id": "123",
+	"meta": 
+	{
+	   "lastUpdated": "2022-04-02T14:04:35.9+00:00"
+	 },
+	"identifier": [
+	  {
+		"use": "official",
+		"value": "123"
+	  }
+	],
+	"status": "completed",
+	"vaccineCode": {
+	  "coding": [
+		{
+		  "system": "http://hl7.org/fhir/sid/cvx",
+		  "code": "05",
+		  "display": "measles virus vaccine"
+		}
+	  ],
+	  "text": "measles virus vaccine"
+	},
+	"patient": {
+	  "reference": "Patient/4AAE9E3C-B1E4-46EA-93C2-CF3B36747D1A",
+	  "display": "Tinsley, Carol F"
+	},
+	"occurrenceDateTime": "2013-08-17",
+	"primarySource" : true
 }
 </pre>
 &nbsp;
@@ -2409,64 +2124,57 @@ These types of laboratory reports are denoted by their category. Diagnostic repo
 ### Example
 <pre class="center-column">
 {
-   "resourceType":"Bundle",
-   "entry":[
-      {
-         "resource":{
-            "resourceType":"DiagnosticReport",
-            "id":"244",
-            "identifier":[
-               {
-                  "use":"official",
-                  "value":"244"
-               },
-               {
-                  "use":"usual",
-                  "value":"XY202200011 - A"
-               }
-            ],
-            "status":"registered",
-            "category":[
-               {
-                  "coding":[
-                     {
-                        "system":"http://terminology.hl7.org/CodeSystem/v2-0074",
-                        "code":"LAB"
-                     }
-                  ]
-               }
-            ],
-            "code":{
-               "coding":[
-                  {
-                     "system":"http://loinc.org",
-                     "code":"11268-0",
-                     "display":"S pyog Throat Ql Cult"
-                  }
-               ],
-               "text":"S pyog Throat Ql Cult"
-            },
-            "subject":{
-               "reference":"Patient/C56936DF-FED7-4EFA-8998-2A9848C99631"
-            },
-            "effectiveDateTime":"2022-06-24T00:00:00-04:00",
-            "issued":"2022-06-24T00:00:00-04:00",
-            "performer":[
-               {
-                  "reference":"Practitioner/9149",
-                  "display":"Smith, Susan"
-               }
-            ],
-            "result":[
-               {
-                  "reference":"Observation/442",
-                  "display":""
-               }
-            ]
-         }
-      }
-   ]
-}
+	"resourceType":"DiagnosticReport",
+	"id":"244",
+	"identifier":[
+	   {
+		  "use":"official",
+		  "value":"244"
+	   },
+	   {
+		  "use":"usual",
+		  "value":"XY202200011 - A"
+	   }
+	],
+	"status":"registered",
+	"category":[
+	   {
+		  "coding":[
+			 {
+				"system":"http://terminology.hl7.org/CodeSystem/v2-0074",
+				"code":"LAB"
+			 }
+		  ]
+	   }
+	],
+	"code":{
+	   "coding":[
+		  {
+			 "system":"http://loinc.org",
+			 "code":"11268-0",
+			 "display":"S pyog Throat Ql Cult"
+		  }
+	   ],
+	   "text":"S pyog Throat Ql Cult"
+	},
+	"subject":{
+	   "reference":"Patient/C56936DF-FED7-4EFA-8998-2A9848C99631"
+	},
+	"effectiveDateTime":"2022-06-24T00:00:00-04:00",
+	"issued":"2022-06-24T00:00:00-04:00",
+	"performer":[
+	   {
+		  "reference":"Practitioner/9149",
+		  "display":"Smith, Susan"
+	   }
+	],
+	"result":[
+	   {
+		  "reference":"Observation/442",
+		  "display":""
+	   }
+	]
+ }
 </pre> 
 &nbsp;
 
@@ -2542,47 +2250,38 @@ The [Medication Request](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefiniti
 ### Example
 <pre class="center-column">
 {
-    "resourceType": "Bundle",
-    "type": "searchset",
-    "total": 1,
-    "entry": [
-        {
-            "resource": {
-                "resourceType": "MedicationRequest",
-                "id": "1",
-                "status": "active",
-                "intent": "original-order",
-                "reportedBoolean": false,
-                "medicationCodeableConcept": {
-                    "coding": [
-                        {
-                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-                            "code": "310964",
-                            "display": "ibuprofen"
-                        }
-                    ],
-                    "text": "ibuprofen"
-                },
-                "subject": {
-                    "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-                    "display": "Newman, Alice Jones"
-                },
-                "encounter": {
-                    "reference": "Encounter/1"
-                },
-                "authoredOn": "2022-07-06T18:20:39+02:00",
-                "requester": {
-                    "reference": "Practitioner/84",
-                    "display": "Davis, Albert"
-                },
-                "dosageInstruction": [
-                    {
-                        "text": "1 capsule by mouth twice a day"
-                    }
-                ]
-            }
-        }
-    ]
+	"resourceType": "MedicationRequest",
+	"id": "1",
+	"status": "active",
+	"intent": "original-order",
+	"reportedBoolean": false,
+	"medicationCodeableConcept": {
+		"coding": [
+			{
+				"system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+				"code": "310964",
+				"display": "ibuprofen"
+			}
+		],
+		"text": "ibuprofen"
+	},
+	"subject": {
+		"reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+		"display": "Newman, Alice Jones"
+	},
+	"encounter": {
+		"reference": "Encounter/1"
+	},
+	"authoredOn": "2022-07-06T18:20:39+02:00",
+	"requester": {
+		"reference": "Practitioner/84",
+		"display": "Davis, Albert"
+	},
+	"dosageInstruction": [
+		{
+			"text": "1 capsule by mouth twice a day"
+		}
+	]
 }
 </pre>
 &nbsp;
@@ -2907,18 +2606,14 @@ A [procedure](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
 ### Example
 <pre class="center-column">
 {
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Procedure",
-        "id": "2053",
-        "identifier": [
-          {
-            "use": "official",
-            "value": "2053"
-          }
-        ],
+	"resourceType": "Procedure",
+	"id": "2053",
+	"identifier": [
+	  {
+		"use": "official",
+		"value": "2053"
+	  }
+	],
 	"status": "completed",
         "code": {
           "coding": [
@@ -2935,9 +2630,6 @@ A [procedure](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
           "display": "Smith, John"
         },
 	"performedDateTime": "2011-10-05"
-      }
-    }
-  ]
 }
 </pre>
 &nbsp;
