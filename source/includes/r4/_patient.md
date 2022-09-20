@@ -1762,21 +1762,22 @@ The following mimetypes are currently supported:
 ## Encounter
 
 ### Overview
-The Encounter resource describes an interaction between a patient and healthcare provider.
+The [Encounter](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-encounter.html) resource describes an interaction between a patient and healthcare provider.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
+| id | The unique value assigned to each encounter which discerns them from all others | [string](https://www.hl7.org/fhir/r4/datatypes.html#string) | _16.9_ |
 | identifier | The unique value assigned to each encounter which discerns them from all others | [Identifier](https://www.hl7.org/fhir/r4/datatypes.html#Identifier) | _16.9_ |
 | status | The current state of the encounter (either `in-progress`, `finished`, or `unknown`) | [code](https://hl7.org/fhir/R4/datatypes.html#code) with [encounter status value set](http://hl7.org/fhir/R4/valueset-encounter-status.html) | _16.9_ |
 | class | The classification of the encounter | [Coding](http://hl7.org/fhir/R4/datatypes.html#Coding) | _16.9_ |
 | type | The specific type of the encounter | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
-| subject | The patient pertaining to the encounter | [Reference(Patient)](https://www.hl7.org/fhir/r4/references.html) | _16.9_ |
+| subject | The patient pertaining to the encounter | [Reference](https://www.hl7.org/fhir/r4/references.html)([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _16.9_ |
 | participant | The medical professionals involved in the encounter | [BackboneElement](https://www.hl7.org/fhir/r4/backboneelement.html) | _16.9_ |
-| period | The start and end date of the encounter in the form YYYY-MM-DD | [period](https://www.hl7.org/fhir/datatypes.html#Period) | _16.9_ |
+| period | The start and end date of the encounter in the form YYYY-MM-DD | [period](https://www.hl7.org/fhir/R4/datatypes.html#Period) | _16.9_ |
 | reasonCode | The coded reason the encounter took place | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
 | hospitalization.dischargeDisposition | Category or kind of location after discharge | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _16.9_ |
-| location.location | Location the encounter took place at | [Reference(Location)](https://www.hl7.org/fhir/r4/references.html) | _16.9_ |
+| location.location | Location the encounter took place at | [Reference](https://www.hl7.org/fhir/r4/references.html)([US Core Location Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-location.html)) | _16.9_ |
 | meta.lastUpdated | The last time the encounter was updated | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) | _16.9_ |
 
 ### Example
@@ -1969,7 +1970,7 @@ Returns encounters based on the provided search parameters.
 
 #### HTTP Requests
 - `GET /r4/Encounter?{parameters}`
-- `POST /r4/Encounter/_search`
+- `POST /r4/Encounter/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
