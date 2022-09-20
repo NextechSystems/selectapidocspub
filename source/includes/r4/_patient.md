@@ -2469,20 +2469,20 @@ POST https://select.nextech-api.com/api/r4/DiagnosticReport/_search
 ## Medication Request
 
 ### Overview
-The Medication Request resource can be used to record a patient's medication prescription or order.
+The [Medication Request](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-medicationrequest.html) resource can be used to record a patient's medication prescription or order.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | id | The logical id of the resource, as used in the URL for the resource | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _17.0_ |
-| status | A code specifying the current state of the medication request | [MedicationRequestStatus](http://hl7.org/fhir/ValueSet/medicationrequest-status) | _17.0_ |
-| intent | Whether the request is a proposal, plan, or an original order | [MedicationRequestIntent](http://hl7.org/fhir/ValueSet/medicationrequest-intent) | _17.0_ |
+| status | A code specifying the current state of the medication request | [MedicationRequestStatus](http://hl7.org/fhir/R4/ValueSet/medicationrequest-status) | _17.0_ |
+| intent | Whether the request is a proposal, plan, or an original order | [MedicationRequestIntent](http://hl7.org/fhir/R4/ValueSet/medicationrequest-intent) | _17.0_ |
 | reported | Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record | [boolean](http://hl7.org/fhir/R4/datatypes.html#boolean) | _17.0_ |
 | medication | The supplied medication | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _17.0_ |
-| authoredOn | The date and time when the prescription was initially written or authored on | [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) | _17.0_ |
-| subject | The patient pertaining to the medication request | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([USCorePatientProfile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _17.0_ |
-| requester | The individual, organization, or device that initiated the request and has responsibility for its activation | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([USCorePractitionerProfile](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html)) | _17.0_ |
-| encounter | The Encounter during which the medication request was created or to which the creation of this record is tightly associated | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([Encounter](http://hl7.org/fhir/R4/encounter.html)) | _17.0_ |
+| authoredOn | The date and time when the prescription was initially written or authored on | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _17.0_ |
+| subject | The patient pertaining to the medication request | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _17.0_ |
+| requester | The individual, organization, or device that initiated the request and has responsibility for its activation | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([US Core Practitioner Profile](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html)) | _17.0_ |
+| encounter | The Encounter during which the medication request was created or to which the creation of this record is tightly associated | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([US Core Encounter Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-encounter.html)) | _17.0_ |
 | dosageInstruction | Indicates how the medication is to be used by the patient | [Dosage](http://hl7.org/fhir/R4/dosage.html#Dosage) | _17.0_ |
 
 ### Example
@@ -2557,7 +2557,7 @@ Searches for medication requests for a single patient
 #### HTTP Requests
 
 - `GET /r4/MedicationRequest?{parameters}`
-- `POST /r4/MedicationRequest/_search`
+- `POST /r4/MedicationRequest/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
@@ -2571,9 +2571,15 @@ Searches for medication requests for a single patient
 | intent | query or payload | The intent of the medication request. Ex.: 'original-order' | No | _17.0_ |
 | status | query or payload | The status of the medication request. Ex.: 'active' | No | _17.0_ |
 | _lastUpdated | query or payload | The date the medication request was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _17.0_ |
-| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each encounter | No | _17.0_ |
+| \_revinclude | query or payload | Must be `Provenance:target`. This enables requesting additional [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that relate to each medication request | No | _17.0_ |
 
-**_Note:_**  The possible filter values for date or _lastUpdated parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for the _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+#### Retrieve Provenance with medication requests
+The `_revinclude` parameter allows support for including [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that match the returned medication requests.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the medication request.
+&nbsp;
 
 #### Example: Get the medication request with an ID of '12'
 
