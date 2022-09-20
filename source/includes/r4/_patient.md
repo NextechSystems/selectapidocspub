@@ -442,13 +442,13 @@ GET https://select.nextech-api.com/api/r4/AllergyIntolerance/21
 ## Care Plan
 
 ### Overview
-A Care Plan contains patient diet, procedure, lab work and counseling and other care information for a single patient.   
+A [Care Plan](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-careplan.html) contains patient diet, procedure, lab work and counseling and other care information for a single patient.   
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
 | id | The unique value assigned to each care plan which discerns them from all others. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _16.9_ |
-| subject | The patient pertaining to the care plan. | [Reference(Patient)](https://www.hl7.org/fhir/R4/references.html) | _16.9_ |
+| subject | The patient pertaining to the care plan. | [Reference](https://www.hl7.org/fhir/R4/references.html)([US Core Patient Profile](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _16.9_ |
 | text | A human-readable narrative that contains a summary of the resource. | [Narrative](http://hl7.org/fhir/R4/datatypes.html#Narrative) | _16.9_ |
 | text.div | The actual narrative content of the patient care plan. | [xhtml](http://hl7.org/fhir/R4/narrative.html#xhtml) | _16.9_ |
 | text.status | The text status for the resource narrative. | [code](http://hl7.org/fhir/R4/datatypes.html#code) | _16.9_ |
@@ -596,7 +596,7 @@ Searches for care plans for a single patient
 #### HTTP Requests
 
 - `GET /r4/CarePlan?{parameters}`
-- `POST /r4/CarePlan/_search`
+- `POST /r4/CarePlan/_search?{parameters}`
   - *application/x-www-form-urlencoded payload:* `{parameters}`
 
 **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
