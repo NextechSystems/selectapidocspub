@@ -19,13 +19,13 @@ Information about supported server functionality and server's SMART on FHIR conf
 | implementation.url | An absolute base URL for the implementation. | [url](https://www.hl7.org/fhir/R4/datatypes.html#url) |
 | fhirVersion | The version of the FHIR specification that this CapabilityStatement describes. | [code](https://www.hl7.org/fhir/R4/datatypes.html#code) |
 | format | A list of the formats supported by this implementation using their content types. | [code](https://www.hl7.org/fhir/R4/datatypes.html#code) |
-| implementationGuide | A list of implementation guides that the server does (or should) support in their entirety. | [canonical](https://www.hl7.org/fhir/R4/datatypes.html#canonical)([Implementation Guide](https://www.hl7.org/fhir/implementationguide.html)) |
-| instantiates | Reference to a canonical URL of another CapabilityStatement that this software implements. | [canonical](https://www.hl7.org/fhir/R4/datatypes.html#canonical)([Capabiliy Statement](https://www.hl7.org/fhir/capabilitystatement.html)) |
+| implementationGuide | A list of implementation guides that the server does (or should) support in their entirety. | [canonical](https://www.hl7.org/fhir/R4/datatypes.html#canonical)([Implementation Guide](https://www.hl7.org/fhir/R4/implementationguide.html)) |
+| instantiates | Reference to a canonical URL of another CapabilityStatement that this software implements. | [canonical](https://www.hl7.org/fhir/R4/datatypes.html#canonical)([Capabiliy Statement](https://www.hl7.org/fhir/R4/capabilitystatement.html)) |
 | rest.mode | Identifies whether this portion of the statement is describing the ability to initiate or receive restful operations. | [code](https://www.hl7.org/fhir/R4/datatypes.html#code) |
-| rest.security.extension | The oauth uris for this server ('authorize' and 'token' endpoints). | [Extension](https://build.fhir.org/extensibility.html#Extension) |
+| rest.security.extension | The oauth uris for this server ('authorize' and 'token' endpoints). | [Extension](https://www.hl7.org/fhir/R4/extensibility.html#Extension) |
 | rest.security.service | Types of security services that are supported by the system. | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) |
 | rest.resource.type | A type of resource exposed via the restful interface. | [code](https://www.hl7.org/fhir/R4/datatypes.html#code) |
-| rest.resource.supportedProfile | A list of profiles that represent different use cases supported by the system. | [canonical](https://www.hl7.org/fhir/R4/datatypes.html#canonical)([StructureDefinition](https://www.hl7.org/fhir/structuredefinition.html)) |
+| rest.resource.supportedProfile | A list of profiles that represent different use cases supported by the system. | [canonical](https://www.hl7.org/fhir/R4/datatypes.html#canonical)([StructureDefinition](https://www.hl7.org/fhir/R4/structuredefinition.html)) |
 | rest.resource.interaction.code | Coded identifier of the operation, supported by the system resource. | [code](https://www.hl7.org/fhir/R4/datatypes.html#code) |
 | rest.resource.searchRevInclude | A list of _revinclude (reverse include) values supported by the server. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) |
 | rest.resource.searchParam.name | The name of the search parameter used in the interface. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) |
