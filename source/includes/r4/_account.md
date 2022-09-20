@@ -1,22 +1,21 @@
 # Account
 
-## Account
-
 ### Overview
-A financial tool for tracking value accrued for a particular purpose. In Nextech, it's used to track the patient's responsibility.
+The [Account](https://hl7.org/fhir/R4/account.html) resource represents a financial tool for tracking value accrued for a particular purpose. In Nextech, it's used to track the patient's responsibility.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | Unique identifier used to reference the account. | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.9_ |
-| name |The name associated with the Account. | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.9_ |
-| status | Indicates whether the account is presently used/usable or not. | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9_ |
-| type | Categorizes the account for reporting and searching purposes. | [CodeableConcept](https://www.hl7.org/fhir/datatypes.html#CodeableConcept) | _12.9_ |
-| balance | Represents the sum of all credits less all debits associated with the account. Might be positive, zero or negative. | [Money](https://www.hl7.org/fhir/datatypes.html#Money) | _12.9_ |
-| description | Provides additional information about what the account tracks and how it is used. | [string](https://www.hl7.org/fhir/datatypes.html#String) | _12.9_ |
-| subject | Identifies the patient or other object the account is associated with. | [Reference](https://www.hl7.org/fhir/references.html) | _12.9_ |
-| guarantor | Party financially responsible for the account. | [BackboneElement](https://www.hl7.org/fhir/backboneelement.html) | _12.9_ |
-| guarantor.party | The entity who is responsible. | [Reference](https://www.hl7.org/fhir/references.html) | _12.9_ |
+| id | Unique identifier used to reference the account. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _12.9_ |
+| identifier | Unique identifier used to reference the account. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _12.9_ |
+| name |The name associated with the Account. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _12.9_ |
+| status | Indicates whether the account is presently used/usable or not. | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.9_ |
+| type | Categorizes the account for reporting and searching purposes. | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.9_ |
+| balance | Represents the sum of all credits less all debits associated with the account. Might be positive, zero or negative. | [Money](https://www.hl7.org/fhir/R4/datatypes.html#Money) | _12.9_ |
+| description | Provides additional information about what the account tracks and how it is used. | [string](https://www.hl7.org/fhir/R4/datatypes.html#String) | _12.9_ |
+| subject | Identifies the patient or other object the account is associated with. | [Reference](https://www.hl7.org/fhir/R4/references.html) | _12.9_ |
+| guarantor | Party financially responsible for the account. | [BackboneElement](https://www.hl7.org/fhir/R4/backboneelement.html) | _12.9_ |
+| guarantor.party | The entity who is responsible. | [Reference](https://www.hl7.org/fhir/R4/references.html)([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _12.9_ |
 }
 
 
@@ -61,11 +60,30 @@ A financial tool for tracking value accrued for a particular purpose. In Nextech
 </pre>
 &nbsp;
 
+### *Get*
+Returns a single Account based on the account ID.
+
+#### HTTP Request
+
+- `GET /r4/Account/{accountID}`
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| accountID | path | The account identifier | Yes | 12.9 |
+
+#### Example: Get a specific Account with an id of '12'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Account/12
+</pre>
+&nbsp;
+
 ### *Search*
-Searches for all  based on the given search criteria.
+Searches for all accounts based on the given search criteria.
 
 #### HTTP Request 
-`GET /Account?{parameters}`
+`GET r4/Account?{parameters}`
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
@@ -79,35 +97,28 @@ Searches for all  based on the given search criteria.
 #### Example: Get all active Accounts
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Account?status=active
+GET https://select.nextech-api.com/api/r4/Account?status=active
 </pre>
 &nbsp;
 
 #### Example: Get accounts with a balance greater than zero
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Account?balance=gt0
+GET https://select.nextech-api.com/api/r4/Account?balance=gt0
 </pre>
 &nbsp;
 
 #### Example: Get a specific Account attached to a patient 
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Account?patient=59015300-e15b-474c-8314-7864712f6946
+GET https://select.nextech-api.com/api/r4/Account?patient=59015300-e15b-474c-8314-7864712f6946
 </pre>
 &nbsp;
 
 #### Example: Get all Accounts whose name contains 'smith'
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Account?name:contains=smith
-</pre>
-&nbsp;
-
-#### Example: Get a specific Account based on identifier
-
-<pre class="center-column">
-GET https://select.nextech-api.com/api/Account/12
+GET https://select.nextech-api.com/api/r4/Account?name:contains=smith
 </pre>
 &nbsp;
 
