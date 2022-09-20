@@ -114,7 +114,7 @@ Searches for all provenance info based on the given search criteria.
 | identifier | query or body | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
 | _lastUpdated | query or body | The last time the provenance was modified | No | _17.0_ |
 
-**_Note:_**  The possible filter values for the _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for the `_lastUpdated` parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get all provenance info
 

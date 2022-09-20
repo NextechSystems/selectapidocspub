@@ -113,7 +113,7 @@ Searches for all organizations based on the given search criteria.
 | _id | query or body | The organization unique identifier | No | _16.9_ |
 | _lastUpdated | query or body | The last time the organization was modified | No | _16.9_ |
 
-**_Note:_**  The possible filter values for the _lastUpdated parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+**_Note:_**  The possible filter values for the `_lastUpdated` parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get all active organizations
 
