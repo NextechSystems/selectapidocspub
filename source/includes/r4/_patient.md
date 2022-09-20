@@ -162,6 +162,24 @@ i.e The patient's **work** number is on file, but marked private then the teleco
 
 The preferred contact is also available from the API. If a preferred contact is set then it will contain a "rank":1 member in the telecom object indicating it is the preferred method.
 
+### *Get*
+Returns a single Patient result based on the patient ID.
+
+#### HTTP Request 
+`GET /r4/Patient/{patientId}` 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| patientId | path | The unique identifier for the patient | Yes | _12.6_ |
+
+#### Example: Get the patient with an ID of 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a
+</pre>
+&nbsp;
+
 ### *Search*
 Searches for all patients matching the given search criteria. See [https://www.hl7.org/fhir/R4/search.html](https://www.hl7.org/fhir/R4/search.html) for instructions on formatting search criteria.
 
@@ -378,6 +396,25 @@ The [allergy intolerance](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinit
 }
 </pre>
 &nbsp;
+
+### *Get*
+Returns a single AllergyIntolerance result based on the allergy intolerance ID.
+
+#### HTTP Request 
+`GET /r4/AllergyIntolerance/{allergyId}` 
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| allergyId | path | The unique identifier for the allergy intolerance | Yes | _16.7_ |
+
+#### Example: Get the allergy intolerance with an ID of '123'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/AllergyIntolerance/123
+</pre>
+&nbsp;
+
 ### *Search*
 Searches for allergy intolerances for a single patient
 
