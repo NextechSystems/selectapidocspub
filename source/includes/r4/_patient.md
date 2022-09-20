@@ -721,9 +721,14 @@ Searches for care teams for a single patient
 | identifier | query or body | The unique identifier for the care team | No | _16.9_ |
 | status | query or body | Indicates the current state of the care team. Ex.: 'active' | No | _16.9_ |
 | _lastUpdated | query or body | The date the care team was last modified, formatted as OOXXXXX where OO is an operator and XXXXX is a date in the form YYYY-MM-DD. | No | _16.9_ |
+| _revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each care team | No | _17.0_ |
 
 **_Note:_**  The possible filter values for the `_lastUpdated` parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
+#### Retrieve Provenance with care teams
+The `_revinclude` parameter allows support for including Provenance references that match the returned care teams.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the care team.
 
 #### Example: Get all care teams for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and status 'active'
 
@@ -2038,8 +2043,14 @@ Returns immunizations based on the provided search parameters.
 | date | query or body | The date the immunization was administered in the form YYYY-MM-DD  | No | _16.7_ |
 | identifier | query or body | The immunization unique identifier | No | _16.7_ |
 | _id | query or body | The immunization unique identifier | No | _16.7_ |
+| _revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each immunization | No | _17.0_ |
 
 **_Note:_**  The possible filter values for the `date` or `_lastUpdated` parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+#### Retrieve Provenance with immunizations
+The `_revinclude` parameter allows support for including Provenance references that match the returned immunizations.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the immunization.
 
 &nbsp;
 #### Examples: 
@@ -2215,7 +2226,13 @@ Returns diagnostic reports based on the provided search parameters
 | category | query or body | The category of the diagnostic report by either "LAB" or code ie. category=LP29684-5 or by token ie. category=http://terminology.hl7.org/CodeSystem/v2-0074&vert;LP29684-5 | No | _16.9_ |
 | date | query or body | The diagnostic report date in the form YYYY-MM-DD | No | _16.9_ |
 | code | query or body | The loinc code of the diagnostic report by code ie. code=49765-1 or token ie. code=http://loinc.org&vert;49765-1 | No | _16.9_ |
+| _revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each diagnostic report | No | _17.0_ |
 **_Note:_**  The possible filter values for the `date` parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`.
+
+#### Retrieve Provenance with diagnostic reports
+The `_revinclude` parameter allows support for including Provenance references that match the returned diagnostic reports.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the diagnostic report.
 
 #### Example: Get all lab-type diagnostic reports on or after 5/1/2017
 
@@ -2670,8 +2687,14 @@ Returns procedures based on the provided search parameters.
 | date | query or body | The date the procedure was performed in the form YYYY-MM-DD  | No | _16.7_ |
 | _id | query or body | The procedure unique identifier | No | _16.7_ |
 | identifier | query or body | The procedure unique identifier | No | _16.7_ |
+| _revinclude | query or body | Must be `Provenance:target`. This enables requesting additional `Provenance` resources that relate to each procedure | No | _17.0_ |
 
 **_Note:_**  The possible filter values for the `date` or `_lastUpdated` parameters are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
+
+#### Retrieve Provenance with procedures
+The `_revinclude` parameter allows support for including Provenance references that match the returned procedures.
+This value must be `Provenance:target`, otherwise the request will result in an error.
+These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the procedure.
 
 &nbsp;
 #### Examples: 
