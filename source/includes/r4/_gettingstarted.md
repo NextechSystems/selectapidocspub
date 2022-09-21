@@ -11,7 +11,7 @@ Before you can access the Nextech API you must have the proper credentials to au
 - Nextech is not responsible for the development or maintenance of any third-party application
 
 **API Endpoint**  
-`https://select.nextech-api.com/api`
+`https://select.nextech-api.com/api/r4`
 
 The following values are required in the Header for every request...
 
@@ -88,13 +88,13 @@ Refresh tokens are used to renew an expired access token without providing user 
 | refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
 
 ## Using Postman ##
-To help you get started, here's a collection of sample API requests in Postman. You can find more information on making API requests using Postman [here](https://www.getpostman.com/docs/postman/sending_api_requests/requests).
-
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/899edff2cda90cba5159)
-
-<aside class="notice">
-You must have been provided API credentials and Practice ID(s) to use these examples.
-</aside>
+You can use Postman to make a simple request to the [metadata](#metadata) endpoint:
+&nbsp;
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/metadata
+</pre>
+&nbsp;
+Each `rest.resource` member in the metadata response contains information about all FHIR resources that are supported, along with the supported interactions and search parameters for each resource.
 
 ### Authorization ###
 
@@ -114,8 +114,8 @@ Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information li
 Searches may be performed via HTTPS calls to the API where supported. 
 
 A search is executed by performing a `GET` operation in the RESTful framework   
-`GET https://select.nextech-api.com/api/[type]?[field1][:modifier1]=[value1]&[field2][:modifier2]=[value2]...`   
-where \[type\] refers to a resource such as Patient or Appointment followed by one or more query filters and optional modifiers.
+`GET https://select.nextech-api.com/api/r4/[type]?[field1][:modifier1]=[value1]&[field2][:modifier2]=[value2]...`   
+where \[type\] refers to a resource such as Patient or Immunization followed by one or more query filters and optional modifiers.
 
 * Matching is always case-insensitive and always ignores whitespace before and after the data.
 * The default search attempts to match with just the start of the data.
@@ -126,7 +126,7 @@ To search for a field that meets at least one of several values, each value shou
 
 **Example: Get patients who live in several nearby cities**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?address-postalcode=33609,33625,33647
+GET https://select.nextech-api.com/api/r4/Patient?address-postalcode=33609,33625,33647
 </pre>
 &nbsp;
 
@@ -134,9 +134,9 @@ GET https://select.nextech-api.com/api/Patient?address-postalcode=33609,33625,33
 
 To search for multiple fields that all must meet certain criteria, each field should be specified and separated by an ampersand.
 
-**Example: Get booked appointments for one day**
+**Example: Search for encounters for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' that took place between and including 1/1/2022 through 11/14/2022**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Appointment?date=2015-03-04&status=booked
+GET https://select.nextech-api.com/api/r4/Encounter?patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
 </pre>
 &nbsp;
 
@@ -152,13 +152,13 @@ A modifier defines how a search match should be performed for a field. A modifie
 
 **Example: Get all patients whose last name is Smith**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?family:exact=Smith
+GET https://select.nextech-api.com/api/r4/Patient?family:exact=Smith
 </pre>
 &nbsp;
 
 **Example: Get all patients whose last name contains the text "mit"**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?family:contains=mit
+GET https://select.nextech-api.com/api/r4/Patient?family:contains=mit
 </pre>
 &nbsp;
 
@@ -177,13 +177,13 @@ Numeric and date values can be combined with operators to search on ranges of va
 
 **Example: Get the patients with chart numbers between and including 100 and 200**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?identifier=ge100&identifier=le200
+GET https://select.nextech-api.com/api/Patient/r4?identifier=ge100&identifier=le200
 </pre>
 &nbsp;
 
-**Example: Get appointments for the month of March 2017**
+**Example: Search for immunizations for the patient with the id '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' administered between and including 1/1/2022 through 11/14/2022**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Appointment?date=ge2017-03-01&date=lt2017-04-01
+GET https://select.nextech-api.com/api/r4/Immunization?patient=patient/9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&date=ge2022-01-01&date=lt2022-11-14
 </pre>
 &nbsp;
 
@@ -195,7 +195,7 @@ When matching a simple text string with data, the match is always case-insensiti
 
 **Example: Get all patients whose last name begins with Smith**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?family=Smith
+GET https://select.nextech-api.com/api/r4/Patient?family=Smith
 </pre>
 &nbsp;
 
@@ -205,7 +205,7 @@ By default, exact matches are performed in numeric searches. You may use operato
 
 **Example: Get the patient with chart number 3442**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?identifier=3442
+GET https://select.nextech-api.com/api/r4/Patient?identifier=3442
 </pre>
 &nbsp;
 
@@ -213,9 +213,9 @@ GET https://select.nextech-api.com/api/Patient?identifier=3442
 
 By default, exact matches are performed in date searches. You may use operators to specify a date range.
 
-**Example: Get appointments for the month of October 2016**
+**Example: Get immunizations for the month of October 2022**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Appointment?date=ge2016-10-01&date=lt2017-11-01
+GET https://select.nextech-api.com/api/r4/Immunization?date=ge2022-10-01&date=lt2022-11-01
 </pre>
 &nbsp;
 
@@ -225,7 +225,7 @@ Some resources have abstract fields which contain a first name, last name, prefi
 
 **Example: Get the patients whose first name, last name, prefix or suffix begins with Doe**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?name=doe
+GET https://select.nextech-api.com/api/r4/Patient?name=doe
 </pre>
 &nbsp;
 
@@ -235,27 +235,14 @@ Some resources have abstract fields which contain an Address 1, Address 2, City,
 
 **Example: Get the patients whose Address 1, Address 2, City, State or Zip code begins with 1500**
 <pre class="center-column">
-GET https://select.nextech-api.com/api/Patient?address=1500
+GET https://select.nextech-api.com/api/r4/Patient?address=1500
 </pre>
 &nbsp;
 
 ## Writing ##
 
-Data writes may be performed via HTTPS calls to the API where supported. 
+Currently, only creating a document via a `POST https://select.nextech-api.com/api/r4/DocumentReference` call is supported.
 
-A write is executed by performing a `PUT` operation in the RESTful framework
-`PUT https://select.nextech-api.com/api/{resource}/{identifier}`
-where `{resource}` refers to a resource such as Patient or Appointment, `{identifier}` is the unique identifier of the resource and the body of the request describes a resource and which fields to add or change. This example request path and body would confirm an appointment with the ID 3384:
-
-**Example**
-<pre class="center-column">
-`PUT https://select.nextech-api.com/api/Appointment/3384`
-</pre>
-<pre class="center-column">
-`{ 
-    "status": "booked" 
-}`
-</pre>
 &nbsp;
 
 ## Pagination ##
@@ -264,7 +251,7 @@ When a search results in multiple matches, the first ten matches ordered by ente
 
 You may overide the number of matches returned, up to fifty, by including `_count={number}` in your search. 
 
-`GET http://select.nextech-api.com/api/Appointment?_count=25`
+`GET http://select.nextech-api.com/api/r4/Patient?_count=25`
 
 <aside class="notice">
 Search results are limited to 50 matches per page.
@@ -284,4 +271,4 @@ The Nextech Select APIs use the standard HTTP response codes to indicate success
 | 500 | Internal Server Error - We had a problem with our server |
 
 ## Remarks ##
-Each resource has a Remarks section at the end of its documentation page, which contains details on common questions and solutions for that resource.
+Some resources contain a Remarks section at the end of its documentation page, which contains details on common questions and solutions for that resource.

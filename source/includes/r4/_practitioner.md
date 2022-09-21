@@ -1,20 +1,18 @@
 # Practitioner
 
-## Practitioner
-
 ### Overview
-A individual who is engaged in the healthcare process and healthcare-services. In the Nextech Software, these are providers who are linked to users.
+A [Practitioner](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html) resource represents an individual who is engaged in the healthcare process and healthcare-services. In the Nextech Software, these are providers who are linked to users.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each Practitioner which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.8_ |
-| active | 	Whether this practitioner's record is in active use. | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | _12.8_ |
-| name |The name(s) associated with the practitioner | [HumanName](https://www.hl7.org/fhir/datatypes.html#HumanName) | _12.8_ |
-| telecom | Contact detail(s) for the practitioner (that apply to all roles) | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
-| address | Address(es) of the practitioner that are not role specific | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
-| gender | Gender of the practitioner | [Code](https://www.hl7.org/fhir/valueset-administrative-gender.html) | _12.8_ |
-| birthDate | The date of birth of the practitioner | [date](https://www.hl7.org/fhir/datatypes.html#date) | _12.8_ |
+| identifier | The unique value assigned to each Practitioner which discerns it from all others | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _12.8_ |
+| active | 	Whether this practitioner's record is in active use. | [boolean](https://www.hl7.org/fhir/R4/datatypes.html#boolean) | _12.8_ |
+| name |The name(s) associated with the practitioner | [HumanName](https://www.hl7.org/fhir/R4/datatypes.html#HumanName) | _12.8_ |
+| telecom | Contact detail(s) for the practitioner (that apply to all roles) | [ContactPoint](https://www.hl7.org/fhir/R4/datatypes.html#ContactPoint) | _12.8_ |
+| address | Address(es) of the practitioner that are not role specific | [Address](https://www.hl7.org/fhir/R4/datatypes.html#Address) | _12.8_ |
+| gender | Gender of the practitioner | [Code](https://www.hl7.org/fhir/R4/valueset-administrative-gender.html) | _12.8_ |
+| birthDate | The date of birth of the practitioner | [date](https://www.hl7.org/fhir/R4/datatypes.html#date) | _12.8_ |
 
 
 ### Example

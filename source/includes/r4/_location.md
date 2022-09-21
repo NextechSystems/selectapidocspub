@@ -1,23 +1,20 @@
 # Location
 
-## Location
-
-[(USCoreOrganizationProfile)](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html)
-
 ### Overview
-A physical location where services are provided. This may or may not be under the practice's management.
+A [Location](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-location.html) resource represents a physical location where services are provided. This may or may not be under the practice's management.
 
 ### Fields
 | Name | Description | Type | Initial Version |
 | ---- | ----------- | ---- | --------------- |
-| identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | _12.8_ |
-| meta.lastUpdated | The last time the location was modified | [instant](https://www.hl7.org/fhir/datatypes.html#instant) | _16.9_ |
-| status | The status of the location (ie. active, inactive) | [code](https://www.hl7.org/fhir/datatypes.html#code) | _12.8_ |
-| managed | True if this location is under practice management, for example the practice's primary office location. False if this location is not under practice management, but where services are provided, for example a hospital or clinic. | [boolean](https://www.hl7.org/fhir/datatypes.html#boolean) | _14.4_ |
-| name | The name of the location | [string](https://www.hl7.org/fhir/datatypes.html#string) | _12.8_ |
-| telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/datatypes.html#ContactPoint) | _12.8_ |
-| address | The address of the location | [Address](https://www.hl7.org/fhir/datatypes.html#Address) | _12.8_ |
-| managingOrganization | The identifier of the location | [Reference](http://hl7.org/fhir/R4/references.html#Reference) [(USCoreOrganizationProfile)](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html)  | _16.9_ |
+| id | The unique value assigned to each location which discerns it from all others | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _12.8_ |
+| identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _12.8_ |
+| meta.lastUpdated | The last time the location was modified | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) | _16.9_ |
+| status | The status of the location (ie. active, inactive) | [code](https://www.hl7.org/fhir/R4/datatypes.html#code) | _12.8_ |
+| managed | True if this location is under practice management, for example the practice's primary office location. False if this location is not under practice management, but where services are provided, for example a hospital or clinic. | [boolean](https://www.hl7.org/fhir/R4/datatypes.html#boolean) | _14.4_ |
+| name | The name of the location | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _12.8_ |
+| telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/R4/datatypes.html#ContactPoint) | _12.8_ |
+| address | The address of the location | [Address](https://www.hl7.org/fhir/R4/datatypes.html#Address) | _12.8_ |
+| managingOrganization | The reference to the associated organization | [Reference](http://hl7.org/fhir/R4/references.html#Reference) [(US Core Organization Profile)](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization.html)  | _16.9_ |
 
 ### Example
 <pre class="center-column">
@@ -101,25 +98,27 @@ Searches for all locations based on the given search criteria.
 #### HTTP Requests
 - `GET /r4/Location?{parameters}`
 - `POST /r4/Location/_search?{parameters}`
-- `POST /r4/Location/_search`
-  - *application/x-www-form-urlencoded payload:* `{parameters}`
-> **_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
+  - *application/x-www-form-urlencoded body:* `{parameters}`
+
+**_Note:_**  For POST based searches the parameters can be provided in either the URL, the body, or both. 
 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| identifier | query or payload | The unique value assigned to each location which discerns it from all others |  No | _12.8_ |
-| status | query or payload | Searches for locations with a specific kind of status. See [LocationStatus](https://www.hl7.org/fhir/valueset-location-status.html) | No | _12.8_ |
-| includeAll | query or payload | By default, or if includeAll is false, then only managed locations are returned, for example the practice's primary office location. If includeAll is true, then all locations will be returned, whether they are under under practice management or not, but where services are provided, such as a hospital or a clinic. | No | _14.4_ |
-| name | query or payload | The name of the location | No | _12.8_ |
-| address | query or payload | A (part of the) address of the location | No | _12.8_ |
-| address-city | query or payload | A city specified in an address | No | _12.8_ |
-| address-state | query or payload | A state specified in an address | No | _12.8_ |
-| address-postalcode | query or payload | A postal code specified in an address | No | _12.8_ |
-| phone | query or payload | Searches for locations based on phone numbers and fax numbers | No | _12.8_ |
-| _id | query or payload | The location unique identifier | No | _16.9_ |
-| _lastUpdated | query or payload | The last time the location was modified | No | _16.9_ |
+| identifier | query or body | The unique value assigned to each location which discerns it from all others |  No | _12.8_ |
+| status | query or body | Searches for locations with a specific kind of status. See [LocationStatus](https://www.hl7.org/fhir/R4/valueset-location-status.html) | No | _12.8_ |
+| includeAll | query or body | By default, or if includeAll is false, then only managed locations are returned, for example the practice's primary office location. If includeAll is true, then all locations will be returned, whether they are under under practice management or not, but where services are provided, such as a hospital or a clinic. | No | _14.4_ |
+| name | query or body | The name of the location | No | _12.8_ |
+| address | query or body | A (part of the) address of the location | No | _12.8_ |
+| address-city | query or body | A city specified in an address | No | _12.8_ |
+| address-state | query or body | A state specified in an address | No | _12.8_ |
+| address-postalcode | query or body | A postal code specified in an address | No | _12.8_ |
+| phone | query or body | Searches for locations based on phone numbers and fax numbers | No | _12.8_ |
+| _id | query or body | The location unique identifier | No | _16.9_ |
+| _lastUpdated | query or body | The last time the location was modified | No | _16.9_ |
+
+**_Note:_**  The possible filter values for the `_lastUpdated` parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
 #### Example: Get all active locations
 

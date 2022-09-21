@@ -1,9 +1,7 @@
 # Metadata
 
-## Metadata
-
 ### Overview
-Information about supported server functionality and server's SMART on FHIR configuration.
+Information about supported server functionality and the server's SMART on FHIR configuration.
 
 ### Capability Statement
 
@@ -51,45 +49,13 @@ GET https://select.nextech-api.com/api/r4/metadata
 
 #### Fields
 
-| Name | Description | Type | Initial Version |
-| ---- | ----------- | ---- | --------------- |
-| capabilities | Array of strings representing SMART capabilities | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | |
-| authorization_endpoint | URL to the OAuth2 authorization endpoint | [url](https://www.hl7.org/fhir/R4/datatypes.html#url) | |
-| token_endpoint | URL to the OAuth2 token endpoint | [url](https://www.hl7.org/fhir/R4/datatypes.html#url) | |
-| token_endpoint_auth_methods_supported | Array of client authentication methods supported by the token endpoint | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | |
-| token_endpoint_auth_signing_alg_values_supported | Array containing a list of the JWS signing algorithms supported by the token endpoint. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | |
-
-#### Example
-<pre class="center-column">
-{
-    "capabilities": [
-        "launch-ehr",
-        "launch-standalone",
-        "client-public",
-        "client-confidential-symmetric",
-        "sso-openid-connect",
-        "context-banner",
-        "context-style",
-        "context-ehr-patient",
-        "context-ehr-encounter",
-        "context-standalone-patient",
-        "context-standalone-encounter",
-        "permission-offline",
-        "permission-patient",
-        "permission-user"
-    ],
-    "authorization_endpoint": "https://mypatientvisit-sts-dev.azurewebsites.net",
-    "token_endpoint": "https://mypatientvisit-sts-dev.azurewebsites.net",
-    "token_endpoint_auth_methods_supported": [
-        "private_key_jwt"
-    ],
-    "token_endpoint_auth_signing_alg_values_supported": [
-        "RS384",
-        "ES384"
-    ]
-}
-</pre>
-&nbsp;
+| Name | Description | Type |
+| ---- | ----------- | ---- |
+| capabilities | Array of strings representing SMART capabilities | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) |
+| authorization_endpoint | URL to the OAuth2 authorization endpoint | [url](https://www.hl7.org/fhir/R4/datatypes.html#url) |
+| token_endpoint | URL to the OAuth2 token endpoint | [url](https://www.hl7.org/fhir/R4/datatypes.html#url) |
+| token_endpoint_auth_methods_supported | Array of client authentication methods supported by the token endpoint | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) |
+| token_endpoint_auth_signing_alg_values_supported | Array containing a list of the JWS signing algorithms supported by the token endpoint. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) |
 
 #### *Get*
 Retrieves server's SMART on FHIR configuration
