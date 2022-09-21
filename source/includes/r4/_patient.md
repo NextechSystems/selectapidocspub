@@ -215,6 +215,26 @@ The `_revinclude` parameter allows support for including Provenance references t
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the patient.
 
+#### Example: Get a patient with an identifier '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Patient?identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Patient/_search
+<i><small>body:</small></i> identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Patient?_id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Patient/_search
+<i><small>body:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
+</pre>
+
 #### Example: Get the patient of a specific chart number
 
 <pre class="center-column">
@@ -247,26 +267,6 @@ GET https://select.nextech-api.com/api/r4/Patient?_id=9D0B7ADE-4B5B-41DD-8AC4-88
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Patient/_search
 <i><small>body:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192
-</pre>
-
-#### Example: Get all patients with identifier '9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192' with provenance
-
-<pre class="center-column">
-GET https://select.nextech-api.com/api/r4/Patient?identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
-</pre>
-
-<pre class="center-column">
-POST https://select.nextech-api.com/api/r4/Patient/_search
-<i><small>body:</small></i> identifier=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
-</pre>
-
-<pre class="center-column">
-GET https://select.nextech-api.com/api/r4/Patient?_id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
-</pre>
-
-<pre class="center-column">
-POST https://select.nextech-api.com/api/r4/Patient/_search
-<i><small>body:</small></i> _id=9D0B7ADE-4B5B-41DD-8AC4-88DB4C93B192&_revinclude=Provenance:target
 </pre>
 
 #### Example: Get all patients who live within '12345' zip code
@@ -417,8 +417,6 @@ Searches for allergy intolerances for a single patient
   - *application/x-www-form-urlencoded body:* `{parameters}`
 
 
-
-
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
@@ -434,6 +432,26 @@ Searches for allergy intolerances for a single patient
 The `_revinclude` parameter allows support for including Provenance references that match the returned allergy intolerance.
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the allergy intolerance.
+
+#### Example: Get an allergy intolerance with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/AllergyIntolerance?identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/AllergyIntolerance/_search
+<i><small>body:</small></i> identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/AllergyIntolerance?_id=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/AllergyIntolerance/_search
+<i><small>body:</small></i> _id=123&_revinclude=Provenance:target
+</pre>
 
 &nbsp;
 #### Examples: 
@@ -451,26 +469,6 @@ GET https://select.nextech-api.com/api/r4/AllergyIntolerance?patient=Patient/b66
 POST https://select.nextech-api.com/api/r4/AllergyIntolerance/_search
 <i><small>body:</small></i> patient=b664fd37-ff5f-4022-9d71-2e476d42f316
 </pre>
-&nbsp;
-
-### *Get*
-Returns single Allergy result based on the Allergy ID.
-
-#### HTTP Request
-
-- `GET /r4/AllergyIntolerance/{allergyID}`
-
-#### Parameters
-| Name | Located in | Description | Required | Initial Version |
-| ---- | ---------- | ----------- | -------- | --------------- |
-| allergyID | path | The allergy unique identifier | Yes | 16.7 |
-
-&nbsp;
-#### Example: 
-<pre class="center-column">
-GET https://select.nextech-api.com/api/r4/AllergyIntolerance/21
-</pre>
-
 &nbsp;
 
 ## Care Plan
@@ -564,6 +562,28 @@ Searches for care plans for a single patient
 The `_revinclude` parameter allows support for including Provenance references that match the returned care plans.
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the care plan.
+
+#### Example: Get a care plan with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CarePlan?identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/CarePlan/_search
+<i><small>body:</small></i> identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CarePlan?_id=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/CarePlan/_search
+<i><small>body:</small></i> _id=123&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
 
 #### Example: Get all care plans for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and category 'assess-plan'
 
@@ -730,6 +750,28 @@ The `_revinclude` parameter allows support for including Provenance references t
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the care team.
 
+#### Example: Get a care team with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CareTeam?identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/CareTeam/_search
+<i><small>body:</small></i> identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/CareTeam?_id=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/CareTeam/_search
+<i><small>body:</small></i> _id=123&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
+
 #### Example: Get all care teams for a single patient with id 'c27e5be0-4b44-4ec5-a284-4308d6ac2b1a' and status 'active'
 
 <pre class="center-column">
@@ -850,7 +892,7 @@ Returns a single Condition result based on the Condition ID.
 | ---- | ---------- | ----------- | -------- | --------------- |
 | conditionId | path | The unique identifier for the condition | Yes | _16.8_ |
 
-#### Example: Get the condition problem with an ID of 'prb-12'
+#### Example: Get a condition problem with an ID of '12'
 
 <pre class="center-column">
 GET https://select.nextech-api.com/api/r4/Condition/prb-12
@@ -884,6 +926,28 @@ Searches for conditions for a single patient
 The `_revinclude` parameter allows support for including Provenance references that match the returned condition.
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the condition.
+
+#### Example: Get a condition problem with an identifier '12' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Condition?identifier=prb-12&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Condition/_search
+<i><small>body:</small></i> identifier=prb-12&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Condition?_id=prb-12&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Condition/_search
+<i><small>body:</small></i> _id=prb-12&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
 
 #### Example: Get all conditions for a single patient 
 
@@ -1026,6 +1090,28 @@ Searches for devices for a single patient
 The `_revinclude` parameter allows support for including Provenance references that match the returned device.
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the device.
+
+#### Example: Get a device with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Device?identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Device/_search
+<i><small>body:</small></i> identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Device?_id=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Device/_search
+<i><small>body:</small></i> _id=123&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
 
 #### Example: Get all devices for a single patient with id 'ad2085b5-b974-401d-bfcb-3b865109fd35'
 
@@ -1205,7 +1291,7 @@ Finds a single document based on the ID
 #### Parameters
 | Name | Description | Required | Initial Version |
 | ---- | ----------- | -------- | --------------- |
-| DocumentType-id | Must be in the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 16.8 |
+| documentType-id | Must be in the form `documenttype-id` i.e: GET /r4/DocumentReference/history-5  | Yes | 16.8 |
 
 #### Supported Document Types
 The supported document type specifiers for IDs are `history-{id}` and `emn-{id}`.
@@ -1242,6 +1328,28 @@ Finds a bundle of documents based on the search parameters
 The `_revinclude` parameter allows support for including Provenance references that match the returned document references.
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the document reference
+
+#### Example: Get a history document reference with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?identifier=history-123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference/_search
+<i><small>body:</small></i> identifier=history-123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DocumentReference?_id=history-123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DocumentReference/_search
+<i><small>body:</small></i> _id=history-123&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
 
 #### Example: Get the history document with ID 7741
 <pre class="center-column">
@@ -1775,6 +1883,28 @@ The `_revinclude` parameter allows support for including [Provenance resources](
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the encounter.
 &nbsp;
+
+#### Example: Get an encounter with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Encounter?identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Encounter/_search
+<i><small>body:</small></i> identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Encounter?_id=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Encounter/_search
+<i><small>body:</small></i> _id=123&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
 #### Examples: 
 
 #### Get all encounters
@@ -1891,10 +2021,10 @@ Returns a single Goal based on the goal's ID.
 | ---- | ---------- | ----------- | -------- | --------------- |
 | GoalID | path | The official goal identifier acquired from a goal search | Yes | _17.0_ |
 
-#### Example: Get a goal by GoalID
+#### Example: Get a goal with ID 'goalemn-2284code-559215'
 
 <pre class="center-column">
-GET https://select.nextech-api.com/api/r4/Goal/{GoalID}
+GET https://select.nextech-api.com/api/r4/Goal/goalemn-2284code-559215
 </pre>
 &nbsp;
 
@@ -1924,6 +2054,29 @@ Searches for goals for a single patient
 The `_revinclude` parameter allows support for including Provenance references that match the returned goal.
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the goal.
+
+#### Example: Get a goal with an identifier 'goalemn-2284code-559215' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Goal?identifier=goalemn-2284code-559215&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Goal/_search
+<i><small>body:</small></i> identifier=goalemn-2284code-559215&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Goal?_id=goalemn-2284code-559215&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Goal/_search
+<i><small>body:</small></i> _id=goalemn-2284code-559215&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
+
 #### Example: Get all goals for a single patient
 
 <pre class="center-column">
@@ -2051,6 +2204,28 @@ Returns immunizations based on the provided search parameters.
 The `_revinclude` parameter allows support for including Provenance references that match the returned immunizations.
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the immunization.
+
+&nbsp;
+
+#### Example: Get an immunization with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Immunization?identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Immunization/_search
+<i><small>body:</small></i> identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Immunization?_id=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Immunization/_search
+<i><small>body:</small></i> _id=123&_revinclude=Provenance:target
+</pre>
 
 &nbsp;
 #### Examples: 
@@ -2193,12 +2368,12 @@ These types of laboratory reports are denoted by their category. Diagnostic repo
 Returns a single DiagnosticReport result based on the DiagnosticReport ID.
 
 #### HTTP Request 
-`GET /r4/DiagnosticReport/{DiagnosticReportID}` 
+`GET /r4/DiagnosticReport/{diagnosticReportID}` 
 
 #### Parameters
 | Name | Located in | Description | Required | Initial Version |
 | ---- | ---------- | ----------- | -------- | --------------- |
-| DiagnosticReport | path | The diagnostic report unique identifier | Yes | _16.9_ |
+| diagnosticReportID | path | The diagnostic report unique identifier | Yes | _16.9_ |
 
 #### Example: Get a diagnostic report with an ID of '123'
 
@@ -2233,6 +2408,28 @@ Returns diagnostic reports based on the provided search parameters
 The `_revinclude` parameter allows support for including Provenance references that match the returned diagnostic reports.
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the diagnostic report.
+
+#### Example: Get a diagnostic report with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DiagnosticReport?identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DiagnosticReport/_search
+<i><small>body:</small></i> identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/DiagnosticReport?_id=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/DiagnosticReport/_search
+<i><small>body:</small></i> _id=123&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
 
 #### Example: Get all lab-type diagnostic reports on or after 5/1/2017
 
@@ -2349,6 +2546,28 @@ Searches for medication requests for a single patient
 The `_revinclude` parameter allows support for including [Provenance resources](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-provenance.html) that match the returned medication requests.
 This value must be `Provenance:target`, otherwise the request will result in an error.
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the medication request.
+&nbsp;
+
+#### Example: Get a medication request with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
+<i><small>body:</small></i> identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/MedicationRequest?_id=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/MedicationRequest/_search
+<i><small>body:</small></i> _id=123&_revinclude=Provenance:target
+</pre>
+
 &nbsp;
 
 #### Example: Get the medication request with an ID of '12'
@@ -2573,6 +2792,28 @@ This value must be `Provenance:target`, otherwise the request will result in an 
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the observation.
 &nbsp;
 
+#### Example: Get a lab observation with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Observation?identifier=lab-123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Observation/_search
+<i><small>body:</small></i> identifier=lab-123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Observation?_id=lab-123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Observation/_search
+<i><small>body:</small></i> _id=lab-123&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
+
 #### Example: Get all laboratory requisitions and lab results 5/1/2017
 
 <pre class="center-column">
@@ -2697,6 +2938,29 @@ This value must be `Provenance:target`, otherwise the request will result in an 
 These will be in additional bundle entry components, which have a `Provenance.Target` entry that identifies the relative link to the procedure.
 
 &nbsp;
+
+#### Example: Get a procedure with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Procedure?identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Procedure/_search
+<i><small>body:</small></i> identifier=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Procedure?_id=123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Procedure/_search
+<i><small>body:</small></i> _id=123&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
+
 #### Examples: 
 
 #### Get all procedures
@@ -2769,9 +3033,9 @@ Gets the binary form of a document by ID
 `GET /r4/Binary/{documentType-id}` 
 
 #### Parameters
-| Name | Description | Required | Initial Version |
-| ---- | ----------- | -------- | --------------- |
-| documentType-id | Must be in the form `documenttype-id` i.e: GET /r4/Binary/history-5  | Yes | 17.0 |
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ----------| ----------- | -------- | --------------- |
+| documentType-id | path | Must be in the form `documenttype-id` i.e: GET /r4/Binary/history-5  | Yes | 17.0 |
 
 #### Supported Document Types
 The supported document type specifiers for IDs are `history-{id}` and `emn-{id}`.
