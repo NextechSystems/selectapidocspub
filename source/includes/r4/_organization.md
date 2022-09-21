@@ -8,8 +8,8 @@ An [Organization](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-co
 | ---- | ----------- | ---- | --------------- |
 | id | The unique value assigned to each location which discerns it from all others | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _12.8_ |
 | identifier | The unique value assigned to each location which discerns it from all others | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _12.8_ |
+| identifier:NPI | NPI identifier for the organization that is used to identify the organization across multiple disparate systems |  [Identifier](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization-definitions.html#Organization.identifier:NPI) | _16.9_ |
 | meta.lastUpdated | The last time the organization was modified | [instant](https://www.hl7.org/fhir/R4/datatypes.html#instant) | _16.9_ |
-| identifier | NPI identifier for the organization that is used to identify the organization across multiple disparate systems |  [Identifier](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-organization-definitions.html#Organization.identifier:NPI) | _16.9_ |
 | name | The name of the location | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _12.8_ |
 | telecom | The contact details of communication at the location | [ContactPoint](https://www.hl7.org/fhir/R4/datatypes.html#ContactPoint) | _12.8_ |
 | address | The address of the location | [Address](https://www.hl7.org/fhir/R4/datatypes.html#Address) | _12.8_ |

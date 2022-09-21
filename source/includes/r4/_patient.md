@@ -1966,10 +1966,11 @@ The [goal](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-goa
 | ---- | ----------- | ---- | --------------- |
 | identifier | The unique value assigned to each goal which discerns them from all others. | [Identifier](https://www.hl7.org/fhir/R4/datatypes.html#Identifier) | _17.0_ |
 | id | The unique value assigned to each goal which discerns them from all others. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _17.0_ |
+| lifeCycleStatus | The intended objective(s) for a patient | [code](http://hl7.org/fhir/R4/datatypes.html#code) using [Goal Lifecycle Status value set](http://hl7.org/fhir/R4/valueset-goal-status.html)| 17.0 |
+| description | Code or text describing the goal | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _17.0_ |
 | subject | The patient pertaining to the goal | [Reference](https://www.hl7.org/fhir/R4/references.html)([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _17.0_ |
-| target | The target outcome of the goal | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _17.0_ |
-| note | Comments about the goal | [Annotation](https://www.hl7.org/fhir/R4/datatypes.html#Annotation) | _17.0_ |
-| date | The date or date range of the goal or goals | [dateTime](https://www.hl7.org/fhir/R4/datatypes.html#dateTime) | _17.0_ |
+| target | The target outcome of the goal | [BackboneElement](http://hl7.org/fhir/R4/datatypes.html#BackboneElement) | _17.0_ |
+| target.dueDate | The date to reach the goal on or before | [date](http://hl7.org/fhir/R4/datatypes.html#date) | _17.0_ |
 | meta.lastUpdated | The last time the goal was modified | [instant](https://hl7.org/fhir/R4/datatypes.html#instant) | _17.0_ |
 
 ### Example
@@ -1986,6 +1987,17 @@ The [goal](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-goa
 		"value": "goalemn-2284code-559215"
 	  }
 	],
+	"lifecycleStatus": "active",
+    "description": {
+    	"coding": [
+    		{
+    			"system": "http://loinc.org",
+    			"code": "386661006",
+    			"display": "Fever"
+    		}
+    	],
+    	"text": "In case of high fever, take Tylenol as needed"
+    },
 	"subject": {
 	  "reference": "Patient/F15FB185-5E63-485E-B025-D113103DCEC3",
 	  "display": "Smith, Jane"
@@ -2000,12 +2012,7 @@ The [goal](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-goa
 		],
 		"text": "Fever"
 	  }
-	},
-	"note": [
-	  {
-		"text": "Goal (Free Text): Take time off work, get bed rest"
-	  }
-	]
+	}
 }
 </pre>
 &nbsp;

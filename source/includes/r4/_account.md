@@ -11,7 +11,6 @@ The [Account](https://hl7.org/fhir/R4/account.html) resource represents a financ
 | name |The name associated with the Account. | [string](https://www.hl7.org/fhir/R4/datatypes.html#string) | _12.9_ |
 | status | Indicates whether the account is presently used/usable or not. | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.9_ |
 | type | Categorizes the account for reporting and searching purposes. | [CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _12.9_ |
-| balance | Represents the sum of all credits less all debits associated with the account. Might be positive, zero or negative. | [Money](https://www.hl7.org/fhir/R4/datatypes.html#Money) | _12.9_ |
 | description | Provides additional information about what the account tracks and how it is used. | [string](https://www.hl7.org/fhir/R4/datatypes.html#String) | _12.9_ |
 | subject | Identifies the patient or other object the account is associated with. | [Reference](https://www.hl7.org/fhir/R4/references.html) | _12.9_ |
 | guarantor | Party financially responsible for the account. | [BackboneElement](https://www.hl7.org/fhir/R4/backboneelement.html) | _12.9_ |
@@ -44,9 +43,6 @@ The [Account](https://hl7.org/fhir/R4/account.html) resource represents a financ
     "name": "Test, John",
     "subject": {
         "reference": "Patient/59015300-e15b-474c-8314-7864712f6946"
-    },
-    "balance": {
-        "value": 21
     },
     "description": "Patient Responsibility",
     "guarantor": [
