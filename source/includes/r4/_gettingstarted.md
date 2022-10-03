@@ -35,6 +35,19 @@ If your API user exceeds the rate limit, you will receive a HTTP 429 response co
 - Query with _lastUpdated search parameters to avoid re-querying unmodified data.  
 - If you need to synchronize data, it is best to do so during non-peak business hours. Which vary on a per practice basis.  
 
+
+| password | Resource owner password |
+| resource | The app to consume the token |
+
+**Response Parameters**
+
+| Parameter | Description |
+| --------- | ----------- |
+| token_type | Always `Bearer` |
+| scope | Always `user_impersonation` |
+| expires_in | The lifetime of the access token, in seconds. Default 3600 |
+| access_token | The bearer token used in the `Authorization` header for subsquent requests |
+| refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
 ## Authentication ##
 
 Nextech's implementation of the FHIR® standard is protected by the [OAuth 2.0 standard](https://oauth.net/2/) for authenticating requests.  All API requests are authenticated by passing a Bearer token in the Authorization Header.
@@ -52,19 +65,6 @@ Access tokens are used to make API requests on behalf of a user. These tokens ar
 | grant_type | Use `password` (Resource owner credentials grant) |
 | client_id | Application ID |
 | username | Resource owner username |
-| password | Resource owner password |
-| resource | The app to consume the token |
-
-**Response Parameters**
-
-| Parameter | Description |
-| --------- | ----------- |
-| token_type | Always `Bearer` |
-| scope | Always `user_impersonation` |
-| expires_in | The lifetime of the access token, in seconds. Default 3600 |
-| access_token | The bearer token used in the `Authorization` header for subsquent requests |
-| refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
-
 ### Refresh Access Token ###
 Refresh tokens are used to renew an expired access token without providing user credentials. A `access_token` and `refresh_token` pair is issued when requesting an access token using the resource owner credentials grant. A new pair is also generated when using the `refresh_token` grant type. 
 
@@ -96,19 +96,7 @@ GET https://select.nextech-api.com/api/r4/metadata
 &nbsp;
 Each `rest.resource` member in the metadata response contains information about all FHIR resources that are supported, along with the supported interactions and search parameters for each resource.
 
-### Authorization ###
-
-Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the `authorization_code` grant type. When requesting a new token, you will be redirected to the _Auth URL_ listed below where you can enter your user credentials to authenticate. 
-
-| Field | Value |
-| ----- | ----- |
-| Auth URL | `https://login.microsoftonline.com/nextech-api.com/oauth2/authorize?resource=https%3A%2F%2Fselect.nextech-api.com%2Fapi` |
-| Access Token URL | `https://login.microsoftonline.com/nextech-api.com/oauth2/token` |
-| Callback URL | `https://www.getpostman.com/oauth2/callback` |
-| Client ID | Your application ID |
-| Grant Type | `Authorization Code` |
-| Client Authentication | `Send client credentials in body` |
-
+Note: See the Authorization section for more information
 ## Searching ##
 
 Searches may be performed via HTTPS calls to the API where supported. 
