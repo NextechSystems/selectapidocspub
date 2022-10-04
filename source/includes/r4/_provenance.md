@@ -113,6 +113,7 @@ Searches for all provenance info based on the given search criteria.
 | _id | query or body | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
 | identifier | query or body | The unique value assigned to each provenance which discerns it from all others |  No | _17.0_ |
 | _lastUpdated | query or body | The last time the provenance was modified | No | _17.0_ |
+| patient | query or body | The unique patient ID to find direct (Patient resource only) patient provenance for | No | _17.0_ |
 
 **_Note:_**  The possible filter values for the `_lastUpdated` parameter are: `eq`, `ne`, `le`, `lt`, `ge` and `gt`. 
 
