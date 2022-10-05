@@ -96,7 +96,7 @@ GET https://select.nextech-api.com/api/r4/metadata
 &nbsp;
 Each `rest.resource` member in the metadata response contains information about all FHIR resources that are supported, along with the supported interactions and search parameters for each resource.
 
-Note: See the Authorization section for more information
+Note: See the [Authorization](#Authorization) section for more information
 ## Searching ##
 
 Searches may be performed via HTTPS calls to the API where supported. 

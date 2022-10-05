@@ -54,7 +54,7 @@ Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information li
 
 ## User Authentication ##
 User Authentication allows application to access an individual user's information. This authentication flow uses the MyPatientVisit portal to grant access to specific users and specify the level of access via scopes. These applications will need to be registered with Nextech.
-**Note: TLS 1.2 or higher and PKCE S256 are both required when using User Authentication**
+**Note: TLS 1.2 and PKCE S256 are both required when using User Authentication**
 
 ### Required Parameters ###
 | Parameter | Description |
@@ -70,7 +70,7 @@ User Authentication allows application to access an individual user's informatio
 | code_challenge_method | Always `S256` this indicates the code challenge will use SHA-256 for hashing |
 
 
-### Authorization With Postman ###
+### Example of Authorization With Postman ###
  Postman's authentication makes generating your first token a breeze. 
 1. For a given postman collection go to the Authorization tab
 1. Set Authorization to Oauth 2.0. This should give you additional fields to fill out
@@ -79,7 +79,7 @@ User Authentication allows application to access an individual user's informatio
 1. Auth URL should be set to https://mypatientvisit-sts-dev.azurewebsites.net/connect/authorize
 1. Access Token URL should be set to https://mypatientvisit-sts-dev.azurewebsites.net/connect/token
 1. Client ID should be set to the value given to you by Nextech
-1. Secret should be set to the value given to you by Nextech. NOTE: This should be stored securely and access to it highly limited
+1. Secret should be set to the value given to you by Nextech. NOTE: This *MUST* be stored securely and access to it highly limited
 1. Code Challenge Method should be SHA-256
 1. Scopes should contain all needed scopes. At a minimum this should be "launch/patient openid fhirUser"
 1. Audience can be found under the *Advanced Options* tab and should be set to https://nxpartnerapi-dev.azurewebsites.net/api/r4
@@ -91,6 +91,29 @@ To use the authentication token you will need to add an Authorization header, th
 
 ### Scopes ###
 The full list of supported scopes:
-launch/patient openid fhirUser offline_access patient/Medication.read patient/AllergyIntolerance.read patient/CarePlan.read patient/CareTeam.read patient/Condition.read patient/Device.read patient/DiagnosticReport.read patient/DocumentReference.read patient/Encounter.read patient/Goal.read patient/Immunization.read patient/Location.read patient/MedicationRequest.read patient/Observation.read patient/Organization.read patient/Patient.read patient/Practitioner.read patient/Procedure.read patient/Provenance.read patient/PractitionerRole.read
+-launch/patient
+-openid
+-fhirUser
+-offline_access
+-patient/Medication.read
+-patient/AllergyIntolerance.read
+-patient/CarePlan.read
+-patient/CareTeam.read
+-patient/Condition.read
+-patient/Device.read
+-patient/DiagnosticReport.read
+-patient/DocumentReference.read
+-patient/Encounter.read
+-patient/Goal.read
+-patient/Immunization.read
+-patient/Location.read
+-patient/MedicationRequest.read
+-patient/Observation.read
+-patient/Organization.read
+-patient/Patient.read
+-patient/Practitioner.read
+-patient/Procedure.read
+-patient/Provenance.read
+-patient/PractitionerRole.read
 
 Most of the scopes map to a specific endpoint. So for example the patient/DocumentReference.read scope is required to make a GET /DocumentReference request
