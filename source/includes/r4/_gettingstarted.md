@@ -1,8 +1,8 @@
 # Getting Started #
 
-All API requests are performed over HTTPS, and **must** use TL2 1.2 or higher. Although the [FHIR® standard](https://www.hl7.org/fhir/R4/index.html) supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request's `Accept` header will be ignored.
+All API requests are performed over HTTPS, and **must** use TLS 1.2. Although the [FHIR® standard](https://www.hl7.org/fhir/R4/index.html) supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request's `Accept` header will be ignored.
 
-Before you can access the Nextech API you must have the proper credentials for authorization. These credentials will be provided to you by your Nextech representative, and vary depending on how you wish to integrate with the Nextech API. There are two different authorization models available for accessing the Nextech API: SMART App authorization, and partner authorization. See each linked authorization section for more information on each, including how to register your application with the Nextech API and acquire the necessary credentials.
+Before you can access the Nextech API you must have the proper credentials for authorization. These credentials will be provided to you by your Nextech representative, and vary depending on how you wish to integrate with the Nextech API. There are two different authorization models available for accessing the Nextech API: [SMART App authorization](#smart-app-authorization), and [partner authorization](#partner-authorization). See each linked authorization section for more information on each, including how to register your application with the Nextech API and acquire the necessary credentials.
 
 **Base API Endpoint**  
 `https://select.nextech-api.com/api/r4`

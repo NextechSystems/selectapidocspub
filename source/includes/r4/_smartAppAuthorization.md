@@ -1,7 +1,7 @@
 # SMART App Authorization #
 
 ## SMART on FHIR Technology Overview ##
-- [OAuth 2.0 standard](https://oauth.net/2/)
+- [OAuth 2.0 standard](https://www.rfc-editor.org/rfc/rfc6749)
 - [OpenID Connect](https://openid.net/connect/)
 - [FHIR R4](https://hl7.org/fhir/R4/)
 
@@ -26,7 +26,7 @@ If your app is capable of securely storing a secret, it is considered to be a **
 
 If your app is a web app that consists purely of HTML+JS code, and will be making direct calls to the Nextech authorization server, you will need to include an allowed origin address, representing the origin that the app will be making calls from, in your registration form, so that your app does not encounter [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) issues when it tries to talk to the Nextech authorization server.
 
-Finally, if your app is a system/backend service app that requires no user interaction then it **must** be a confidential client, and you must provide a TLS 1.2 (or higher) protected URL to the public JWK (JSON Web Key) Set utilized by the system app for JWT credential signing. See [here](http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html#registering-a-smart-backend-service-communicating-public-keys) for more details.
+Finally, if your app is a system/backend service app that requires no user interaction then it **must** be a confidential client, and you must provide a TLS 1.2 protected URL to the public JWK (JSON Web Key) Set utilized by the system app for JWT credential signing. See [here](http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html#registering-a-smart-backend-service-communicating-public-keys) for more details.
 
 Examples of public clients include:
 - Native mobile apps where the app is installed on a user's device and does not have a separate secure backend server (aside from the FHIR server that it calls into). If a client secret were stored on a device like this, a malicious user could theoretically decompile the application and retrieve it
