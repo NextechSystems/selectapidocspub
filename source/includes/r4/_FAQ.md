@@ -1,8 +1,8 @@
 # Frequently Asked Questions #
 
 
-### Resetting Expired Credentials ###
-If your credentials expire you will have to reset them by:
+### Resetting Expired Partner Credentials ###
+If your partner credentials expire you will have to reset them by:
 
 1. Going to Azure Active Directory by [clicking here] (http://portal.azure.com/).
 2. Enter your expired credentials.

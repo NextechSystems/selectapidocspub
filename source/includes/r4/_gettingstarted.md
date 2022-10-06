@@ -1,24 +1,15 @@
 # Getting Started #
 
-All API requests are performed over HTTPS. Although the [FHIR® standard](https://www.hl7.org/fhir/index.html) supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request's `Accept` header will be ignored.
+All API requests are performed over HTTPS, and **must** use TL2 1.2 or higher. Although the [FHIR® standard](https://www.hl7.org/fhir/R4/index.html) supports both JSON and XML, this API currently only supports JSON.  Therefore any type explicitly defined in the request's `Accept` header will be ignored.
 
-Before you can access the Nextech API you must have the proper credentials to authenticate. These credentials will be provided to you by your Nextech representative. 
+Before you can access the Nextech API you must have the proper credentials for authorization. These credentials will be provided to you by your Nextech representative, and vary depending on how you wish to integrate with the Nextech API. There are two different authorization models available for accessing the Nextech API: SMART App authorization, and partner authorization. See each linked authorization section for more information on each, including how to register your application with the Nextech API and acquire the necessary credentials.
 
-**These credentials will expire on your first login and must be reset through Microsoft [here] (http://portal.azure.com/).**
+**Base API Endpoint**  
+`https://select.nextech-api.com/api/r4`
 
 **API Limitations**  
 - Users of the Nextech API are restricted to a rate limit of 20 requests per second per endpoint  
 - Nextech is not responsible for the development or maintenance of any third-party application
-
-**API Endpoint**  
-`https://select.nextech-api.com/api/r4`
-
-The following values are required in the Header for every request...
-
-| Name | Description | Required? |
-| ---- | ----------- | --------- |
-| Authorization | Every request requires a Bearer token `Bearer {access_token}` | Yes |
-| nx-practice-id | The unique identifier for a practice | Yes |
 
 ## Rate Limiting ##
 
@@ -35,58 +26,6 @@ If your API user exceeds the rate limit, you will receive a HTTP 429 response co
 - Query with _lastUpdated search parameters to avoid re-querying unmodified data.  
 - If you need to synchronize data, it is best to do so during non-peak business hours. Which vary on a per practice basis.  
 
-
-| password | Resource owner password |
-| resource | The app to consume the token |
-
-**Response Parameters**
-
-| Parameter | Description |
-| --------- | ----------- |
-| token_type | Always `Bearer` |
-| scope | Always `user_impersonation` |
-| expires_in | The lifetime of the access token, in seconds. Default 3600 |
-| access_token | The bearer token used in the `Authorization` header for subsquent requests |
-| refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
-## Authentication ##
-
-Nextech's implementation of the FHIR® standard is protected by the [OAuth 2.0 standard](https://oauth.net/2/) for authenticating requests.  All API requests are authenticated by passing a Bearer token in the Authorization Header.
-
-```Authorization: Bearer {access_token}```
-
-### Request Access Token ###
-Access tokens are used to make API requests on behalf of a user. These tokens are short-lived (1 hour by default) but should be kept confidential in transit and in storage. A `access_token` and `refresh_token` pair is issued when requesting an access token.
-
-**HTTP Request**  
-`POST https://login.microsoftonline.com/nextech-api.com/oauth2/token`
-
-| Parameter | Description |
-| --------- | ----------- |
-| grant_type | Use `password` (Resource owner credentials grant) |
-| client_id | Application ID |
-| username | Resource owner username |
-### Refresh Access Token ###
-Refresh tokens are used to renew an expired access token without providing user credentials. A `access_token` and `refresh_token` pair is issued when requesting an access token using the resource owner credentials grant. A new pair is also generated when using the `refresh_token` grant type. 
-
-**HTTP Request**  
-`POST https://login.microsoftonline.com/nextech-api.com/oauth2/token`
-
-| Parameter | Description |
-| --------- | ----------- |
-| grant_type | Always `refresh_token` |
-| client_id | Application ID |
-| refresh_token | A valid refresh token |
-
-**Response Parameters**
-
-| Parameter | Description |
-| --------- | ----------- |
-| token_type | Always `Bearer` |
-| scope | Always `user_impersonation` |
-| expires_in | The lifetime of the access token, in seconds. Default 3600 |
-| access_token | The bearer token used in the `Authorization` header for subsquent requests |
-| refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
-
 ## Using Postman ##
 You can use Postman to make a simple request to the [metadata](#metadata) endpoint:
 &nbsp;
@@ -96,7 +35,6 @@ GET https://select.nextech-api.com/api/r4/metadata
 &nbsp;
 Each `rest.resource` member in the metadata response contains information about all FHIR resources that are supported, along with the supported interactions and search parameters for each resource.
 
-Note: See the [Authorization](#Authorization) section for more information
 ## Searching ##
 
 Searches may be performed via HTTPS calls to the API where supported. 
