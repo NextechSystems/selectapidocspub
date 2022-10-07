@@ -1,6 +1,6 @@
-# Partner Authorization #
+# Partner Authorization
 
-# Partner Authorization Overview #
+## Partner Authorization Overview ##
 
 Nextech's implementation of the FHIR® standard is protected by the [OAuth 2.0 standard](https://www.rfc-editor.org/rfc/rfc6749) for authenticating requests. All API requests are authenticated by passing a Bearer token in the Authorization Header, which can be obtained via your Nextech-provided credentials (see the "Registration" section below).
 

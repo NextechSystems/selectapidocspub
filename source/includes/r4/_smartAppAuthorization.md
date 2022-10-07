@@ -1,4 +1,4 @@
-# SMART App Authorization #
+# SMART App Authorization
 
 ## SMART on FHIR Technology Overview ##
 - [OAuth 2.0 standard](https://www.rfc-editor.org/rfc/rfc6749)
@@ -36,20 +36,20 @@ Examples of confidential clients include:
 - Web apps where a secure backend server exists, and this server is what is used handle the code exchange with the Nextech authorization server
 - Mobile apps where a secure backend server exists, and this server is what is used handle the code exchange with the Nextech authorization server
 
-### Supported SMART on FHIR app types ###
+## Supported SMART on FHIR app types ##
 There are three different types of SMART apps that Nextech supports for communicating with the Nextech API:
 - Patient-facing apps
 - Practitioner-facing apps
 - System apps
 
-# Patient-facing apps #
+## Patient-facing apps ##
 SMART apps of this type are intended for use by a single patient, and require that the patient (and their associated practice) be setup with a [myPatientVisit](https://www.mypatientvisit.com) patient portal user account. Once setup, patient apps must follow the [standlone launch (1.0.0) sequence](https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#standalone-launch-sequence), as defined by the SMART app framework specification, which uses the authorization code flow (described further below).
 
 Patient-facing apps must request, at a minimum, the below scopes in their authentication request to the Nextech authorization server, in addition to whatever other access scopes are required by the application:
 - `openid`
 - `launch/patient`
 
-# Practitioner-facing apps #
+## Practitioner-facing apps ##
 SMART apps of this type are for use by a practitioner within a practice, and can be allowed to access all patient information in the practice, or can instead be focused on a single patient at a time. The practice that the practitioner is associated with must be setup with [myPatientVisit](https://www.mypatientvisit.com). Once setup, practitioner apps may follow either the [standlone launch sequence (1.0.0)](https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#standalone-launch-sequence) or the [EHR launch sequence (1.0.0)](https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#ehr-launch-sequence) as defined by the SMART app framework specification, both of which use the authorization code flow (described further below).
 
 For practitioner apps following the EHR launch sequence, the app that resides at the launch URL provided to Nextech upon client registration must use the provided `iss` URL parameter, which should always point to the Nextech API URL ( `https://select.nextech-api.com/api/r4`) to query either the Nextech API 's metadata endpoint (`https://select.nextech-api.com/api/r4/metadata`) or SMART configuration endpoint (`https://select.nextech-api.com/api/r4/.well-known/smart-configuration`), both of which contain in their responses OAuth `authorize` and `token` endpoint URLs for use in requesting authorization to access the Nextech API via the Nextech authorization server.
@@ -59,7 +59,7 @@ Practitioner-facing apps must request, at a minimum, the below scopes in their a
 - `launch/patient` (if doing a standalone launch that requires patient context)
 - `launch` (if doing an EHR launch with patient context already provided as a URL parameter to the app's registered launch URL)
 
-## Authorization code flow ##
+### Authorization code flow ###
 The authorization code workflow, which must be used by both patient- and practitioner-facing SMART apps, follows the below steps, and **must use [PKCE](#PKCE) with a SHA-256 code challenge hashing scheme** :
 
 **Step 1.** The SMART Application redirects the user to the Authorization Server (or in the case of a native application, opens a web browser) at a URL similar to the following:
@@ -117,6 +117,7 @@ The Nextech authorization server will then respond to with a response similar to
    "smart_style_url":"https://mypatientvisit-sts-dev.azurewebsites.net/css/smart-style.json?v=133092895520000000",
    "need_patient_banner": false
 }
+</pre>
 
 Response body notes:
 - `id_token` - returned if the `openid` and/or `fhirUser` scopes are approved by the SMART app user. Contains information about the user. The `fhirUser` claim within this token can be used to retrieve information about the user via a FHIR resource endpoint
@@ -127,12 +128,12 @@ Response body notes:
 
 Additionally, if the `offline_access` scope is requested by the app (recommended, or else the app will have to frequently re-authenticate with the Nextech authorization server), and consented to by the SMART app user, then the response body will contain a `refresh_token` member containing a refresh token that can be used to acquire a new `access_token` once the one received in the response expires (in the amount of time, in seconds, indicated by the `expires_in` response body member).
 
-## PKCE ##
+### PKCE ###
 [PKCE](https://tools.ietf.org/html/rfc7636), using a SHA-256 hashing method for its code challenge values, must be used with all SMART apps following the authorization code flow (so any apps that require user interaction), so that potential interception attacks can be mitigated. PKCE requires that the SMART app add an additional token to the initial authorization request, and then requires the SMART app to submit a verifier during the code exchange step that can be used as additional proof that no "man in the middle" has intercepted the authorization code and is trying to maliciously redeem it.
 
 In order to use PKCE, the SMART app must first generate a random string to use as a challenge value. The SMART app must make sure to generate a new random string each time PKCE is used. Once the random string is generated, a SHA-256 hash of the random string must be generated, and the resulting hash then Base64-encoded, for use as the `code_challenge` URL parameter in the authorization server's authorize request, which is made in the first step of the authorization code flow. 
 
-# System apps #
+## System apps ##
 SMART apps of this type have no need for user interaction, can run autonomously (or semi-autonomously), and are capable of protecting a private key. System apps must follow the [SMART Backend Services Authorization (STU 1.0.1) specification](http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html) for authentication/authorization, which requires that SMART apps follow the client credentials flow, with JWT credentials, which is described below. The practice that the system app wishes to access must be setup with [myPatientVisit](https://www.mypatientvisit.com), and established at app registration time.
 
 ### Client credentials flow with JWT credentials ###
@@ -176,7 +177,7 @@ The Nextech authorization server will then respond with a response like below, c
 }
 </pre>
 
-# Scopes #
+## Scopes ##
 Nextech currently only supports scopes that adhere to the format defined in version 1.0.0 of the SMART app specification, as indicated [here](https://www.hl7.org/fhir/smart-app-launch/1.0.0/scopes-and-launch-context/index.html). The full list of scopes supported by the Nextech API for SMART apps (depending on the type of SMART app) are as follows:
 
 #### For patient or practitioner-facing apps: ####
