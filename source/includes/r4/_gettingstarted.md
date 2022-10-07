@@ -191,10 +191,22 @@ The Nextech Select APIs use the standard HTTP response codes to indicate success
 | ---- | ----------- |
 | 200 | OK - Successful request |
 | 400 | Bad Request - The request is missing information or is malformed |
+| 401 | Unauthorized - The request lacks valid authentication credentials |
 | 403 | Forbidden - The request is valid, but the server is refusing action |
 | 404 | Not Found - The requested resource cannot be found |
+| 408 | Request Timeout - Client did not send a request in the time the server was expecting |
+| 422 | Unprocessable Entity - Unable to process the contained instructions |
 | 429 | Too Many Requests - The user has sent too many requests in a given amount of time |
 | 500 | Internal Server Error - We had a problem with our server |
+| 501 | Not Implemented Error - Requested implementation is not available |
+| 502 | Bad Gateway - Communication has been disrupted |
+| 523 | Authentication Fault - Unexpected exception in regards to authentication |
+
+### Exception Handling ###
+
+* Exceptions are logged and monitored by the Nextech staff.
+* Any request related exceptions will be returned to the user with the appropriate 4xx/5xx code as noted above.
+* Any unexpected exceptions will result in a 500 error response and indicate there is an issue with the API and/or connected services.
 
 ## Remarks ##
 Some resources contain a Remarks section at the end of its documentation page, which contains details on common questions and solutions for that resource.
