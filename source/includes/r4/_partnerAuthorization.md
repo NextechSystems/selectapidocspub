@@ -12,10 +12,11 @@ The following values are required in the header for every request:
 | Authorization | Every request requires a Bearer token `Bearer {access_token}` | Yes |
 | nx-practice-id | The unique identifier for a practice | Yes |
 
-### Registration ### 
+
+### Registration ###
 Before you can start using the Nextech API, you must go through our registration process. If you're interested in API access for your practice, please contact us [here](http://landing.nextech.com/developers-portal-registration-form). Upon completion of the registration process, Nextech will provide you with credentials that are necessary for proper authorization with the Nextech API. **These credentials will expire on your first login and must be reset through Microsoft [here] (http://portal.azure.com/).**
 
-### Request Access Token ###
+## Request Access Token ##
 Access tokens are used to make API requests on behalf of a user. These tokens are short-lived (1 hour by default) but should be kept confidential in transit and in storage. A `access_token` and `refresh_token` pair is issued when requesting an access token.
 
 **HTTP Request**  
@@ -50,7 +51,7 @@ Refresh tokens are used to renew an expired access token without providing user 
 | refresh_token | A long-lived token (14 days) used to renew expired access tokens without providing user credentials |
 
 
-### Authorization With Postman ###
+## Authorization With Postman ##
 
 Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the `authorization_code` grant type. When requesting a new token, you will be redirected to the _Auth URL_ listed below where you can enter your user credentials to authenticate. 
 
