@@ -269,7 +269,7 @@ The Nextech Select APIs use the standard HTTP response codes to indicate success
 | 403 | Forbidden - The request is valid, but the server is refusing action |
 | 404 | Not Found - The requested resource cannot be found |
 | 408 | Request Timeout - Client did not send a request in the time the server was expecting |
-| 422 | Unprocessable Entity - unable to process the contained instructions |
+| 422 | Unprocessable Entity - Unable to process the contained instructions |
 | 429 | Too Many Requests - The user has sent too many requests in a given amount of time |
 | 500 | Internal Server Error - We had a problem with our server |
 | 501 | Not Implemented Error - Requested implementation is not available |
