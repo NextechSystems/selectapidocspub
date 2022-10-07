@@ -272,6 +272,7 @@ The Nextech Select APIs use the standard HTTP response codes to indicate success
 | 422 | Unprocessable Entity - unable to process the contained instructions |
 | 429 | Too Many Requests - The user has sent too many requests in a given amount of time |
 | 500 | Internal Server Error - We had a problem with our server |
+| 501 | Not Implemented Error - Requested implementation is not available |
 | 502 | Bad Gateway - Communication has been disrupted |
 | 523 | Authentication Fault - Unexpected exception in regards to authentication |
 
