@@ -40,7 +40,7 @@ There are a few different pieces of information that will need to be provided to
 ### Public and Confidential Clients ###
 If the app is capable of securely storing a secret, it is considered to be a **confidential** client, and will be issued a client secret, along with a client ID, after the Nextech app registration process has completed. Both of these must be used to authenticate with the Nextech authorization server. **NOTE:** This secret value will only be received once: Make sure the **Client Secret** is securely stored and maintained; Nextech **will not** be able to provide this secret value again once registration has completed.
 
-If the app is not capable of securely storing a secret, then it is considered to be a **public** client, and will only be issued a client ID after the Nextech app registration process has completed. **NOTE:** Because Nextech requires the use of [PKCE](https://tools.ietf.org/html/rfc7636) (see the ["PKCE" section of this documentation](#PKCE) below for more details), native apps may store refresh tokens, despite being "public" clients. Such apps **must** properly secure such refresh tokens when stored.
+If the app is not capable of securely storing a secret, then it is considered to be a **public** client, and will only be issued a client ID after the Nextech app registration process has completed. **NOTE:** Because Nextech requires the use of [PKCE](https://tools.ietf.org/html/rfc7636) (see the ["PKCE" section of this documentation](#PKCE) below for more details), native apps may store refresh tokens, despite being "public" clients. Such apps **must** properly secure such refresh tokens.
 
 Examples of confidential clients include:
 
