@@ -19,7 +19,7 @@ There are a few different pieces of information that will need to be provided to
 
 * The name of the application
 * If the application is a **public** or **confidential** client.
-* A list of Redirect URIs of URLs the user is allowed to be redirected back to following authentication.
+* A list of Redirect URIs the user is allowed to be redirected back to following authentication.
   * This is not required for SMART Backend Services.
 * Which of the following types of applications is being registered
   * A patient app
