@@ -260,24 +260,15 @@
           </li>
           <li>
             <a href="#partner-authorization" class="toc-h1 toc-link" data-title="Partner Authorization">Partner Authorization</a>
-          </li>
-          <li>
-            <a href="#partner-authorization-overview" class="toc-h1 toc-link" data-title="Partner Authorization Overview">Partner Authorization Overview</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#required-headers" class="toc-h2 toc-link" data-title="Partner Authorization Overview">Required Headers</a>
+                    <a href="#partner-authorization-overview" class="toc-h2 toc-link" data-title="Partner Authorization">Partner Authorization Overview</a>
                   </li>
                   <li>
-                    <a href="#registration" class="toc-h2 toc-link" data-title="Partner Authorization Overview">Registration ###</a>
+                    <a href="#request-access-token" class="toc-h2 toc-link" data-title="Partner Authorization">Request Access Token</a>
                   </li>
                   <li>
-                    <a href="#request-access-token" class="toc-h2 toc-link" data-title="Partner Authorization Overview">Request Access Token</a>
-                  </li>
-                  <li>
-                    <a href="#refresh-access-token" class="toc-h2 toc-link" data-title="Partner Authorization Overview">Refresh Access Token</a>
-                  </li>
-                  <li>
-                    <a href="#authorization-with-postman" class="toc-h2 toc-link" data-title="Partner Authorization Overview">Authorization With Postman</a>
+                    <a href="#authorization-with-postman" class="toc-h2 toc-link" data-title="Partner Authorization">Authorization With Postman</a>
                   </li>
               </ul>
           </li>
@@ -290,53 +281,26 @@
                   <li>
                     <a href="#smart-on-fhir-authorization-overview" class="toc-h2 toc-link" data-title="SMART App Authorization">SMART on FHIR Authorization Overview</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#patient-facing-apps" class="toc-h1 toc-link" data-title="Patient-facing apps">Patient-facing apps</a>
-          </li>
-          <li>
-            <a href="#practitioner-facing-apps" class="toc-h1 toc-link" data-title="Practitioner-facing apps">Practitioner-facing apps</a>
-              <ul class="toc-list-h2">
                   <li>
-                    <a href="#authorization-code-flow" class="toc-h2 toc-link" data-title="Practitioner-facing apps">Authorization code flow</a>
+                    <a href="#supported-smart-on-fhir-app-types" class="toc-h2 toc-link" data-title="SMART App Authorization">Supported SMART on FHIR app types</a>
                   </li>
                   <li>
-                    <a href="#pkce" class="toc-h2 toc-link" data-title="Practitioner-facing apps">PKCE</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#system-apps" class="toc-h1 toc-link" data-title="System apps">System apps</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#client-credentials-flow-with-jwt-credentials" class="toc-h2 toc-link" data-title="System apps">Client credentials flow with JWT credentials</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#scopes" class="toc-h1 toc-link" data-title="Scopes">Scopes</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#example-of-smart-app-authorization-with-postman" class="toc-h2 toc-link" data-title="Scopes">Example of SMART App Authorization With Postman</a>
+                    <a href="#patient-facing-apps" class="toc-h2 toc-link" data-title="SMART App Authorization">Patient-facing apps</a>
                   </li>
                   <li>
-                    <a href="#using-the-access-token" class="toc-h2 toc-link" data-title="Scopes">Using the Access Token</a>
+                    <a href="#practitioner-facing-apps" class="toc-h2 toc-link" data-title="SMART App Authorization">Practitioner-facing apps</a>
                   </li>
                   <li>
-                    <a href="#refresh-access-token" class="toc-h2 toc-link" data-title="Scopes">Refresh Access Token</a>
+                    <a href="#system-apps" class="toc-h2 toc-link" data-title="SMART App Authorization">System apps</a>
                   </li>
                   <li>
-                    <a href="#revoking-refresh-tokens" class="toc-h2 toc-link" data-title="Scopes">Revoking Refresh Tokens</a>
+                    <a href="#scopes" class="toc-h2 toc-link" data-title="SMART App Authorization">Scopes</a>
                   </li>
                   <li>
-                    <a href="#nextech-authorization-server-metadata-endpoint" class="toc-h2 toc-link" data-title="Scopes">Nextech Authorization Server Metadata Endpoint</a>
+                    <a href="#using-the-access-token" class="toc-h2 toc-link" data-title="SMART App Authorization">Using the Access Token</a>
                   </li>
                   <li>
-                    <a href="#nextech-authorization-server-userinfo-endpoint" class="toc-h2 toc-link" data-title="Scopes">Nextech Authorization Server UserInfo Endpoint</a>
-                  </li>
-                  <li>
-                    <a href="#nextech-authorization-server-session-lifetime" class="toc-h2 toc-link" data-title="Scopes">Nextech Authorization Server Session Lifetime</a>
+                    <a href="#nextech-authorization-server-metadata-endpoint" class="toc-h2 toc-link" data-title="SMART App Authorization">Nextech Authorization Server Metadata Endpoint</a>
                   </li>
               </ul>
           </li>
@@ -842,7 +806,7 @@ Search results are limited to 50 matches per page.
 </ul>
 <h2 id='remarks'>Remarks</h2>
 <p>Some resources contain a Remarks section at the end of its documentation page, which contains details on common questions and solutions for that resource.</p>
-<h1 id='partner-authorization'>Partner Authorization</h1><h1 id='partner-authorization-overview'>Partner Authorization Overview</h1>
+<h1 id='partner-authorization'>Partner Authorization</h1><h2 id='partner-authorization-overview'>Partner Authorization Overview</h2>
 <p>Nextech&#39;s implementation of the FHIR® standard is protected by the <a href="https://www.rfc-editor.org/rfc/rfc6749">OAuth 2.0 standard</a> for authenticating requests. All API requests are authenticated by passing a Bearer token in the Authorization Header, which can be obtained via your Nextech-provided credentials (see the &quot;Registration&quot; section below).</p>
 <h3 id='required-headers'>Required Headers</h3>
 <p>The following values are required in the header for every request:</p>
@@ -865,9 +829,9 @@ Search results are limited to 50 matches per page.
 <td>Yes</td>
 </tr>
 </tbody></table>
-<h3 id='registration'>Registration ###</h3>
+<h3 id='registration'>Registration</h3>
 <p>Before you can start using the Nextech API, you must go through our registration process. If you&#39;re interested in API access for your practice, please contact us <a href="http://landing.nextech.com/developers-portal-registration-form">here</a>. Upon completion of the registration process, Nextech will provide you with credentials that are necessary for proper authorization with the Nextech API. <strong>These credentials will expire on your first login and must be reset through Microsoft <a href="http://portal.azure.com/">here</a>.</strong></p>
-<h3 id='request-access-token'>Request Access Token</h3>
+<h2 id='request-access-token'>Request Access Token</h2>
 <p>Access tokens are used to make API requests on behalf of a user. These tokens are short-lived (1 hour by default) but should be kept confidential in transit and in storage. A <code>access_token</code> and <code>refresh_token</code> pair is issued when requesting an access token.</p>
 
 <p><strong>HTTP Request</strong><br>
@@ -947,7 +911,7 @@ Search results are limited to 50 matches per page.
 <td>A long-lived token (14 days) used to renew expired access tokens without providing user credentials</td>
 </tr>
 </tbody></table>
-<h3 id='authorization-with-postman'>Authorization With Postman</h3>
+<h2 id='authorization-with-postman'>Authorization With Postman</h2>
 <p>Postman makes it easy to acquire OAuth 2.0 access tokens. Use the information listed below for obtaining a token via the <code>authorization_code</code> grant type. When requesting a new token, you will be redirected to the <em>Auth URL</em> listed below where you can enter your user credentials to authenticate. </p>
 
 <table><thead>
@@ -988,9 +952,16 @@ Search results are limited to 50 matches per page.
 <li><a href="https://hl7.org/fhir/R4/">FHIR R4</a></li>
 </ul>
 <h2 id='smart-on-fhir-authorization-overview'>SMART on FHIR Authorization Overview</h2>
-<p>Nextech&#39;s implementation of SMART on FHIR authorization allows SMART apps to access an individual patient or practitioner user&#39;s information via the <a href="https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#smart-authorization--fhir-access-overview">SMART App Launch 1.0.0 specification</a>, or the information of an entire practice&#39;s system, for autonomous system apps that do not require human interaction, via the <a href="http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html">SMART Backend Services Authorization (STU 1.0.1) specification</a>. Additionally, system-level apps that desire bulk FHIR export functionallty can follow the client-specific guidance in the <a href="http://hl7.org/fhir/uv/bulkdata/STU1.0.1/">FHIR Bulk Data Access (Flat FHIR, STU 1.0.1) specification</a>, along with the &quot;System apps&quot; section of this page&#39;s documentation, for guidance on creating an app with bulk FHIR export capability. </p>
+<p>SMART applications are able to access through SMART on FHIR authorization standards.</p>
 
-<p>The below sections describe the specifics of how to register a SMART app for use with the Nextech API, along with the technical requirements and implementation details needed in order for such an app to authenticate with the Nextech API and access supported FHIR resources.</p>
+<ul>
+<li>For an individual patient or practitioner&#39;s data, the application can follow the <a href="https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#smart-authorization--fhir-access-overview">SMART App Launch 1.0.0 specification</a>.</li>
+<li>For the information from an entire practice via background system apps, authorization is granted  via the <a href="http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html">SMART Backend Services Authorization (STU 1.0.1) specification</a>.
+
+<ul>
+<li>Additionally, if a System-level application needs to access Bulk FHIR export functionality, follow the client-specific guidance in the <a href="http://hl7.org/fhir/uv/bulkdata/STU1.0.1/">FHIR Bulk Data Access (Flat FHIR, STU 1.0.1) specification</a> specification and the <a href="#system-apps">System apps</a> section of this page&#39;s documentation for guidance.</li>
+</ul></li>
+</ul>
 <h3 id='registration'>Registration</h3>
 <p>In order create a SMART application that can access FHIR resources from the Nextech API, the application must first be registered with Nextech, and issued required authentication information. Visit <a href="http://landing.nextech.com/developers-portal-registration-form">here</a> to fill out a registration form for your app.
 There are a few different pieces of information that will need to be provided to Nextech upon app registration, which vary depending on the SMART app&#39;s use case:
@@ -1005,53 +976,95 @@ There are a few different pieces of information that will need to be provided to
 
 <p>If your app is capable of securely storing a secret, it is considered to be a <strong>confidential</strong> client, and will be issued a client secret, along with a client ID, after the Nextech app registration process has completed, both of which must be used to authenticate with the Nextech authorization server. If your app is not capable of securely storing a secret, then it is considered to be a <strong>public</strong> client, and will only be issued a client ID after the Nextech app registration process has completed. <strong>NOTE:</strong> Since Nextech requires the use of <a href="https://tools.ietf.org/html/rfc7636">PKCE</a> (see the &quot;PKCE&quot; section of this documentation below, or the provided RFC link, for more details), native apps CAN store refresh tokens, despite being &quot;public&quot; clients, but such apps must still take other available additional security precautions (secure on-device storage, for example) when storing refresh tokens.</p>
 
-<p>If your app is a web app that consists purely of HTML+JS code, and will be making direct calls to the Nextech authorization server, you will need to include an allowed origin address, representing the origin that the app will be making calls from, in your registration form, so that your app does not encounter <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a> issues when it tries to talk to the Nextech authorization server.</p>
+<p>If your app is browser based you will need to include an allowed origin address, representing the origin that the app will be making calls from, in your registration form, so that your app does not encounter <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a> issues when it tries to talk to the Nextech authorization server.</p>
 
 <p>Finally, if your app is a system/backend service app that requires no user interaction then it <strong>must</strong> be a confidential client, and you must provide a TLS 1.2 protected URL to the public JWK (JSON Web Key) Set utilized by the system app for JWT credential signing. See <a href="http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html#registering-a-smart-backend-service-communicating-public-keys">here</a> for more details.</p>
 
 <p>Examples of public clients include:
 - Native mobile apps where the app is installed on a user&#39;s device and does not have a separate secure backend server (aside from the FHIR server that it calls into). If a client secret were stored on a device like this, a malicious user could theoretically decompile the application and retrieve it
-- Single page web apps where the entire application consists of only HTML+JS code. Users have access to the source code of such an app, so a client secret cannot be securely stored</p>
+- Single page web apps. Users have access to the source code of such an app, so a client secret cannot be securely stored</p>
 
 <p>Examples of confidential clients include:
 - Web apps where a secure backend server exists, and this server is what is used handle the code exchange with the Nextech authorization server
 - Mobile apps where a secure backend server exists, and this server is what is used handle the code exchange with the Nextech authorization server</p>
-<h3 id='supported-smart-on-fhir-app-types'>Supported SMART on FHIR app types</h3>
-<p>There are three different types of SMART apps that Nextech supports for communicating with the Nextech API:
-- Patient-facing apps
-- Practitioner-facing apps
-- System apps</p>
-<h1 id='patient-facing-apps'>Patient-facing apps</h1>
+<h2 id='supported-smart-on-fhir-app-types'>Supported SMART on FHIR app types</h2>
+<p>There are three different types of SMART apps that Nextech supports for communicating with the Nextech API:</p>
+
+<ul>
+<li><a href="#patient-facing-apps">Patient-facing apps</a></li>
+<li><a href="#practitioner-facing-apps">Practitioner-facing apps</a></li>
+<li><a href="#system-apps">System apps</a></li>
+</ul>
+<h2 id='patient-facing-apps'>Patient-facing apps</h2>
 <p>SMART apps of this type are intended for use by a single patient, and require that the patient (and their associated practice) be setup with a <a href="https://www.mypatientvisit.com">myPatientVisit</a> patient portal user account. Once setup, patient apps must follow the <a href="https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#standalone-launch-sequence">standlone launch (1.0.0) sequence</a>, as defined by the SMART app framework specification, which uses the authorization code flow (described further below).</p>
 
-<p>Patient-facing apps must request, at a minimum, the below scopes in their authentication request to the Nextech authorization server, in addition to whatever other access scopes are required by the application:
-- <code>openid</code>
-- <code>launch/patient</code></p>
-<h1 id='practitioner-facing-apps'>Practitioner-facing apps</h1>
+<p>Patient-facing apps must request, at a minimum, the below scopes in their authentication request to the Nextech authorization server, in addition to whatever other access scopes are required by the application:</p>
+
+<ul>
+<li><code>openid</code></li>
+<li><code>launch/patient</code></li>
+</ul>
+<h2 id='practitioner-facing-apps'>Practitioner-facing apps</h2>
 <p>SMART apps of this type are for use by a practitioner within a practice, and can be allowed to access all patient information in the practice, or can instead be focused on a single patient at a time. The practice that the practitioner is associated with must be setup with <a href="https://www.mypatientvisit.com">myPatientVisit</a>. Once setup, practitioner apps may follow either the <a href="https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#standalone-launch-sequence">standlone launch sequence (1.0.0)</a> or the <a href="https://www.hl7.org/fhir/smart-app-launch/1.0.0/index.html#ehr-launch-sequence">EHR launch sequence (1.0.0)</a> as defined by the SMART app framework specification, both of which use the authorization code flow (described further below).</p>
 
 <p>For practitioner apps following the EHR launch sequence, the app that resides at the launch URL provided to Nextech upon client registration must use the provided <code>iss</code> URL parameter, which should always point to the Nextech API URL ( <code>https://select.nextech-api.com/api/r4</code>) to query either the Nextech API &#39;s metadata endpoint (<code>https://select.nextech-api.com/api/r4/metadata</code>) or SMART configuration endpoint (<code>https://select.nextech-api.com/api/r4/.well-known/smart-configuration</code>), both of which contain in their responses OAuth <code>authorize</code> and <code>token</code> endpoint URLs for use in requesting authorization to access the Nextech API via the Nextech authorization server.</p>
 
-<p>Practitioner-facing apps must request, at a minimum, the below scopes in their authorization request to the Nextech authorization server, in addition to whatever other access scopes are required by the application:
-- <code>openid</code>
-- <code>launch/patient</code> (if doing a standalone launch that requires patient context)
-- <code>launch</code> (if doing an EHR launch with patient context already provided as a URL parameter to the app&#39;s registered launch URL)</p>
-<h2 id='authorization-code-flow'>Authorization code flow</h2>
+<p>Practitioner-facing apps must request, at a minimum, the below scopes in their authorization request to the Nextech authorization server, in addition to whatever other access scopes are required by the application:</p>
+
+<ul>
+<li><code>openid</code></li>
+<li><code>launch/patient</code> (if doing a standalone launch that requires patient context)</li>
+<li><code>launch</code> (if doing an EHR launch with patient context already provided as a URL parameter to the app&#39;s registered launch URL)</li>
+</ul>
+<h3 id='authorization-code-flow'>Authorization code flow</h3>
 <p>The authorization code workflow, which must be used by both patient- and practitioner-facing SMART apps, follows the below steps, and <strong>must use <a href="#PKCE">PKCE</a> with a SHA-256 code challenge hashing scheme</strong> :</p>
 
 <p><strong>Step 1.</strong> The SMART Application redirects the user to the Authorization Server (or in the case of a native application, opens a web browser) at a URL similar to the following:
 <pre class="center-column">
 https://mypatientvisit-sts-experimental.azurewebsites.net/connect/authorize?aud=https://select.nextech-api.com/api/r4&amp;response_type=code&amp;client_id={appClientID}&amp;scope=openid%20offline_access%20fhirUser%20launch%2Fpatient%20patient%2FAllergyIntolerance.read&amp;redirect_uri=https%3A%2F%2FmySmartApp.com%2Fcallback&amp;code_challenge={sha256HashOfRandomString}0&amp;code_challenge_method=S256&amp;state={someUnpredictableValue}
-</pre>
-URL parameter notes:
-- <code>aud</code> - This is the base URL to the Nextech API that the app is requesting access to pull FHIR resources from, and will always be <code>https://select.nextech-api.com/api/r4</code>
-- <code>response_type</code> - This is always set to <code>code</code> for the authorization flow
-- <code>client_id</code> - This is the unique identifier for your SMART app, issued to you by Nextech
-- <code>scope</code> - indicates the space-delimited set of scopes that your SMART app is requesting
-- <code>redirect_uri</code> - This is the URI that belongs to your SMART app, which the app user will be redirected to, once the authorization flow completes
-- <code>code_challenge</code> - This is the Base64-encoded SHA-256 hash of the random string generated for the request (as part of <a href="#PKCE">PKCE</a>)
-- <code>code_challenge_method</code> - This should always be <code>S256</code>, to indicate the hashing method of the <code>code_challenge</code> value that is supplied, for use with <a href="#PKCE">PKCE</a>
-- <code>state</code> - An unpredictable value with at least 122 bits of entropy (e.g., a properly configured random UUID is suitable) that is tied to the user&#39;s current session, and can be verified at the end of the authorization code flow to make sure that no replay attacks have occurred</p>
+</pre></p>
+
+<p><em>URL parameter notes:</em></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aud</td>
+<td>This is the base URL to the Nextech API that the app is requesting access to pull FHIR resources from, and will always be <code>https://select.nextech-api.com/api/r4</code></td>
+</tr>
+<tr>
+<td>response_type</td>
+<td>This is always set to <code>code</code> for the authorization flow</td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>This is the unique identifier for your SMART app, issued to you by Nextech</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>indicates the space-delimited set of scopes that your SMART app is requesting</td>
+</tr>
+<tr>
+<td>redirect_uri</td>
+<td>This is the URI that belongs to your SMART app, which the app user will be redirected to, once the authorization flow completes</td>
+</tr>
+<tr>
+<td>code_challenge</td>
+<td>This is the Base64-encoded SHA-256 hash of the random string generated for the request (as part of <a href="#PKCE">PKCE</a>)</td>
+</tr>
+<tr>
+<td>code_challenge_method</td>
+<td>This should always be <code>S256</code>, to indicate the hashing method of the <code>code_challenge</code> value that is supplied, for use with <a href="#PKCE">PKCE</a></td>
+</tr>
+<tr>
+<td>state</td>
+<td>An unpredictable value with at least 122 bits of entropy (e.g., a properly configured random UUID is suitable) that is tied to the user&#39;s current session, and can be verified at the end of the authorization code flow to make sure that no replay attacks have occurred</td>
+</tr>
+</tbody></table>
 
 <p><strong>Step 2</strong>: The Nextech authorization server presents the user with a login screen. For patient-facing SMART apps, patients will need to sign in using their myPatientVisit user account, select a patient, and then consent to the scopes that they want to allow the app to use to request information on their behalf. For practitioner-facing SMART apps, the practitioner will be prompted to login using their Nextech software&#39;s user credentials (and, if the <code>launch/patient</code> scope is requested for a standalone launch sequence, select a patient context to use for the app), and then consent to the scopes that they want to allow the app to use to request information on their behalf.</p>
 
@@ -1067,18 +1080,59 @@ Content-Type: application/x-www-form-urlencoded
 Authorization: Basic [client ID and secret]</p>
 
 <p>client_id={appClientID}&amp;grant_type=authorization_code&amp;code=aded553gr3g7dggakG&amp;redirect_uri=https://mySmartApp.com/callback&amp;scope=openid%20offline_access%20fhirUser%20launch%2Fpatient%20patient%2FAllergyIntolerance.read&amp;aud=https://select.nextech-api.com/api/r4&amp;code_verifier={someRandomString}
-</pre>
-Header notes:
-- <code>Content-Type</code> - must be set to <code>application/x-www-form-urlencoded</code>
-- <code>Authorization</code> - This header is optional, and must only be used if your SMART app client is a confidential client (i.e. it has a client secret configured that it is capable of securely storing). This header uses Basic auth, which will have the string <code>Basic</code>, followed by a space, followed by the Base-64 encoding of the string in the form <code>[client ID]:[client secret]</code>.</p>
+</pre></p>
 
-<p>Parameter notes:
-- <code>client_id</code> - This is the same Nextech-issued client ID that was used in step 1 above
-- <code>grant_type</code> - This is always set to <code>authorization_code</code>
-- <code>code</code> - This is code received from the Nextech authorization server in step 3 above
-- <code>redirect_uri</code> - This must match the URI used in step 1 above
-- <code>scope</code> - This must match the scopes used in step 1 above
-- <code>code_verifier</code> - This is the original (unhashed) random string that was provided in a hashed format in the <code>code_challenge</code> parameter in step 1 above</p>
+<p><em>Header notes:</em></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>must be set to <code>application/x-www-form-urlencoded</code></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>This header is optional, and must only be used if your SMART app client is a confidential client (i.e. it has a client secret configured that it is capable of securely storing). This header uses Basic auth, which will have the string <code>Basic</code>, followed by a space, followed by the Base-64 encoding of the string in the form <code>[client ID]:[client secret]</code>.</td>
+</tr>
+</tbody></table>
+
+<p><em>Parameter notes:</em></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_id</td>
+<td>This is the same Nextech-issued client ID that was used in step 1 above</td>
+</tr>
+<tr>
+<td>grant_type</td>
+<td>This is always set to <code>authorization_code</code></td>
+</tr>
+<tr>
+<td>code</td>
+<td>This is code received from the Nextech authorization server in step 3 above</td>
+</tr>
+<tr>
+<td>redirect_uri</td>
+<td>This must match the URI used in step 1 above</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>This must match the scopes used in step 1 above</td>
+</tr>
+<tr>
+<td>code_verifier</td>
+<td>This is the original (unhashed) random string that was provided in a hashed format in the <code>code_challenge</code> parameter in step 1 above</td>
+</tr>
+</tbody></table>
 
 <p>The Nextech authorization server will then respond to with a response similar to below, which includes an access token that can now be used by the SMART app to access FHIR resources within the Nextech API:
 <pre class="center-column">
@@ -1092,21 +1146,45 @@ Header notes:
    &quot;encounter&quot;:null,
    &quot;smart_style_url&quot;:&quot;https://mypatientvisit-sts-dev.azurewebsites.net/css/smart-style.json?v=133092895520000000&quot;,
    &quot;need_patient_banner&quot;: false
-}</p>
+}
+</pre></p>
 
-<p>Response body notes:
-- <code>id_token</code> - returned if the <code>openid</code> and/or <code>fhirUser</code> scopes are approved by the SMART app user. Contains information about the user. The <code>fhirUser</code> claim within this token can be used to retrieve information about the user via a FHIR resource endpoint
-- <code>patient</code> - Patient ID indicating that the app launched in the context of a patient with this ID. Any patient-level scopes will be scoped to this particular patient
-- <code>encounter</code> - Encounter ID, indicating that the app launched in the context of a particular encounter. <strong>Currently returned, but not supported</strong>
-- <code>need_patient_banner</code> - Used in EHR launches for practitioner apps. Indicates whether or not the app was launched in a context that requires a patient banner be displayed
-- <code>smart_style_url</code> - Used in EHR launches for practitioner apps. URL where styling information can be found, for apps that support styling</p>
+<p><em>Response body notes:</em></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id_token</td>
+<td>returned if the <code>openid</code> and/or <code>fhirUser</code> scopes are approved by the SMART app user. Contains information about the user. The <code>fhirUser</code> claim within this token can be used to retrieve information about the user via a FHIR resource endpoint</td>
+</tr>
+<tr>
+<td>patient</td>
+<td>Patient ID indicating that the app launched in the context of a patient with this ID. Any patient-level scopes will be scoped to this particular patient</td>
+</tr>
+<tr>
+<td>encounter</td>
+<td>Encounter ID, indicating that the app launched in the context of a particular encounter. <strong>Currently returned, but not supported</strong></td>
+</tr>
+<tr>
+<td>need_patient_banner</td>
+<td>Used in EHR launches for practitioner apps. Indicates whether or not the app was launched in a context that requires a patient banner be displayed</td>
+</tr>
+<tr>
+<td>smart_style_url</td>
+<td>Used in EHR launches for practitioner apps. URL where styling information can be found, for apps that support styling</td>
+</tr>
+</tbody></table>
 
 <p>Additionally, if the <code>offline_access</code> scope is requested by the app (recommended, or else the app will have to frequently re-authenticate with the Nextech authorization server), and consented to by the SMART app user, then the response body will contain a <code>refresh_token</code> member containing a refresh token that can be used to acquire a new <code>access_token</code> once the one received in the response expires (in the amount of time, in seconds, indicated by the <code>expires_in</code> response body member).</p>
-<h2 id='pkce'>PKCE</h2>
+<h3 id='pkce'>PKCE</h3>
 <p><a href="https://tools.ietf.org/html/rfc7636">PKCE</a>, using a SHA-256 hashing method for its code challenge values, must be used with all SMART apps following the authorization code flow (so any apps that require user interaction), so that potential interception attacks can be mitigated. PKCE requires that the SMART app add an additional token to the initial authorization request, and then requires the SMART app to submit a verifier during the code exchange step that can be used as additional proof that no &quot;man in the middle&quot; has intercepted the authorization code and is trying to maliciously redeem it.</p>
 
 <p>In order to use PKCE, the SMART app must first generate a random string to use as a challenge value. The SMART app must make sure to generate a new random string each time PKCE is used. Once the random string is generated, a SHA-256 hash of the random string must be generated, and the resulting hash then Base64-encoded, for use as the <code>code_challenge</code> URL parameter in the authorization server&#39;s authorize request, which is made in the first step of the authorization code flow. </p>
-<h1 id='system-apps'>System apps</h1>
+<h2 id='system-apps'>System apps</h2>
 <p>SMART apps of this type have no need for user interaction, can run autonomously (or semi-autonomously), and are capable of protecting a private key. System apps must follow the <a href="http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html">SMART Backend Services Authorization (STU 1.0.1) specification</a> for authentication/authorization, which requires that SMART apps follow the client credentials flow, with JWT credentials, which is described below. The practice that the system app wishes to access must be setup with <a href="https://www.mypatientvisit.com">myPatientVisit</a>, and established at app registration time.</p>
 <h3 id='client-credentials-flow-with-jwt-credentials'>Client credentials flow with JWT credentials</h3>
 <p>System apps follow a variation of the client credentials flow, one that uses a cryptographically secure, signed JWT (JSON Web Token) that it presents to the Nextech authorization server, instead of a client secret. This flow is fully defined in <a href="https://datatracker.ietf.org/doc/rfc7523/">RFC 7526</a>.</p>
@@ -1122,10 +1200,14 @@ Header notes:
   &quot;exp&quot;:1623019405,
   &quot;iat&quot;:1623019345
 }
-</pre>
-Important to note:
-- The <code>sub</code> and <code>iss</code> claims within the JWT must be the Nextech-issued client ID of your application, and must be exactly the same
-- The <code>aud</code> claim is the token endpoint of the Nextech authorization server</p>
+</pre></p>
+
+<p><em>Important to note:</em></p>
+
+<ul>
+<li>The <code>sub</code> and <code>iss</code> claims within the JWT must be the Nextech-issued client ID of your application, and must be exactly the same</li>
+<li>The <code>aud</code> claim is the token endpoint of the Nextech authorization server</li>
+</ul>
 
 <p>After the JWT is digitally signed, it must be sent to the Nextech authorization server with a request like below:
 <pre class="center-column">
@@ -1148,7 +1230,7 @@ Content-Type: application/x-www-form-urlencoded</p>
    &quot;scope&quot;:&quot;[spaceDelimitedDesiredScopes]&quot;
 }
 </pre></p>
-<h1 id='scopes'>Scopes</h1>
+<h2 id='scopes'>Scopes</h2>
 <p>Nextech currently only supports scopes that adhere to the format defined in version 1.0.0 of the SMART app specification, as indicated <a href="https://www.hl7.org/fhir/smart-app-launch/1.0.0/scopes-and-launch-context/index.html">here</a>. The full list of scopes supported by the Nextech API for SMART apps (depending on the type of SMART app) are as follows:</p>
 <h4 id='for-patient-or-practitioner-facing-apps'>For patient or practitioner-facing apps:</h4>
 <ul>
@@ -1251,7 +1333,7 @@ Content-Type: application/x-www-form-urlencoded</p>
 1. <code>Scopes</code> should contain all needed scopes, space-delimited. At a minimum this should be <code>launch/patient openid</code></p>
 
 <p>Once these fields are filled out and the authorization request is made, your browser should open up to the Nextech authorization server&#39;s login screen. MyPatientVisit user credentials, for patient-facing apps, or Nextech software user credentials, for practitioner-facing apps, will have to be used to login. After logging in, the user will select which practice and patient they are granting access to, and then they will consent (or not) to the requested scopes. Once this is done, there will be a callback to Postman (check browser pop-up settings and try changing your default browser if that fails). When Postman receives this callback, it will pop up a dialog containing the response information from the Nextech authorization server, including the access token. </p>
-<h3 id='using-the-access-token'>Using the Access Token</h3>
+<h2 id='using-the-access-token'>Using the Access Token</h2>
 <p>Once your app has gone through the above steps to acquire an access token, that access token needs to be placed in an <code>Authorization</code> header, using the <code>Bearer</code> scheme:<code>Bearer {token}</code> where <code>{token}</code> represents your token, for all requests made from the app to the Nextech API&#39;s FHIR resource endpoints.</p>
 <h3 id='refresh-access-token'>Refresh Access Token</h3>
 <p>Refresh tokens are used to renew an expired access token without providing user credentials. An <code>access_token</code> and <code>refresh_token</code> pair is issued when requesting an access token using the authorization code flow (see above) for patient or practitioner-facing SMART apps (system apps are not issued refresh tokens, and so must always request a new access token upon previous access token expiration), as long as the SMART app requests the <code>offline_access</code> scope, and the user consents to that scope. When the <code>access_token</code> expires, your SMART app can call into the Nextech authorization server&#39;s <code>connect/token</code> endpoint to be issued a new access token (and refresh token), as shown below:</p>
@@ -1264,13 +1346,41 @@ Authorization: Basic [client ID and secret]
 grant_type=refresh_token&refresh_token=<{refreshToken}
 </pre>
 
-<p>Header notes:
-- <code>Content-Type</code> - must be set to <code>application/x-www-form-urlencoded</code>
-- <code>Authorization</code> - This header is optional, and must only be used if your SMART app client is a confidential client (i.e. it has a client secret configured that it is capable of securely storing). This header uses Basic auth, which will have the string <code>Basic</code>, followed by a space, followed by the Base-64 encoding of the string in the form <code>[client ID]:[client secret]</code>.</p>
+<p><em>Header notes:</em></p>
 
-<p>Parameter notes:
-- <code>grant_type</code> - This is always set to <code>refresh_token</code>
-- <code>refresh_token</code> - This is the refresh token that was returned alongside the <code>access_token</code> in the previous response from the Nextech authorization server, when the SMART app first acquired an access token</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>must be set to <code>application/x-www-form-urlencoded</code></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>This header is optional, and must only be used if your SMART app client is a confidential client (i.e. it has a client secret configured that it is capable of securely storing). This header uses Basic auth, which will have the string <code>Basic</code>, followed by a space, followed by the Base-64 encoding of the string in the form <code>[client ID]:[client secret]</code>.</td>
+</tr>
+</tbody></table>
+
+<p><em>Parameter notes:</em></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>grant_type</td>
+<td>This is always set to <code>refresh_token</code></td>
+</tr>
+<tr>
+<td>refresh_token</td>
+<td>This is the refresh token that was returned alongside the <code>access_token</code> in the previous response from the Nextech authorization server, when the SMART app first acquired an access token</td>
+</tr>
+</tbody></table>
 <h3 id='revoking-refresh-tokens'>Revoking Refresh Tokens</h3>
 <p>If a SMART app wishes to revoke a refresh token that it has been issued, then it can do so by making a call like below to the Nextech authorization server:</p>
 
@@ -1282,20 +1392,38 @@ Authorization: Basic [client ID and secret]
 token={refreshToken}
 </pre>
 
-<p>Header notes:
-- <code>Content-Type</code> - must be set to <code>application/x-www-form-urlencoded</code>
-- <code>Authorization</code> - This header is optional, and must only be used if your SMART app client is a confidential client (i.e. it has a client secret configured that it is capable of securely storing). This header uses Basic auth, which will have the string <code>Basic</code>, followed by a space, followed by the Base-64 encoding of the string in the form <code>[client ID]:[client secret]</code>.</p>
+<p><em>Header notes:</em></p>
 
-<p>Parameter notes:
-- <code>token</code> - This is the refresh token that was returned alongside the <code>access_token</code> in the previous response from the Nextech authorization server, when the SMART app first acquired an access token</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>must be set to <code>application/x-www-form-urlencoded</code></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>This header is optional, and must only be used if your SMART app client is a confidential client (i.e. it has a client secret configured that it is capable of securely storing). This header uses Basic auth, which will have the string <code>Basic</code>, followed by a space, followed by the Base-64 encoding of the string in the form <code>[client ID]:[client secret]</code>.</td>
+</tr>
+</tbody></table>
+
+<p><em>Parameter notes:</em></p>
+
+<ul>
+<li><code>token</code> - This is the refresh token that was returned alongside the <code>access_token</code> in the previous response from the Nextech authorization server, when the SMART app first acquired an access token</li>
+</ul>
 
 <p>Revoking the refresh token will make it so that the SMART app will need to have the user re-authorize the SMART app&#39;s required scopes, once the access token that accompanied the refresh token expires.</p>
-<h3 id='nextech-authorization-server-metadata-endpoint'>Nextech Authorization Server Metadata Endpoint</h3>
+<h2 id='nextech-authorization-server-metadata-endpoint'>Nextech Authorization Server Metadata Endpoint</h2>
 <p>SMART apps can call the Nextech authorization server&#39;s OpenID Connect metadata endpoint in order to find out information about the available endpoints, scopes, and response types supported by the Nextech authorization server, for use by SMART apps: 
 <pre class="center-column">
 GET .well-known/openid-configuration
-</pre>
-This endpoint requires no authentication.</p>
+</pre></p>
+
+<p>This endpoint requires no authentication.</p>
 <h3 id='nextech-authorization-server-userinfo-endpoint'>Nextech Authorization Server UserInfo Endpoint</h3>
 <p>SMART apps can call the Nextech authorization server&#39;s <code>UserInfo</code> endpoint to learn more about the user associated with a given access token: 
 <pre class="center-column">
@@ -1303,8 +1431,11 @@ GET connect/userinfo
 Authorization: Bearer [access token]
 </pre></p>
 
-<p>Header notes:
-- <code>Authorization</code> - This header must contain the <code>access_token</code> prevously acquired from the Nextech authorization server in the previous response from the Nextech authorization server, when the SMART first acquired an access token, following the <code>Bearer</code> text in the header value</p>
+<p>Header notes:</p>
+
+<ul>
+<li><code>Authorization</code> - This header must contain the <code>access_token</code> prevously acquired from the Nextech authorization server in the previous response from the Nextech authorization server, when the SMART first acquired an access token, following the <code>Bearer</code> text in the header value</li>
+</ul>
 <h3 id='nextech-authorization-server-session-lifetime'>Nextech Authorization Server Session Lifetime</h3>
 <p>All browser sessions that a SMART app opens with the Nextech authorization server are only good for the lifetime of the browser window/tab. No persisted web authorization session is kept between a given SMART app and the Nextech authorization server after the app has successfully been authorized (or just exited the Nextech authorization server web page), so, if a SMART app redirects to the Nextech authorization server not long after being issued an access and/or refresh token then the Nextech authorization server will once more prompt the user of the app to login again, no matter how much time has passed since the SMART app&#39;s previous authorization request. Since there is no persistent authorization web session maintained between the SMART app and the Nextech authorization server, there is no need for the SMART app to logout of the Nextech authorization server session: once the refresh token (if any was obtained, otherwise just the access token) expires the SMART app will need to re-authorize with the Nextech authorization server.</p>
 <h1 id='metadata'>Metadata</h1><h3 id='overview'>Overview</h3>
