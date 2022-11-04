@@ -814,7 +814,7 @@ GET https://select.nextech-api.com/api/r4/CareTeam?_lastUpdated=le2022-05-05
 ## Condition
 
 ### Overview
-The [condition](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-condition.html) resource describes a certain state of health of a patient.
+The condition ([an encounter diagnosis](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-condition-encounter-diagnosis.html), [a health concern or a problem](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-condition-problems-health-concerns.html)) resource describes a certain state of health of a patient.
 
 ### Fields
 | Name | Description | Type | Initial Version |
@@ -825,59 +825,78 @@ The [condition](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-cor
 | category | A category assigned to the condition | [Condition Category Code](http://hl7.org/fhir/us/core/STU3.1.1/ValueSet/us-core-condition-category) | _16.8_ |
 | code | Identification of the condition, problem or diagnosis | [Condition/Problem/Diagnosis Code](https://www.hl7.org/fhir/R4/valueset-condition-code.html) | _16.8_ |
 | subject | The patient pertaining to the condition | [Reference](https://www.hl7.org/fhir/R4/references.html)([US Core Patient Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html)) | _16.8_ |
+| recordedDate | Date record was first recorded | [dateTime](http://hl7.org/fhir/R4/datatypes.html#dateTime) | _17.1_ |
+| extension:assertedDate | The date on which the existence of the Condition was first asserted or acknowledged | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) [(assertedDate)](http://hl7.org/fhir/R4/extension-condition-asserteddate.html) | _17.1_ |
+| onsetDateTime | Estimated or actual date or date-time the condition began | [dateTime](http://hl7.org/fhir/R4/datatypes.html#dateTime) | _17.1_ |
+| abatementDateTime | The date or estimated date that the condition resolved or went into remission | [dateTime](http://hl7.org/fhir/R4/datatypes.html#dateTime) | _17.1_ |
+| encounter | Encounter created as part of | [Reference](http://hl7.org/fhir/R4/references.html) [(US Core Encounter Profile)](https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-encounter.html) | _17.1_ |
 
 ### Example
 <pre class="center-column">
  {
-	"resourceType": "Condition",
-	"id": "prb-12",
-	"clinicalStatus": {
-		"coding": [
-			{
-				"system": "http://hl7.org/fhir/ValueSet/condition-clinical",
-				"code": "resolved",
-				"display": "Resolved"
-			}
-		],
-		"text": "Resolved"
-	},
-	"verificationStatus": {
-		"coding": [
-			{
-				"system": "http://hl7.org/fhir/ValueSet/condition-ver-status",
-				"code": "confirmed",
-				"display": "Confirmed"
-			}
-		],
-		"text": "Confirmed"
-	},
-	"category": [
-		{
-			"coding": [
-				{
-					"system": "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category",
-					"code": "problem-list-item",
-					"display": "Problem List Item"
-				}
-			],
-			"text": "Problem List Item"
-		}
-	],
-	"code": {
-		"coding": [
-			{
-				"system": "http://snomed.info/sct",
-				"code": "238131007",
-				"display": "Overweight"
-			}
-		],
-		"text": "Overweight"
-	},
-	"subject": {
-		"reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-		"display": "Newman, Alice Jones"
-	}
-}
+            "resource": {
+                "resourceType": "Condition",
+                "id": "ed-1",
+                "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
+                        "valueDateTime": "2022-09-22"
+                    }
+                ],
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "resolved",
+                            "display": "Resolved"
+                        }
+                    ],
+                    "text": "Resolved"
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                            "code": "confirmed",
+                            "display": "Confirmed"
+                        }
+                    ],
+                    "text": "Confirmed"
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                                "code": "encounter-diagnosis",
+                                "display": "Encounter Diagnosis"
+                            }
+                        ],
+                        "text": "Encounter Diagnosis"
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10",
+                            "code": "L11.1",
+                            "display": "Transient acantholytic dermatosis [Grover]"
+                        }
+                    ],
+                    "text": "Transient acantholytic dermatosis [Grover]"
+                },
+                "subject": {
+                    "reference": "Patient/683cbc02-a96c-4697-b7e6-df0e9391d333",
+                    "display": "Tester, Inferno Official"
+                },
+                "encounter": {
+                    "reference": "Encounter/30"
+                },
+                "onsetDateTime": "2022-08-29",
+                "abatementDateTime": "2022-11-04",
+                "recordedDate": "2022-09-22"
+            }
+ }
 </pre>
 &nbsp;
 
