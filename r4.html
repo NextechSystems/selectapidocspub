@@ -2904,7 +2904,7 @@ GET https://select.nextech-api.com/api/r4/CareTeam?_lastUpdated=le2022-05-05
 
 <p>&nbsp;</p>
 <h2 id='condition'>Condition</h2><h3 id='overview-4'>Overview</h3>
-<p>The <a href="https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-condition.html">condition</a> resource describes a certain state of health of a patient.</p>
+<p>The condition (<a href="https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-condition-encounter-diagnosis.html">an encounter diagnosis</a>, <a href="https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-condition-problems-health-concerns.html">a health concern or a problem</a>) resource describes a certain state of health of a patient.</p>
 <h3 id='fields-5'>Fields</h3>
 <table><thead>
 <tr>
@@ -2950,59 +2950,103 @@ GET https://select.nextech-api.com/api/r4/CareTeam?_lastUpdated=le2022-05-05
 <td><a href="https://www.hl7.org/fhir/R4/references.html">Reference</a>(<a href="https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html">US Core Patient Profile</a>)</td>
 <td><em>16.8</em></td>
 </tr>
+<tr>
+<td>recordedDate</td>
+<td>Date record was first recorded</td>
+<td><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></td>
+<td><em>17.1</em></td>
+</tr>
+<tr>
+<td>extension:assertedDate</td>
+<td>The date on which the existence of the Condition was first asserted or acknowledged</td>
+<td><a href="http://hl7.org/fhir/R4/extensibility.html#Extension">Extension</a> <a href="http://hl7.org/fhir/R4/extension-condition-asserteddate.html">(assertedDate)</a></td>
+<td><em>17.1</em></td>
+</tr>
+<tr>
+<td>onsetDateTime</td>
+<td>Estimated or actual date or date-time the condition began</td>
+<td><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></td>
+<td><em>17.1</em></td>
+</tr>
+<tr>
+<td>abatementDateTime</td>
+<td>The date or estimated date that the condition resolved or went into remission</td>
+<td><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></td>
+<td><em>17.1</em></td>
+</tr>
+<tr>
+<td>encounter</td>
+<td>Encounter created as part of</td>
+<td><a href="http://hl7.org/fhir/R4/references.html">Reference</a> <a href="https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-encounter.html">(US Core Encounter Profile)</a></td>
+<td><em>17.1</em></td>
+</tr>
 </tbody></table>
 <h3 id='example-5'>Example</h3>
 <pre class="center-column">
  {
-    "resourceType": "Condition",
-    "id": "prb-12",
-    "clinicalStatus": {
-        "coding": [
-            {
-                "system": "http://hl7.org/fhir/ValueSet/condition-clinical",
-                "code": "resolved",
-                "display": "Resolved"
+            "resource": {
+                "resourceType": "Condition",
+                "id": "ed-1",
+                "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
+                        "valueDateTime": "2022-09-22"
+                    }
+                ],
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "resolved",
+                            "display": "Resolved"
+                        }
+                    ],
+                    "text": "Resolved"
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                            "code": "confirmed",
+                            "display": "Confirmed"
+                        }
+                    ],
+                    "text": "Confirmed"
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                                "code": "encounter-diagnosis",
+                                "display": "Encounter Diagnosis"
+                            }
+                        ],
+                        "text": "Encounter Diagnosis"
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10",
+                            "code": "L11.1",
+                            "display": "Transient acantholytic dermatosis [Grover]"
+                        }
+                    ],
+                    "text": "Transient acantholytic dermatosis [Grover]"
+                },
+                "subject": {
+                    "reference": "Patient/683cbc02-a96c-4697-b7e6-df0e9391d333",
+                    "display": "Tester, Inferno Official"
+                },
+                "encounter": {
+                    "reference": "Encounter/30"
+                },
+                "onsetDateTime": "2022-08-29",
+                "abatementDateTime": "2022-11-04",
+                "recordedDate": "2022-09-22"
             }
-        ],
-        "text": "Resolved"
-    },
-    "verificationStatus": {
-        "coding": [
-            {
-                "system": "http://hl7.org/fhir/ValueSet/condition-ver-status",
-                "code": "confirmed",
-                "display": "Confirmed"
-            }
-        ],
-        "text": "Confirmed"
-    },
-    "category": [
-        {
-            "coding": [
-                {
-                    "system": "http://hl7.org/fhir/us/core/ValueSet/us-core-condition-category",
-                    "code": "problem-list-item",
-                    "display": "Problem List Item"
-                }
-            ],
-            "text": "Problem List Item"
-        }
-    ],
-    "code": {
-        "coding": [
-            {
-                "system": "http://snomed.info/sct",
-                "code": "238131007",
-                "display": "Overweight"
-            }
-        ],
-        "text": "Overweight"
-    },
-    "subject": {
-        "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
-        "display": "Newman, Alice Jones"
-    }
-}
+ }
 </pre>
 
 <p>&nbsp;</p>
