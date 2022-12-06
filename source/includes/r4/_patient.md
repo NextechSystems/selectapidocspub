@@ -2803,6 +2803,13 @@ GET https://select.nextech-api.com/api/r4/Observation/lab-12
 </pre>
 &nbsp;
 
+#### Example: Get a sexual orientation observation with an ID of '123'
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Observation/sexual-orientation-123
+</pre>
+&nbsp;
+
 ### *Search*
 Returns observations based on the provided search parameters
 
@@ -2854,6 +2861,28 @@ POST https://select.nextech-api.com/api/r4/Observation/_search
 
 &nbsp;
 
+#### Example: Get a sexual orientation observation with an identifier '123' with provenance
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Observation?identifier=sexual-orientation-123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Observation/_search
+<i><small>body:</small></i> identifier=sexual-orientation-123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Observation?_id=sexual-orientation-123&_revinclude=Provenance:target
+</pre>
+
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Observation/_search
+<i><small>body:</small></i> _id=sexual-orientation-123&_revinclude=Provenance:target
+</pre>
+
+&nbsp;
+
 #### Example: Get all laboratory requisitions and lab results 5/1/2017
 
 <pre class="center-column">
@@ -2884,6 +2913,17 @@ GET https://select.nextech-api.com/api/r4/Observation?category=vital-signs&date=
 <pre class="center-column">
 POST https://select.nextech-api.com/api/r4/Observation/_search
 <i><small>body:</small></i> category=vital-signs&date=ge2017-05-01
+</pre>
+&nbsp;
+
+#### Example: Get all sexual orientation observations for a patient
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/Observation?code=76690-7&&patient=4CC272B3-0842-4D9E-A4AD-9535FA1AD01E
+</pre>
+<pre class="center-column">
+POST https://select.nextech-api.com/api/r4/Observation/_search
+<i><small>body:</small></i> code=76690-7&&patient=4CC272B3-0842-4D9E-A4AD-9535FA1AD01E
 </pre>
 &nbsp;
 
