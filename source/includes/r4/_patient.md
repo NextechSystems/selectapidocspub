@@ -2500,6 +2500,7 @@ The [Medication Request](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefiniti
 | requester | The individual, organization, or device that initiated the request and has responsibility for its activation | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([US Core Practitioner Profile](http://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-practitioner.html)) | _17.0_ |
 | encounter | The Encounter during which the medication request was created or to which the creation of this record is tightly associated | [Reference](http://hl7.org/fhir/R4/references.html#Reference) ([US Core Encounter Profile](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-encounter.html)) | _17.0_ |
 | dosageInstruction | Indicates how the medication is to be used by the patient | [Dosage](http://hl7.org/fhir/R4/dosage.html#Dosage) | _17.0_ |
+| category | Indicates the type of medication request (for example, where the medication is expected to be consumed or administered) | [CodeableConcept](http://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _17.2_ |
 
 ### Example
 <pre class="center-column">
@@ -2508,6 +2509,18 @@ The [Medication Request](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefiniti
 	"id": "1",
 	"status": "active",
 	"intent": "original-order",
+	"category": [
+		{
+			"coding": [
+				{
+					"system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+					"code": "community",
+					"display": "Community"
+				}
+			],
+			"text": "Community"
+		}
+	],
 	"reportedBoolean": false,
 	"medicationCodeableConcept": {
 		"coding": [
