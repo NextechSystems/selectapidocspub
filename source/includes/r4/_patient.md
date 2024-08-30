@@ -19,7 +19,7 @@ The [patient](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
 | birthDate | The date of birth of the patient | [date](http://hl7.org/fhir/R4/datatypes.html#date) | _12.6_ |
 | address | Addresses associated with the patient. Previous patient addresses are also returned here starting in 16.9 | [Address](http://hl7.org/fhir/R4/datatypes.html#Address) | _12.6_ |
 | communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](http://hl7.org/fhir/R4/datatypes.html#BackboneElement) | _12.6_ |
-
+| deceased | Indicates if the individual is deceased or not. If the patient is deceased, it contains the date of death. | [dateTime](https://hl7.org/fhir/R4/datatypes.html#dateTime) | _18.5_ |
 
 ### Example
 <pre class="center-column">
@@ -135,6 +135,7 @@ The [patient](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
     ],
     "gender": "male",
     "birthDate": "1952-06-13",
+    "deceasedDateTime": "2024-08-29",
     "address": [
         {
             "use": "home",
