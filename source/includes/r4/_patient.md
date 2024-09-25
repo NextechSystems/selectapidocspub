@@ -20,6 +20,7 @@ The [patient](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
 | address | Addresses associated with the patient. Previous patient addresses are also returned here starting in 16.9 | [Address](http://hl7.org/fhir/R4/datatypes.html#Address) | _12.6_ |
 | communication | A list of Languages which may be used to communicate with the patient about his or her health | [BackboneElement](http://hl7.org/fhir/R4/datatypes.html#BackboneElement) | _12.6_ |
 | deceased | Indicates if the individual is deceased or not. If the patient is deceased, it contains the date of death. | [dateTime](https://hl7.org/fhir/R4/datatypes.html#dateTime) | _18.5_ |
+| extension:sex | The Sex Extension is used to reflect the documentation of a person’s sex. | [Extension](http://hl7.org/fhir/R4/extensibility.html#Extension) ([US Core Sex Extension](https://hl7.org/fhir/us/core/STU6.1/StructureDefinition-us-core-sex.html)) | _18.6_ |
 
 ### Example
 <pre class="center-column">
@@ -93,6 +94,19 @@ The [patient](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
                     }
                 ],
                 "text": "Identifies as Male"
+            }
+        },
+		{
+            "url": "http://hl7.org/fhir/us/core/STU6.1/StructureDefinition-us-core-sex",
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "248153007",
+                        "display": "Male"
+                    }
+                ],
+                "text": "Male"
             }
         }
     ],
