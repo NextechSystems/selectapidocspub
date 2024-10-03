@@ -97,18 +97,9 @@ The [patient](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
             }
         },
 		{
-            "url": "http://hl7.org/fhir/us/core/STU6.1/StructureDefinition-us-core-sex",
-            "valueCodeableConcept": {
-                "coding": [
-                    {
-                        "system": "http://snomed.info/sct",
-                        "code": "248153007",
-                        "display": "Male"
-                    }
-                ],
-                "text": "Male"
-            }
-        }
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex",
+            "valueCode": "248153007"
+        },
     ],
     "identifier": [
         {
