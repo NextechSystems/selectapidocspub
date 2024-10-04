@@ -83,6 +83,10 @@ The [patient](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
             "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
             "valueCode": "M"
         },
+		{
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex",
+            "valueCode": "248153007"
+        },
         {
             "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity",
             "valueCodeableConcept": {
@@ -95,11 +99,7 @@ The [patient](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-
                 ],
                 "text": "Identifies as Male"
             }
-        },
-		{
-            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex",
-            "valueCode": "248153007"
-        },
+        }
     ],
     "identifier": [
         {
