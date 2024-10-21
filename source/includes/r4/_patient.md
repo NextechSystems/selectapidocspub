@@ -3103,6 +3103,119 @@ POST https://select.nextech-api.com/api/r4/Procedure/_search
 
 &nbsp;
 
+## Related Person
+
+### Overview
+A [Related Person](https://hl7.org/fhir/us/core/STU6.1/StructureDefinition-us-core-relatedperson.html) resource represents persons with a legal or familial relationship to a patient.
+
+### Fields
+| Name | Description | Type | Initial Version |
+| ---- | ----------- | ---- | --------------- |
+| id | The unique value assigned to each Related Person which discerns it from all others | [string](https://hl7.org/fhir/R4/datatypes.html#string) | _18.7_ |
+| active | 	Whether this related person's record is in active use | [boolean](https://www.hl7.org/fhir/R4/datatypes.html#boolean) | _18.7_ |
+| patient | The patient this person is related to | [Reference](http://hl7.org/fhir/R4/references.html#Reference)[(US Core Patient Profile)](https://hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-patient.html) | _18.7_ |
+| relationship | The nature of the relationship | [CodeableConcept](https://hl7.org/fhir/R4/datatypes.html#CodeableConcept) | _18.7_ |
+| name | A name associated with the person | [HumanName](https://www.hl7.org/fhir/R4/datatypes.html#HumanName) | _18.7_ |
+| telecom | A contact detail for the person | [ContactPoint](https://www.hl7.org/fhir/R4/datatypes.html#ContactPoint) | _18.7_ |
+| address | Address where the related person can be contacted or visited | [Address](https://www.hl7.org/fhir/R4/datatypes.html#Address) | _18.7_ |
+
+
+### Example
+<pre class="center-column">
+{
+    "resourceType": "RelatedPerson",
+    "id": "relatedperson-821patient-73",
+    "active": true,
+    "patient": {
+        "reference": "Patient/c27e5be0-4b44-4ec5-a284-4308d6ac2b1a",
+        "display": "Newman, Alice Jones"
+    },
+    "relationship": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                    "code": "MTH"
+                }
+            ]
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "text": "Cheryl Newman",
+            "family": "Newman",
+            "given": [
+                "Cheryl"
+            ]
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "(586) 501-4732",
+            "use": "home"
+        }
+    ],
+    "address": [
+        {
+            "use": "home",
+            "type": "both",
+            "line": [
+                "480 Hoppe Valley Lakes"
+            ],
+            "city": "Port Brett",
+            "state": "ID",
+            "postalCode": "83295"
+        }
+    ]
+}
+</pre>
+&nbsp;
+
+### *Get*
+Returns a single Related Person result based on the Related Person ID.
+
+#### HTTP Request 
+`GET /r4/RelatedPerson/{relatedPersonID}`
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| relatedPersonID | path | The unique identifier for the related person | Yes | _18.7_ |
+
+#### Example: Get a specific Related Person based on identifier
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/RelatedPerson/relatedperson-821patient-73
+</pre>
+&nbsp;
+
+### *Search*
+Searches for all related persons based on the given search criteria.
+
+#### HTTP Request 
+`GET /r4/RelatedPerson?{parameters}`
+
+#### Parameters
+| Name | Located in | Description | Required | Initial Version |
+| ---- | ---------- | ----------- | -------- | --------------- |
+| _id | query or uri | The unique value assigned to each Related Person which discerns it from all others |  No | _18.7_ |
+
+#### Example: Get all Related Persons
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/RelatedPerson
+</pre>
+&nbsp;
+
+#### Example: Get a specific Related Person based on id
+
+<pre class="center-column">
+GET https://select.nextech-api.com/api/r4/RelatedPerson?_id=relatedperson-821patient-73
+</pre>
+&nbsp;
+
 
 ## Binary
 
